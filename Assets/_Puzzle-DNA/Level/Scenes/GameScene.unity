@@ -721,7 +721,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2fbd309908a7484f87fa30ed2c865d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _width: 6
+  gemPrefab: {fileID: 6539906006310958499, guid: ee923fc9a7f328f4fb32dfaee3e8ee2b,
+    type: 3}
+  _width: 8
   _height: 8
 --- !u!1 &861541869
 GameObject:
@@ -1264,13 +1266,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25a613a1c35d4354bb7f368b676d0725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameData: {fileID: 11400000, guid: dffda7e03a8d7bc48bde3ca9e3e6174e, type: 2}
+  roleState: 1
   swapSpeed: 6
   fallSpeed: 10
-  preventInitialMatches: 1
+  preventInitialMatches: 0
   _score: 0
   _currentGoalScore: 0
   _timeLeft: 0
-  gameData: {fileID: 11400000, guid: dffda7e03a8d7bc48bde3ca9e3e6174e, type: 2}
 --- !u!4 &1282053297
 Transform:
   m_ObjectHideFlags: 0
@@ -1316,11 +1319,11 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1282053297}
+  - {fileID: 1452547058}
   - {fileID: 1601851626}
   - {fileID: 700947892}
   - {fileID: 2133972331}
   - {fileID: 576734646}
-  - {fileID: 1452547058}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1452547057
@@ -2529,7 +2532,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9a760e19a93fd642afaeee3c7848f33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hintDelay: 30
+  hintDelay: 10
 --- !u!1001 &7549236200990728510
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -5,9 +5,9 @@ using UnityEngine;
 
 // Special Gem (Blender) Match all Gems in same Row and Column
 // Future improvement create generic class for Special Gems
-public class BlenderGem : BaseGem {
+public class BombGem : BaseGem {
 
-    List<BlenderGem> blenders = new List<BlenderGem>();
+    public List<BombGem> gems = new List<BombGem>();
 
     public bool activated;
     
@@ -22,10 +22,10 @@ public class BlenderGem : BaseGem {
     public override Func<BaseGem, bool> validateGem {
         get {
             return (gem) => {
-                if(gem is BlenderGem) {
-                    if(!(gem as BlenderGem).activated) {
-                        (gem as BlenderGem).activated = true;
-                        blenders.Add(gem as BlenderGem);
+                if(gem is BombGem) {
+                    if(!(gem as BombGem).activated) {
+                        (gem as BombGem).activated = true;
+                        gems.Add(gem as BombGem);
                     }
                     
                     return false;
@@ -46,12 +46,12 @@ public class BlenderGem : BaseGem {
     }
 
     public override MatchInfo GetMatch() {
-        MatchInfo matchInfo = BoardController.GetCrossMatch(this, validateGem);
+        MatchInfo matchInfo = BoardController.GetBombMatch(this, validateGem);
         List<MatchInfo> matchInfosChain = new List<MatchInfo>();
         
         activated = true;
 
-        foreach(var blender in blenders) {
+        foreach(var blender in gems) {
             MatchInfo blenderChain = blender.GetMatch();
             blenderChain.RemoveMatches(matchInfo.matches);
             matchInfosChain.ForEach(m => blenderChain.RemoveMatches(m.matches));
@@ -60,12 +60,12 @@ public class BlenderGem : BaseGem {
         }
 
         matchInfo.specialMatches.AddRange(matchInfosChain);
-        
         return matchInfo;
     }
 
-    public void ResetSpecialGem() {
-        blenders.Clear();
+    public void ResetSpecialGem()
+    {
         activated = false;
+        gems.Clear();
     }
 }

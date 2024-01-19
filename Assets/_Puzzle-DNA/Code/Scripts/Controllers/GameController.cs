@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Utilities;
@@ -9,15 +9,23 @@ public enum GameState
     Playing
 }
 
+public enum RoleState
+{
+    Drive,
+    Network,
+    Action
+}
+
 public class GameController : SingletonMonoBehaviour<GameController>
 {
     [SerializeField] GameData gameData;
-    Coroutine gameOver;
+    public RoleState roleState;
 
     [Header("Game Settings")]
     public float swapSpeed;
     public float fallSpeed;
     public bool preventInitialMatches;
+    Coroutine gameOver;
 
     [Header("Score Data")]
     [SerializeField] int _score;
@@ -73,7 +81,8 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
     void Start()
     {
-        UIController.ShowMainScreen();
+        StartGame();
+        //UIController.ShowMainScreen();
         SoundController.PlayMusic(GameData.GetAudioClip("bgm"), 1);
     }
 

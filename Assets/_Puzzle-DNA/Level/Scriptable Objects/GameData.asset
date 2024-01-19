@@ -16,9 +16,6 @@ MonoBehaviour:
   - type: 0
     sprite: {fileID: 21300000, guid: 79b18e11270d6f74eabc9f276fc246b1, type: 3}
     minMatch: 3
-  - type: 1
-    sprite: {fileID: 21300000, guid: f992ddb52aed8dd48b4ebab310aa6ddb, type: 3}
-    minMatch: 3
   - type: 2
     sprite: {fileID: 21300000, guid: d8ee221ae72623945a4e8716e25dd133, type: 3}
     minMatch: 3
@@ -37,6 +34,9 @@ MonoBehaviour:
   specialGems:
   - name: Blender
     prefab: {fileID: 6539906006310958499, guid: e61eea144c3cdb646a313258d3e2629f,
+      type: 3}
+  - name: Apple
+    prefab: {fileID: 6539906006310958499, guid: c0d3ca31d71aa5f4eb54daa97b20bb40,
       type: 3}
   audioClipInfos:
   - name: bgm

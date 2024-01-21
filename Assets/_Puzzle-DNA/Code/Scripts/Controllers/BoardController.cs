@@ -589,8 +589,8 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
                     !specialGemExist)
                 {
                     GameObject specialGem = null;
-                    if (GameController.instance.roleState == RoleState.Action) specialGem = GameData.GetSpecialGem("Blender");
-                    else if (GameController.instance.roleState == RoleState.Network) specialGem = GameData.GetSpecialGem("Apple");
+                    if (GameController.instance.roleState == RoleState.Action) specialGem = GameData.GetSpecialGem("Apple");
+                    else if (GameController.instance.roleState == RoleState.Network) specialGem = GameData.GetSpecialGem("Blender");
 
                     float newGemDuration = 0.0f;
                     BaseGem newGem = CreateGem(
@@ -622,7 +622,7 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
         }
 
         //GameController.score += score;
-        GameController.score = score;
+        GameController.scoreTemp = score * matchCounter;
         UIController.ShowMsg($"{GameData.GetComboMessage(matchCounter - 1)}");
         SoundController.PlaySfx(GameData.GetAudioClip("match"));
 

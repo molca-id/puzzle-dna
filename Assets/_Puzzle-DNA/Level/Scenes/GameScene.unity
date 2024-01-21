@@ -2092,13 +2092,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25a613a1c35d4354bb7f368b676d0725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 11400000, guid: dffda7e03a8d7bc48bde3ca9e3e6174e, type: 2}
   roleState: 0
   swapSpeed: 6
   fallSpeed: 10
   preventInitialMatches: 1
+  gameData: {fileID: 11400000, guid: dffda7e03a8d7bc48bde3ca9e3e6174e, type: 2}
   _score: 0
-  _multiplierScore: 1
+  _scoreTotal: 0
+  _scoreMultiplier: 1
   _timeLeft: 120
 --- !u!4 &1282053297
 Transform:
@@ -2196,6 +2197,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9498db9afe7b07478edda29a79b0115, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sfxPrefab: {fileID: 6190111919037368132, guid: d9aa6ea928faf8a4983e3f6d88aba8a7,
+    type: 3}
 --- !u!1 &1453819799
 GameObject:
   m_ObjectHideFlags: 0
@@ -3938,12 +3941,32 @@ PrefabInstance:
     - target: {fileID: 7549236201847914663, guid: fbfc097802d337a4a98ef468f4d8c07c,
         type: 3}
       propertyPath: m_text
-      value: Play
+      value: Retry
+      objectReference: {fileID: 0}
+    - target: {fileID: 7549236201847914663, guid: fbfc097802d337a4a98ef468f4d8c07c,
+        type: 3}
+      propertyPath: m_textAlignment
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 7549236201847914663, guid: fbfc097802d337a4a98ef468f4d8c07c,
+        type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
+    - target: {fileID: 7549236201847914663, guid: fbfc097802d337a4a98ef468f4d8c07c,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 7549236201847914663, guid: fbfc097802d337a4a98ef468f4d8c07c,
+        type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7549236201847914663, guid: fbfc097802d337a4a98ef468f4d8c07c,
         type: 3}
       propertyPath: m_hasFontAssetChanged
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7549236201847914663, guid: fbfc097802d337a4a98ef468f4d8c07c,
         type: 3}

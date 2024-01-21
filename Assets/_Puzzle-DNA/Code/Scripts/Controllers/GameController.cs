@@ -18,7 +18,6 @@ public enum RoleState
 
 public class GameController : SingletonMonoBehaviour<GameController>
 {
-    [SerializeField] GameData gameData;
     public RoleState roleState;
 
     [Header("Game Settings")]
@@ -27,26 +26,31 @@ public class GameController : SingletonMonoBehaviour<GameController>
     public bool preventInitialMatches;
     Coroutine gameOver;
 
-    [Header("Score Data")]
-    [SerializeField] int _score;
-    public static int score
+    [Header("Game Data")]
+    [SerializeField] GameData gameData;
+    [SerializeField] int _scoreTotal;
+    [SerializeField] int _scoreTemp;
+    public static int scoreTemp
     {
-        get { return instance._score; }
+        get { return instance._scoreTemp; }
         set
         {
-            instance._score = value * instance._multiplierScore;
-            instance._scoreTotal += instance._score;
+            instance._scoreTemp = value * instance._scoreMultiplier;
+            instance._scoreTotal += instance._scoreTemp;
             UIController.UpdateScore(instance._scoreTotal);
+            UIController.UpdateComboScore(
+               instance._scoreTemp, BoardController.matchCounter
+            );
         }
     }
 
-    [SerializeField] int _multiplierScore;
+    [SerializeField] int _scoreMultiplier;
     public static int multiplierScore
     {
-        get { return instance._multiplierScore; }
+        get { return instance._scoreMultiplier; }
         set
         {
-            instance._multiplierScore = value;
+            instance._scoreMultiplier = value;
         }
     }
 
@@ -60,8 +64,6 @@ public class GameController : SingletonMonoBehaviour<GameController>
             UIController.UpdateTimeLeft(instance._timeLeft);
         }
     }
-
-    [SerializeField] int _scoreTotal;
 
     public static GameState state = GameState.Menu;
 

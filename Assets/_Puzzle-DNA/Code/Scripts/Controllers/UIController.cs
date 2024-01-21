@@ -39,7 +39,7 @@ public class UIController : SingletonMonoBehaviour<UIController>
 
     public static void ShowGameScreen()
     {
-        UpdateScore(GameController.score);
+        UpdateScore(GameController.scoreTemp);
         UpdateTimeLeft(GameController.timeLeft);
         instance.StartCoroutine(
             instance.IEChangeScreen(instance.gameScreen, () => {

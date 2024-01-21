@@ -3,12 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using Utilities;
 
-public class SoundController : SingletonMonoBehaviour<SoundController> {
-
-    AudioSource musicSource,
-    sfxSource;
-
+public class SoundController : SingletonMonoBehaviour<SoundController>
+{
     public static bool soundMuted;
+
+    [SerializeField] GameObject sfxPrefab;
+    public static GameObject sfxSourcePrefab
+    {
+        get { return instance.sfxPrefab; }
+    }
+
+    AudioSource musicSource, sfxSource;
 
     public override void Awake() {
         base.Awake();
@@ -70,11 +75,8 @@ public class SoundController : SingletonMonoBehaviour<SoundController> {
     }
 
     public static AudioSource PlaySfxInstance(AudioClip clip, float volume = 1f) {
-        AudioSource sfxSource = Instantiate(
-            Resources.Load<GameObject>("Prefabs/sfxSourcePrefab")
-        ).GetComponent<AudioSource>();
-        
-        sfxSource.mute = soundMuted;
+        AudioSource sfxSource = Instantiate(sfxSourcePrefab).GetComponent<AudioSource>();
+        sfxSource.mute = soundMuted; 
         sfxSource.clip = clip;
         sfxSource.volume = volume;
         sfxSource.Play();

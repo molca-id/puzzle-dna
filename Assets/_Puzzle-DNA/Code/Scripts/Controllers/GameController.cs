@@ -34,35 +34,19 @@ public class GameController : SingletonMonoBehaviour<GameController>
         get { return instance._score; }
         set
         {
-            UIController.UpdateComboScore(
-                value - instance._score, BoardController.matchCounter
-            );
-            instance._score = value;
-            UIController.UpdateScore(instance._score);
-
-            if (value > highscore)
-                highscore = value;
+            instance._score = value * instance._multiplierScore;
+            instance._scoreTotal += instance._score;
+            UIController.UpdateScore(instance._scoreTotal);
         }
     }
 
-    public static int highscore
+    [SerializeField] int _multiplierScore;
+    public static int multiplierScore
     {
-        get { return PlayerPrefs.GetInt("match3-highscore", 0); }
+        get { return instance._multiplierScore; }
         set
         {
-            PlayerPrefs.SetInt("match3-highscore", value);
-            UIController.UpdateHighScore(value);
-        }
-    }
-
-    [SerializeField] int _currentGoalScore;
-    public static int currentGoalScore
-    {
-        get { return instance._currentGoalScore; }
-        set
-        {
-            instance._currentGoalScore = value;
-            UIController.UpdateGoalScore(instance._currentGoalScore);
+            instance._multiplierScore = value;
         }
     }
 
@@ -77,31 +61,20 @@ public class GameController : SingletonMonoBehaviour<GameController>
         }
     }
 
+    [SerializeField] int _scoreTotal;
+
     public static GameState state = GameState.Menu;
 
     void Start()
     {
         StartGame();
-        //UIController.ShowMainScreen();
         SoundController.PlayMusic(GameData.GetAudioClip("bgm"), 1);
+        StartCoroutine(TimerSystem());
+        RoleChanged(0);
     }
 
     void Update()
     {
-        if (state == GameState.Playing)
-        {
-            timeLeft -= Time.deltaTime;
-            if (score >= currentGoalScore)
-            {
-                currentGoalScore += currentGoalScore + currentGoalScore / 2;
-                timeLeft = 120;
-            }
-
-            if (timeLeft <= 0)
-            {
-                GameOver();
-            }
-        }
 #if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -118,6 +91,23 @@ public class GameController : SingletonMonoBehaviour<GameController>
 #endif
     }
 
+    public void RoleChanged(int value)
+    {
+        roleState = (RoleState)value;
+    }
+
+    IEnumerator TimerSystem()
+    {
+        if (state == GameState.Playing)
+        {
+            timeLeft--;
+            if (timeLeft <= 0) GameOver();
+        }
+
+        yield return new WaitForSeconds(1f);
+        StartCoroutine(TimerSystem());
+    }
+
     public void StartGame()
     {
         StartCoroutine(IEStartGame());
@@ -125,9 +115,6 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
     IEnumerator IEStartGame()
     {
-        score = 0;
-        currentGoalScore = 50;
-        timeLeft = 120;
         BoardController.matchCounter = 0;
         UIController.ShowGameScreen();
         yield return new WaitForSeconds(1f);

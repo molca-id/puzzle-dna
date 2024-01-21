@@ -5,35 +5,24 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System;
 
 public class UIController : SingletonMonoBehaviour<UIController>
 {
-
     [Header("Screens")]
-    [SerializeField]
-    CanvasGroup mainScreen;
-    [SerializeField]
-    CanvasGroup gameScreen;
+    [SerializeField] CanvasGroup mainScreen;
+    [SerializeField] CanvasGroup gameScreen;
 
     [Header("Game Screen")]
+    [SerializeField] TextMeshProUGUI scoreText;
+    [SerializeField] TextMeshProUGUI comboScoreText;
+    [SerializeField] TextMeshProUGUI comboMultiplierText;
+    [SerializeField] TextMeshProUGUI timeLeftText;
+    [SerializeField] TextMeshProUGUI highscoreText;
+    [SerializeField] TextMeshProUGUI msgText;
 
-    [SerializeField]
-    TextMeshProUGUI scoreText;
-
-    [SerializeField]
-    TextMeshProUGUI comboScoreText;
-
-    [SerializeField]
-    TextMeshProUGUI comboMultiplierText;
-
-    [SerializeField]
-    TextMeshProUGUI goalScoreText;
-    [SerializeField]
-    TextMeshProUGUI timeLeftText;
-    [SerializeField]
-    TextMeshProUGUI highscoreText;
-    [SerializeField]
-    TextMeshProUGUI msgText;
+    [Header("Add On For Drive Role")]
+    [SerializeField] GameObject driveMultiplierText;
 
     CanvasGroup currentScreen;
 
@@ -41,7 +30,6 @@ public class UIController : SingletonMonoBehaviour<UIController>
 
     public static void ShowMainScreen()
     {
-        UpdateHighScore(GameController.highscore);
         instance.StartCoroutine(
             instance.IEChangeScreen(instance.mainScreen, executeAfter: () => {
 
@@ -51,9 +39,7 @@ public class UIController : SingletonMonoBehaviour<UIController>
 
     public static void ShowGameScreen()
     {
-
         UpdateScore(GameController.score);
-        UpdateGoalScore(GameController.currentGoalScore);
         UpdateTimeLeft(GameController.timeLeft);
         instance.StartCoroutine(
             instance.IEChangeScreen(instance.gameScreen, () => {
@@ -75,18 +61,6 @@ public class UIController : SingletonMonoBehaviour<UIController>
         instance.comboMultiplierText.text = multiplier > 1 ? $" x{multiplier}" : "";
 
         instance.comboScoreText.GetComponent<Animator>().SetTrigger("pulse");
-    }
-
-
-    public static void UpdateHighScore(int score)
-    {
-        instance.highscoreText.text = $"High Score: {score}";
-    }
-
-    public static void UpdateGoalScore(int goalScore)
-    {
-        instance.goalScoreText.text = $"/{goalScore}";
-        instance.goalScoreText.GetComponent<Animator>().SetTrigger("pulse");
     }
 
     public static void UpdateTimeLeft(float timeLeft)
@@ -115,6 +89,19 @@ public class UIController : SingletonMonoBehaviour<UIController>
     {
         instance.msgText.text = $"{msg}";
         instance.msgText.transform.GetComponent<Animator>().SetTrigger("pulse");
+    }
+
+    public void SetMultiplierScoreState(bool cond)
+    {
+        driveMultiplierText.SetActive(cond);
+        GameController.multiplierScore = cond ? 2 : 1;
+    }
+
+    public IEnumerator DriveMultiplier()
+    {
+        SetMultiplierScoreState(true);
+        yield return new WaitForSeconds(3f);
+        SetMultiplierScoreState(false);
     }
 
     IEnumerator IEChangeScreen(

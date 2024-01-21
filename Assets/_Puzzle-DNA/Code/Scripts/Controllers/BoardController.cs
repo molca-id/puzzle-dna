@@ -136,9 +136,7 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
         return CreateRandomGem(x, y, worldPosition, delay, out float _);
     }
 
-    BaseGem CreateRandomGem(
-        int x, int y, Vector3 worldPosition
-    )
+    BaseGem CreateRandomGem(int x, int y, Vector3 worldPosition)
     {
         return CreateRandomGem(x, y, worldPosition, 0);
     }
@@ -520,16 +518,16 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
 
     public static MatchInfo GetBombMatch(BaseGem gem, Func<BaseGem, bool> validateGem)
     {
-        Vector2Int gemPos = gem.position;
         List<BaseGem> matches = new List<BaseGem>();
+
         matches.Add(gem);
 
-        for (int x = gemPos.x - 1; x < gemPos.x + 2; x++)
+        for (int x = gem.position.x - 1; x < gem.position.x + 2; x++)
         {
-            BaseGem gemToCheck = GetGem(x, gemPos.y);
-            if (gemToCheck && validateGem(gemToCheck))
+            for (int y = gem.position.y - 1; y < gem.position.y + 2; y++)
             {
-                matches.Add(gemToCheck);
+                BaseGem gemToCheck = GetGem(x, y);
+                if (gemToCheck) matches.Add(gemToCheck);
             }
         }
 
@@ -581,41 +579,50 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
                 }
             }
 
-            if (matchInfo.matches.Count >= 4 &&
-                !specialGemExist)
+            if (matchInfo.matches.Count >= 4)
             {
-                GameObject specialGem = null;
-                if (GameController.instance.roleState == RoleState.Action) specialGem = GameData.GetSpecialGem("Blender");
-                else if (GameController.instance.roleState == RoleState.Network) specialGem = GameData.GetSpecialGem("Apple");
+                if (GameController.instance.roleState == RoleState.Drive)
+                {
+                    StartCoroutine(UIController.instance.DriveMultiplier());
+                }
+                else if (GameController.instance.roleState != RoleState.Drive && 
+                    !specialGemExist)
+                {
+                    GameObject specialGem = null;
+                    if (GameController.instance.roleState == RoleState.Action) specialGem = GameData.GetSpecialGem("Blender");
+                    else if (GameController.instance.roleState == RoleState.Network) specialGem = GameData.GetSpecialGem("Apple");
 
-                float newGemDuration;
-                BaseGem newGem = CreateGem(
-                    matchInfo.pivot.position.x,
-                    matchInfo.pivot.position.y,
-                    GameData.GemOfType(GemType.Special),
-                    GetWorldPosition(matchInfo.pivot.position + Vector2Int.up),
-                    0, out newGemDuration, specialGem
-                );
+                    float newGemDuration = 0.0f;
+                    BaseGem newGem = CreateGem(
+                        matchInfo.pivot.position.x,
+                        matchInfo.pivot.position.y,
+                        GameData.GemOfType(GemType.Special),
+                        GetWorldPosition(matchInfo.pivot.position + Vector2Int.up),
+                        0, out newGemDuration, specialGem
+                    );
 
-                newGem.MoveTo(
-                    GetWorldPosition(newGem.position),
-                    GameController.instance.fallSpeed
-                );
+                    newGem.MoveTo(
+                        GetWorldPosition(newGem.position),
+                        GameController.instance.fallSpeed
+                    );
 
-                duration += newGemDuration;
+                    duration += newGemDuration;
+                }
             }
 
             if (duration > maxDuration)
                 maxDuration = duration;
 
             matchCounter++;
-            if (matchInfo.pivot is PlusGem)
+            if (matchInfo.pivot is PlusGem ||
+                matchInfo.pivot is BombGem)
                 matchCounter = 5;
 
             score += matchInfo.GetScore();
         }
 
-        GameController.score += score * matchCounter;
+        //GameController.score += score;
+        GameController.score = score;
         UIController.ShowMsg($"{GameData.GetComboMessage(matchCounter - 1)}");
         SoundController.PlaySfx(GameData.GetAudioClip("match"));
 

@@ -14,22 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gems:
   - type: 0
-    sprite: {fileID: 21300000, guid: 79b18e11270d6f74eabc9f276fc246b1, type: 3}
+    sprite: {fileID: 21300000, guid: 90c09b7155f42c049bc0ae77a8e8f3bf, type: 3}
     minMatch: 3
   - type: 2
-    sprite: {fileID: 21300000, guid: d8ee221ae72623945a4e8716e25dd133, type: 3}
+    sprite: {fileID: 21300000, guid: 4836d86064007e34485827d28758ff4a, type: 3}
     minMatch: 3
   - type: 3
-    sprite: {fileID: 21300000, guid: 3d5b0af664090b240983a3869c22adf2, type: 3}
+    sprite: {fileID: 21300000, guid: d3d9ddd221b0d2a49b60911d5c4e1419, type: 3}
     minMatch: 3
   - type: 4
-    sprite: {fileID: 21300000, guid: c34afc091af3cb443a784ac50c8fbffa, type: 3}
+    sprite: {fileID: 21300000, guid: 9f7e4780415716a4db750052e777c0d8, type: 3}
     minMatch: 3
   - type: 5
-    sprite: {fileID: 21300000, guid: de5cc90ca45c73a47bdc6f4df9ed323f, type: 3}
+    sprite: {fileID: 21300000, guid: 06b95a6eb3b72d84aa0a689e2c33ae34, type: 3}
     minMatch: 3
   - type: 6
-    sprite: {fileID: 21300000, guid: b165480f1284456469c068e6cb5fc650, type: 3}
+    sprite: {fileID: 21300000, guid: 642efb36f7916824794edba6353914f9, type: 3}
     minMatch: 3
   specialGems:
   - name: Blender

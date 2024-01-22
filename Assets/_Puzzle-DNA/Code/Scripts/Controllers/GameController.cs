@@ -150,7 +150,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
         HintController.StopHinting();
         UIController.ShowMsg("Game Over");
         yield return new WaitForSeconds(BoardController.DestroyGems() + .5f);
-        UIController.ShowMainScreen();
-        gameOver = null;
+        //UIController.ShowMainScreen();
+        //gameOver = null;
     }
 }

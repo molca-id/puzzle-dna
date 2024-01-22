@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 1562173510238005296}
   - component: {fileID: 4571077119328886446}
   - component: {fileID: 2100746632092338692}
-  - component: {fileID: 8864377848082428839}
+  - component: {fileID: 2857160653582744106}
   m_Layer: 0
-  m_Name: blenderPrefab
+  m_Name: bombPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,12 +77,12 @@ SpriteRenderer:
   m_SortingLayerID: 1968221097
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d6269d9af2a55eb49a8e953c0ace7d45, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 46fec72ac793fa74a9590f573ce88dcd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.57, y: 0.72}
+  m_Size: {x: 0.88, y: 0.88}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -171,7 +171,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &8864377848082428839
+--- !u!114 &2857160653582744106
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -180,13 +180,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 6539906006310958499}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1aa9e80b27ef2d4ea995fe6f5d138c3, type: 3}
+  m_Script: {fileID: 11500000, guid: 0a53f2aaddd77c84d9072dc56b934e33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 0}
   animator: {fileID: 0}
   position: {x: 0, y: 0}
-  _type: 0
+  _type: 1
   _minMatch: 3
   gems: []
   activated: 0

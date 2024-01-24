@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e63af0a87d5c2f45a27c8615bc44409, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: 
+  boardDimension: {x: 12, y: 7}
+  usingPowerUps: 1
   gems:
   - type: 0
     sprite: {fileID: 21300000, guid: 90c09b7155f42c049bc0ae77a8e8f3bf, type: 3}
@@ -32,12 +34,21 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: 642efb36f7916824794edba6353914f9, type: 3}
     minMatch: 3
   specialGems:
-  - name: Blender
+  - name: Rocket
     prefab: {fileID: 6539906006310958499, guid: e61eea144c3cdb646a313258d3e2629f,
       type: 3}
-  - name: Apple
+  - name: Bomb
     prefab: {fileID: 6539906006310958499, guid: c0d3ca31d71aa5f4eb54daa97b20bb40,
       type: 3}
+  emptyGems:
+  - emptySprite: {fileID: 21300000, guid: 42ba22bfc2a201b479db7523251173fb, type: 3}
+    positions: []
+  - emptySprite: {fileID: 21300000, guid: 381a9d030237878458e4de815f0a9991, type: 3}
+    positions:
+    - {x: 0, y: 0}
+    - {x: 0, y: 6}
+    - {x: 11, y: 0}
+    - {x: 11, y: 6}
   audioClipInfos:
   - name: bgm
     clip: {fileID: 8300000, guid: f54f914e1258c5f4e90a9226d10af526, type: 3}

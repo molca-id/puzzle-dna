@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2100746632092338692}
   - component: {fileID: 8864377848082428839}
   m_Layer: 0
-  m_Name: rocketPrefab
+  m_Name: Rocket Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82,7 +82,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.95, y: 0.95}
+  m_Size: {x: 0.8, y: 0.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -183,10 +183,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1aa9e80b27ef2d4ea995fe6f5d138c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 0}
-  animator: {fileID: 0}
+  chainObject: {fileID: 0}
+  spriteRenderer: {fileID: 2737918572922045918}
+  animator: {fileID: 2100746632092338692}
   position: {x: 0, y: 0}
-  _type: 0
+  _type: 7
   _minMatch: 3
+  isEmpty: 0
   gems: []
   activated: 0

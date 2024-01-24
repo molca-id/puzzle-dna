@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6190111919037368131}
   - component: {fileID: 2861895333768712533}
   m_Layer: 0
-  m_Name: sfxSourcePrefab
+  m_Name: SFX Countdown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -9,24 +9,48 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
     public GameObject gemPrefab;
     Coroutine updateBoard = null;
 
-    [Header("Board Dimensions")]
-    [SerializeField]
-    int _width = 6;
+    [Header("Board Attributes")]
+    [SerializeField] Vector2Int _boardDimension;
     public static int width
     {
-        get { return instance._width; }
-        set { instance._width = value; }
+        get { return instance._boardDimension.x; }
+        set { instance._boardDimension.x = value; }
     }
-
-    [SerializeField]
-    int _height = 6;
     public static int height
     {
-        get { return instance._height; }
-        set { instance._height = value; }
+        get { return instance._boardDimension.y; }
+        set { instance._boardDimension.y = value; }
     }
 
-    public static BaseGem[,] gemBoard;
+    [SerializeField] bool _usingPowerUps;
+    public static bool usingPowerUps
+    {
+        get { return instance._usingPowerUps; }
+        set { instance._usingPowerUps = value; }
+    }
+
+    [Header("Gems Attributes")]
+    [SerializeField] List<BaseGem> _currentGems;
+    public static List<BaseGem> currentGems
+    {
+        get { return instance._currentGems; }
+        set { instance._currentGems = value; }
+    }
+
+    [SerializeField] List<EmptyGemData> _emptyPositions = new List<EmptyGemData>();
+    public static List<EmptyGemData> emptyPositions
+    {
+        get { return instance._emptyPositions; }
+        set { instance._emptyPositions = value; }
+    }
+
+    List<Vector2Int> _fallPositions;
+    public static List<Vector2Int> fallPositions
+    {
+        get { return instance._fallPositions; }
+        set { instance._fallPositions = value; }
+    }
+    
     int _matchCounter;
     public static int matchCounter
     {
@@ -37,8 +61,10 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
         }
     }
 
+    public static BaseGem[,] gemBoard;
     public static bool updatingBoard;
     public static event Action EndUpdatingBoard;
+    
     // Calculate Board Position into World
     public static Vector3 GetWorldPosition(Vector2Int position)
     {
@@ -95,7 +121,9 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
         Vector3 worldPosition, float delay,
         out float creatingDuration, GameObject prefab = null)
     {
-
+        bool isEmptyGem = false;
+        Sprite emptySprite = null;
+        Vector2Int pos = new(x, y);
         BaseGem gem = Instantiate(
             prefab ? prefab : gemPrefab,
             worldPosition,
@@ -103,11 +131,18 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
             transform
         ).GetComponent<BaseGem>();
 
+        foreach (EmptyGemData data in _emptyPositions)
+        {
+            if (data.positions.Contains(pos))
+            {
+                emptySprite = data.emptySprite;
+                isEmptyGem = true;
+                break;
+            }
+        }
+
         gem.SetPosition(new Vector2Int(x, y));
-
-        if (!prefab)
-            gem.SetType(type);
-
+        if (!prefab) gem.SetType(type, emptySprite, isEmptyGem);
         creatingDuration = gem.Creating(delay);
 
         return gem;
@@ -238,20 +273,6 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
                 }
             }
 
-            // if(matchFrom.isValid) {
-            //     matches.Add(matchFrom);
-            //     fallPositions = MatchInfo.JoinFallPositions(
-            //         fallPositions, matchFrom.GetFallPositions()
-            //     );
-            // }
-
-            // if(matchTo.isValid) {
-            //     matches.Add(matchTo);
-            //     fallPositions = MatchInfo.JoinFallPositions(
-            //         fallPositions, matchTo.GetFallPositions()
-            //     );
-            // }
-
             yield return StartCoroutine(DestroyMatchedGems(matches));
             yield return StartCoroutine(FallGems(fallPositions));
 
@@ -367,21 +388,23 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
     IEnumerator FallGems(List<Vector2Int> fallPositions)
     {
         float maxDuration = 0;
-        foreach (Vector3Int fall in fallPositions)
+        instance._fallPositions = fallPositions;
+
+        foreach (Vector2Int fall in instance._fallPositions)
         {
             int fallY = 0;
             for (int y = fall.y; y < height; ++y)
             {
                 BaseGem gem = GetGem(fall.x, y);
-                if (gem)
+                if (gem && !gem.isEmpty)
                 {
+                    Vector2Int target = new(fall.x, y - fallY);
                     float duration = gem.MoveTo(
-                        GetWorldPosition(new Vector2Int(fall.x, y - fallY)),
+                        GetWorldPosition(target),
                         GameController.instance.fallSpeed
                     );
 
-                    gem.SetPosition(new Vector2Int(fall.x, y - fallY));
-
+                    gem.SetPosition(target);
                     if (duration > maxDuration)
                         maxDuration = duration;
                 }
@@ -390,9 +413,13 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
                     fallY++;
                 }
             }
+             
             float delay = 0;
             for (int y = height - 1; y >= height - fallY; --y)
             {
+                BaseGem gemTemp = GetGem(fall.x, y);
+                if (gemTemp && gemTemp.isEmpty) continue;
+
                 BaseGem newGem = instance.CreateRandomGem(
                     fall.x, y,
                     GetWorldPosition(new Vector2Int(
@@ -405,6 +432,7 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
                     GameController.instance.fallSpeed,
                     delay
                 );
+
                 delay = duration;
                 if (duration > maxDuration)
                     maxDuration = duration;
@@ -412,6 +440,12 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
         }
 
         yield return new WaitForSeconds(maxDuration);
+    }
+
+    public static List<BaseGem> RemoveEmptyGem(List<BaseGem> baseGems)
+    {
+        currentGems = baseGems;
+        return baseGems.FindAll(gem => !gem.isEmpty);
     }
 
     public static MatchInfo GetHorizontalMatch(BaseGem gem, Func<BaseGem, bool> validateGem)
@@ -435,7 +469,7 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
             matches.Add(gemToCheck);
             gemToCheck = GetGem(gemToCheck.position.x + 1, gemToCheck.position.y);
         }
-
+        
         return new MatchInfo(matches);
     }
 
@@ -513,7 +547,7 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
             if (horizontal.isValid) return horizontal;
             else return vertical;
 
-        return cross;
+        return new MatchInfo(RemoveEmptyGem(cross.matches));
     }
 
     public static MatchInfo GetBombMatch(BaseGem gem, Func<BaseGem, bool> validateGem)
@@ -531,24 +565,37 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
             }
         }
 
-        return new MatchInfo(matches);
+        return new MatchInfo(RemoveEmptyGem(matches));
     }
 
     public IEnumerator ShuffleBoard()
     {
         yield return new WaitForSeconds(.25f);
-        gemBoard = Miscellaneous.ShuffleMatrix(gemBoard);
+
         float maxDuration = 0;
+        List<Vector2Int> emptyPos = new List<Vector2Int>();
+
+        _emptyPositions.ForEach(pos =>
+        {
+            pos.positions.ForEach(poss =>
+            {
+                emptyPos.Add(poss);
+            });
+        });
+
+        gemBoard = Miscellaneous.ShuffleMatrix(gemBoard, emptyPos);
+
         for (int j = 0; j < height; ++j)
         {
             for (int i = 0; i < width; ++i)
             {
-                gemBoard[i, j].SetPosition(new Vector2Int(i, j));
-                float duration = gemBoard[i, j].MoveTo(
-                    GetWorldPosition(gemBoard[i, j].position),
+                BaseGem gemTemp = GetGem(i, j);
+                gemTemp.SetPosition(new Vector2Int(i, j));
+                float duration = gemTemp.MoveTo(
+                    GetWorldPosition(gemTemp.position),
                     GameController.instance.fallSpeed * (
-                        gemBoard[i, j].transform.position -
-                        GetWorldPosition(gemBoard[i, j].position)
+                        gemTemp.transform.position -
+                        GetWorldPosition(gemTemp.position)
                     ).magnitude / 4
                 );
 
@@ -579,7 +626,8 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
                 }
             }
 
-            if (matchInfo.matches.Count >= 4)
+            if (matchInfo.matches.Count >= 4 && 
+                usingPowerUps)
             {
                 if (GameController.instance.roleState == RoleState.Drive)
                 {
@@ -589,8 +637,9 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
                     !specialGemExist)
                 {
                     GameObject specialGem = null;
-                    if (GameController.instance.roleState == RoleState.Action) specialGem = GameData.GetSpecialGem("Apple");
-                    else if (GameController.instance.roleState == RoleState.Network) specialGem = GameData.GetSpecialGem("Blender");
+
+                    if (GameController.instance.roleState == RoleState.Action) specialGem = GameData.GetSpecialGem("Bomb");
+                    else if (GameController.instance.roleState == RoleState.Network) specialGem = GameData.GetSpecialGem("Rocket");
 
                     float newGemDuration = 0.0f;
                     BaseGem newGem = CreateGem(
@@ -613,16 +662,15 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
             if (duration > maxDuration)
                 maxDuration = duration;
 
+            score += matchInfo.GetScore() * GameController.multiplierScore;
             matchCounter++;
-            if (matchInfo.pivot is PlusGem ||
-                matchInfo.pivot is BombGem)
-                matchCounter = 5;
-
-            score += matchInfo.GetScore();
         }
 
-        //GameController.score += score;
-        GameController.scoreTemp = score * matchCounter;
+        int matchTemp;
+        if (matchCounter <= 1) matchTemp = 0;
+        else matchTemp = matchCounter;
+
+        GameController.scoreTemp = score + matchTemp;
         UIController.ShowMsg($"{GameData.GetComboMessage(matchCounter - 1)}");
         SoundController.PlaySfx(GameData.GetAudioClip("match"));
 

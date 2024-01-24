@@ -11,7 +11,8 @@ public enum GemType {
     Lettuce,
     Coconut,
     Flower,
-    Special
+    Special,
+    Empty
 }
 
 [System.Serializable]
@@ -28,6 +29,13 @@ public class SpecialGemData {
 }
 
 [System.Serializable]
+public class EmptyGemData
+{
+    public Sprite emptySprite;
+    public List<Vector2Int> positions;
+}
+
+[System.Serializable]
 public class AudioClipInfo {
     public string name;
     public AudioClip clip;
@@ -35,11 +43,21 @@ public class AudioClipInfo {
 
 [CreateAssetMenu(fileName = "GameData", menuName = "Match3/GameData", order = 1)]
 public class GameData : SingletonScriptableObject<GameData> {
-    
+
+    [SerializeField] Vector2Int boardDimension;
+    public bool usingPowerUps;
+
+    [Header("Gems Attributes")]
     [SerializeField] List<GemData> gems = new List<GemData>();
     [SerializeField] List<SpecialGemData> specialGems = new List<SpecialGemData>();
+    public List<EmptyGemData> emptyGems = new List<EmptyGemData>();
+
+    [Header("Other Attribute")]
     [SerializeField] List<AudioClipInfo> audioClipInfos = new List<AudioClipInfo>();
     [SerializeField] string[] comboMessages;
+
+    public Vector2Int _boardDimension => instance.boardDimension;
+    
     public static int maxCombo {
         get { return instance.comboMessages.Length; }
     }

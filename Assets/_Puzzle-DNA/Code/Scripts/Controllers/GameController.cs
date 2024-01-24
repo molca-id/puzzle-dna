@@ -3,12 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Utilities;
 
-public enum GameState
-{
-    Menu,
-    Playing
-}
-
 public enum RoleState
 {
     Drive,
@@ -20,14 +14,17 @@ public class GameController : SingletonMonoBehaviour<GameController>
 {
     public RoleState roleState;
 
+    [Header("Game Data")]
+    [SerializeField] GameData gameData;
+    [SerializeField] BoardController boardController;
+
     [Header("Game Settings")]
     public float swapSpeed;
     public float fallSpeed;
     public bool preventInitialMatches;
     Coroutine gameOver;
 
-    [Header("Game Data")]
-    [SerializeField] GameData gameData;
+    [Header("Score Data")]
     [SerializeField] int _scoreTotal;
     [SerializeField] int _scoreTemp;
     public static int scoreTemp
@@ -65,8 +62,6 @@ public class GameController : SingletonMonoBehaviour<GameController>
         }
     }
 
-    public static GameState state = GameState.Menu;
-
     void Start()
     {
         StartGame();
@@ -100,12 +95,8 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
     IEnumerator TimerSystem()
     {
-        if (state == GameState.Playing)
-        {
-            timeLeft--;
-            if (timeLeft <= 0) GameOver();
-        }
-
+        timeLeft--;
+        if (timeLeft <= 0) GameOver();
         yield return new WaitForSeconds(1f);
         StartCoroutine(TimerSystem());
     }
@@ -117,13 +108,21 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
     IEnumerator IEStartGame()
     {
+        Instantiate(boardController.gameObject).GetComponent<BoardController>();
+
+        BoardController.instance.transform.SetParent(transform.parent);
+        BoardController.instance.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+        BoardController.width = gameData._boardDimension.x;
+        BoardController.height = gameData._boardDimension.y;
+        BoardController.usingPowerUps = gameData.usingPowerUps;
+        BoardController.emptyPositions = gameData.emptyGems;
         BoardController.matchCounter = 0;
+
         UIController.ShowGameScreen();
         yield return new WaitForSeconds(1f);
 
         TouchController.cancel = true;
         yield return new WaitForSeconds(BoardController.CreateBoard());
-        state = GameState.Playing;
         BoardController.UpdateBoard();
     }
 
@@ -135,7 +134,6 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
     IEnumerator IEGameOver()
     {
-
         yield return new WaitUntil(() => !BoardController.updatingBoard);
 
         if (timeLeft > 0)
@@ -145,12 +143,10 @@ public class GameController : SingletonMonoBehaviour<GameController>
         }
 
         TouchController.cancel = true;
-        state = GameState.Menu;
         HintController.StopCurrentHint();
         HintController.StopHinting();
         UIController.ShowMsg("Game Over");
+
         yield return new WaitForSeconds(BoardController.DestroyGems() + .5f);
-        //UIController.ShowMainScreen();
-        //gameOver = null;
     }
 }

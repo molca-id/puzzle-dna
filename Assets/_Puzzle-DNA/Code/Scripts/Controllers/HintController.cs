@@ -62,24 +62,26 @@ public class HintController : SingletonMonoBehaviour<HintController> {
     public static void FindHints() {
         instance.hints.Clear();
 
-        for(int j = 0; j < BoardController.height; ++j) {
-            for(int i = 0; i < BoardController.width; ++i) {
+        for(int j = 0; j < BoardController.height; ++j) 
+        {
+            for(int i = 0; i < BoardController.width; ++i) 
+            {
                 BaseGem gem = BoardController.GetGem(i, j);
-
-                // Swap Right
                 BaseGem otherGem = BoardController.GetGem(i + 1, j);
+                
+                if ((gem && gem.isEmpty) || 
+                    (otherGem && otherGem.isEmpty)) 
+                    continue;
+
                 if(otherGem && otherGem.type != gem.type) {
                     HintInfo hintInfo = instance.GetHint(gem, otherGem);
-
                     if(hintInfo != null && !instance.hints.Contains(hintInfo))
                         instance.hints.Add(hintInfo);
                 }
 
-                // Swap Up
                 otherGem = BoardController.GetGem(i, j + 1);
                 if(otherGem && otherGem.type != gem.type) {
                     HintInfo hintInfo = instance.GetHint(gem, otherGem);
-
                     if(hintInfo != null && !instance.hints.Contains(hintInfo))
                         instance.hints.Add(hintInfo);
                 }

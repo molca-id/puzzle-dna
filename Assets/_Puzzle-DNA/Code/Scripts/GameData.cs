@@ -4,13 +4,12 @@ using UnityEngine;
 using Utilities;
 
 public enum GemType {
-    Milk,
-    Apple,
-    Orange,
-    Bread,
-    Lettuce,
-    Coconut,
-    Flower,
+    Drive,
+    Network,
+    Action,
+    GemA,
+    GemB,
+    GemC,
     Special,
     Empty
 }

@@ -46,7 +46,7 @@ public class PlusGem : BaseGem {
     }
 
     public override MatchInfo GetMatch() {
-        MatchInfo matchInfo = BoardController.GetCrossMatch(this, validateGem);
+        MatchInfo matchInfo = BoardController.GetHorizontalMatch(this, validateGem);
         List<MatchInfo> matchInfosChain = new List<MatchInfo>();
         
         activated = true;

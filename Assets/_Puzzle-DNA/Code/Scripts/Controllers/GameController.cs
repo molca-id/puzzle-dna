@@ -3,17 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Utilities;
 
-public enum RoleState
-{
-    Drive,
-    Network,
-    Action
-}
-
 public class GameController : SingletonMonoBehaviour<GameController>
 {
-    public RoleState roleState;
-
     [Header("Game Data")]
     [SerializeField] GameData gameData;
     [SerializeField] BoardController boardController;
@@ -67,7 +58,6 @@ public class GameController : SingletonMonoBehaviour<GameController>
         StartGame();
         SoundController.PlayMusic(GameData.GetAudioClip("bgm"), 1);
         StartCoroutine(TimerSystem());
-        RoleChanged(0);
     }
 
     void Update()
@@ -86,11 +76,6 @@ public class GameController : SingletonMonoBehaviour<GameController>
                 HintController.StopCurrentHint();
         }
 #endif
-    }
-
-    public void RoleChanged(int value)
-    {
-        roleState = (RoleState)value;
     }
 
     IEnumerator TimerSystem()

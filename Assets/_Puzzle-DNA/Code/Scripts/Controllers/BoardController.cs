@@ -626,20 +626,22 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
                 }
             }
 
-            if (matchInfo.matches.Count >= 4 && 
+            if (matchInfo.IsPowerUpMatch() &&
+                matchInfo.matches.Count >= 4 &&
                 usingPowerUps)
             {
-                if (GameController.instance.roleState == RoleState.Drive)
+                if (matchInfo.GetMatchType() == GemType.Drive)
                 {
                     StartCoroutine(UIController.instance.DriveMultiplier());
                 }
-                else if (GameController.instance.roleState != RoleState.Drive && 
-                    !specialGemExist)
+                else if (!specialGemExist)
                 {
                     GameObject specialGem = null;
 
-                    if (GameController.instance.roleState == RoleState.Action) specialGem = GameData.GetSpecialGem("Bomb");
-                    else if (GameController.instance.roleState == RoleState.Network) specialGem = GameData.GetSpecialGem("Rocket");
+                    if (matchInfo.GetMatchType() == GemType.Action) 
+                        specialGem = GameData.GetSpecialGem("Bomb");
+                    else if (matchInfo.GetMatchType() == GemType.Network) 
+                        specialGem = GameData.GetSpecialGem("Rocket");
 
                     float newGemDuration = 0.0f;
                     BaseGem newGem = CreateGem(

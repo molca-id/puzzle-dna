@@ -99,7 +99,11 @@ public class GameController : SingletonMonoBehaviour<GameController>
         BoardController.instance.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
         BoardController.width = gameData._boardDimension.x;
         BoardController.height = gameData._boardDimension.y;
+
         BoardController.usingPowerUps = gameData.usingPowerUps;
+        BoardController.usingUpgradedPowerUps = gameData.usingUpgradedPowerUps;
+        BoardController.abilityDriveDuration = gameData.abilityDriveDuration;
+        
         BoardController.emptyPositions = gameData.emptyGems;
         BoardController.matchCounter = 0;
 

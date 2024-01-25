@@ -22,11 +22,26 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
         set { instance._boardDimension.y = value; }
     }
 
+    [Header("PowerUps Attributes")]
+    [SerializeField] float _abilityDriveDuration;
+    public static float abilityDriveDuration
+    {
+        get { return instance._abilityDriveDuration; }
+        set { instance._abilityDriveDuration = value; }
+    }
+
     [SerializeField] bool _usingPowerUps;
     public static bool usingPowerUps
     {
         get { return instance._usingPowerUps; }
         set { instance._usingPowerUps = value; }
+    }
+
+    [SerializeField] bool _usingUpgradedPowerUps;
+    public static bool usingUpgradedPowerUps
+    {
+        get { return instance._usingUpgradedPowerUps; }
+        set { instance._usingUpgradedPowerUps = value; }
     }
 
     [Header("Gems Attributes")]
@@ -44,7 +59,7 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
         set { instance._emptyPositions = value; }
     }
 
-    List<Vector2Int> _fallPositions;
+    [SerializeField] List<Vector2Int> _fallPositions;
     public static List<Vector2Int> fallPositions
     {
         get { return instance._fallPositions; }

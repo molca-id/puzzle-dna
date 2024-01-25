@@ -44,6 +44,8 @@ public class AudioClipInfo {
 public class GameData : SingletonScriptableObject<GameData> {
 
     [SerializeField] Vector2Int boardDimension;
+    public float abilityDriveDuration;
+    public bool usingUpgradedPowerUps;
     public bool usingPowerUps;
 
     [Header("Gems Attributes")]

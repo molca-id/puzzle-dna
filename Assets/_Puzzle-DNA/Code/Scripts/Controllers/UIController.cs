@@ -10,7 +10,6 @@ using System;
 public class UIController : SingletonMonoBehaviour<UIController>
 {
     [Header("Screens")]
-    [SerializeField] CanvasGroup mainScreen;
     [SerializeField] CanvasGroup gameScreen;
 
     [Header("Game Screen")]
@@ -18,24 +17,15 @@ public class UIController : SingletonMonoBehaviour<UIController>
     [SerializeField] TextMeshProUGUI comboScoreText;
     [SerializeField] TextMeshProUGUI comboMultiplierText;
     [SerializeField] TextMeshProUGUI timeLeftText;
-    [SerializeField] TextMeshProUGUI highscoreText;
     [SerializeField] TextMeshProUGUI msgText;
 
-    [Header("Add On For Drive Role")]
-    [SerializeField] GameObject driveMultiplierText;
+    [Header("Add On For Multiplier Score")]
+    [SerializeField] float elapsedTime;
+    [SerializeField] GameObject multiplierUI;
+    [SerializeField] Image timerFilledImage;
 
     CanvasGroup currentScreen;
-
     float timePulse;
-
-    public static void ShowMainScreen()
-    {
-        instance.StartCoroutine(
-            instance.IEChangeScreen(instance.mainScreen, executeAfter: () => {
-
-            })
-        );
-    }
 
     public static void ShowGameScreen()
     {
@@ -93,15 +83,27 @@ public class UIController : SingletonMonoBehaviour<UIController>
 
     public void SetMultiplierScoreState(bool cond)
     {
-        driveMultiplierText.SetActive(cond);
-        GameController.multiplierScore = cond ? 2 : 1;
+        multiplierUI.SetActive(cond);
+        int multiplier = BoardController.usingUpgradedPowerUps ? 4 : 2;
+        GameController.multiplierScore = cond ? multiplier : 1;
     }
 
     public IEnumerator DriveMultiplier()
     {
+        float fillDuration = BoardController.abilityDriveDuration;
         SetMultiplierScoreState(true);
-        yield return new WaitForSeconds(3f);
+        elapsedTime = 0f;
+
+        while (elapsedTime <= fillDuration)
+        {
+            elapsedTime += Time.deltaTime * 1;
+            timerFilledImage.fillAmount = elapsedTime / fillDuration;
+            yield return null;
+        }
+
+        timerFilledImage.fillAmount = 0f;
         SetMultiplierScoreState(false);
+        yield return null;
     }
 
     IEnumerator IEChangeScreen(

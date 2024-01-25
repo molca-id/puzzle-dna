@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: GameData
   m_EditorClassIdentifier: 
   boardDimension: {x: 12, y: 7}
+  abilityDriveDuration: 5
+  usingUpgradedPowerUps: 0
   usingPowerUps: 1
   gems:
   - type: 0

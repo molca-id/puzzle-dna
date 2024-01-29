@@ -1,4 +1,4 @@
-﻿ using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Utilities;
@@ -103,7 +103,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
         BoardController.usingPowerUps = gameData.usingPowerUps;
         BoardController.usingUpgradedPowerUps = gameData.usingUpgradedPowerUps;
         BoardController.abilityDriveDuration = gameData.abilityDriveDuration;
-        
+
         BoardController.emptyPositions = gameData.emptyGems;
         BoardController.matchCounter = 0;
 

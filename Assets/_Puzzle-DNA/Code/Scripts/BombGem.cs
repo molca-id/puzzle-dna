@@ -5,29 +5,36 @@ using UnityEngine;
 
 // Special Gem (Blender) Match all Gems in same Row and Column
 // Future improvement create generic class for Special Gems
-public class BombGem : BaseGem {
+public class BombGem : BaseGem
+{
 
     public List<BombGem> gems = new List<BombGem>();
 
     public bool activated;
-    
-    public override GemType type {
+
+    public override GemType type
+    {
         get { return GemType.Special; }
     }
 
-    public override int minMatch {
+    public override int minMatch
+    {
         get { return 0; }
     }
 
-    public override Func<BaseGem, bool> validateGem {
-        get {
+    public override Func<BaseGem, bool> validateGem
+    {
+        get
+        {
             return (gem) => {
-                if(gem is BombGem) {
-                    if(!(gem as BombGem).activated) {
+                if (gem is BombGem)
+                {
+                    if (!(gem as BombGem).activated)
+                    {
                         (gem as BombGem).activated = true;
                         gems.Add(gem as BombGem);
                     }
-                    
+
                     return false;
                 }
 
@@ -36,22 +43,26 @@ public class BombGem : BaseGem {
         }
     }
 
-    void OnEnable() {
+    void OnEnable()
+    {
         BoardController.EndUpdatingBoard += ResetSpecialGem;
     }
 
 
-    void OnDisable() {
+    void OnDisable()
+    {
         BoardController.EndUpdatingBoard -= ResetSpecialGem;
     }
 
-    public override MatchInfo GetMatch() {
-        MatchInfo matchInfo = BoardController.GetBombMatch(this, validateGem);
+    public override MatchInfo GetMatch()
+    {
+        MatchInfo matchInfo = BoardController.GetSpecialMatch(false, this, validateGem);
         List<MatchInfo> matchInfosChain = new List<MatchInfo>();
-        
+
         activated = true;
 
-        foreach(var blender in gems) {
+        foreach (var blender in gems)
+        {
             MatchInfo blenderChain = blender.GetMatch();
             blenderChain.RemoveMatches(matchInfo.matches);
             matchInfosChain.ForEach(m => blenderChain.RemoveMatches(m.matches));

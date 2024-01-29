@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e63af0a87d5c2f45a27c8615bc44409, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: 
-  boardDimension: {x: 12, y: 7}
+  boardDimension: {x: 9, y: 7}
   abilityDriveDuration: 5
-  usingUpgradedPowerUps: 0
   usingPowerUps: 1
+  usingUpgradedPowerUps: 1
   gems:
   - type: 0
     sprite: {fileID: 21300000, guid: 46602cd8c18712f40b762c78b3243728, type: 3}
@@ -43,14 +43,26 @@ MonoBehaviour:
     prefab: {fileID: 6539906006310958499, guid: c0d3ca31d71aa5f4eb54daa97b20bb40,
       type: 3}
   emptyGems:
-  - emptySprite: {fileID: 21300000, guid: 42ba22bfc2a201b479db7523251173fb, type: 3}
-    positions: []
-  - emptySprite: {fileID: 21300000, guid: 381a9d030237878458e4de815f0a9991, type: 3}
+  - emptySprite: {fileID: 0}
     positions:
     - {x: 0, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 0}
+    - {x: 7, y: 0}
+    - {x: 8, y: 0}
+    - {x: 8, y: 1}
+    - {x: 0, y: 5}
     - {x: 0, y: 6}
-    - {x: 11, y: 0}
-    - {x: 11, y: 6}
+    - {x: 1, y: 6}
+    - {x: 7, y: 6}
+    - {x: 7, y: 6}
+    - {x: 8, y: 6}
+    - {x: 8, y: 5}
+  - emptySprite: {fileID: 21300000, guid: 42ba22bfc2a201b479db7523251173fb, type: 3}
+    positions:
+    - {x: 3, y: 3}
+    - {x: 4, y: 3}
+    - {x: 5, y: 3}
   audioClipInfos:
   - name: bgm
     clip: {fileID: 8300000, guid: f54f914e1258c5f4e90a9226d10af526, type: 3}

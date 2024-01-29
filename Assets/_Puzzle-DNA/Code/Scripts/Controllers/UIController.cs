@@ -22,6 +22,7 @@ public class UIController : SingletonMonoBehaviour<UIController>
     [Header("Add On For Multiplier Score")]
     [SerializeField] float elapsedTime;
     [SerializeField] GameObject multiplierUI;
+    [SerializeField] TextMeshProUGUI multiplierText;
     [SerializeField] Image timerFilledImage;
 
     CanvasGroup currentScreen;
@@ -83,9 +84,11 @@ public class UIController : SingletonMonoBehaviour<UIController>
 
     public void SetMultiplierScoreState(bool cond)
     {
-        multiplierUI.SetActive(cond);
         int multiplier = BoardController.usingUpgradedPowerUps ? 4 : 2;
         GameController.multiplierScore = cond ? multiplier : 1;
+
+        multiplierText.text = $"x{GameController.multiplierScore}";
+        multiplierUI.SetActive(cond);
     }
 
     public IEnumerator DriveMultiplier()

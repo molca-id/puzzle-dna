@@ -1,9 +1,14 @@
-﻿using System.Collections;
+﻿using ActionCode.Attributes;
+using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
+using UnityEditor;
 using UnityEngine;
 using Utilities;
+using static UnityEngine.GraphicsBuffer;
 
-public enum GemType {
+public enum GemType
+{
     Drive,
     Network,
     Action,
@@ -15,14 +20,16 @@ public enum GemType {
 }
 
 [System.Serializable]
-public class GemData {
+public class GemData
+{
     public GemType type;
     public Sprite sprite;
     public int minMatch = 3;
 }
 
 [System.Serializable]
-public class SpecialGemData {
+public class SpecialGemData
+{
     public string name;
     public GameObject prefab;
 }
@@ -35,18 +42,23 @@ public class EmptyGemData
 }
 
 [System.Serializable]
-public class AudioClipInfo {
+public class AudioClipInfo
+{
     public string name;
     public AudioClip clip;
 }
 
 [CreateAssetMenu(fileName = "GameData", menuName = "Match3/GameData", order = 1)]
-public class GameData : SingletonScriptableObject<GameData> {
-
+public class GameData : SingletonScriptableObject<GameData>
+{
+    [Header("Board Dimension")]
     [SerializeField] Vector2Int boardDimension;
+    public Vector2Int _boardDimension => instance.boardDimension;
+
+    [Header("PowerUps Add On")]
     public float abilityDriveDuration;
-    public bool usingUpgradedPowerUps;
     public bool usingPowerUps;
+    [ShowIf("usingPowerUps")] public bool usingUpgradedPowerUps;
 
     [Header("Gems Attributes")]
     [SerializeField] List<GemData> gems = new List<GemData>();
@@ -57,40 +69,44 @@ public class GameData : SingletonScriptableObject<GameData> {
     [SerializeField] List<AudioClipInfo> audioClipInfos = new List<AudioClipInfo>();
     [SerializeField] string[] comboMessages;
 
-    public Vector2Int _boardDimension => instance.boardDimension;
-    
-    public static int maxCombo {
+    public static int maxCombo
+    {
         get { return instance.comboMessages.Length; }
     }
 
-    public static GemData GemOfType(GemType type) {
+    public static GemData GemOfType(GemType type)
+    {
         return instance.gems.Find(gem => gem.type == type);
     }
 
-    public static GemData RandomGem() {
+    public static GemData RandomGem()
+    {
         return Miscellaneous.Choose(instance.gems);
     }
 
-    public static GameObject GetSpecialGem(string name) {
+    public static GameObject GetSpecialGem(string name)
+    {
         SpecialGemData sgd = instance.specialGems.Find(gem => gem.name == name);
-        if(sgd != null)
+        if (sgd != null)
             return sgd.prefab;
 
         return null;
     }
 
-    public static AudioClip GetAudioClip(string name) {
+    public static AudioClip GetAudioClip(string name)
+    {
         AudioClipInfo audioClipInfo = instance.audioClipInfos.Find(
             aci => aci.name == name
         );
 
-        if(audioClipInfo != null)
+        if (audioClipInfo != null)
             return audioClipInfo.clip;
 
         return null;
     }
 
-    public static string GetComboMessage(int combo) {
+    public static string GetComboMessage(int combo)
+    {
         return instance.comboMessages[combo];
     }
 }

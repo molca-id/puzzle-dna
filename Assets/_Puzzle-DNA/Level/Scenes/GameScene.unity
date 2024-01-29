@@ -599,7 +599,9 @@ MonoBehaviour:
   comboMultiplierText: {fileID: 519666828}
   timeLeftText: {fileID: 2099579778}
   msgText: {fileID: 1691891975}
+  elapsedTime: 0
   multiplierUI: {fileID: 644301897}
+  multiplierText: {fileID: 1119585833}
   timerFilledImage: {fileID: 1137052301}
 --- !u!1 &634845543
 GameObject:
@@ -2417,7 +2419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9a760e19a93fd642afaeee3c7848f33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hintDelay: 10
+  hintDelay: 3
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

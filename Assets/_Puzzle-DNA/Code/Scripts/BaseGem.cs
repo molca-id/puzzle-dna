@@ -75,7 +75,7 @@ public class BaseGem : MonoBehaviour, ITouchable
 
     public void SetPosition(Vector2Int position)
     {
-        this.position = position; 
+        this.position = position;
         BoardController.gemBoard[position.x, position.y] = this;
     }
 

@@ -44,14 +44,6 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
         set { instance._usingUpgradedPowerUps = value; }
     }
 
-    [Header("Gems Attributes")]
-    [SerializeField] List<BaseGem> _currentGems;
-    public static List<BaseGem> currentGems
-    {
-        get { return instance._currentGems; }
-        set { instance._currentGems = value; }
-    }
-
     [SerializeField] List<EmptyGemData> _emptyPositions = new List<EmptyGemData>();
     public static List<EmptyGemData> emptyPositions
     {
@@ -408,12 +400,13 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
         foreach (Vector2Int fall in instance._fallPositions)
         {
             int fallY = 0;
-            for (int y = fall.y; y < height; ++y)
+            for (int y = fall.y; y < height; y++)
             {
                 BaseGem gem = GetGem(fall.x, y);
+                Vector2Int target = new(fall.x, y - fallY);
+
                 if (gem && !gem.isEmpty)
                 {
-                    Vector2Int target = new(fall.x, y - fallY);
                     float duration = gem.MoveTo(
                         GetWorldPosition(target),
                         GameController.instance.fallSpeed
@@ -428,9 +421,9 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
                     fallY++;
                 }
             }
-             
+
             float delay = 0;
-            for (int y = height - 1; y >= height - fallY; --y)
+            for (int y = height - 1; y >= height - fallY; y--)
             {
                 BaseGem gemTemp = GetGem(fall.x, y);
                 if (gemTemp && gemTemp.isEmpty) continue;
@@ -459,8 +452,21 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
 
     public static List<BaseGem> RemoveEmptyGem(List<BaseGem> baseGems)
     {
-        currentGems = baseGems;
         return baseGems.FindAll(gem => !gem.isEmpty);
+    }
+
+    public static MatchInfo GetSpecialMatch(bool isRocketGem, BaseGem gem, Func<BaseGem, bool> validateGem)
+    {
+        if (usingUpgradedPowerUps)
+        {
+            if (isRocketGem) return GetCrossMatch(gem, validateGem);
+            else return GetBomb5x5Match(gem, validateGem);
+        }
+        else
+        {
+            if (isRocketGem) return GetHorizontalMatch(gem, validateGem);
+            else return GetBomb3x3Match(gem, validateGem);
+        }
     }
 
     public static MatchInfo GetHorizontalMatch(BaseGem gem, Func<BaseGem, bool> validateGem)
@@ -565,15 +571,33 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
         return new MatchInfo(RemoveEmptyGem(cross.matches));
     }
 
-    public static MatchInfo GetBombMatch(BaseGem gem, Func<BaseGem, bool> validateGem)
+    public static MatchInfo GetBomb3x3Match(BaseGem gem, Func<BaseGem, bool> validateGem)
     {
         List<BaseGem> matches = new List<BaseGem>();
 
         matches.Add(gem);
 
-        for (int x = gem.position.x - 1; x < gem.position.x + 2; x++)
+        for (int x = gem.position.x - 1; x <= gem.position.x + 1; x++)
         {
-            for (int y = gem.position.y - 1; y < gem.position.y + 2; y++)
+            for (int y = gem.position.y - 1; y <= gem.position.y + 1; y++)
+            {
+                BaseGem gemToCheck = GetGem(x, y);
+                if (gemToCheck) matches.Add(gemToCheck);
+            }
+        }
+
+        return new MatchInfo(RemoveEmptyGem(matches));
+    }
+
+    public static MatchInfo GetBomb5x5Match(BaseGem gem, Func<BaseGem, bool> validateGem)
+    {
+        List<BaseGem> matches = new List<BaseGem>();
+
+        matches.Add(gem);
+
+        for (int x = gem.position.x - 2; x <= gem.position.x + 2; x++)
+        {
+            for (int y = gem.position.y - 2; y <= gem.position.y + 2; y++)
             {
                 BaseGem gemToCheck = GetGem(x, y);
                 if (gemToCheck) matches.Add(gemToCheck);
@@ -727,5 +751,20 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
         }
 
         return maxDuration;
+    }
+
+    public bool ExistInEmptyPositions(Vector2Int pos)
+    {
+        bool exist = false;
+        foreach (EmptyGemData empty in emptyPositions)
+        {
+            if (empty.positions.Contains(pos))
+            {
+                exist = true;
+                break;
+            }
+        }
+
+        return exist;
     }
 }

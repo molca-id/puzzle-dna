@@ -37,7 +37,7 @@ public class BaseGem : MonoBehaviour, ITouchable
 
     public virtual MatchInfo GetMatch()
     {
-        return BoardController.GetCrossMatch(this, validateGem);
+        return BoardController.GetCrossMatch(this, false, validateGem);
     }
 
     public bool isEmpty;

@@ -56,7 +56,7 @@ public class BombGem : BaseGem
 
     public override MatchInfo GetMatch()
     {
-        MatchInfo matchInfo = BoardController.GetSpecialMatch(false, this, validateGem);
+        MatchInfo matchInfo = BoardController.GetSpecialMatch(true, false, this, validateGem);
         List<MatchInfo> matchInfosChain = new List<MatchInfo>();
 
         activated = true;

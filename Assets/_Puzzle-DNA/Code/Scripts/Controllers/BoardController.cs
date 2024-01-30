@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.U2D.IK;
 using Utilities;
 
 public class BoardController : SingletonMonoBehaviour<BoardController>
@@ -42,6 +44,21 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
     {
         get { return instance._usingUpgradedPowerUps; }
         set { instance._usingUpgradedPowerUps = value; }
+    }
+
+    [Header("Gem Attributes")]
+    [SerializeField] List<BaseGem> _allGems = new List<BaseGem>();
+    public static List<BaseGem> allGems
+    {
+        get { return instance._allGems; }
+        set { instance._allGems = value; }
+    }
+
+    [SerializeField] List<BaseGem> _currentGems = new List<BaseGem>();
+    public static List<BaseGem> currentGems
+    {
+        get { return instance._currentGems; }
+        set { instance._currentGems = value; }
     }
 
     [SerializeField] List<EmptyGemData> _emptyPositions = new List<EmptyGemData>();
@@ -91,6 +108,7 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
         gemBoard = new BaseGem[width, height];
         float maxDuration = 0;
         float delayLine = 0;
+        
         for (int j = height - 1; j >= 0; --j)
         {
             for (int i = 0; i < width; ++i)
@@ -120,6 +138,7 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
 
             delayLine = maxDuration;
         }
+
         return maxDuration;
     }
 
@@ -374,7 +393,6 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
 
         if (matchInfos.Count > 0)
         {
-
             List<Vector2Int> fallPositions = new List<Vector2Int>();
             List<MatchInfo> matchesToDestroy = new List<MatchInfo>();
             foreach (MatchInfo matchInfo in matchInfos)
@@ -405,6 +423,7 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
                 BaseGem gem = GetGem(fall.x, y);
                 Vector2Int target = new(fall.x, y - fallY);
 
+                if (ExistInEmptyPositions(target)) continue;
                 if (gem && !gem.isEmpty)
                 {
                     float duration = gem.MoveTo(
@@ -447,29 +466,31 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
             }
         }
 
+        CheckAllDuplicatedGem();
         yield return new WaitForSeconds(maxDuration);
     }
 
-    public static List<BaseGem> RemoveEmptyGem(List<BaseGem> baseGems)
+    public static List<BaseGem> RemoveEmptyGem(bool isSpecialGem, List<BaseGem> baseGems)
     {
-        return baseGems.FindAll(gem => !gem.isEmpty);
+        if (isSpecialGem) return baseGems.FindAll(gem => !gem.isEmpty);
+        else return baseGems;
     }
 
-    public static MatchInfo GetSpecialMatch(bool isRocketGem, BaseGem gem, Func<BaseGem, bool> validateGem)
+    public static MatchInfo GetSpecialMatch(bool isSpecialGem, bool isRocketGem, BaseGem gem, Func<BaseGem, bool> validateGem)
     {
         if (usingUpgradedPowerUps)
         {
-            if (isRocketGem) return GetCrossMatch(gem, validateGem);
+            if (isRocketGem) return GetCrossMatch(gem, isSpecialGem, validateGem);
             else return GetBomb5x5Match(gem, validateGem);
         }
         else
         {
-            if (isRocketGem) return GetHorizontalMatch(gem, validateGem);
+            if (isRocketGem) return GetHorizontalMatch(gem, isSpecialGem, validateGem);
             else return GetBomb3x3Match(gem, validateGem);
         }
     }
 
-    public static MatchInfo GetHorizontalMatch(BaseGem gem, Func<BaseGem, bool> validateGem)
+    public static MatchInfo GetHorizontalMatch(BaseGem gem, bool isSpecialGem, Func<BaseGem, bool> validateGem)
     {
         List<BaseGem> matches = new List<BaseGem>();
 
@@ -490,13 +511,12 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
             matches.Add(gemToCheck);
             gemToCheck = GetGem(gemToCheck.position.x + 1, gemToCheck.position.y);
         }
-        
-        return new MatchInfo(matches);
+
+        return new MatchInfo(RemoveEmptyGem(isSpecialGem, matches));
     }
 
-    public static MatchInfo GetVerticalMatch(BaseGem gem, Func<BaseGem, bool> validateGem)
+    public static MatchInfo GetVerticalMatch(BaseGem gem, bool isSpecialGem, Func<BaseGem, bool> validateGem)
     {
-
         List<BaseGem> matches = new List<BaseGem>();
 
         matches.Add(gem);
@@ -517,16 +537,15 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
             gemToCheck = GetGem(gemToCheck.position.x, gemToCheck.position.y + 1);
         }
 
-        return new MatchInfo(matches);
+        return new MatchInfo(RemoveEmptyGem(isSpecialGem, matches));
     }
 
-    public static MatchInfo GetCrossMatch(BaseGem gem, Func<BaseGem, bool> validateGem)
+    public static MatchInfo GetCrossMatch(BaseGem gem, bool isSpecialGem, Func<BaseGem, bool> validateGem)
     {
-
         List<BaseGem> matches = new List<BaseGem>();
 
-        MatchInfo horizontal = GetHorizontalMatch(gem, validateGem);
-        MatchInfo vertical = GetVerticalMatch(gem, validateGem);
+        MatchInfo horizontal = GetHorizontalMatch(gem, isSpecialGem, validateGem);
+        MatchInfo vertical = GetVerticalMatch(gem, isSpecialGem, validateGem);
 
         MatchInfo matchInfo = new MatchInfo();
 
@@ -536,7 +555,9 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
             if (vertical.isValid)
             {
                 horizontal = GetHorizontalMatch(
-                    vertical.matches[crossCheck], validateGem
+                    vertical.matches[crossCheck], 
+                    isSpecialGem, 
+                    validateGem
                 );
             }
             else
@@ -552,7 +573,9 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
             if (horizontal.isValid)
             {
                 vertical = GetVerticalMatch(
-                    horizontal.matches[crossCheck], validateGem
+                    horizontal.matches[crossCheck], 
+                    isSpecialGem, 
+                    validateGem
                 );
             }
             else
@@ -568,7 +591,7 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
             if (horizontal.isValid) return horizontal;
             else return vertical;
 
-        return new MatchInfo(RemoveEmptyGem(cross.matches));
+        return new MatchInfo(RemoveEmptyGem(isSpecialGem, cross.matches));
     }
 
     public static MatchInfo GetBomb3x3Match(BaseGem gem, Func<BaseGem, bool> validateGem)
@@ -586,7 +609,7 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
             }
         }
 
-        return new MatchInfo(RemoveEmptyGem(matches));
+        return new MatchInfo(RemoveEmptyGem(true, matches));
     }
 
     public static MatchInfo GetBomb5x5Match(BaseGem gem, Func<BaseGem, bool> validateGem)
@@ -604,7 +627,7 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
             }
         }
 
-        return new MatchInfo(RemoveEmptyGem(matches));
+        return new MatchInfo(RemoveEmptyGem(true, matches));
     }
 
     public IEnumerator ShuffleBoard()
@@ -766,5 +789,32 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
         }
 
         return exist;
+    }
+
+    void CheckAllDuplicatedGem()
+    {
+        currentGems.Clear();
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                currentGems.Add(GetGem(x, y));
+            }
+        }
+
+        DestroyChildrenWithoutComponentOfType<BaseGem>();
+    }
+
+    void DestroyChildrenWithoutComponentOfType<T>() where T : Component
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            Transform child = transform.GetChild(i);
+            if (!child.GetComponent<T>() || 
+                !currentGems.Contains(child.GetComponent<BaseGem>()))
+            {
+                Destroy(child.gameObject);
+            }
+        }
     }
 }

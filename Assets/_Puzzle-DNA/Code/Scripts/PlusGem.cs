@@ -56,7 +56,7 @@ public class PlusGem : BaseGem
 
     public override MatchInfo GetMatch()
     {
-        MatchInfo matchInfo = BoardController.GetSpecialMatch(true, this, validateGem);
+        MatchInfo matchInfo = BoardController.GetSpecialMatch(true, true, this, validateGem);
         List<MatchInfo> matchInfosChain = new List<MatchInfo>();
 
         activated = true;

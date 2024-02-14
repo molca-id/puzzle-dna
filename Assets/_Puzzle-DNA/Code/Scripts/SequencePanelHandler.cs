@@ -1,3 +1,4 @@
+using ActionCode.Attributes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,12 +8,21 @@ public class SequencePanelHandler : MonoBehaviour
 {
     public List<GameObject> panels;
     public UnityEvent afterFinished;
+
+    [Header("Add On For Game")]
+    public bool usingGameScene;
+    public CommonHandler commonHandler;
+    public UnityEvent whenGameLoaded;
+
     int index;
 
     void Start()
     {
         index = 0;
         SetPanel();
+
+        if (usingGameScene)
+            commonHandler.whenSceneLoaded = whenGameLoaded;
     }
 
     void SetPanel()

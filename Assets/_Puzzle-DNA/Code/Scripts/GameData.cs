@@ -52,8 +52,10 @@ public class AudioClipInfo
 public class GameData : SingletonScriptableObject<GameData>
 {
     [Header("Board Dimension")]
-    [SerializeField] Vector2Int boardDimension;
-    public Vector2Int _boardDimension => instance.boardDimension;
+    public Vector2Int boardDimension;
+    public float hintDelay;
+    public float totalTime;
+    public bool usingTutorial;
 
     [Header("PowerUps Add On")]
     public float abilityDriveDuration;

@@ -46,6 +46,13 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
         set { instance._usingUpgradedPowerUps = value; }
     }
 
+    [SerializeField] bool _usingTutorial;
+    public static bool usingTutorial
+    {
+        get { return instance._usingTutorial; }
+        set { instance._usingTutorial = value; }
+    }
+
     [Header("Gem Attributes")]
     [SerializeField] List<BaseGem> _allGems = new List<BaseGem>();
     public static List<BaseGem> allGems
@@ -336,9 +343,9 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
         {
             EnableUpdateBoard(false);
             matchCounter = 0;
-            HintController.StartHinting();
-            if (EndUpdatingBoard != null)
-                EndUpdatingBoard();
+
+            if (!usingTutorial) HintController.StartHinting();
+            if (EndUpdatingBoard != null) EndUpdatingBoard();
         }
     }
 
@@ -726,7 +733,7 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
             if (duration > maxDuration)
                 maxDuration = duration;
 
-            score += matchInfo.GetScore() * GameController.multiplierScore;
+            score += matchInfo.GetScore() * GameController.multiplierScore * 100;
             matchCounter++;
         }
 
@@ -737,6 +744,9 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
         GameController.scoreTemp = score + matchTemp;
         UIController.ShowMsg($"{GameData.GetComboMessage(matchCounter - 1)}");
         SoundController.PlaySfx(GameData.GetAudioClip("match"));
+
+        if (!GameController.instance.tutorialIsDone)
+            GameTutorialHandler.instance.FinishTutorial();
 
         yield return new WaitForSeconds(maxDuration / 2);
     }

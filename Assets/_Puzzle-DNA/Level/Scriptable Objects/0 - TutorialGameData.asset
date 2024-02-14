@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e63af0a87d5c2f45a27c8615bc44409, type: 3}
-  m_Name: EasyGameData
+  m_Name: 0 - TutorialGameData
   m_EditorClassIdentifier: 
   boardDimension: {x: 5, y: 5}
-  totalTime: 0
-  firstTutorial: 1
+  hintDelay: 0
+  totalTime: 10
+  usingTutorial: 1
   abilityDriveDuration: 5
   usingPowerUps: 0
   usingUpgradedPowerUps: 1

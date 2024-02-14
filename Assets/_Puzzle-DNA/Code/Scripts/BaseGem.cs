@@ -149,6 +149,7 @@ public class BaseGem : MonoBehaviour, ITouchable
 
     public void TouchDrag()
     {
+        if (!GameController.instance.gemIsInteractable) return;
         if (Vector2.Distance(transform.position, TouchController.touchPosition) > 0.75f)
         {
             BaseGem otherGem;
@@ -173,7 +174,6 @@ public class BaseGem : MonoBehaviour, ITouchable
 
             TouchUp();
         }
-
     }
 
     public void TouchUp()

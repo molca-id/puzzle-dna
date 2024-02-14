@@ -18,7 +18,6 @@ public class HintInfo
 
 public class HintController : SingletonMonoBehaviour<HintController>
 {
-
     List<HintInfo> hints = new List<HintInfo>();
     HintInfo currentHint;
     Coroutine hinting;

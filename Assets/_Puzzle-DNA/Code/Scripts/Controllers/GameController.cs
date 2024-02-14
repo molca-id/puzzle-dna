@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using Utilities;
 
 public class GameController : SingletonMonoBehaviour<GameController>
@@ -8,11 +10,14 @@ public class GameController : SingletonMonoBehaviour<GameController>
     [Header("Game Data")]
     [SerializeField] GameData gameData;
     [SerializeField] BoardController boardController;
+    //[SerializeField] AudioListener gameListener;
 
     [Header("Game Settings")]
     public float swapSpeed;
     public float fallSpeed;
     public bool preventInitialMatches;
+    public bool gemIsInteractable;
+    public bool tutorialIsDone;
     Coroutine gameOver;
 
     [Header("Score Data")]
@@ -53,11 +58,19 @@ public class GameController : SingletonMonoBehaviour<GameController>
         }
     }
 
+    [Header("GameOver Event")]
+    [SerializeField] UnityEvent whenGameOver;
+
+    //private void Awake()
+    //{
+    //    List<AudioListener> audioListeners = FindObjectsOfType<AudioListener>().ToList();
+    //    if (audioListeners.Count > 1) gameListener.enabled = false;
+    //}
+
     void Start()
     {
         StartGame();
         SoundController.PlayMusic(GameData.GetAudioClip("bgm"), 1);
-        StartCoroutine(TimerSystem());
     }
 
     void Update()
@@ -97,8 +110,8 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
         BoardController.instance.transform.SetParent(transform.parent);
         BoardController.instance.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
-        BoardController.width = gameData._boardDimension.x;
-        BoardController.height = gameData._boardDimension.y;
+        BoardController.width = gameData.boardDimension.x;
+        BoardController.height = gameData.boardDimension.y;
 
         BoardController.usingPowerUps = gameData.usingPowerUps;
         BoardController.usingUpgradedPowerUps = gameData.usingUpgradedPowerUps;
@@ -107,12 +120,28 @@ public class GameController : SingletonMonoBehaviour<GameController>
         BoardController.emptyPositions = gameData.emptyGems;
         BoardController.matchCounter = 0;
 
+        BoardController.usingTutorial = gameData.usingTutorial;
+        SetTutorialState(gameData.usingTutorial);
+
+        HintController.instance.hintDelay = gameData.hintDelay;
         UIController.ShowGameScreen();
         yield return new WaitForSeconds(1f);
 
         TouchController.cancel = true;
         yield return new WaitForSeconds(BoardController.CreateBoard());
         BoardController.UpdateBoard();
+    }
+
+    public void SetTutorialState(bool use)
+    {
+        if (use) GameTutorialHandler.instance.InitTutorial();
+        else StartTimer();
+    }
+
+    public void StartTimer()
+    {
+        timeLeft = gameData.totalTime;
+        StartCoroutine(TimerSystem());
     }
 
     void GameOver()
@@ -137,5 +166,6 @@ public class GameController : SingletonMonoBehaviour<GameController>
         UIController.ShowMsg("Game Over");
 
         yield return new WaitForSeconds(BoardController.DestroyGems() + .5f);
+        whenGameOver.Invoke();
     }
 }

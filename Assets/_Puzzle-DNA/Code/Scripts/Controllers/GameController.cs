@@ -8,9 +8,9 @@ using Utilities;
 public class GameController : SingletonMonoBehaviour<GameController>
 {
     [Header("Game Data")]
-    [SerializeField] GameData gameData;
+    public GameData gameData;
     [SerializeField] BoardController boardController;
-    //[SerializeField] AudioListener gameListener;
+    public bool standalone;
 
     [Header("Game Settings")]
     public float swapSpeed;
@@ -23,6 +23,9 @@ public class GameController : SingletonMonoBehaviour<GameController>
     [Header("Score Data")]
     [SerializeField] int _scoreTotal;
     [SerializeField] int _scoreTemp;
+    [SerializeField] int _scoreMultiplier;
+    [SerializeField] float _timeLeft;
+
     public static int scoreTemp
     {
         get { return instance._scoreTemp; }
@@ -36,8 +39,6 @@ public class GameController : SingletonMonoBehaviour<GameController>
             );
         }
     }
-
-    [SerializeField] int _scoreMultiplier;
     public static int multiplierScore
     {
         get { return instance._scoreMultiplier; }
@@ -46,8 +47,6 @@ public class GameController : SingletonMonoBehaviour<GameController>
             instance._scoreMultiplier = value;
         }
     }
-
-    [SerializeField] float _timeLeft;
     public static float timeLeft
     {
         get { return instance._timeLeft; }
@@ -58,16 +57,21 @@ public class GameController : SingletonMonoBehaviour<GameController>
         }
     }
 
+    [Header("PowerUps VFX")]
+    [SerializeField] Vector2Int bombAnimPos;
+    [SerializeField] GameObject bombAnimPrefab;
+    [SerializeField] List<Animator> bombAnims;
+
     [Header("GameOver Event")]
+    public bool unloadWhenGameOver;
     [SerializeField] UnityEvent whenGameOver;
 
-    //private void Awake()
-    //{
-    //    List<AudioListener> audioListeners = FindObjectsOfType<AudioListener>().ToList();
-    //    if (audioListeners.Count > 1) gameListener.enabled = false;
-    //}
-
     void Start()
+    {
+        if (standalone) Init();    
+    }
+
+    public void Init()
     {
         StartGame();
         SoundController.PlayMusic(GameData.GetAudioClip("bgm"), 1);
@@ -123,13 +127,27 @@ public class GameController : SingletonMonoBehaviour<GameController>
         BoardController.usingTutorial = gameData.usingTutorial;
         SetTutorialState(gameData.usingTutorial);
 
-        HintController.instance.hintDelay = gameData.hintDelay;
+        HintController.needHandAnim = gameData.usingHandHint;
+        HintController.hintDelay = gameData.hintDelay;
         UIController.ShowGameScreen();
-        yield return new WaitForSeconds(1f);
 
+        yield return new WaitForSeconds(1f);
         TouchController.cancel = true;
+
         yield return new WaitForSeconds(BoardController.CreateBoard());
         BoardController.UpdateBoard();
+        PoolingMatchEffect();
+    }
+
+    public void PoolingMatchEffect()
+    {
+        int total = BoardController.width * BoardController.height;
+        for (int i = 0; i < total; i++)
+        {
+            var fx = Instantiate(bombAnimPrefab);
+            fx.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+            bombAnims.Add(fx.GetComponent<Animator>());
+        }
     }
 
     public void SetTutorialState(bool use)
@@ -142,6 +160,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
     {
         timeLeft = gameData.totalTime;
         StartCoroutine(TimerSystem());
+        gemIsInteractable = true;
     }
 
     void GameOver()
@@ -166,6 +185,21 @@ public class GameController : SingletonMonoBehaviour<GameController>
         UIController.ShowMsg("Game Over");
 
         yield return new WaitForSeconds(BoardController.DestroyGems() + .5f);
+
+        if (unloadWhenGameOver) CommonHandler.instance.UnloadSceneAdditive("GameScene");
         whenGameOver.Invoke();
+    }
+
+    public void ShowPowerUpFX(List<BaseGem> gems)
+    {
+        for (int i = 0; i < gems.Count; i++)
+        {
+            bombAnims[i].transform.SetLocalPositionAndRotation(
+                gems[i].transform.position,
+                Quaternion.identity
+                );
+
+            bombAnims[i].Play("Play");
+        }
     }
 }

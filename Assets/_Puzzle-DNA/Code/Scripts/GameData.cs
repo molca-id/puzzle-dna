@@ -53,9 +53,12 @@ public class GameData : SingletonScriptableObject<GameData>
 {
     [Header("Board Dimension")]
     public Vector2Int boardDimension;
+
+    [Header("Board Attribute")]
     public float hintDelay;
     public float totalTime;
     public bool usingTutorial;
+    public bool usingHandHint;
 
     [Header("PowerUps Add On")]
     public float abilityDriveDuration;

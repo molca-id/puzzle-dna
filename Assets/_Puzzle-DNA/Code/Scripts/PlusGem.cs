@@ -71,7 +71,6 @@ public class PlusGem : BaseGem
         }
 
         matchInfo.specialMatches.AddRange(matchInfosChain);
-
         return matchInfo;
     }
 

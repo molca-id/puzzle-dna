@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e63af0a87d5c2f45a27c8615bc44409, type: 3}
-  m_Name: 0 - TutorialGameData
+  m_Name: 1 - Level 1
   m_EditorClassIdentifier: 
-  boardDimension: {x: 5, y: 5}
-  hintDelay: 1.5
-  totalTime: 10
-  usingTutorial: 1
+  boardDimension: {x: 6, y: 6}
+  hintDelay: 5
+  totalTime: 60
+  usingTutorial: 0
   usingHandHint: 1
   abilityDriveDuration: 5
-  usingPowerUps: 0
-  usingUpgradedPowerUps: 1
+  usingPowerUps: 1
+  usingUpgradedPowerUps: 0
   gems:
   - type: 0
     sprite: {fileID: 21300000, guid: 46602cd8c18712f40b762c78b3243728, type: 3}

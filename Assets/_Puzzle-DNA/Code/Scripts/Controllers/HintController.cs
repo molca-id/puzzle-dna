@@ -18,11 +18,22 @@ public class HintInfo
 
 public class HintController : SingletonMonoBehaviour<HintController>
 {
-    List<HintInfo> hints = new List<HintInfo>();
-    HintInfo currentHint;
-    Coroutine hinting;
+    [SerializeField] List<HintInfo> hints = new List<HintInfo>();
+    [SerializeField] GameObject handAnimObj;
+    [SerializeField] float _hintDelay = 30f;
+    [SerializeField] bool _needHandAnim;
 
-    public float hintDelay = 30f;
+    public static float hintDelay
+    {
+        set { instance._hintDelay = value; }
+        get { return instance._hintDelay; }
+    }
+
+    public static bool needHandAnim
+    {
+        set { instance._needHandAnim = value; }
+        get { return instance._needHandAnim; }
+    }
 
     public static bool hasHints
     {
@@ -35,6 +46,9 @@ public class HintController : SingletonMonoBehaviour<HintController>
     }
 
     public static bool paused;
+
+    HintInfo currentHint;
+    Coroutine hinting;
 
     HintInfo GetHint(BaseGem gem, BaseGem otherGem)
     {
@@ -105,16 +119,13 @@ public class HintController : SingletonMonoBehaviour<HintController>
     {
         if (hasHints && !isShowing)
         {
-            HintInfo hintInfo = instance.hints[
-                Random.Range(0, instance.hints.Count)
-            ];
+            HintInfo hintInfo = instance.hints[Random.Range(0, instance.hints.Count)];
             hintInfo.gem.Hint();
-
-            hintInfo.currentSwap = hintInfo.swaps[
-                Random.Range(0, hintInfo.swaps.Count)
-            ];
+            hintInfo.currentSwap = hintInfo.swaps[Random.Range(0, hintInfo.swaps.Count)];
             hintInfo.currentSwap.Hint();
             instance.currentHint = hintInfo;
+
+            if (needHandAnim) SetupHandHint();
         }
     }
 
@@ -122,6 +133,7 @@ public class HintController : SingletonMonoBehaviour<HintController>
     {
         if (isShowing)
         {
+            instance.handAnimObj.SetActive(false);
             instance.currentHint.gem.Hint(false);
             instance.currentHint.currentSwap.Hint(false);
             instance.currentHint = null;
@@ -141,12 +153,49 @@ public class HintController : SingletonMonoBehaviour<HintController>
         if (instance.hinting != null)
             instance.StopCoroutine(instance.hinting);
 
+        instance.handAnimObj.SetActive(false);
         instance.hinting = null;
+    }
+
+    static void SetupHandHint()
+    {
+        HintInfo info = instance.currentHint;
+        BaseGem currGem = instance.currentHint.gem;
+        BaseGem currSwap = instance.currentHint.currentSwap;
+        Animator hand = instance.handAnimObj.GetComponent<Animator>();
+
+        instance.handAnimObj.SetActive(true);
+        instance.handAnimObj.transform.SetLocalPositionAndRotation(
+            info.gem.transform.position,
+            Quaternion.identity
+            );
+
+        if (currGem.position.x == currSwap.position.x)
+        {
+            if (currGem.position.y > currSwap.position.y)
+            {
+                hand.Play("Down");
+            }
+            else
+            {
+                hand.Play("Up");
+            }
+        }
+        else
+        {
+            if (currGem.position.x > currSwap.position.x)
+            {
+                hand.Play("Left");
+            }
+            else
+            {
+                hand.Play("Right");
+            }
+        }
     }
 
     IEnumerator IEStartHinting()
     {
-
         paused = false;
         yield return new WaitForSecondsAndNotPaused(hintDelay, () => paused);
 

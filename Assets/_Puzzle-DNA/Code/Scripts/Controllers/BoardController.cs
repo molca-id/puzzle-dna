@@ -95,7 +95,12 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
     public static BaseGem[,] gemBoard;
     public static bool updatingBoard;
     public static event Action EndUpdatingBoard;
-    
+
+    public virtual Func<BaseGem, bool> validateGem
+    {
+        get { return gem => gem.type != GemType.Special; }
+    }
+
     // Calculate Board Position into World
     public static Vector3 GetWorldPosition(Vector2Int position)
     {
@@ -278,6 +283,7 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
 
             if (from.type == GemType.Special)
             {
+                GameController.instance.ShowPowerUpFX(GetSpecialMatch(true, !from.GetComponent<BombGem>(), from, validateGem).matches);
                 foreach (MatchInfo specialMatch in matchFrom.specialMatches)
                 {
                     matches.Add(specialMatch);
@@ -286,6 +292,7 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
 
             if (to.type == GemType.Special)
             {
+                GameController.instance.ShowPowerUpFX(GetSpecialMatch(true, !to.GetComponent<BombGem>(), from, validateGem).matches);
                 foreach (MatchInfo specialMatch in matchTo.specialMatches)
                 {
                     matches.Add(specialMatch);
@@ -402,6 +409,7 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
         {
             List<Vector2Int> fallPositions = new List<Vector2Int>();
             List<MatchInfo> matchesToDestroy = new List<MatchInfo>();
+
             foreach (MatchInfo matchInfo in matchInfos)
             {
                 matchesToDestroy.Add(matchInfo);

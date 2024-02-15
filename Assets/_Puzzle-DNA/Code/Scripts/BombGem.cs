@@ -37,7 +37,7 @@ public class BombGem : BaseGem
 
                     return false;
                 }
-
+                
                 return true;
             };
         }
@@ -58,7 +58,6 @@ public class BombGem : BaseGem
     {
         MatchInfo matchInfo = BoardController.GetSpecialMatch(true, false, this, validateGem);
         List<MatchInfo> matchInfosChain = new List<MatchInfo>();
-
         activated = true;
 
         foreach (var blender in gems)

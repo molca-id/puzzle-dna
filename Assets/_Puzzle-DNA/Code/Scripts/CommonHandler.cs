@@ -6,7 +6,15 @@ using UnityEngine.SceneManagement;
 
 public class CommonHandler : MonoBehaviour
 {
-    [HideInInspector] public UnityEvent whenSceneLoaded;
+    public static CommonHandler instance;
+    public UnityEvent whenSceneLoading;
+    public UnityEvent whenSceneLoaded;
+    public UnityEvent whenSceneUnloaded;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     public void LoadScene(string sceneName)
     {
@@ -18,15 +26,23 @@ public class CommonHandler : MonoBehaviour
         StartCoroutine(LoadAdditiveScene(sceneName));
     }
 
-    public void UnloadScene(string sceneName)
+    public void UnloadSceneAdditive(string sceneName)
     {
-        SceneManager.UnloadSceneAsync(sceneName);
+        StartCoroutine(UnloadAdditiveScene(sceneName));
     }
 
     IEnumerator LoadAdditiveScene(string sceneName)
     {
+        whenSceneLoading.Invoke();
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
         yield return new WaitUntil(() => asyncLoad.isDone);
         whenSceneLoaded.Invoke();
+    }
+
+    IEnumerator UnloadAdditiveScene(string sceneName)
+    {
+        AsyncOperation asyncLoad = SceneManager.UnloadSceneAsync(sceneName);
+        yield return new WaitUntil(() => asyncLoad.isDone);
+        whenSceneUnloaded.Invoke();
     }
 }

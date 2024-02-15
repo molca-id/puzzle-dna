@@ -1,18 +1,18 @@
 using ActionCode.Attributes;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class SequencePanelHandler : MonoBehaviour
 {
     public List<GameObject> panels;
-    public UnityEvent afterFinished;
+    public List<UnityEvent> sequenceEvents;
 
     [Header("Add On For Game")]
-    public bool usingGameScene;
-    public CommonHandler commonHandler;
-    public UnityEvent whenGameLoaded;
+    public float delaySkippable;
+    public bool isSkippable;
 
     int index;
 
@@ -20,19 +20,19 @@ public class SequencePanelHandler : MonoBehaviour
     {
         index = 0;
         SetPanel();
-
-        if (usingGameScene)
-            commonHandler.whenSceneLoaded = whenGameLoaded;
     }
 
     void SetPanel()
     {
         panels.ForEach(panel => panel.SetActive(false));
-        panels[index].SetActive(true);
+        sequenceEvents[index].Invoke();
+
+        StartCoroutine(DelayingSkippable());
     }
 
     public void PrevPanel()
     {
+        if (!isSkippable) return;
         if (index <= 0) return;
         
         index--;
@@ -41,13 +41,17 @@ public class SequencePanelHandler : MonoBehaviour
 
     public void NextPanel()
     {
-        if (index >= panels.Count - 1)
-        {
-            afterFinished.Invoke();
-            return;
-        }
+        if (!isSkippable) return;
+        if (index >= sequenceEvents.Count - 1) return;
 
         index++;
         SetPanel();
+    }
+
+    IEnumerator DelayingSkippable()
+    {
+        isSkippable = false;
+        yield return new WaitForSeconds(delaySkippable);
+        isSkippable = true;
     }
 }

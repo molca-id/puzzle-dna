@@ -11,7 +11,12 @@ public class GameTutorialHandler : MonoBehaviour
     [SerializeField] Canvas generalCanvas;
     [SerializeField] Transform gamePanel;
     [SerializeField] Transform tutorialPanel;
+    [SerializeField] List<GameObject> descriptionPanels;
     [SerializeField] List<UnityEvent> tutorialEvents;
+
+    [Header("Delaying Skippable")]
+    [SerializeField] float delaySkippable;
+    [SerializeField] bool isSkippable;
 
     void Awake()
     {
@@ -29,26 +34,36 @@ public class GameTutorialHandler : MonoBehaviour
     {
         generalCanvas.sortingLayerName = "UI";
         tutorialPanel.gameObject.SetActive(false);
+        descriptionPanels.ForEach(panel =>
+        {
+            panel.SetActive(false);
+        });
 
+        BoardController.usingTutorial = false;
         GameController.instance.tutorialIsDone = true;
         GameController.instance.StartTimer();
     }
 
     public void NextTutorial()
     {
+        if (!isSkippable) return;
+        descriptionPanels.ForEach(panel =>
+        {
+            panel.SetActive(false);
+        });
+
         if (index < tutorialEvents.Count)
         {
             tutorialEvents[index].Invoke();
             index++;
         }
-        else
-        {
-            StartGame();
-        }
+
+        StartCoroutine(DelayingSkippable());
     }
 
-    void StartGame()
+    public void StartGame()
     {
+        HintController.FindHints();
         HintController.StartHinting();
         GameController.instance.gemIsInteractable = true;
 
@@ -73,5 +88,12 @@ public class GameTutorialHandler : MonoBehaviour
 
         panel.SetParent(tutorialPanel);
         panel.SetAsFirstSibling();
+    }
+
+    IEnumerator DelayingSkippable()
+    {
+        isSkippable = false;
+        yield return new WaitForSeconds(delaySkippable);
+        isSkippable = true;
     }
 }

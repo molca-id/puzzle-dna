@@ -6,13 +6,19 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System;
+using UnityEngine.Events;
+using UnityEditor.PackageManager;
 
 public class UIController : SingletonMonoBehaviour<UIController>
 {
     [Header("Screens")]
-    [SerializeField] CanvasGroup gameScreen;
+    [SerializeField] List<CanvasGroup> allCanvases;
 
-    [Header("Game Screen")]
+    [Header("HUD Images")]
+    [SerializeField] Image backgroundGame;
+    [SerializeField] Image backgroundLayout;
+
+    [Header("HUD Screen")]
     [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] TextMeshProUGUI comboScoreText;
     [SerializeField] TextMeshProUGUI comboMultiplierText;
@@ -28,15 +34,25 @@ public class UIController : SingletonMonoBehaviour<UIController>
     CanvasGroup currentScreen;
     float timePulse;
 
-    public static void ShowGameScreen()
+    public void ShowGameScreen()
     {
         UpdateScore(GameController.scoreTemp);
         UpdateTimeLeft(GameController.timeLeft);
-        instance.StartCoroutine(
-            instance.IEChangeScreen(instance.gameScreen, () => {
+        allCanvases.ForEach(canvas =>
+        {
+            StartCoroutine(IEOpenScreen(canvas));
+        });
+    }
 
-            })
-        );
+    public void CloseAllCanvases(UnityEvent events)
+    {
+        for (int i = 0; i < allCanvases.Count; i++)
+        {
+            if (i == allCanvases.Count - 1)
+                StartCoroutine(IECloseScreen(allCanvases[i], events));
+            else
+                StartCoroutine(IECloseScreen(allCanvases[i]));
+        }
     }
 
     public static void UpdateScore(int score)
@@ -80,6 +96,13 @@ public class UIController : SingletonMonoBehaviour<UIController>
     {
         instance.msgText.text = $"{msg}";
         instance.msgText.transform.GetComponent<Animator>().SetTrigger("pulse");
+    }
+
+    public void SetupImages(Sprite bgGame, Sprite bgLayout)
+    {
+        backgroundGame.sprite = bgGame;
+        backgroundLayout.sprite = bgLayout;
+        backgroundLayout.SetNativeSize();
     }
 
     public void SetMultiplierScoreState(bool cond)
@@ -141,5 +164,26 @@ public class UIController : SingletonMonoBehaviour<UIController>
 
         if (executeAfter != null)
             executeAfter();
+    }
+
+    public IEnumerator IEOpenScreen(CanvasGroup screen)
+    {
+        while (screen.alpha < 1)
+        {
+            screen.alpha += Time.deltaTime * 2;
+            yield return null;
+        }
+    }
+
+    public IEnumerator IECloseScreen(CanvasGroup screen, UnityEvent events = null)
+    {
+        while (screen.alpha > 0)
+        {
+            screen.alpha -= Time.deltaTime * 2;
+            yield return null;
+        }
+
+        if (events != null)
+            events.Invoke();
     }
 }

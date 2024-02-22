@@ -1,30 +1,40 @@
-﻿using System.Collections;
+﻿using ActionCode.Attributes;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 using Utilities;
 
 public class GameController : SingletonMonoBehaviour<GameController>
 {
     [Header("Game Data")]
-    public GameData gameData;
+    [SerializeField] GameData gameData;
     [SerializeField] BoardController boardController;
-    public bool standalone;
+
+    [Header("PowerUps VFX")]
+    [SerializeField] GameObject bombAnimParent;
+    [SerializeField] GameObject bombAnimPrefab;
+    [SerializeField] List<Animator> bombAnims;
 
     [Header("Game Settings")]
-    public float swapSpeed;
-    public float fallSpeed;
-    public bool preventInitialMatches;
-    public bool gemIsInteractable;
-    public bool tutorialIsDone;
-    Coroutine gameOver;
+    [SerializeField] bool openGameSettings;
+    [ShowIf("openGameSettings")] public float swapSpeed;
+    [ShowIf("openGameSettings")] public float fallSpeed;
+    [ShowIf("openGameSettings")] public bool preventInitialMatches;
+    [ShowIf("openGameSettings")] public bool unloadWhenGameOver;
+    [ShowIf("openGameSettings")] public bool standalone;
 
-    [Header("Score Data")]
-    [SerializeField] int _scoreTotal;
-    [SerializeField] int _scoreTemp;
-    [SerializeField] int _scoreMultiplier;
-    [SerializeField] float _timeLeft;
+    [HideInInspector] public Sprite characterPlayerSprite;
+    [HideInInspector] public bool gemIsInteractable;
+    [HideInInspector] public bool tutorialIsDone;
+
+    Coroutine gameOver;
+    int _scoreTotal = 0;
+    int _scoreTemp = 0;
+    int _scoreMultiplier = 1;
+    float _timeLeft = 120;
 
     public static int scoreTemp
     {
@@ -33,6 +43,8 @@ public class GameController : SingletonMonoBehaviour<GameController>
         {
             instance._scoreTemp = value * instance._scoreMultiplier;
             instance._scoreTotal += instance._scoreTemp;
+
+            DialogueBonusHandler.instance.StartDialogue(instance._scoreTotal);
             UIController.UpdateScore(instance._scoreTotal);
             UIController.UpdateComboScore(
                instance._scoreTemp, BoardController.matchCounter
@@ -57,24 +69,17 @@ public class GameController : SingletonMonoBehaviour<GameController>
         }
     }
 
-    [Header("PowerUps VFX")]
-    [SerializeField] Vector2Int bombAnimPos;
-    [SerializeField] GameObject bombAnimPrefab;
-    [SerializeField] List<Animator> bombAnims;
-
-    [Header("GameOver Event")]
-    public bool unloadWhenGameOver;
-    [SerializeField] UnityEvent whenGameOver;
-
     void Start()
     {
-        if (standalone) Init();    
+        if (standalone) 
+            Init(gameData);    
     }
 
-    public void Init()
+    public void Init(GameData data)
     {
-        StartGame();
+        gameData = data;
         SoundController.PlayMusic(GameData.GetAudioClip("bgm"), 1);
+        StartGame();
     }
 
     void Update()
@@ -110,6 +115,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
     IEnumerator IEStartGame()
     {
+        UIController.instance.SetupImages(gameData.backgroundGame, gameData.backgroundLayout);
         Instantiate(boardController.gameObject).GetComponent<BoardController>();
 
         BoardController.instance.transform.SetParent(transform.parent);
@@ -124,17 +130,28 @@ public class GameController : SingletonMonoBehaviour<GameController>
         BoardController.emptyPositions = gameData.emptyGems;
         BoardController.matchCounter = 0;
 
-        BoardController.usingTutorial = gameData.usingTutorial;
-        SetTutorialState(gameData.usingTutorial);
+        BoardController.usingTutorial = gameData.usingTutorial; 
+        GameTutorialHandler.instance.InitTutorial(gameData.usingTutorial);
 
         HintController.needHandAnim = gameData.usingHandHint;
         HintController.hintDelay = gameData.hintDelay;
-        UIController.ShowGameScreen();
+        UIController.instance.ShowGameScreen();
 
         yield return new WaitForSeconds(1f);
         TouchController.cancel = true;
 
         yield return new WaitForSeconds(BoardController.CreateBoard());
+        gameData.dialogueBonus.ForEach(data =>
+        {
+            data.isDone = false;
+        });
+
+        DialogueBonusHandler.instance.InitDialogue(
+            characterPlayerSprite,
+            gameData.characterInterlocutor,
+            gameData.dialogueBonus
+            );
+
         BoardController.UpdateBoard();
         PoolingMatchEffect();
     }
@@ -145,15 +162,11 @@ public class GameController : SingletonMonoBehaviour<GameController>
         for (int i = 0; i < total; i++)
         {
             var fx = Instantiate(bombAnimPrefab);
-            fx.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
             bombAnims.Add(fx.GetComponent<Animator>());
-        }
-    }
 
-    public void SetTutorialState(bool use)
-    {
-        if (use) GameTutorialHandler.instance.InitTutorial();
-        else StartTimer();
+            fx.transform.SetParent(bombAnimParent.transform);
+            fx.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+        }
     }
 
     public void StartTimer()
@@ -186,8 +199,9 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
         yield return new WaitForSeconds(BoardController.DestroyGems() + .5f);
 
-        if (unloadWhenGameOver) CommonHandler.instance.UnloadSceneAdditive("GameScene");
-        whenGameOver.Invoke();
+        UnityEvent events = new();
+        events.AddListener(() => CommonHandler.instance.UnloadSceneAdditive("GameScene"));
+        UIController.instance.CloseAllCanvases(events);
     }
 
     public void ShowPowerUpFX(List<BaseGem> gems)

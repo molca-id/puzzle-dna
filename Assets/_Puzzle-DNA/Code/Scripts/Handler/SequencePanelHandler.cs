@@ -1,0 +1,91 @@
+using ActionCode.Attributes;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEditor;
+using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
+
+[Serializable]
+public class SequenceEventsData
+{
+    public bool willOpenGame;
+    [ShowIf("willOpenGame")] public GameData gameData;
+    public UnityEvent whenGameLoaded;
+    public UnityEvent whenGameUnloaded;
+    public UnityEvent sequenceEvent;
+}
+
+public class SequencePanelHandler : MonoBehaviour
+{
+    public List<GameObject> panels;
+    public List<SequenceEventsData> sequenceEvents;
+
+    [Header("Add On For Game")]
+    public float delaySkippable;
+    public bool isSkippable;
+
+    int index;
+
+    void Start()
+    {
+        index = 0;
+        SetPanel();
+    }
+
+    void SetPanel()
+    {
+        SequenceEventsData data = sequenceEvents[index];
+        for (int i = 0; i < index; i++)
+        {
+            if (panels[i] == null) continue;
+            if (panels[i].GetComponentInChildren<Button>() == null) continue;
+            panels[i].GetComponentInChildren<Button>().interactable = false;
+        }
+
+        if (data.willOpenGame)
+        {
+            CommonHandler.instance.whenSceneLoadedCustom = data.whenGameLoaded;
+            CommonHandler.instance.whenSceneUnloadedCustom = data.whenGameUnloaded;
+            GameGenerator.instance.GenerateLevel(data.gameData);
+        }
+        else
+        {
+            DisableAllPanels();
+        }
+
+        data.sequenceEvent.Invoke();
+        StartCoroutine(DelayingSkippable());
+    }
+
+    public void PrevPanel()
+    {
+        if (!isSkippable) return;
+        if (index <= 0) return;
+        
+        index--;
+        SetPanel();
+    }
+
+    public void NextPanel()
+    {
+        if (!isSkippable) return;
+        if (index >= sequenceEvents.Count - 1) return;
+
+        index++;
+        SetPanel();
+    }
+
+    public void DisableAllPanels()
+    {
+        panels.ForEach(panel => panel.SetActive(false));
+    }
+
+    IEnumerator DelayingSkippable()
+    {
+        isSkippable = false;
+        yield return new WaitForSeconds(delaySkippable);
+        isSkippable = true;
+    }
+}

@@ -741,7 +741,7 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
             if (duration > maxDuration)
                 maxDuration = duration;
 
-            score += matchInfo.GetScore() * GameController.multiplierScore * 100;
+            score += matchInfo.GetScore() * GameController.multiplierScore * 50;
             matchCounter++;
         }
 

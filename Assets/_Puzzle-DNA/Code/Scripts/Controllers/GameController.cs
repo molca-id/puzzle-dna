@@ -12,19 +12,19 @@ public class GameController : SingletonMonoBehaviour<GameController>
     [Header("Game Data")]
     [SerializeField] GameData gameData;
     [SerializeField] BoardController boardController;
+    [SerializeField] List<Sprite> layoutBackgrounds;
 
     [Header("PowerUps VFX")]
     [SerializeField] GameObject bombAnimParent;
     [SerializeField] GameObject bombAnimPrefab;
-    [SerializeField] List<Animator> bombAnims;
+    [HideInInspector] public List<Animator> bombAnims;
 
     [Header("Game Settings")]
     [SerializeField] bool openGameSettings;
+    [ShowIf("openGameSettings")] public bool standalone;
+    [ShowIf("openGameSettings")] public bool preventInitialMatches;
     [ShowIf("openGameSettings")] public float swapSpeed;
     [ShowIf("openGameSettings")] public float fallSpeed;
-    [ShowIf("openGameSettings")] public bool preventInitialMatches;
-    [ShowIf("openGameSettings")] public bool unloadWhenGameOver;
-    [ShowIf("openGameSettings")] public bool standalone;
 
     [HideInInspector] public Sprite characterPlayerSprite;
     [HideInInspector] public bool gemIsInteractable;
@@ -41,6 +41,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
         get { return instance._scoreTemp; }
         set
         {
+            if (!instance.gemIsInteractable) return;
             instance._scoreTemp = value * instance._scoreMultiplier;
             instance._scoreTotal += instance._scoreTemp;
 
@@ -115,7 +116,8 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
     IEnumerator IEStartGame()
     {
-        UIController.instance.SetupImages(gameData.backgroundGame, gameData.backgroundLayout);
+        Sprite currLayout = layoutBackgrounds.Find(x => x.name == $"{gameData.boardDimension.x}x{gameData.boardDimension.y}");
+        UIController.instance.SetupImages(gameData.backgroundGame, currLayout);
         Instantiate(boardController.gameObject).GetComponent<BoardController>();
 
         BoardController.instance.transform.SetParent(transform.parent);
@@ -148,7 +150,8 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
         DialogueBonusHandler.instance.InitDialogue(
             characterPlayerSprite,
-            gameData.characterInterlocutor,
+            gameData.characterInterlocutorSprite,
+            gameData.characterInterlocutorName,
             gameData.dialogueBonus
             );
 
@@ -196,6 +199,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
         HintController.StopCurrentHint();
         HintController.StopHinting();
         UIController.ShowMsg("Game Over");
+        GameGenerator.instance.SetScoreGameLevel(_scoreTotal);
 
         yield return new WaitForSeconds(BoardController.DestroyGems() + .5f);
 

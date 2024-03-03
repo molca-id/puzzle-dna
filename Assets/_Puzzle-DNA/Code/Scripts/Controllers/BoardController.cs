@@ -238,7 +238,6 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
 
     IEnumerator IESwapGems(BaseGem from, BaseGem to)
     {
-
         float durationFrom = from.MoveTo(
             GetWorldPosition(to.position), GameController.instance.swapSpeed
         );
@@ -753,7 +752,8 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
         UIController.ShowMsg($"{GameData.GetComboMessage(matchCounter - 1)}");
         SoundController.PlaySfx(GameData.GetAudioClip("match"));
 
-        if (!GameController.instance.tutorialIsDone)
+        if (!GameController.instance.tutorialIsDone &&
+            GameController.instance.gemIsInteractable)
             GameTutorialHandler.instance.FinishTutorial();
 
         yield return new WaitForSeconds(maxDuration / 2);

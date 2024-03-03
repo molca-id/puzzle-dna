@@ -1,8 +1,7 @@
+using Newtonsoft.Json;
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using System.Runtime.InteropServices.ComTypes;
+using System.Net;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -10,106 +9,73 @@ using UnityEngine.Networking;
 public class APIManager : MonoBehaviour
 {
     public static APIManager instance;
-    public string rootUrl = "https://games.talentdna.me:3000";
-    public string _apiKey = "";
+
+    [Header("Basic URL")]
+    [SerializeField] string rootUrl = "https://games.talentdna.me:3000";
+    [SerializeField] string gameDomain = "gamedata";
+    [SerializeField] string validateDomain = "validate";
+    [SerializeField] string deleteDomain = "delete";
 
     private void Awake()
     {
         instance = this;
     }
 
-    public void SetRootURL(string url)
+    public string SetupGameUrl(string sessionCode = "")
     {
-        rootUrl = url;
+        return string.Format("{0}/{1}/{2}", rootUrl, gameDomain, sessionCode);
     }
 
-    public string GetRootURL()
+    public string SetupValidateUrl(string sessionCode = "")
     {
-        return rootUrl;
+        return string.Format("{0}/{1}/{2}", rootUrl, validateDomain, sessionCode);
     }
 
-    public IEnumerator GetDataCoroutine(string subUri, Action<string> SetDataEvent)
+    public string SetupDeleteUrl(string sessionCode = "")
     {
-        string uri = string.Format("{0}/{1}", rootUrl, subUri);
-        using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
-        {
-            yield return webRequest.SendWebRequest();
-
-            switch (webRequest.result)
-            {
-                case UnityWebRequest.Result.ConnectionError:
-                    break;
-                case UnityWebRequest.Result.DataProcessingError:
-                    break;
-                case UnityWebRequest.Result.ProtocolError:
-                    break;
-                case UnityWebRequest.Result.Success:
-                    SetDataEvent(webRequest.downloadHandler.text);
-                    break;
-            }
-
-            webRequest.Dispose();
-        }
+        return string.Format("{0}/{1}/{2}", rootUrl, deleteDomain, sessionCode);
     }
 
-    //public IEnumerator DeleteDataCoroutine(string subUri, Action<string> SetDataEvent)
-    //{
-    //    string uri = string.Format("{0}/{1}", rootUrl, subUri);
-    //    UnityWebRequest uwr = UnityWebRequest.Delete(uri);
-
-    //    uwr.downloadHandler = new DownloadHandlerBuffer();
-    //    uwr.SetRequestHeader("Content-Type", "application/json");
-    //    uwr.SetRequestHeader("Authorization-Token", StaticData.userLoginData.TOKENS_TOKEN);
-    //    uwr.SetRequestHeader("Api-Key", _apiKey);
-
-    //    yield return uwr.SendWebRequest();
-    //    Debug.Log(uwr.downloadHandler.text);
-
-    //    if (uwr.result != UnityWebRequest.Result.Success)
-    //    {
-    //        StaticData.errorMessage = uwr.downloadHandler.text;
-    //        if (uwr.responseCode != 200 && uwr.responseCode != 201) StaticData.apiError = true;
-    //        else StaticData.apiError = false;
-    //        StaticData.requestError = true;
-    //    }
-    //    else
-    //    {
-    //        StaticData.requestError = false;
-    //    }
-
-    //    SetDataEvent?.Invoke(uwr.downloadHandler.text);
-    //}
-
-    public IEnumerator PostDataCoroutine(string subUri, string postData, Action<string> SetDataEvent)
+    public IEnumerator PostDataCoroutine(string url, string jsonData, Action<string> SetDataEvent = null)
     {
-        string uri = string.Format("{0}/{1}", rootUrl, subUri);
-        byte[] rawData = Encoding.UTF8.GetBytes(postData);
-        
-        UnityWebRequest uwr = UnityWebRequest.PostWwwForm(uri, postData);
-        uwr.uploadHandler = new UploadHandlerRaw(rawData);
-        uwr.SetRequestHeader("Content-Type", "application/json");
-        uwr.SetRequestHeader("Api-Key", _apiKey);
+        byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonData);
+        var request = new UnityWebRequest(url, "POST");
 
-        //if (!string.IsNullOrEmpty(StaticData.GetUserToken()))
-        //{
-        //    uwr.SetRequestHeader("Authorization-Token", StaticData.userLoginData.TOKENS_TOKEN);
-        //}
+        request.SetRequestHeader("Content-Type", "application/json");
+        request.uploadHandler = (UploadHandler)new UploadHandlerRaw(bodyRaw);
+        request.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
 
-        yield return uwr.SendWebRequest();
-        Debug.Log(uwr.downloadHandler.text);
-
-        if (uwr.result != UnityWebRequest.Result.Success)
-        {
-            StaticData.errorMessage = uwr.downloadHandler.text;
-            if (uwr.responseCode != 200 && uwr.responseCode != 201) StaticData.apiError = true;
-            else StaticData.apiError = false;
-            StaticData.requestError = true;
-        }
+        yield return request.SendWebRequest();
+        if (request.result != UnityWebRequest.Result.Success)
+            Debug.LogError("Error posting data: " + request.error);
         else
-        {
-            StaticData.requestError = false;
-        }
+            SetDataEvent?.Invoke(request.downloadHandler.text);
+    }
 
-        SetDataEvent?.Invoke(uwr.downloadHandler.text);
+    public IEnumerator PatchDataCoroutine(string url, string jsonData, Action<string> SetDataEvent = null)
+    {
+        byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonData);
+        var request = new UnityWebRequest(url, "PATCH");
+
+        request.SetRequestHeader("Content-Type", "application/json");
+        request.uploadHandler = (UploadHandler)new UploadHandlerRaw(bodyRaw);
+        request.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
+
+        yield return request.SendWebRequest();
+        if (request.result != UnityWebRequest.Result.Success)
+            Debug.LogError("Error patching checkpoint data: " + request.error);
+        else
+            SetDataEvent(request.downloadHandler.text);
+    }
+
+    public IEnumerator GetDataCoroutine(string url, Action<string> SetDataEvent = null)
+    {
+        using UnityWebRequest request = UnityWebRequest.Get(url);
+
+        yield return request.SendWebRequest();
+        if (request.result != UnityWebRequest.Result.Success)
+            Debug.LogError("Error getting checkpoint data: " + request.error);
+        else
+            SetDataEvent(request.downloadHandler.text);
     }
 }

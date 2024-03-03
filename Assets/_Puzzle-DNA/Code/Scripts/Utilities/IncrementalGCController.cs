@@ -1,7 +1,13 @@
 using UnityEngine;
+using UnityEngine.Scripting;
 
 public class IncrementalGCController : MonoBehaviour
 {
+    private void Awake()
+    {
+        GarbageCollector.GCMode = GarbageCollector.Mode.Disabled;
+    }
+
 #if DISABLE_GARBAGE_COLLECTION
     private void Start()
     {

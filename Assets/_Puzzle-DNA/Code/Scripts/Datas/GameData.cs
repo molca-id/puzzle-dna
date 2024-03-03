@@ -67,9 +67,10 @@ public class GameData : SingletonScriptableObject<GameData>
     public Vector2Int boardDimension;
 
     [Header("Game Attributes")]
+    public int gameLevel;
+    public string characterInterlocutorName;
+    public Sprite characterInterlocutorSprite;
     public Sprite backgroundGame;
-    public Sprite backgroundLayout;
-    public Sprite characterInterlocutor;
 
     [Header("Board Attribute")]
     public float hintDelay;

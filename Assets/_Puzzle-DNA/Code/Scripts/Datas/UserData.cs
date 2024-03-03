@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class Data
+public class UserDataValue
 {
     [HideInInspector] public string survey_code;
     [HideInInspector] public string survey_dibuat;
@@ -62,5 +62,5 @@ public class UserData
 {
     public bool success;
     public string message;
-    public Data data;
+    public UserDataValue data;
 }

@@ -20,8 +20,7 @@ public class GameTutorialHandler : MonoBehaviour
 
     void Awake()
     {
-        instance = this;
-        tutorialPanel.gameObject.SetActive(false);       
+        instance = this;      
     }
 
     public void InitTutorial(bool use)
@@ -33,6 +32,7 @@ public class GameTutorialHandler : MonoBehaviour
         }
         else
         {
+            tutorialPanel.gameObject.SetActive(false);
             FinishTutorial();
         }
     }

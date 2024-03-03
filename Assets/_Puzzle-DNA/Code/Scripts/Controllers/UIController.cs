@@ -3,11 +3,8 @@ using System.Collections.Generic;
 using Utilities;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using System;
 using UnityEngine.Events;
-using UnityEditor.PackageManager;
 
 public class UIController : SingletonMonoBehaviour<UIController>
 {

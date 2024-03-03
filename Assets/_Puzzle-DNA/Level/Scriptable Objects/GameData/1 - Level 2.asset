@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: 1 - Level 2
   m_EditorClassIdentifier: 
   boardDimension: {x: 9, y: 7}
-  backgroundGame: {fileID: 21300000, guid: 0bf3db385304db8459b2e1f3b6e2564a, type: 3}
-  backgroundLayout: {fileID: 21300000, guid: f4408cade57f1e64ca78b4e08fc5875c, type: 3}
-  characterInterlocutor: {fileID: 21300000, guid: 8bb26f73810d607408fbef8898493464,
+  gameLevel: 2
+  characterInterlocutorName: Dia
+  characterInterlocutorSprite: {fileID: 21300000, guid: 8bb26f73810d607408fbef8898493464,
     type: 3}
+  backgroundGame: {fileID: 21300000, guid: 0bf3db385304db8459b2e1f3b6e2564a, type: 3}
   hintDelay: 5
   totalTime: 120
   usingTutorial: 0

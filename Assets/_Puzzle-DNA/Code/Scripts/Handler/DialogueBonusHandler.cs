@@ -4,26 +4,40 @@ using UnityEngine.UI;
 using UnityEngine;
 using Utilities;
 using TMPro;
+using System;
+
+[Serializable]
+public class DialogueUI
+{
+    public Image charImage;
+    public GameObject dialogueParentPanel;
+    public GameObject dialoguePanel;
+    public TextMeshProUGUI nameText;
+    public TextMeshProUGUI dialogueText;
+}
 
 public class DialogueBonusHandler : SingletonMonoBehaviour<DialogueBonusHandler>
 {
     [SerializeField] GameObject dialoguePanel;
-    [SerializeField] Image characterDialogueA;
-    [SerializeField] Image characterDialogueB;
-    [SerializeField] TextMeshProUGUI dialogueBoxText;
+    [SerializeField] DialogueUI playerDialogue;
+    [SerializeField] DialogueUI interlocutorDialogue;
     [SerializeField] List<DialogueBonus> dialogueBonus;
     bool dialogueIsOngoing;
 
     public void InitDialogue(
-        Sprite charA, 
-        Sprite charB,
+        Sprite playerSprite, 
+        Sprite interlocutorSprite,
+        string interlocutorName,
         List<DialogueBonus> datas
         )
     {   
-        characterDialogueA.sprite = charA;
-        characterDialogueB.sprite = charB;
-        characterDialogueA.SetNativeSize();
-        characterDialogueB.SetNativeSize();
+        playerDialogue.nameText.text = DataHandler.instance.GetUserDataValue().username;
+        playerDialogue.charImage.sprite = playerSprite;
+        playerDialogue.charImage.SetNativeSize();
+
+        interlocutorDialogue.nameText.text = interlocutorName;
+        interlocutorDialogue.charImage.sprite = interlocutorSprite;
+        interlocutorDialogue.charImage.SetNativeSize();
 
         StartCoroutine(UIController.instance.IEOpenScreen(
             dialoguePanel.transform.parent.GetComponent<CanvasGroup>()
@@ -58,19 +72,28 @@ public class DialogueBonusHandler : SingletonMonoBehaviour<DialogueBonusHandler>
         {
             if (datas[i].playerIsTalking)
             {
-                characterDialogueA.transform.parent.SetAsLastSibling();
-                characterDialogueB.transform.parent.SetAsFirstSibling();
+                playerDialogue.dialogueParentPanel.transform.parent.SetAsLastSibling();
+                interlocutorDialogue.dialogueParentPanel.transform.parent.SetAsFirstSibling();
+
+                playerDialogue.dialoguePanel.SetActive(true);
+                interlocutorDialogue.dialoguePanel.SetActive(false);
+                playerDialogue.dialogueText.text = datas[i].dialogueContent;
             }
             else
             {
-                characterDialogueA.transform.parent.SetAsFirstSibling();
-                characterDialogueB.transform.parent.SetAsLastSibling();
+                playerDialogue.dialogueParentPanel.transform.parent.SetAsFirstSibling();
+                interlocutorDialogue.dialogueParentPanel.transform.parent.SetAsLastSibling();
+
+                playerDialogue.dialoguePanel.SetActive(false);
+                interlocutorDialogue.dialoguePanel.SetActive(true);
+                interlocutorDialogue.dialogueText.text = datas[i].dialogueContent;
             }
 
-            dialogueBoxText.text = datas[i].dialogueContent;
             yield return new WaitForSeconds(datas[i].dialogueDelay);
         }
 
+        playerDialogue.dialoguePanel.SetActive(false);
+        interlocutorDialogue.dialoguePanel.SetActive(false);
         dialoguePanel.SetActive(false);
         dialogueIsOngoing = false;
         dialogue.isDone = true;

@@ -6,15 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/_Puzzle-DNA/Level/Scenes/PreloadScene.unity
+    guid: 8659cd4311996a940b3f649c7d8f5e52
+  - enabled: 1
     path: Assets/_Puzzle-DNA/Level/Scenes/MenuScene.unity
     guid: ef2869986ced9ab488b56c87540a7e33
   - enabled: 1
-    path: Assets/_Puzzle-DNA/Level/Scenes/Archive/MenuScene-Backup.unity
-    guid: 219a45bcaa5217140aad420b40fbe759
-  - enabled: 1
     path: Assets/_Puzzle-DNA/Level/Scenes/GameScene.unity
     guid: 9fa1db979ea8c7e498b664dbe33ad083
-  - enabled: 1
-    path: Assets/_Puzzle-DNA/Level/Scenes/Archive/GameScene-Backup.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}

@@ -1,31 +1,66 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class PreloadManager : MonoBehaviour
 {
+    public static PreloadManager instance;
+
+    public bool sessionIsValid;
     public float splashSpeed;
     public float delayInScreen;
+    public GameObject invalidPanel;
+    public List<TextMeshProUGUI> loadingTexts;
     public List<CanvasGroup> screens;
     public UnityEvent whenLoadingIsOver;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void Start()
     {
         StartCoroutine(IESplashScreen());
     }
 
+    public void SetValidState(bool cond)
+    {
+        sessionIsValid = cond;
+        if (sessionIsValid) DataHandler.instance.IEGetUserData();
+        else invalidPanel.SetActive(true);
+    }
+
+    public void SetLoadingText(string text)
+    {
+        for (int i = 0; i < loadingTexts.Count; i++)
+        {
+            string dots = string.Empty;
+            
+            for(int j = 0; j < i; j++)
+            {
+                dots += ".";
+            }
+
+            loadingTexts[i].text = text + dots;
+        }
+    }
+
     IEnumerator GetCurrentUser()
     {
-        Debug.Log("Getting User Data...");
+        yield return new WaitUntil(() => 
+        !string.IsNullOrEmpty(SessionCodeHooker.instance.GetSessionCode()));
 
+        DataHandler.instance.IEValidateGameSession();
         StartCoroutine(IEOpenScreen(screens[^1]));
-        StartCoroutine(APIManager.instance.GetDataCoroutine(DataHandler.instance.codeTemp, res =>
-        {
-            DataHandler.instance.userData = JsonUtility.FromJson<UserData>(res);
-        }));
 
-        yield return new WaitUntil(() => DataHandler.instance.userData.success);
+        yield return new WaitUntil(() => 
+        DataHandler.instance.userData.success && 
+        DataHandler.instance.validateData.success
+        );
+
         StartCoroutine(IECloseScreen(screens[^1], true));
     }
 
@@ -33,17 +68,13 @@ public class PreloadManager : MonoBehaviour
     {
         for (int i = 0; i < screens.Count; i++)
         {
-            StartCoroutine(IEOpenScreen(screens[i]));
-            yield return new WaitForSeconds(delayInScreen + splashSpeed);
+            if (i > 0) yield return new WaitForSeconds(splashSpeed);
 
-            if (i == screens.Count - 1)
-            {
-                StartCoroutine(GetCurrentUser());
-            }
-            else
-            {
-                StartCoroutine(IECloseScreen(screens[i], false));
-            }
+            StartCoroutine(IEOpenScreen(screens[i]));
+            yield return new WaitForSeconds(delayInScreen);
+
+            if (i == screens.Count - 1) StartCoroutine(GetCurrentUser());
+            else StartCoroutine(IECloseScreen(screens[i], false));
         }
     }
 

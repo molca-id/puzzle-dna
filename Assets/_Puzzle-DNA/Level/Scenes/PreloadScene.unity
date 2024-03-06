@@ -1296,95 +1296,95 @@ MonoBehaviour:
       narration_story: 0
       perks_value:
         perksValueDatas:
-        - perksName: 
+        - perksName: Caring
           perksPoint: 0
-        - perksName: 
+        - perksName: Genuine
           perksPoint: 0
-        - perksName: 
+        - perksName: Competitive
           perksPoint: 0
-        - perksName: 
+        - perksName: Noble
           perksPoint: 0
-        - perksName: 
+        - perksName: Accountable
           perksPoint: 0
-        - perksName: 
+        - perksName: Resourceful
           perksPoint: 0
-        - perksName: 
+        - perksName: Structured
           perksPoint: 0
-        - perksName: 
+        - perksName: Directive
           perksPoint: 0
-        - perksName: 
+        - perksName: Explorer
           perksPoint: 0
-        - perksName: 
+        - perksName: Flexible
           perksPoint: 0
-        - perksName: 
+        - perksName: Personalizer
           perksPoint: 0
-        - perksName: 
+        - perksName: Strategizer
           perksPoint: 0
-        - perksName: 
+        - perksName: Goal-Getter
           perksPoint: 0
-        - perksName: 
+        - perksName: Fixer
           perksPoint: 0
-        - perksName: 
+        - perksName: Inisiator
           perksPoint: 0
-        - perksName: 
+        - perksName: Energizer
           perksPoint: 0
-        - perksName: 
+        - perksName: Sociable
           perksPoint: 0
-        - perksName: 
+        - perksName: Intuitive
           perksPoint: 0
-        - perksName: 
+        - perksName: Collaborator
           perksPoint: 0
-        - perksName: 
+        - perksName: Aversive
           perksPoint: 0
-        - perksName: 
+        - perksName: Focused
           perksPoint: 0
-        - perksName: 
+        - perksName: Developer
           perksPoint: 0
-        - perksName: 
+        - perksName: Contemplative
           perksPoint: 0
-        - perksName: 
+        - perksName: Logical
           perksPoint: 0
-        - perksName: 
+        - perksName: Articulative
           perksPoint: 0
-        - perksName: 
+        - perksName: Contextual
           perksPoint: 0
-        - perksName: 
+        - perksName: Collector
           perksPoint: 0
-        - perksName: 
+        - perksName: Self-Confident
           perksPoint: 0
-        - perksName: 
+        - perksName: Innovative
           perksPoint: 0
-        - perksName: 
+        - perksName: Equitable
           perksPoint: 0
-        - perksName: 
+        - perksName: Visionary
           perksPoint: 0
-        - perksName: 
+        - perksName: Significant
           perksPoint: 0
-        - perksName: 
+        - perksName: Optimizer
           perksPoint: 0
-        - perksName: 
+        - perksName: Harmony
           perksPoint: 0
-        - perksName: 
+        - perksName: Convincing
           perksPoint: 0
-        - perksName: 
+        - perksName: Vigorous
           perksPoint: 0
-        - perksName: 
+        - perksName: Affectionate
           perksPoint: 0
-        - perksName: 
+        - perksName: Advisor
           perksPoint: 0
-        - perksName: 
+        - perksName: Generous
           perksPoint: 0
-        - perksName: 
+        - perksName: Troubleshooter
           perksPoint: 0
-        - perksName: 
+        - perksName: Courageous
           perksPoint: 0
-        - perksName: 
+        - perksName: Desicive
           perksPoint: 0
-        - perksName: 
+        - perksName: Perfectionist
           perksPoint: 0
-        - perksName: 
+        - perksName: Forgiving
           perksPoint: 0
-        - perksName: 
+        - perksName: Authoritative
           perksPoint: 0
       checkpoint_data:
         tutorialIsDone: 0

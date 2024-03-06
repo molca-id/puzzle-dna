@@ -27,8 +27,18 @@ public class DataHandler : MonoBehaviour
 
     public void IEPatchCheckpointData(Action executeAfter = null)
     {
-        var wrapperObject = new { checkpoint_data = GetUserDataValue().checkpoint_data };
-        string json = JsonConvert.SerializeObject(wrapperObject, Formatting.Indented);
+        string json = "{ \"checkpoint_data\" : " + JsonUtility.ToJson(GetUserDataValue().checkpoint_data) + "}";
+
+        //hitting api
+        StartCoroutine(
+            APIManager.instance.PatchDataCoroutine(
+                APIManager.instance.SetupGameUrl(GetUniqueCode()),
+                json, res => executeAfter.Invoke()));
+    }
+
+    public void IEPatchPerksData(Action executeAfter = null)
+    {
+        string json = "{ \"perks_value\" : " + JsonUtility.ToJson(GetUserDataValue().perks_value) + "}";
 
         //hitting api
         StartCoroutine(

@@ -54,6 +54,7 @@ public class PerksValue
 public class PerksValueData
 {
     public string perksName;
+    public Sprite perksSprite;
     public int perksPoint;
 }
 

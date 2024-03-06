@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e63af0a87d5c2f45a27c8615bc44409, type: 3}
-  m_Name: 0 - TutorialGameData
+  m_Name: Game (2)
   m_EditorClassIdentifier: 
-  boardDimension: {x: 5, y: 5}
-  gameLevel: 0
+  boardDimension: {x: 9, y: 7}
+  gameLevel: 2
   characterInterlocutorName: Dia
   characterInterlocutorSprite: {fileID: 21300000, guid: 8bb26f73810d607408fbef8898493464,
     type: 3}
   backgroundGame: {fileID: 21300000, guid: 0bf3db385304db8459b2e1f3b6e2564a, type: 3}
-  hintDelay: 1.5
-  totalTime: 10
-  usingTutorial: 1
+  hintDelay: 5
+  totalTime: 120
+  usingTutorial: 0
   usingHandHint: 1
   abilityDriveDuration: 5
-  usingPowerUps: 0
+  usingPowerUps: 1
   usingUpgradedPowerUps: 1
   gems:
   - type: 0
@@ -51,7 +51,27 @@ MonoBehaviour:
   - name: Bomb
     prefab: {fileID: 6539906006310958499, guid: c0d3ca31d71aa5f4eb54daa97b20bb40,
       type: 3}
-  emptyGems: []
+  emptyGems:
+  - emptySprite: {fileID: 21300000, guid: 381a9d030237878458e4de815f0a9991, type: 3}
+    positions:
+    - {x: 0, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 0}
+    - {x: 7, y: 0}
+    - {x: 8, y: 0}
+    - {x: 8, y: 1}
+    - {x: 0, y: 5}
+    - {x: 0, y: 6}
+    - {x: 1, y: 6}
+    - {x: 7, y: 6}
+    - {x: 7, y: 6}
+    - {x: 8, y: 6}
+    - {x: 8, y: 5}
+  - emptySprite: {fileID: 21300000, guid: 42ba22bfc2a201b479db7523251173fb, type: 3}
+    positions:
+    - {x: 3, y: 3}
+    - {x: 4, y: 3}
+    - {x: 5, y: 3}
   audioClipInfos:
   - name: bgm
     clip: {fileID: 8300000, guid: f54f914e1258c5f4e90a9226d10af526, type: 3}
@@ -67,4 +87,37 @@ MonoBehaviour:
   - Perfect!!!
   - Glorious!!!!
   - Wonderful!!!!!
-  dialogueBonus: []
+  dialogueBonus:
+  - scoreTrigger: 1500
+    dialogueBonusDatas:
+    - playerIsTalking: 1
+      dialogueDelay: 2
+      dialogueContent: Hai, bagaimana kabarmu?
+    - playerIsTalking: 0
+      dialogueDelay: 2
+      dialogueContent: Aku baik, kamu bagaimana?
+    - playerIsTalking: 1
+      dialogueDelay: 2
+      dialogueContent: Baik juga kok. Semoga harimu menyenangkan!
+    isDone: 0
+  - scoreTrigger: 4000
+    dialogueBonusDatas:
+    - playerIsTalking: 0
+      dialogueDelay: 2
+      dialogueContent: Ehh, kita ketemu lagi haha!
+    - playerIsTalking: 1
+      dialogueDelay: 2
+      dialogueContent: Iya nih haha, bagaimana harimu?
+    - playerIsTalking: 0
+      dialogueDelay: 2
+      dialogueContent: Menyenangkan sekalii!
+    isDone: 0
+  - scoreTrigger: 6500
+    dialogueBonusDatas:
+    - playerIsTalking: 1
+      dialogueDelay: 2
+      dialogueContent: Terimakasih teman, atas ilmunya!
+    - playerIsTalking: 0
+      dialogueDelay: 3
+      dialogueContent: Terimakasih kembali untukmu juga, semoga bermanfaat!
+    isDone: 0

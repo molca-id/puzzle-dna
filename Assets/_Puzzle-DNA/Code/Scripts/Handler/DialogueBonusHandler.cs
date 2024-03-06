@@ -7,7 +7,7 @@ using TMPro;
 using System;
 
 [Serializable]
-public class DialogueUI
+public class DialogueBonusUI
 {
     public Image charImage;
     public GameObject dialogueParentPanel;
@@ -19,8 +19,8 @@ public class DialogueUI
 public class DialogueBonusHandler : SingletonMonoBehaviour<DialogueBonusHandler>
 {
     [SerializeField] GameObject dialoguePanel;
-    [SerializeField] DialogueUI playerDialogue;
-    [SerializeField] DialogueUI interlocutorDialogue;
+    [SerializeField] DialogueBonusUI playerDialogue;
+    [SerializeField] DialogueBonusUI interlocutorDialogue;
     [SerializeField] List<DialogueBonus> dialogueBonus;
     bool dialogueIsOngoing;
 

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e63af0a87d5c2f45a27c8615bc44409, type: 3}
-  m_Name: 1 - Level 1
+  m_Name: Game (1)
   m_EditorClassIdentifier: 
   boardDimension: {x: 6, y: 6}
   gameLevel: 1

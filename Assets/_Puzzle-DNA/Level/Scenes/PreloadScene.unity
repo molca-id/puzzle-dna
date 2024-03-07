@@ -1295,97 +1295,9 @@ MonoBehaviour:
       username: (username)
       narration_story: 0
       perks_value:
-        perksValueDatas:
-        - perksName: Caring
-          perksPoint: 0
-        - perksName: Genuine
-          perksPoint: 0
-        - perksName: Competitive
-          perksPoint: 0
-        - perksName: Noble
-          perksPoint: 0
-        - perksName: Accountable
-          perksPoint: 0
-        - perksName: Resourceful
-          perksPoint: 0
-        - perksName: Structured
-          perksPoint: 0
-        - perksName: Directive
-          perksPoint: 0
-        - perksName: Explorer
-          perksPoint: 0
-        - perksName: Flexible
-          perksPoint: 0
-        - perksName: Personalizer
-          perksPoint: 0
-        - perksName: Strategizer
-          perksPoint: 0
-        - perksName: Goal-Getter
-          perksPoint: 0
-        - perksName: Fixer
-          perksPoint: 0
-        - perksName: Inisiator
-          perksPoint: 0
-        - perksName: Energizer
-          perksPoint: 0
-        - perksName: Sociable
-          perksPoint: 0
-        - perksName: Intuitive
-          perksPoint: 0
-        - perksName: Collaborator
-          perksPoint: 0
-        - perksName: Aversive
-          perksPoint: 0
-        - perksName: Focused
-          perksPoint: 0
-        - perksName: Developer
-          perksPoint: 0
-        - perksName: Contemplative
-          perksPoint: 0
-        - perksName: Logical
-          perksPoint: 0
-        - perksName: Articulative
-          perksPoint: 0
-        - perksName: Contextual
-          perksPoint: 0
-        - perksName: Collector
-          perksPoint: 0
-        - perksName: Self-Confident
-          perksPoint: 0
-        - perksName: Innovative
-          perksPoint: 0
-        - perksName: Equitable
-          perksPoint: 0
-        - perksName: Visionary
-          perksPoint: 0
-        - perksName: Significant
-          perksPoint: 0
-        - perksName: Optimizer
-          perksPoint: 0
-        - perksName: Harmony
-          perksPoint: 0
-        - perksName: Convincing
-          perksPoint: 0
-        - perksName: Vigorous
-          perksPoint: 0
-        - perksName: Affectionate
-          perksPoint: 0
-        - perksName: Advisor
-          perksPoint: 0
-        - perksName: Generous
-          perksPoint: 0
-        - perksName: Troubleshooter
-          perksPoint: 0
-        - perksName: Courageous
-          perksPoint: 0
-        - perksName: Desicive
-          perksPoint: 0
-        - perksName: Perfectionist
-          perksPoint: 0
-        - perksName: Forgiving
-          perksPoint: 0
-        - perksName: Authoritative
-          perksPoint: 0
+        perksPointPlus: 0
+        perksPointMinus: 0
+        perksValueDatas: []
       checkpoint_data:
         tutorialIsDone: 0
         checkpointLevelDatas:
@@ -1444,6 +1356,8 @@ MonoBehaviour:
       username: 
       narration_story: 0
       perks_value:
+        perksPointPlus: 0
+        perksPointMinus: 0
         perksValueDatas: []
       checkpoint_data:
         tutorialIsDone: 0

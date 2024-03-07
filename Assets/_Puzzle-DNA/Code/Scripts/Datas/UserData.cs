@@ -49,6 +49,8 @@ namespace UserDataSpace
     [Serializable]
     public class PerksValue
     {
+        public int perksPointPlus;
+        public int perksPointMinus;
         public PerksValueData[] perksValueDatas;
     }
 
@@ -56,6 +58,7 @@ namespace UserDataSpace
     public class PerksValueData
     {
         public string perksName;
+        public string perksId;
         public int perksPoint;
     }
 

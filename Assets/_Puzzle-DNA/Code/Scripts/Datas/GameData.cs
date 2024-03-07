@@ -68,9 +68,12 @@ public class GameData : SingletonScriptableObject<GameData>
 
     [Header("Game Attributes")]
     public int gameLevel;
+    public Sprite backgroundGame;
+
+    [Header("Dialogue Bonus Attributes")]
     public string characterInterlocutorName;
     public Sprite characterInterlocutorSprite;
-    public Sprite backgroundGame;
+    public bool usingDialogueBonus;
 
     [Header("Board Attribute")]
     public float hintDelay;

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public static class StaticData
 {
-    public static UserData userData;
+    public static UserDataSpace.UserData userData;
 
     public static bool requestError;
     public static bool apiError;
@@ -24,6 +24,6 @@ public static class StaticData
 
     public static void SetUserData(string json)
     {
-        userData = JsonUtility.FromJson<UserData>(json);
+        userData = JsonUtility.FromJson<UserDataSpace.UserData>(json);
     }
 }

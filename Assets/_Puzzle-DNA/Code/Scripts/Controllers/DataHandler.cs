@@ -8,11 +8,11 @@ public class DataHandler : MonoBehaviour
     public static DataHandler instance;
 
     [Header("Default Datas")]
-    public UserData defaultUserData;
+    public UserDataSpace.UserData defaultUserData;
 
     [Header("Current Datas")]
     public ValidateData validateData;
-    public UserData userData;
+    public UserDataSpace.UserData userData;
 
     private void Awake()
     {
@@ -91,14 +91,14 @@ public class DataHandler : MonoBehaviour
                     SessionCodeHooker.instance.GetSessionCode()),
                 res =>
                 {
-                    userData = JsonUtility.FromJson<UserData>(res);
+                    userData = JsonUtility.FromJson<UserDataSpace.UserData>(res);
                     if (!userData.success) IECreateUserData();
                 }));
     }
 
-    public UserDataValue GetUserDataValue() => userData.data;
+    public UserDataSpace.UserDataValue GetUserDataValue() => userData.data;
 
-    public CheckpointData GetUserCheckpointData() => userData.data.checkpoint_data;
+    public UserDataSpace.CheckpointData GetUserCheckpointData() => userData.data.checkpoint_data;
 
     public string GetUniqueCode() => GetUserDataValue().game_url;
 }

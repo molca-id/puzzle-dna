@@ -148,12 +148,15 @@ public class GameController : SingletonMonoBehaviour<GameController>
             data.isDone = false;
         });
 
-        DialogueBonusHandler.instance.InitDialogue(
-            characterPlayerSprite,
-            gameData.characterInterlocutorSprite,
-            gameData.characterInterlocutorName,
-            gameData.dialogueBonus
-            );
+        if (gameData.usingDialogueBonus)
+        {
+            DialogueBonusHandler.instance.InitDialogue(
+                characterPlayerSprite,
+                gameData.characterInterlocutorSprite,
+                gameData.characterInterlocutorName,
+                gameData.dialogueBonus
+                );
+        }
 
         BoardController.UpdateBoard();
         PoolingMatchEffect();

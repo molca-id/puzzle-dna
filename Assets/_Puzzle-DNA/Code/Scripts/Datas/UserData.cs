@@ -5,6 +5,8 @@ using UnityEngine;
 
 namespace UserDataSpace
 {
+    public enum Character { Alfa, Rei, Budi, Bunga, Fatimah, Mentari }
+
     [Serializable]
     public class UserDataValue
     {
@@ -23,6 +25,9 @@ namespace UserDataSpace
         public string game_url;
         public string language;
         public string username;
+        public int character;
+        public int bgm_value;
+        public int sfx_value;
         public int narration_story;
 
         public DateTime createdAt;
@@ -35,8 +40,8 @@ namespace UserDataSpace
     [Serializable]
     public class CheckpointData
     {
-        public bool tutorialIsDone;
-        public List<CheckpointLevelData> checkpointLevelDatas;
+        public bool tutorial_is_done;
+        public List<CheckpointLevelData> checkpoint_level_datas;
     }
 
     [Serializable]
@@ -49,9 +54,24 @@ namespace UserDataSpace
     [Serializable]
     public class PerksValue
     {
-        public int perksPointPlus;
-        public int perksPointMinus;
-        public PerksValueData[] perksValueDatas;
+        public int perks_point_plus;
+        public int perks_point_minus;
+        public List<PerksTypeGroupData> perks_type_datas;
+    }
+
+    [Serializable]
+    public class PerksTypeGroupData
+    {
+        public PerksType perks_type;
+        public string perks_type_code;
+        public List<PerksStageGroupData> perks_stage_datas;
+    }
+
+    [Serializable]
+    public class PerksStageGroupData
+    {
+        public PerksStage perks_stage;
+        public List<PerksValueData> perks_value_datas;
     }
 
     [Serializable]
@@ -65,8 +85,8 @@ namespace UserDataSpace
     [Serializable]
     public class UserData
     {
-        public bool success;
-        public string message;
+        [HideInInspector] public bool success;
+        [HideInInspector] public string message;
         public UserDataValue data;
     }
 }

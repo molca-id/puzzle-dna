@@ -47,7 +47,7 @@ public class GameTutorialHandler : MonoBehaviour
         });
 
         BoardController.usingTutorial = false;
-        GameController.instance.tutorialIsDone = true;
+        GameController.instance.tutorial_is_done = true;
         GameController.instance.StartTimer();
     }
 

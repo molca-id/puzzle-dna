@@ -1265,6 +1265,9 @@ MonoBehaviour:
   gameDomain: gamedata
   validateDomain: validate
   deleteDomain: delete
+  rootActUrl: https://talentdna.me/tdna/api_molca
+  talentPerksEnDomain: get_dna/en-US
+  talentPerksIdDomain: get_dna/id-ID
 --- !u!114 &698362473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1277,30 +1280,198 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c8a3a5647f2b6d418d32e042c3abd98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultUserData:
+  validateData:
     success: 0
     message: 
+  defaultUserData:
+    success: 1
+    message: success get Data
     data:
-      survey_code: 
-      survey_dibuat: 
-      tgl_lahir: 
-      f_jenis_kelamin: 
-      email: 
-      job: 
-      f_pendidikan: 
+      survey_code: N0hKUWYyTkVjRkZrTzcyUllPS1ZpdXY2M0RLQ1ZRbEZRSHpyZVR3UzkwN3FYNFlvWHNRc2RkNWFyMGFEK0lsNw==
+      survey_dibuat: 2024-02-13 15:09:33
+      tgl_lahir: 2024-02-15
+      f_jenis_kelamin: 1
+      email: indohack.ih@gmail.com
+      job: Network Engineer
+      f_pendidikan: SMP
       status: open
-      duration: 00:00
-      game_url: (game_url)
+      duration: 00:00:00
+      game_url: 
       language: en
-      username: (username)
+      username: 
+      character: 0
+      bgm_value: 1
+      sfx_value: 1
       narration_story: 0
       perks_value:
-        perksPointPlus: 0
-        perksPointMinus: 0
-        perksValueDatas: []
+        perks_point_plus: 0
+        perks_point_minus: 0
+        perks_type_datas:
+        - perks_type: 0
+          perks_type_code: 7C7DFF
+          perks_stage_datas:
+          - perks_stage: 0
+            perks_value_datas:
+            - perksName: COMPETITIVE
+              perksId: 3
+              perksPoint: 0
+            - perksName: DIRECTIVE
+              perksId: 8
+              perksPoint: 0
+            - perksName: GOAL-GETTER
+              perksId: 13
+              perksPoint: 0
+            - perksName: OPTIMIZER
+              perksId: 33
+              perksPoint: 0
+            - perksName: PERFECTIONIST
+              perksId: 43
+              perksPoint: 0
+          - perks_stage: 1
+            perks_value_datas:
+            - perksName: SELF-CONFIDENT
+              perksId: 28
+              perksPoint: 0
+            - perksName: SIGNIFICANT
+              perksId: 32
+              perksPoint: 0
+            - perksName: AVERSIVE
+              perksId: 20
+              perksPoint: 0
+            - perksName: COLLECTOR
+              perksId: 27
+              perksPoint: 0
+            - perksName: CONTEMPLATIVE
+              perksId: 23
+              perksPoint: 0
+          - perks_stage: 2
+            perks_value_datas:
+            - perksName: EQUITABLE
+              perksId: 30
+              perksPoint: 0
+            - perksName: EXPLORER
+              perksId: 9
+              perksPoint: 0
+            - perksName: NOBLE
+              perksId: 4
+              perksPoint: 0
+            - perksName: VIGOROUS
+              perksId: 36
+              perksPoint: 0
+            - perksName: VISIONARY
+              perksId: 31
+              perksPoint: 0
+        - perks_type: 1
+          perks_type_code: FFB400
+          perks_stage_datas:
+          - perks_stage: 0
+            perks_value_datas:
+            - perksName: ADVISOR
+              perksId: 38
+              perksPoint: 0
+            - perksName: ARTICULATIVE
+              perksId: 25
+              perksPoint: 0
+            - perksName: COLLABORATOR
+              perksId: 19
+              perksPoint: 0
+            - perksName: COURAGEOUS
+              perksId: 41
+              perksPoint: 0
+            - perksName: CONVINCING
+              perksId: 35
+              perksPoint: 0
+          - perks_stage: 1
+            perks_value_datas:
+            - perksName: DEVELOPER
+              perksId: 22
+              perksPoint: 0
+            - perksName: ENERGIZER
+              perksId: 16
+              perksPoint: 0
+            - perksName: AFFECTIONATE
+              perksId: 37
+              perksPoint: 0
+            - perksName: CARING
+              perksId: 1
+              perksPoint: 0
+            - perksName: FORGIVING
+              perksId: 44
+              perksPoint: 0
+          - perks_stage: 2
+            perks_value_datas:
+            - perksName: GENEROUS
+              perksId: 39
+              perksPoint: 0
+            - perksName: GENUINE
+              perksId: 2
+              perksPoint: 0
+            - perksName: HARMONY
+              perksId: 34
+              perksPoint: 0
+            - perksName: PERSONALIZER
+              perksId: 11
+              perksPoint: 0
+            - perksName: SOCIABLE
+              perksId: 17
+              perksPoint: 0
+        - perks_type: 2
+          perks_type_code: DD3E3A
+          perks_stage_datas:
+          - perks_stage: 0
+            perks_value_datas:
+            - perksName: CONTEXTUAL
+              perksId: 26
+              perksPoint: 0
+            - perksName: FOCUSED
+              perksId: 21
+              perksPoint: 0
+            - perksName: INTUITIVE
+              perksId: 18
+              perksPoint: 0
+            - perksName: INNOVATIVE
+              perksId: 29
+              perksPoint: 0
+            - perksName: LOGICAL
+              perksId: 24
+              perksPoint: 0
+          - perks_stage: 1
+            perks_value_datas:
+            - perksName: STRATEGIZER
+              perksId: 12
+              perksPoint: 0
+            - perksName: TROUBLESHOOTER
+              perksId: 40
+              perksPoint: 0
+            - perksName: ACCOUNTABLE
+              perksId: 5
+              perksPoint: 0
+            - perksName: AUTHORITATIVE
+              perksId: 45
+              perksPoint: 0
+            - perksName: DECISIVE
+              perksId: 42
+              perksPoint: 0
+          - perks_stage: 2
+            perks_value_datas:
+            - perksName: FIXER
+              perksId: 14
+              perksPoint: 0
+            - perksName: FLEXIBLE
+              perksId: 10
+              perksPoint: 0
+            - perksName: INITIATOR
+              perksId: 15
+              perksPoint: 0
+            - perksName: RESOURCEFUL
+              perksId: 6
+              perksPoint: 0
+            - perksName: STRUCTURED
+              perksId: 7
+              perksPoint: 0
       checkpoint_data:
-        tutorialIsDone: 0
-        checkpointLevelDatas:
+        tutorial_is_done: 0
+        checkpoint_level_datas:
         - level: 1
           score: 0
         - level: 2
@@ -1335,9 +1506,9 @@ MonoBehaviour:
           score: 0
         - level: 17
           score: 0
-  validateData:
-    success: 0
-    message: 
+  talentData:
+    status: 
+    data: []
   userData:
     success: 0
     message: 
@@ -1354,14 +1525,17 @@ MonoBehaviour:
       game_url: 
       language: 
       username: 
+      character: 0
+      bgm_value: 0
+      sfx_value: 0
       narration_story: 0
       perks_value:
-        perksPointPlus: 0
-        perksPointMinus: 0
-        perksValueDatas: []
+        perks_point_plus: 0
+        perks_point_minus: 0
+        perks_type_datas: []
       checkpoint_data:
-        tutorialIsDone: 0
-        checkpointLevelDatas: []
+        tutorial_is_done: 0
+        checkpoint_level_datas: []
 --- !u!114 &698362474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2479,7 +2653,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4454780b506f074886272324dc5b6bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dummyCodeTemp: QzdrUE0wUVN2ZHRtd01UdzFXTFEramM1TEZoR3pHcnV5UFJXNE1kT3R1VWUxSjl2THpQUVB0b0FNa0E2QTRzTQ==
+  dummyCodeTemp: N0hKUWYyTkVjRkZrTzcyUllPS1ZpdXY2M0RLQ1ZRbEZRSHpyZVR3UzkwN3FYNFlvWHNRc2RkNWFyMGFEK0lsNw==
   currCodeTemp: 
 --- !u!1 &1624037577
 GameObject:

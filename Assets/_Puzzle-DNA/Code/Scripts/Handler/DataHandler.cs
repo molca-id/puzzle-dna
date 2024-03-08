@@ -2,17 +2,21 @@ using UnityEngine;
 using Newtonsoft.Json;
 using UnityEngine.Events;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 public class DataHandler : MonoBehaviour
 {
     public static DataHandler instance;
+    [HideInInspector] public ValidateData validateData;
 
     [Header("Default Datas")]
     public UserDataSpace.UserData defaultUserData;
 
     [Header("Current Datas")]
-    public ValidateData validateData;
+    public TalentDataSpace.TalentData talentData;
     public UserDataSpace.UserData userData;
+    public List<LanguageHandler> languageHandlers;
 
     private void Awake()
     {
@@ -23,6 +27,43 @@ public class DataHandler : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
+    }
+
+    public void RefreshAllTextLanguage()
+    {
+        languageHandlers = FindObjectsOfType<LanguageHandler>().ToList();
+        foreach (var item in languageHandlers)
+        {
+            item.SetContentByLanguage();
+        }
+    }
+
+    public void IECreateUserData()
+    {
+        defaultUserData.data.game_url = SessionCodeHooker.instance.GetSessionCode();
+        string json = JsonUtility.ToJson(defaultUserData.data);
+
+        PreloadManager.instance.SetLoadingText("Creating Player Data");
+
+        //hitting api
+        StartCoroutine(
+            APIManager.instance.PostDataCoroutine(
+                APIManager.instance.SetupGameUrl(),
+                json, res =>
+                {
+                    IEGetUserData();
+                }));
+    }
+
+    public void IEPatchLanguageData(Action executeAfter = null)
+    {
+        string json = "{ \"language\" : \"" + GetLanguage() + "\" }";
+
+        //hitting api
+        StartCoroutine(
+            APIManager.instance.PatchDataCoroutine(
+                APIManager.instance.SetupGameUrl(GetUniqueCode()),
+                json, res => executeAfter.Invoke()));
     }
 
     public void IEPatchCheckpointData(Action executeAfter = null)
@@ -47,23 +88,6 @@ public class DataHandler : MonoBehaviour
                 json, res => executeAfter.Invoke()));
     }
 
-    public void IECreateUserData()
-    {
-        defaultUserData.data.game_url = SessionCodeHooker.instance.GetSessionCode();
-        string json = JsonUtility.ToJson(defaultUserData.data);
-
-        PreloadManager.instance.SetLoadingText("Creating Player Data");
-
-        //hitting api
-        StartCoroutine(
-            APIManager.instance.PostDataCoroutine(
-                APIManager.instance.SetupGameUrl(),
-                json, res =>
-                {
-                    IEGetUserData();
-                }));
-    }
-
     public void IEValidateGameSession()
     {
         PreloadManager.instance.SetLoadingText("Validating Player Data");
@@ -77,6 +101,23 @@ public class DataHandler : MonoBehaviour
                 {
                     validateData = JsonUtility.FromJson<ValidateData>(res);
                     PreloadManager.instance.SetValidState(validateData.success);
+                }));
+    }
+
+    public void IEGetTalentData(Action executeAfter = null)
+    {
+        bool isID = false;
+        if (GetUserDataValue().language == "id")
+            isID = true;
+
+        //hitting api
+        StartCoroutine(
+            APIManager.instance.GetDataCoroutine(
+                APIManager.instance.SetupTalentPerksUrl(isID),
+                res =>
+                {
+                    talentData = JsonUtility.FromJson<TalentDataSpace.TalentData>(res);
+                    executeAfter.Invoke();
                 }));
     }
 
@@ -96,9 +137,13 @@ public class DataHandler : MonoBehaviour
                 }));
     }
 
+    public List<UserDataSpace.PerksTypeGroupData> GetPerksGroup() => userData.data.perks_value.perks_type_datas;
+
     public UserDataSpace.UserDataValue GetUserDataValue() => userData.data;
 
     public UserDataSpace.CheckpointData GetUserCheckpointData() => userData.data.checkpoint_data;
 
     public string GetUniqueCode() => GetUserDataValue().game_url;
+
+    public string GetLanguage() => GetUserDataValue().language;
 }

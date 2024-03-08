@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using Utilities;
 
 public class SoundController : SingletonMonoBehaviour<SoundController>
 {
     public static bool soundMuted;
 
+    [SerializeField] AudioMixerGroup bgmMixer;
+    [SerializeField] AudioMixerGroup sfxMixer;
     [SerializeField] GameObject sfxPrefab;
     public static GameObject sfxSourcePrefab
     {
@@ -21,6 +24,9 @@ public class SoundController : SingletonMonoBehaviour<SoundController>
         musicSource = gameObject.AddComponent<AudioSource>();
         musicSource.loop = true;
         sfxSource = gameObject.AddComponent<AudioSource>();
+
+        musicSource.outputAudioMixerGroup = bgmMixer;
+        sfxSource.outputAudioMixerGroup = sfxMixer;
     }
 
     public static void PlayMusic(AudioClip clip, float volume) {

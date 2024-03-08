@@ -752,7 +752,7 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
         UIController.ShowMsg($"{GameData.GetComboMessage(matchCounter - 1)}");
         SoundController.PlaySfx(GameData.GetAudioClip("match"));
 
-        if (!GameController.instance.tutorialIsDone &&
+        if (!GameController.instance.tutorial_is_done &&
             GameController.instance.gemIsInteractable)
             GameTutorialHandler.instance.FinishTutorial();
 

@@ -28,7 +28,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
     [HideInInspector] public Sprite characterPlayerSprite;
     [HideInInspector] public bool gemIsInteractable;
-    [HideInInspector] public bool tutorialIsDone;
+    [HideInInspector] public bool tutorial_is_done;
 
     Coroutine gameOver;
     int _scoreTotal = 0;

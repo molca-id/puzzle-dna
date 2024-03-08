@@ -16,6 +16,11 @@ public class APIManager : MonoBehaviour
     [SerializeField] string validateDomain = "validate";
     [SerializeField] string deleteDomain = "delete";
 
+    [Header("ACT URL")]
+    [SerializeField] string rootActUrl = "https://talentdna.me/tdna/api_molca";
+    [SerializeField] string talentPerksEnDomain = "get_dna/en-US";
+    [SerializeField] string talentPerksIdDomain = "get_dna/id-ID";
+
     private void Awake()
     {
         instance = this;
@@ -34,6 +39,12 @@ public class APIManager : MonoBehaviour
     public string SetupDeleteUrl(string sessionCode = "")
     {
         return string.Format("{0}/{1}/{2}", rootUrl, deleteDomain, sessionCode);
+    }
+
+    public string SetupTalentPerksUrl(bool isID)
+    {
+        if (isID) return string.Format("{0}/{1}", rootActUrl, talentPerksIdDomain);
+        else return string.Format("{0}/{1}", rootActUrl, talentPerksEnDomain);
     }
 
     public IEnumerator PostDataCoroutine(string url, string jsonData, Action<string> SetDataEvent = null)

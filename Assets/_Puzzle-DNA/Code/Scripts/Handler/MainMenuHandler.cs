@@ -5,11 +5,30 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using UserDataSpace;
+
+[Serializable]
+public class CharacterSelectionUI
+{
+    public Character character;
+    public GameObject selectedBackground;
+    public GameObject descriptionPanel;
+}
 
 public class MainMenuHandler : MonoBehaviour
 {
     public static MainMenuHandler instance;
 
+    [Header("Tutorial Attributes")]
+    [Header("Welcome Attributes")]
+    [SerializeField] TextMeshProUGUI playerNameWelcome;
+
+    [Header("Character Selection Attributes")]
+    [SerializeField] Character character;
+    [SerializeField] List<CharacterSelectionUI> characterSelections;
+
+    [Header("MainMenu Attributes")]
+    [Header("Splash Attributes")]
     [SerializeField] float splashSpeed;
     [SerializeField] CanvasGroup tutorialPanel;
     [SerializeField] CanvasGroup mainMenuPanel;
@@ -28,10 +47,38 @@ public class MainMenuHandler : MonoBehaviour
         InitMenu();
     }
 
+    #region Tutorial
+    public void SelectCharacter(int index)
+    {
+        character = (Character)index;
+        characterSelections.ForEach(chars =>
+        {
+            chars.selectedBackground.SetActive(false);
+            chars.descriptionPanel.SetActive(false);
+        });
+
+        characterSelections[(int)character].selectedBackground.SetActive(true);
+        characterSelections[(int)character].descriptionPanel.SetActive(true);
+    }
+
+    public void SelectLanguage(string lang)
+    {
+        DataHandler.instance.GetUserDataValue().language = lang;
+        StartCoroutine(IEOpenScreen(loadingPanel, delegate
+        {
+            DataHandler.instance.IEPatchLanguageData(delegate
+            {
+                StartCoroutine(IECloseScreen(loadingPanel));
+                InitMenu();
+            });
+        }));
+    }
+    #endregion
+
     public void InitMenu() 
     {
         CanvasGroup willEnable, willDisabled;
-        if (DataHandler.instance.GetUserDataValue().checkpoint_data.tutorialIsDone)
+        if (DataHandler.instance.GetUserDataValue().checkpoint_data.tutorial_is_done)
         {
             willEnable = mainMenuPanel;
             willDisabled = tutorialPanel;
@@ -40,39 +87,41 @@ public class MainMenuHandler : MonoBehaviour
         {
             willEnable = tutorialPanel;
             willDisabled = mainMenuPanel;
+            playerNameWelcome.text = DataHandler.instance.GetUserDataValue().username;
+            SelectCharacter(0);
         }
 
         willEnable.gameObject.SetActive(true);
         willDisabled.gameObject.SetActive(false);
 
-        if (!DataHandler.instance.GetUserDataValue().checkpoint_data.tutorialIsDone) return;
+        if (!DataHandler.instance.GetUserDataValue().checkpoint_data.tutorial_is_done) return;
         SetupLevelButtons();
     }
 
-    void SetupLevelButtons()
+    public void SetupLevelButtons()
     {
         for (int i = 0; i < levelButtonDatas.Count; i++)
         {
             levelButtonDatas[i].transform.Find("Pinpoint").gameObject.SetActive(false);
             levelButtonDatas[i].transform.Find("LevelText").GetComponent<TextMeshProUGUI>().text = $"{i + 1}";
 
-            if (DataHandler.instance.GetUserCheckpointData().checkpointLevelDatas[i].score > 0)
+            if (DataHandler.instance.GetUserCheckpointData().checkpoint_level_datas[i].score > 0)
             {
                 levelButtonDatas[i].transform.Find("ScorePanel").gameObject.SetActive(true);
                 levelButtonDatas[i].transform.Find("ScorePanel").Find("ScoreText").GetComponent<TextMeshProUGUI>().text =
-                    DataHandler.instance.GetUserCheckpointData().checkpointLevelDatas[i].score.ToString();
+                    DataHandler.instance.GetUserCheckpointData().checkpoint_level_datas[i].score.ToString();
             }
             else
             {
                 levelButtonDatas[i].transform.Find("ScorePanel").gameObject.SetActive(false);
             }
 
-            if (i == 0 || i > 0 && DataHandler.instance.GetUserCheckpointData().checkpointLevelDatas[i - 1].score > 0)
+            if (i == 0 || i > 0 && DataHandler.instance.GetUserCheckpointData().checkpoint_level_datas[i - 1].score > 0)
             {
                 levelButtonDatas[i].interactable = true;
-                if (i == 0 && DataHandler.instance.GetUserCheckpointData().checkpointLevelDatas[i].score == 0 ||
-                    DataHandler.instance.GetUserCheckpointData().checkpointLevelDatas[i].score == 0 &&
-                    DataHandler.instance.GetUserCheckpointData().checkpointLevelDatas[i - 1].score > 0)
+                if (i == 0 && DataHandler.instance.GetUserCheckpointData().checkpoint_level_datas[i].score == 0 ||
+                    DataHandler.instance.GetUserCheckpointData().checkpoint_level_datas[i].score == 0 &&
+                    DataHandler.instance.GetUserCheckpointData().checkpoint_level_datas[i - 1].score > 0)
                     levelButtonDatas[i].transform.Find("Pinpoint").gameObject.SetActive(true);
             }
             else
@@ -88,7 +137,7 @@ public class MainMenuHandler : MonoBehaviour
         {
             tutorialPanel.gameObject.SetActive(false);
             mainMenuPanel.gameObject.SetActive(false);
-            DataHandler.instance.GetUserDataValue().checkpoint_data.tutorialIsDone = cond;
+            DataHandler.instance.GetUserDataValue().checkpoint_data.tutorial_is_done = cond;
             DataHandler.instance.IEPatchCheckpointData(delegate
             {
                 StartCoroutine(IECloseScreen(loadingPanel));
@@ -107,6 +156,33 @@ public class MainMenuHandler : MonoBehaviour
             {
                 StartCoroutine(IECloseScreen(loadingPanel));
                 InitMenu();
+            });
+        }));
+    }
+
+    public void GetTalentPerksFromMenu(Action executeAfter = null)
+    {
+        StartCoroutine(IEOpenScreen(loadingPanel, delegate
+        {
+            tutorialPanel.gameObject.SetActive(false);
+            mainMenuPanel.gameObject.SetActive(false);
+            DataHandler.instance.IEGetTalentData(delegate
+            {
+                executeAfter.Invoke();
+                StartCoroutine(IECloseScreen(loadingPanel));
+                InitMenu();
+
+                DataHandler.instance.GetPerksGroup().ForEach(type =>
+                {
+                    foreach (var stage in type.perks_stage_datas)
+                    {
+                        foreach (var perk in stage.perks_value_datas)
+                        {
+                            perk.perksId = DataHandler.instance.talentData.data.
+                                Find(data => data.nama == perk.perksName).id;
+                        }
+                    }
+                });
             });
         }));
     }

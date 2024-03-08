@@ -45,6 +45,8 @@ public class PerksHandler : MonoBehaviour
         public List<PerksValueData> perksValueDatas;
     }
 
+    public GameObject perksPanel;
+
     [Header("All Perks")]
     public Button[] allPerksButton;
     public PerksValue[] perksValues;
@@ -69,6 +71,14 @@ public class PerksHandler : MonoBehaviour
 
         //SetPerksDescription(perksValueDatas[0]);
         //UpdatePerksDetails();
+    }
+
+    public void OpenPerksPanel()
+    {
+        MainMenuHandler.instance.GetTalentPerksFromMenu(delegate
+        {
+            perksPanel.SetActive(true);
+        });
     }
 
     public void UpdatePerksDetails()

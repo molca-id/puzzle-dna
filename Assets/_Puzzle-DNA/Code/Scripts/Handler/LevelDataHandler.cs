@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
+using System.Linq;
 
 [Serializable]
 public class DialogueStoryUI
@@ -22,13 +23,6 @@ public class LevelDataHandler : MonoBehaviour
     public GameObject storyPanel;
     public Image backgroundImage;
 
-    [Header("Current Story Attributes")]
-    public GameData currentGameData;
-    public LevelData currentLevelData;
-    public StoryData currentStoryData;
-    public List<StoryData> prologueStoryData;
-    public List<StoryData> epilogueStoryData;
-
     [Header("Dialogue Attributes")]
     public GameObject dialoguePanel;
     public DialogueStoryUI playerDialogue;
@@ -42,15 +36,23 @@ public class LevelDataHandler : MonoBehaviour
     public GameObject popUpPanel;
     public TextMeshProUGUI popUpText;
 
-    [HideInInspector] public int prologueIndex;
-    [HideInInspector] public int epilogueIndex;
+    [Header("Title Attributes")]
+    public GameObject titlePanel;
+    public TextMeshProUGUI titleText;
 
-    [HideInInspector] public int dialogueIndex;
-    [HideInInspector] public int narrationIndex;
-    [HideInInspector] public int popUpIndex;
+    [Header("Tutorial Attributes")]
+    public GameObject tutorialParentPanel;
 
-    [HideInInspector] public bool isPrologue;
-    [HideInInspector] public bool isEpilogue;
+    int prologueIndex, epilogueIndex;
+    int dialogueIndex, narrationIndex, popUpIndex, titleIndex;
+    bool isPrologue, isEpilogue;
+
+    [Header("Current Story Attributes")]
+    [HideInInspector] public GameData currentGameData;
+    [HideInInspector] public LevelData currentLevelData;
+    [HideInInspector] public StoryData currentStoryData;
+    [HideInInspector] public List<StoryData> prologueStoryData;
+    [HideInInspector] public List<StoryData> epilogueStoryData;
 
     private void Awake()
     {
@@ -63,11 +65,7 @@ public class LevelDataHandler : MonoBehaviour
         currentGameData = levelData.gameData;
         prologueStoryData = levelData.prologueStoryData;
         epilogueStoryData = levelData.epilogueStoryData;
-
-        if (prologueStoryData.Count == 0)
-            GameGenerator.instance.GenerateLevel(currentGameData);
-        else
-            SetPrologueStory(0);
+        SetPrologueStory(0);
     }
 
     public void SetPrologueStory(int factor)
@@ -105,6 +103,14 @@ public class LevelDataHandler : MonoBehaviour
             case StoryData.StoryType.PopUp:
                 popUpPanel.SetActive(true);
                 SetPopUpStory(0);
+                break;
+            case StoryData.StoryType.Title:
+                titlePanel.SetActive(true);
+                SetTitleStory(0);
+                break;
+            case StoryData.StoryType.Tutorial:
+                tutorialParentPanel.SetActive(true);
+                SetTutorialStory(currentStoryData.tutorialKey);
                 break;
         }
 
@@ -179,10 +185,33 @@ public class LevelDataHandler : MonoBehaviour
             return;
         }
 
-
         if (DataHandler.instance.GetLanguage() == "id")
             popUpText.text = currentStoryData.popUpStories[popUpIndex].contentId;
         else
             popUpText.text = currentStoryData.popUpStories[popUpIndex].contentEn;
+    }
+
+    public void SetTitleStory(int factor)
+    {
+        titleIndex += factor;
+        if (titleIndex == currentStoryData.titleStories.Count)
+        {
+            titleIndex = 0;
+            titlePanel.SetActive(false);
+
+            if (isPrologue) SetPrologueStory(1);
+            return;
+        }
+
+        if (DataHandler.instance.GetLanguage() == "id")
+            titleText.text = currentStoryData.titleStories[titleIndex].contentId;
+        else
+            titleText.text = currentStoryData.titleStories[titleIndex].contentEn;
+    }
+
+    public void SetTutorialStory(string key)
+    {
+        FindObjectsOfType<SequencePanelHandler>().ToList().
+            Find(seq => seq.key == key).SetPanel();
     }
 }

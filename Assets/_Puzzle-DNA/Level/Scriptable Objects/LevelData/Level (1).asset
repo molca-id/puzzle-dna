@@ -16,6 +16,7 @@ MonoBehaviour:
   perksPoinPlus: 0
   perksPoinMinus: 0
   prologueStoryData:
+  - {fileID: 11400000, guid: b8ed470d001d0834c9073e9e2f6e6e3c, type: 2}
   - {fileID: 11400000, guid: e1aed95876c3cb54d8b38642ead317b5, type: 2}
   - {fileID: 11400000, guid: 9446d6fd410836645ac2e23100951092, type: 2}
   epilogueStoryData: []

@@ -19,6 +19,9 @@ public class SequenceEventsData
 
 public class SequencePanelHandler : MonoBehaviour
 {
+    public string key;
+    public bool startAutomatically;
+    [Space]
     public List<GameObject> panels;
     public List<SequenceEventsData> sequenceEvents;
 
@@ -30,11 +33,12 @@ public class SequencePanelHandler : MonoBehaviour
 
     void Start()
     {
+        if (!startAutomatically) return;
         index = 0;
         SetPanel();
     }
 
-    void SetPanel()
+    public void SetPanel()
     {
         SequenceEventsData data = sequenceEvents[index];
         for (int i = 0; i < index; i++)

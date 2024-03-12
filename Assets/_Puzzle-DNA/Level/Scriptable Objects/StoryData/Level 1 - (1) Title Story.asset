@@ -10,16 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c0d3ec688709c214a8c7fe11dd2475cf, type: 3}
-  m_Name: Level 1 - PopUp Story (2)
+  m_Name: Level 1 - (1) Title Story
   m_EditorClassIdentifier: 
-  storyType: 2
-  backgroundSprite: {fileID: 21300000, guid: 1e9b3f2632218c94ba2dd1c6fcb0e04f, type: 3}
+  storyType: 4
+  backgroundSprite: {fileID: 21300000, guid: 0bf3db385304db8459b2e1f3b6e2564a, type: 3}
   dialogueStory:
     playerSprite: {fileID: 0}
     interlocutorSprite: {fileID: 0}
     interlocutorName: 
     dialogueStories: []
   narrationStories: []
-  popUpStories:
-  - contentId: Apakah kamu siap bermain?
-    contentEn: Are you ready to play?
+  popUpStories: []
+  titleStories:
+  - contentId: Tahun 2020...
+    contentEn: In 2020...

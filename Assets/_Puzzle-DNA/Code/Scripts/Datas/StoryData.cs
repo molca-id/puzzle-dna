@@ -28,11 +28,17 @@ public class ContentData
 [CreateAssetMenu(fileName = "StoryData", menuName = "DNA/StoryData", order = 1)]
 public class StoryData : ScriptableObject
 {
-    public enum StoryType { Dialogue, Narration, PopUp }
+    public enum StoryType { Dialogue, Narration, PopUp, Tutorial, Title }
 
     public StoryType storyType;
+
+    [Header("Selecting Tutorial")]
+    public string tutorialKey;
+
+    [Header("Not Selecting Tutorial")]
     public Sprite backgroundSprite;
     public DialogueStory dialogueStory;
     public List<ContentData> narrationStories;
     public List<ContentData> popUpStories;
+    public List<ContentData> titleStories;
 }

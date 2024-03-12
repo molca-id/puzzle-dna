@@ -11,7 +11,7 @@ using UnityEngine.UI;
 public class SequenceEventsData
 {
     public bool willOpenGame;
-    [ShowIf("willOpenGame")] public GameData gameData;
+    [ShowIf("willOpenGame")] public LevelData levelData;
     public UnityEvent whenGameLoaded;
     public UnityEvent whenGameUnloaded;
     public UnityEvent sequenceEvent;
@@ -48,7 +48,7 @@ public class SequencePanelHandler : MonoBehaviour
         {
             CommonHandler.instance.whenSceneLoadedCustom = data.whenGameLoaded;
             CommonHandler.instance.whenSceneUnloadedCustom = data.whenGameUnloaded;
-            GameGenerator.instance.GenerateLevel(data.gameData);
+            LevelDataHandler.instance.Init(data.levelData);
         }
         else
         {

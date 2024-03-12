@@ -19,7 +19,6 @@ public class MainMenuHandler : MonoBehaviour
 {
     public static MainMenuHandler instance;
 
-    [Header("Tutorial Attributes")]
     [Header("Welcome Attributes")]
     [SerializeField] TextMeshProUGUI playerNameWelcome;
 
@@ -27,7 +26,6 @@ public class MainMenuHandler : MonoBehaviour
     [SerializeField] Character character;
     [SerializeField] List<CharacterSelectionUI> characterSelections;
 
-    [Header("MainMenu Attributes")]
     [Header("Splash Attributes")]
     [SerializeField] float splashSpeed;
     [SerializeField] CanvasGroup tutorialPanel;
@@ -48,6 +46,19 @@ public class MainMenuHandler : MonoBehaviour
     }
 
     #region Tutorial
+    public void SelectLanguage(string lang)
+    {
+        DataHandler.instance.GetUserDataValue().language = lang;
+        StartCoroutine(IEOpenScreen(loadingPanel, delegate
+        {
+            DataHandler.instance.IEPatchLanguageData(delegate
+            {
+                StartCoroutine(IECloseScreen(loadingPanel));
+                InitMenu();
+            });
+        }));
+    }
+
     public void SelectCharacter(int index)
     {
         character = (Character)index;
@@ -61,15 +72,14 @@ public class MainMenuHandler : MonoBehaviour
         characterSelections[(int)character].descriptionPanel.SetActive(true);
     }
 
-    public void SelectLanguage(string lang)
+    public void SubmitCharacter()
     {
-        DataHandler.instance.GetUserDataValue().language = lang;
+        DataHandler.instance.GetUserDataValue().character = (int)character;
         StartCoroutine(IEOpenScreen(loadingPanel, delegate
         {
-            DataHandler.instance.IEPatchLanguageData(delegate
+            DataHandler.instance.IEPatchCharacterData(delegate
             {
                 StartCoroutine(IECloseScreen(loadingPanel));
-                InitMenu();
             });
         }));
     }

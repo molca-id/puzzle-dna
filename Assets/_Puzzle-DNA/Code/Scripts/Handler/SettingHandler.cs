@@ -1,3 +1,4 @@
+using Newtonsoft.Json.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,14 +8,39 @@ using UnityEngine.UI;
 public class SettingHandler : MonoBehaviour
 {
     [SerializeField] GameObject settingPanel;
+
+    [Header("Language Attributes")]
     [SerializeField] GameObject LangIdButton;
     [SerializeField] GameObject LangEnButton;
-    [SerializeField] AudioMixer bgmAudioMixer;
-    [SerializeField] AudioMixer sfxAudioMixer;
+
+    [Header("Audio Attributes")]
+    [SerializeField] Slider bgmSlider;
+    [SerializeField] Slider sfxSlider;
+    
+    AudioMixer bgmAudioMixer;
+    AudioMixer sfxAudioMixer;
+
+    private void Awake()
+    {
+        bgmAudioMixer = DataHandler.instance.bgmAudioMixer;
+        sfxAudioMixer = DataHandler.instance.sfxAudioMixer;
+    }
 
     public void OpenSettingPanel()
     {
+        SetInitVolumePanel();
+        SetInitLanguagePanel();
         settingPanel.SetActive(true);
+    }
+
+    public void CloseSettingPanel()
+    {
+        settingPanel.SetActive(false);
+        DataHandler.instance.IEPatchAllVolumeData();
+    }
+
+    void SetInitLanguagePanel()
+    {
         LangIdButton.SetActive(true);
         LangEnButton.SetActive(true);
 
@@ -30,10 +56,32 @@ public class SettingHandler : MonoBehaviour
         }
     }
 
+    void SetInitVolumePanel()
+    {
+        bgmSlider.value = GetMasterLevel(bgmAudioMixer);
+        sfxSlider.value = GetMasterLevel(sfxAudioMixer);
+    }
+
     public void SelectLanguage(string lang)
     {
         MainMenuHandler.instance.SelectLanguage(lang);
         DataHandler.instance.RefreshAllTextLanguage();
         OpenSettingPanel();
+    }
+
+    public void SetBGMVolume(float value)
+    {
+        bgmAudioMixer.SetFloat("MasterVolume", Mathf.RoundToInt(value));
+    }
+
+    public void SetSFXVolume(float value)
+    {
+        sfxAudioMixer.SetFloat("MasterVolume", Mathf.RoundToInt(value));
+    }
+
+    int GetMasterLevel(AudioMixer mixer)
+    {
+        mixer.GetFloat("MasterVolume", out float temp);
+        return Mathf.RoundToInt(temp);
     }
 }

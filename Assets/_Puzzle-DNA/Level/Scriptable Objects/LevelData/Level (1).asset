@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Level (1)
   m_EditorClassIdentifier: 
   gameData: {fileID: 11400000, guid: ab90484f1e2012f48af90c05f7fd2075, type: 2}
+  perksPoinPlus: 0
+  perksPoinMinus: 0
   prologueStoryData:
   - {fileID: 11400000, guid: e1aed95876c3cb54d8b38642ead317b5, type: 2}
   - {fileID: 11400000, guid: 9446d6fd410836645ac2e23100951092, type: 2}

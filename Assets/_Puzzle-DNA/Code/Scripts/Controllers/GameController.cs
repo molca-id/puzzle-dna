@@ -207,7 +207,22 @@ public class GameController : SingletonMonoBehaviour<GameController>
         yield return new WaitForSeconds(BoardController.DestroyGems() + .5f);
 
         UnityEvent events = new();
-        events.AddListener(() => CommonHandler.instance.UnloadSceneAdditive("GameScene"));
+        events.AddListener(delegate 
+        {
+            CommonHandler.instance.UnloadSceneAdditive("GameScene");
+            DataHandler.instance.GetAudioHandler("MainMenu").SetAudiosState();
+
+            if (LevelDataHandler.instance.currentLevelData.perksPoinPlus == 0 &&
+            LevelDataHandler.instance.currentLevelData.perksPoinMinus == 0) return;
+
+            DataHandler.instance.GetPerksData().perks_point_plus +=
+                LevelDataHandler.instance.currentLevelData.perksPoinPlus;
+            DataHandler.instance.GetPerksData().perks_point_minus += 
+                LevelDataHandler.instance.currentLevelData.perksPoinMinus;
+
+            DataHandler.instance.IEPatchPerksData(() => { });
+        });
+        
         UIController.instance.CloseAllCanvases(events);
     }
 

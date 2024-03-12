@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boardDimension: {x: 6, y: 6}
   gameLevel: 1
+  backgroundGame: {fileID: 21300000, guid: 0bf3db385304db8459b2e1f3b6e2564a, type: 3}
   characterInterlocutorName: Dia
   characterInterlocutorSprite: {fileID: 21300000, guid: 8bb26f73810d607408fbef8898493464,
     type: 3}
-  backgroundGame: {fileID: 21300000, guid: 0bf3db385304db8459b2e1f3b6e2564a, type: 3}
+  usingDialogueBonus: 0
   hintDelay: 5
   totalTime: 60
   usingTutorial: 0
@@ -67,37 +68,4 @@ MonoBehaviour:
   - Perfect!!!
   - Glorious!!!!
   - Wonderful!!!!!
-  dialogueBonus:
-  - scoreTrigger: 1500
-    dialogueBonusDatas:
-    - playerIsTalking: 1
-      dialogueDelay: 2
-      dialogueContent: Hai, bagaimana kabarmu?
-    - playerIsTalking: 0
-      dialogueDelay: 2
-      dialogueContent: Aku baik, kamu bagaimana?
-    - playerIsTalking: 1
-      dialogueDelay: 2
-      dialogueContent: Baik juga kok. Semoga harimu menyenangkan!
-    isDone: 0
-  - scoreTrigger: 4000
-    dialogueBonusDatas:
-    - playerIsTalking: 0
-      dialogueDelay: 2
-      dialogueContent: Ehh, kita ketemu lagi haha!
-    - playerIsTalking: 1
-      dialogueDelay: 2
-      dialogueContent: Iya nih haha, bagaimana harimu?
-    - playerIsTalking: 0
-      dialogueDelay: 2
-      dialogueContent: Menyenangkan sekalii!
-    isDone: 0
-  - scoreTrigger: 6500
-    dialogueBonusDatas:
-    - playerIsTalking: 1
-      dialogueDelay: 2
-      dialogueContent: Terimakasih teman, atas ilmunya!
-    - playerIsTalking: 0
-      dialogueDelay: 3
-      dialogueContent: Terimakasih kembali untukmu juga, semoga bermanfaat!
-    isDone: 0
+  dialogueBonus: []

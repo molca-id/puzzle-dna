@@ -49,7 +49,7 @@ public class DialogueBonusData
 {
     public bool playerIsTalking;
     public float dialogueDelay;
-    [TextArea(5, 5)] public string dialogueContent;
+    public ContentData contentData;
 }
 
 [System.Serializable]

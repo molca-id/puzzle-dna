@@ -13,51 +13,24 @@ public enum PerksStage { Stage1, Stage2, Stage3 }
 public class PerksHandler : MonoBehaviour
 {
     [Serializable]
-    public class PerksUIData
+    public class TalentValueData
     {
-        public Image perkImage;
-        public TextMeshProUGUI perkNameText;
-    }
-
-    [Serializable]
-    public class PerksSpriteData
-    {
-        public PerksType perksType;
-        public List<Sprite> perksSprites;
-    }
-
-    [Serializable]
-    public class PerksValueData
-    {
-        public string perksName;
-        public Sprite perksSprite;
-        public int perksPoint;
-        [TextArea(2, 2)] public string perksDescription;
-    }
-
-    [Serializable]
-    public class PerksValue
-    {
-        public PerksType perksType;
-        public PerksStage perksStage;
-        public GameObject perksLockPanel;
-        public bool isLock;
-        public List<PerksValueData> perksValueDatas;
+        public string id;
+        public string nama;
+        public string deskripsiSingkat;
+        public string deskripsiLengkap;
+        public int point;
     }
 
     public GameObject perksPanel;
 
     [Header("All Perks")]
     public Button[] allPerksButton;
-    public PerksValue[] perksValues;
-    public List<PerksSpriteData> perksSpriteDatas;
-
-    [Header("Final Perks")]
-    public List<PerksUIData> top10Perks;
-    public List<PerksUIData> bottom5Perks;
+    public List<TalentValueData> perksTypeDatas;
 
     [Header("UI Attributes")]
     public TextMeshProUGUI perkName;
+    public TextMeshProUGUI perkTagline;
     public TextMeshProUGUI perkDescription;
     public TextMeshProUGUI perkPoint;
 
@@ -98,11 +71,12 @@ public class PerksHandler : MonoBehaviour
         //}
     }
 
-    public void SetPerksDescription(PerksValueData perkData)
+    public void SetPerksDescription(TalentValueData perkData)
     {
-        perkName.text = perkData.perksName;
-        perkDescription.text = perkData.perksDescription;
-        perkPoint.text = perkData.perksPoint.ToString();
+        perkName.text = perkData.nama;
+        perkTagline.text = perkData.deskripsiSingkat;
+        perkDescription.text = perkData.deskripsiLengkap;
+        perkPoint.text = perkData.point.ToString();
     }
 
     public void RandomizeFinalPerks()

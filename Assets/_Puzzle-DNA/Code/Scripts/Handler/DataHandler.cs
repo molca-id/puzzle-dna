@@ -4,18 +4,21 @@ using UnityEngine.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.Audio;
 
 public class DataHandler : MonoBehaviour
 {
     public static DataHandler instance;
     [HideInInspector] public ValidateData validateData;
 
-    [Header("Default Datas")]
+    [Header("Datas")]
     public UserDataSpace.UserData defaultUserData;
-
-    [Header("Current Datas")]
     public TalentDataSpace.TalentData talentData;
     public UserDataSpace.UserData userData;
+
+    [Header("Another Attributes")]
+    public AudioMixer bgmAudioMixer;
+    public AudioMixer sfxAudioMixer;
     public List<LanguageHandler> languageHandlers;
 
     private void Awake()
@@ -27,6 +30,12 @@ public class DataHandler : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
+    }
+
+    public AudioHandler GetAudioHandler(string key)
+    {
+        return FindObjectsOfType<AudioHandler>().ToList().
+            Find(audio => audio.audioGroupKey == key);
     }
 
     public void RefreshAllTextLanguage()
@@ -53,6 +62,30 @@ public class DataHandler : MonoBehaviour
                 {
                     IEGetUserData();
                 }));
+    }
+
+    public void IEPatchAllVolumeData()
+    {
+        bgmAudioMixer.GetFloat("MasterVolume", out float bgm);
+        sfxAudioMixer.GetFloat("MasterVolume", out float sfx);
+        string json = "{ \"bgm_value\":" + bgm + ", \"sfx_value\":" + sfx + " }";
+
+        //hitting api
+        StartCoroutine(
+            APIManager.instance.PatchDataCoroutine(
+                APIManager.instance.SetupGameUrl(GetUniqueCode()),
+                json, res => { }));
+    }
+
+    public void IEPatchCharacterData(Action executeAfter = null)
+    {
+        string json = "{ \"character\" : " + GetUserDataValue().character + " }";
+
+        //hitting api
+        StartCoroutine(
+            APIManager.instance.PatchDataCoroutine(
+                APIManager.instance.SetupGameUrl(GetUniqueCode()),
+                json, res => executeAfter.Invoke()));
     }
 
     public void IEPatchLanguageData(Action executeAfter = null)
@@ -133,10 +166,15 @@ public class DataHandler : MonoBehaviour
                 res =>
                 {
                     userData = JsonUtility.FromJson<UserDataSpace.UserData>(res);
+                    bgmAudioMixer.SetFloat("MasterVolume", GetUserDataValue().bgm_value);
+                    sfxAudioMixer.SetFloat("MasterVolume", GetUserDataValue().sfx_value);
+
                     if (!userData.success) IECreateUserData();
                 }));
     }
 
+    public UserDataSpace.PerksValue GetPerksData() => userData.data.perks_value;
+    
     public List<UserDataSpace.PerksTypeGroupData> GetPerksGroup() => userData.data.perks_value.perks_type_datas;
 
     public UserDataSpace.UserDataValue GetUserDataValue() => userData.data;

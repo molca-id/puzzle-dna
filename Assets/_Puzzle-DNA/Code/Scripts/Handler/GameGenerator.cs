@@ -29,6 +29,7 @@ public class GameGenerator : MonoBehaviour
     public IEnumerator Generate(GameData data)
     {
         currentGameLevel = data.gameLevel;
+        DataHandler.instance.GetAudioHandler("MainMenu").SetAudiosState();
         CommonHandler.instance.LoadSceneAdditive("GameScene");
 
         yield return new WaitUntil(() => FindObjectOfType<GameController>() != null);

@@ -77,7 +77,11 @@ public class DialogueBonusHandler : SingletonMonoBehaviour<DialogueBonusHandler>
 
                 playerDialogue.dialoguePanel.SetActive(true);
                 interlocutorDialogue.dialoguePanel.SetActive(false);
-                playerDialogue.dialogueText.text = datas[i].dialogueContent;
+
+                if (DataHandler.instance.GetLanguage() == "id")
+                    playerDialogue.dialogueText.text = datas[i].contentData.contentId;
+                else
+                    playerDialogue.dialogueText.text = datas[i].contentData.contentEn;
             }
             else
             {
@@ -86,7 +90,11 @@ public class DialogueBonusHandler : SingletonMonoBehaviour<DialogueBonusHandler>
 
                 playerDialogue.dialoguePanel.SetActive(false);
                 interlocutorDialogue.dialoguePanel.SetActive(true);
-                interlocutorDialogue.dialogueText.text = datas[i].dialogueContent;
+
+                if (DataHandler.instance.GetLanguage() == "id")
+                    interlocutorDialogue.dialogueText.text = datas[i].contentData.contentId;
+                else
+                    interlocutorDialogue.dialogueText.text = datas[i].contentData.contentEn;
             }
 
             yield return new WaitForSeconds(datas[i].dialogueDelay);

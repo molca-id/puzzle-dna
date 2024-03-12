@@ -8,6 +8,8 @@ public class LevelData : SingletonScriptableObject<LevelData>
 {
     [Header("GameData")]
     public GameData gameData;
+    public int perksPoinPlus;
+    public int perksPoinMinus;
 
     [Header("Prologue Story")]
     public List<StoryData> prologueStoryData;

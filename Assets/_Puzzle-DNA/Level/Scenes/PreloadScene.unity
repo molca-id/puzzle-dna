@@ -1300,8 +1300,8 @@ MonoBehaviour:
       language: en
       username: 
       character: 0
-      bgm_value: 1
-      sfx_value: 1
+      bgm_value: 0
+      sfx_value: 0
       narration_story: 0
       perks_value:
         perks_point_plus: 0
@@ -1536,6 +1536,9 @@ MonoBehaviour:
       checkpoint_data:
         tutorial_is_done: 0
         checkpoint_level_datas: []
+  bgmAudioMixer: {fileID: 24100000, guid: e924da3ea1125eb4a997dba622a13f0e, type: 2}
+  sfxAudioMixer: {fileID: 24100000, guid: c3c0b1f744bce6241ac6565d6feaafa3, type: 2}
+  languageHandlers: []
 --- !u!114 &698362474
 MonoBehaviour:
   m_ObjectHideFlags: 0

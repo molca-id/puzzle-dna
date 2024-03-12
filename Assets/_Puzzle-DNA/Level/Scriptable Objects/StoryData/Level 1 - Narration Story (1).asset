@@ -20,9 +20,14 @@ MonoBehaviour:
     interlocutorName: 
     dialogueStories: []
   narrationStories:
-  - 2020. Dunia dilanda pandemi Virus Corona yang mengakibatkan dunia lumpuh dan
-    aktivitas manusia dibatasi. Atom DNA terdeteksi berada di sebuah Rumah Sakit
-    di daerah terisolasi.
-  - Temui Bravo seorang relawan kesehatan yang sedang membantu masyarakat. Bantu
-    selesaikan tugasnya dan dia akan mengantarmu menuju Rumah Sakit tersebut.
+  - contentId: '2020. Dunia dilanda pandemi Virus Corona yang mengakibatkan dunia
+      lumpuh dan aktivitas manusia dibatasi. '
+    contentEn: 2020. The world was hit by the Corona Virus pandemic which resulted
+      in the world being paralyzed and human activities being restricted.
+  - contentId: Atom DNA terdeteksi berada di sebuah Rumah Sakit di daerah terisolasi.
+    contentEn: DNA atoms were detected in a hospital in an isolated area.
+  - contentId: Temui Bravo seorang relawan kesehatan yang sedang membantu masyarakat.
+      Bantu selesaikan tugasnya dan dia akan mengantarmu menuju Rumah Sakit tersebut.
+    contentEn: Meet Bravo, a health volunteer who is helping the community. Help
+      complete the task and he will take you to the hospital.
   popUpStories: []

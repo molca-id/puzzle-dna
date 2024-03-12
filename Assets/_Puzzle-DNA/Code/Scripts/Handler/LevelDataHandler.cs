@@ -16,12 +16,15 @@ public class DialogueStoryUI
 
 public class LevelDataHandler : MonoBehaviour
 {
+    public static LevelDataHandler instance;
+
     [Header("General Story Attributes")]
     public GameObject storyPanel;
     public Image backgroundImage;
 
     [Header("Current Story Attributes")]
-    public GameData gameData;
+    public GameData currentGameData;
+    public LevelData currentLevelData;
     public StoryData currentStoryData;
     public List<StoryData> prologueStoryData;
     public List<StoryData> epilogueStoryData;
@@ -49,14 +52,20 @@ public class LevelDataHandler : MonoBehaviour
     [HideInInspector] public bool isPrologue;
     [HideInInspector] public bool isEpilogue;
 
+    private void Awake()
+    {
+        instance = this;
+    }
+
     public void Init(LevelData levelData)
     {
-        gameData = levelData.gameData;
+        currentLevelData = levelData;
+        currentGameData = levelData.gameData;
         prologueStoryData = levelData.prologueStoryData;
         epilogueStoryData = levelData.epilogueStoryData;
 
         if (prologueStoryData.Count == 0)
-            GameGenerator.instance.GenerateLevel(gameData);
+            GameGenerator.instance.GenerateLevel(currentGameData);
         else
             SetPrologueStory(0);
     }
@@ -70,7 +79,7 @@ public class LevelDataHandler : MonoBehaviour
             prologueIndex = 0;
             isPrologue = false;
             if (epilogueStoryData.Count == 0) storyPanel.SetActive(false);
-            GameGenerator.instance.GenerateLevel(gameData);
+            GameGenerator.instance.GenerateLevel(currentGameData);
             return;
         }
 
@@ -119,13 +128,21 @@ public class LevelDataHandler : MonoBehaviour
         {
             playerDialogue.charImage.sprite = currentStoryData.dialogueStory.playerSprite;
             playerDialogue.nameText.text = DataHandler.instance.GetUserDataValue().username;
-            playerDialogue.dialogueText.text = dialogue.dialogueContent;
+
+            if (DataHandler.instance.GetLanguage() == "id")
+                playerDialogue.dialogueText.text = dialogue.contentData.contentId;
+            else
+                playerDialogue.dialogueText.text = dialogue.contentData.contentEn;
         }
         else
         {
             interlocutorDialogue.charImage.sprite = currentStoryData.dialogueStory.interlocutorSprite;
             interlocutorDialogue.nameText.text = currentStoryData.dialogueStory.interlocutorName;
-            interlocutorDialogue.dialogueText.text = dialogue.dialogueContent;
+
+            if (DataHandler.instance.GetLanguage() == "id")
+                playerDialogue.dialogueText.text = dialogue.contentData.contentId;
+            else
+                playerDialogue.dialogueText.text = dialogue.contentData.contentEn;
         }
 
         interlocutorDialogue.dialoguePanel.SetActive(!dialogue.playerIsTalking);
@@ -144,8 +161,10 @@ public class LevelDataHandler : MonoBehaviour
             return;
         }
 
-        string text = currentStoryData.narrationStories[narrationIndex];
-        narrationText.text = text;
+        if (DataHandler.instance.GetLanguage() == "id")
+            narrationText.text = currentStoryData.narrationStories[narrationIndex].contentId;
+        else
+            narrationText.text = currentStoryData.narrationStories[narrationIndex].contentEn;
     }
 
     public void SetPopUpStory(int factor)
@@ -160,7 +179,10 @@ public class LevelDataHandler : MonoBehaviour
             return;
         }
 
-        string text = currentStoryData.popUpStories[popUpIndex];
-        popUpText.text = text;
+
+        if (DataHandler.instance.GetLanguage() == "id")
+            popUpText.text = currentStoryData.popUpStories[popUpIndex].contentId;
+        else
+            popUpText.text = currentStoryData.popUpStories[popUpIndex].contentEn;
     }
 }

@@ -31,7 +31,7 @@ public class SessionCodeHooker : MonoBehaviour
     public void PlayerCodeHandler(string code)
     {
         currCodeTemp = code;
-        Debug.Log($"Game Code: {currCodeTemp}");
+        //Debug.Log($"Game Code: {currCodeTemp}");
     }
 
     public string GetSessionCode() => currCodeTemp;

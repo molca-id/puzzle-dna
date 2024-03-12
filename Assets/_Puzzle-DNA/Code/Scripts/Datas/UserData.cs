@@ -56,30 +56,23 @@ namespace UserDataSpace
     {
         public int perks_point_plus;
         public int perks_point_minus;
-        public List<PerksTypeGroupData> perks_type_datas;
+        public List<PerksStage> perks_stage_datas;
+        public List<PerksValueData> perks_type_datas;
     }
 
     [Serializable]
-    public class PerksTypeGroupData
+    public class PerksStage
     {
-        public PerksType perks_type;
-        public string perks_type_code;
-        public List<PerksStageGroupData> perks_stage_datas;
-    }
-
-    [Serializable]
-    public class PerksStageGroupData
-    {
-        public PerksStage perks_stage;
-        public List<PerksValueData> perks_value_datas;
+        public PerksType perks_types;
+        public List<bool> perks_stage_locks;
     }
 
     [Serializable]
     public class PerksValueData
     {
-        public string perksName;
-        public string perksId;
-        public int perksPoint;
+        public string perks_name;
+        public string perks_id;
+        public int perks_point;
     }
 
     [Serializable]

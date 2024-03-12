@@ -173,10 +173,10 @@ public class DataHandler : MonoBehaviour
                 }));
     }
 
+    public List<TalentDataSpace.TalentValueData> GetTalentDatas() => talentData.data;
+
     public UserDataSpace.PerksValue GetPerksData() => userData.data.perks_value;
     
-    public List<UserDataSpace.PerksTypeGroupData> GetPerksGroup() => userData.data.perks_value.perks_type_datas;
-
     public UserDataSpace.UserDataValue GetUserDataValue() => userData.data;
 
     public UserDataSpace.CheckpointData GetUserCheckpointData() => userData.data.checkpoint_data;

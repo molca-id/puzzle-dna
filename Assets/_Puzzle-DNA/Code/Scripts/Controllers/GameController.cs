@@ -207,8 +207,9 @@ public class GameController : SingletonMonoBehaviour<GameController>
         yield return new WaitForSeconds(BoardController.DestroyGems() + .5f);
 
         UnityEvent events = new();
-        events.AddListener(delegate 
+        events.AddListener(delegate
         {
+            PerksHandler.instance.OpenPerksPanel();
             CommonHandler.instance.UnloadSceneAdditive("GameScene");
             DataHandler.instance.GetAudioHandler("MainMenu").SetAudiosState();
 

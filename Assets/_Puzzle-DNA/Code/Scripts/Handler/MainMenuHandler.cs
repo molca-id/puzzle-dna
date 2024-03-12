@@ -49,6 +49,10 @@ public class MainMenuHandler : MonoBehaviour
     public void SelectLanguage(string lang)
     {
         DataHandler.instance.GetUserDataValue().language = lang;
+    }
+
+    public void SubmitLanguage()
+    {
         StartCoroutine(IEOpenScreen(loadingPanel, delegate
         {
             DataHandler.instance.IEPatchLanguageData(delegate
@@ -59,7 +63,7 @@ public class MainMenuHandler : MonoBehaviour
         }));
     }
 
-    public void SelectCharacter(int index)
+    public void SelectCharacter(int index) 
     {
         character = (Character)index;
         characterSelections.ForEach(chars =>
@@ -160,8 +164,6 @@ public class MainMenuHandler : MonoBehaviour
     {
         StartCoroutine(IEOpenScreen(loadingPanel, delegate
         {
-            tutorialPanel.gameObject.SetActive(false);
-            mainMenuPanel.gameObject.SetActive(false);
             DataHandler.instance.IEPatchCheckpointData(delegate
             {
                 StartCoroutine(IECloseScreen(loadingPanel));
@@ -174,25 +176,10 @@ public class MainMenuHandler : MonoBehaviour
     {
         StartCoroutine(IEOpenScreen(loadingPanel, delegate
         {
-            tutorialPanel.gameObject.SetActive(false);
-            mainMenuPanel.gameObject.SetActive(false);
             DataHandler.instance.IEGetTalentData(delegate
             {
                 executeAfter.Invoke();
                 StartCoroutine(IECloseScreen(loadingPanel));
-                InitMenu();
-
-                DataHandler.instance.GetPerksGroup().ForEach(type =>
-                {
-                    foreach (var stage in type.perks_stage_datas)
-                    {
-                        foreach (var perk in stage.perks_value_datas)
-                        {
-                            perk.perksId = DataHandler.instance.talentData.data.
-                                Find(data => data.nama == perk.perksName).id;
-                        }
-                    }
-                });
             });
         }));
     }

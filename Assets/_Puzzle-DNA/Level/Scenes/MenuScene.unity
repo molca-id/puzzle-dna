@@ -19912,7 +19912,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &336432070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41570,8 +41570,8 @@ MonoBehaviour:
   - willOpenGame: 0
     willPlayVO: 1
     levelData: {fileID: 0}
-    voClipEn: {fileID: 8300000, guid: 908f7e2b8257457408507fbdcf73df16, type: 3}
-    voClipId: {fileID: 8300000, guid: 2be07420e27546c4c8b00a13e494681c, type: 3}
+    voClipEn: {fileID: 8300000, guid: e34d385cc7466b44cae27cdb2bf4d5da, type: 3}
+    voClipId: {fileID: 8300000, guid: fe0f7d1c6dda4374d882ee67d4d945a9, type: 3}
     whenGameLoaded:
       m_PersistentCalls:
         m_Calls: []
@@ -41622,8 +41622,8 @@ MonoBehaviour:
   - willOpenGame: 0
     willPlayVO: 1
     levelData: {fileID: 0}
-    voClipEn: {fileID: 8300000, guid: 74f590974b6f48d4bb72ab924472ca5c, type: 3}
-    voClipId: {fileID: 8300000, guid: 750b44425437aa045a37d90ffe9e737b, type: 3}
+    voClipEn: {fileID: 8300000, guid: 75c0e37aefb14994ca534b328e6f9307, type: 3}
+    voClipId: {fileID: 8300000, guid: 8dc757a84e1a466408bea772c11d0739, type: 3}
     whenGameLoaded:
       m_PersistentCalls:
         m_Calls: []
@@ -41648,8 +41648,8 @@ MonoBehaviour:
   - willOpenGame: 0
     willPlayVO: 1
     levelData: {fileID: 0}
-    voClipEn: {fileID: 8300000, guid: d9e21ec66ec5295418882774d0e99f8c, type: 3}
-    voClipId: {fileID: 8300000, guid: 3119da554a57ccc49962628fed751297, type: 3}
+    voClipEn: {fileID: 8300000, guid: e09acf105d6ecc34087b077bb40eda99, type: 3}
+    voClipId: {fileID: 8300000, guid: cd4cb8a6daad97a46a466009d5a86682, type: 3}
     whenGameLoaded:
       m_PersistentCalls:
         m_Calls: []
@@ -41672,10 +41672,10 @@ MonoBehaviour:
             m_BoolArgument: 1
           m_CallState: 2
   - willOpenGame: 0
-    willPlayVO: 0
+    willPlayVO: 1
     levelData: {fileID: 0}
-    voClipEn: {fileID: 0}
-    voClipId: {fileID: 0}
+    voClipEn: {fileID: 8300000, guid: aa551df77df49234fa0443a0d1187415, type: 3}
+    voClipId: {fileID: 8300000, guid: 7b2e57d3a9a396e48aa2c9ef098bc9d1, type: 3}
     whenGameLoaded:
       m_PersistentCalls:
         m_Calls: []
@@ -41698,10 +41698,10 @@ MonoBehaviour:
             m_BoolArgument: 1
           m_CallState: 2
   - willOpenGame: 1
-    willPlayVO: 0
+    willPlayVO: 1
     levelData: {fileID: 11400000, guid: a076cd24d5dbcf24998790fbb7f4b49d, type: 2}
-    voClipEn: {fileID: 0}
-    voClipId: {fileID: 0}
+    voClipEn: {fileID: 8300000, guid: 8e4e13ba69aa8ac45afb3b9ecfdde60b, type: 3}
+    voClipId: {fileID: 8300000, guid: f0c353cf0ea6f0c4992e11ab24eb9e11, type: 3}
     whenGameLoaded:
       m_PersistentCalls:
         m_Calls:
@@ -41762,10 +41762,10 @@ MonoBehaviour:
             m_BoolArgument: 1
           m_CallState: 2
   - willOpenGame: 0
-    willPlayVO: 0
+    willPlayVO: 1
     levelData: {fileID: 0}
-    voClipEn: {fileID: 0}
-    voClipId: {fileID: 0}
+    voClipEn: {fileID: 8300000, guid: 1c61cf8c842e12747948b289e383af05, type: 3}
+    voClipId: {fileID: 8300000, guid: 55133813b7e1326439345362da6e4cdb, type: 3}
     whenGameLoaded:
       m_PersistentCalls:
         m_Calls: []
@@ -82931,7 +82931,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 53e667c182badb043a14d9c03d4f6d04, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0

@@ -108,10 +108,15 @@ public class SequencePanelHandler : MonoBehaviour
     IEnumerator DelayingSkippable()
     {
         isSkippable = false;
-
-        yield return new WaitForSeconds(delaySkippable);
-        if (voAudioSource != null) yield return new WaitUntil(() => !voAudioSource.isPlaying);
-
-        isSkippable = true;
+        if (voAudioSource != null)
+        { 
+            yield return new WaitUntil(() => !voAudioSource.isPlaying);
+            NextPanel();
+        }
+        else
+        {
+            yield return new WaitForSeconds(delaySkippable);
+            isSkippable = true;
+        }
     }
 }

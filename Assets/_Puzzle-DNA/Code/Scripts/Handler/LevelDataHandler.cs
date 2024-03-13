@@ -83,6 +83,7 @@ public class LevelDataHandler : MonoBehaviour
 
         currentStoryData = prologueStoryData[prologueIndex];
         backgroundImage.gameObject.SetActive(false);
+        storyPanel.SetActive(true);
 
         if (currentStoryData != null)
         {
@@ -109,12 +110,11 @@ public class LevelDataHandler : MonoBehaviour
                 SetTitleStory(0);
                 break;
             case StoryData.StoryType.Tutorial:
+                storyPanel.SetActive(false);
                 tutorialParentPanel.SetActive(true);
                 SetTutorialStory(currentStoryData.tutorialKey);
                 break;
         }
-
-        storyPanel.SetActive(true);
     }
 
     public void SetDialogueStory(int factor)
@@ -212,6 +212,6 @@ public class LevelDataHandler : MonoBehaviour
     public void SetTutorialStory(string key)
     {
         FindObjectsOfType<SequencePanelHandler>().ToList().
-            Find(seq => seq.key == key).SetPanel();
+            Find(seq => seq.key == key).Init();
     }
 }

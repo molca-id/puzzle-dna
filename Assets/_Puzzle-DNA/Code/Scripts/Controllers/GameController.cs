@@ -202,28 +202,19 @@ public class GameController : SingletonMonoBehaviour<GameController>
         HintController.StopCurrentHint();
         HintController.StopHinting();
         UIController.ShowMsg("Game Over");
+
+        AfterGameOver();
         GameGenerator.instance.SetScoreGameLevel(_scoreTotal);
 
         yield return new WaitForSeconds(BoardController.DestroyGems() + .5f);
 
         UnityEvent events = new();
-        events.AddListener(delegate
+        events.AddListener(() =>
         {
-            PerksHandler.instance.OpenPerksPanel();
             CommonHandler.instance.UnloadSceneAdditive("GameScene");
             DataHandler.instance.GetAudioHandler("MainMenu").SetAudiosState();
-
-            if (LevelDataHandler.instance.currentLevelData.perksPoinPlus == 0 &&
-            LevelDataHandler.instance.currentLevelData.perksPoinMinus == 0) return;
-
-            DataHandler.instance.GetPerksData().perks_point_plus +=
-                LevelDataHandler.instance.currentLevelData.perksPoinPlus;
-            DataHandler.instance.GetPerksData().perks_point_minus += 
-                LevelDataHandler.instance.currentLevelData.perksPoinMinus;
-
-            DataHandler.instance.IEPatchPerksData(() => { });
         });
-        
+
         UIController.instance.CloseAllCanvases(events);
     }
 
@@ -237,6 +228,27 @@ public class GameController : SingletonMonoBehaviour<GameController>
                 );
 
             bombAnims[i].Play("Play");
+        }
+    }
+
+    public void AfterGameOver()
+    {
+        int score = DataHandler.instance.GetUserCheckpointData().
+            checkpoint_level_score[LevelDataHandler.instance.currentGameData.gameLevel];
+
+        if (score == 0)
+        {
+            DataHandler.instance.GetPerksData().perks_point_data.perks_point_plus +=
+                LevelDataHandler.instance.currentLevelData.perksPoinPlus;
+            DataHandler.instance.GetPerksData().perks_point_data.perks_point_minus +=
+                LevelDataHandler.instance.currentLevelData.perksPoinMinus;
+
+            DataHandler.instance.GetPerksData().perks_point_data.total_perks_point_plus +=
+                LevelDataHandler.instance.currentLevelData.perksPoinPlus;
+            DataHandler.instance.GetPerksData().perks_point_data.total_perks_point_minus +=
+                LevelDataHandler.instance.currentLevelData.perksPoinMinus;
+
+            MainMenuHandler.instance.PatchPerksFromMenu();
         }
     }
 }

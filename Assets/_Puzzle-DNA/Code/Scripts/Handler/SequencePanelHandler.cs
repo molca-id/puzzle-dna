@@ -11,7 +11,10 @@ using UnityEngine.UI;
 public class SequenceEventsData
 {
     public bool willOpenGame;
+    public bool willPlayVO;
     [ShowIf("willOpenGame")] public LevelData levelData;
+    [ShowIf("willPlayVO")] public AudioClip voClipEn;
+    [ShowIf("willPlayVO")] public AudioClip voClipId;
     public UnityEvent whenGameLoaded;
     public UnityEvent whenGameUnloaded;
     public UnityEvent sequenceEvent;
@@ -20,6 +23,8 @@ public class SequenceEventsData
 public class SequencePanelHandler : MonoBehaviour
 {
     public string key;
+    public GameObject parentPanel;
+    public AudioSource voAudioSource;
     public bool startAutomatically;
     [Space]
     public List<GameObject> panels;
@@ -34,8 +39,16 @@ public class SequencePanelHandler : MonoBehaviour
     void Start()
     {
         if (!startAutomatically) return;
+        Init();
+    }
+
+    public void Init()
+    {
         index = 0;
         SetPanel();
+
+        if (parentPanel == null) return; 
+        parentPanel.SetActive(true);
     }
 
     public void SetPanel()
@@ -57,6 +70,12 @@ public class SequencePanelHandler : MonoBehaviour
         else
         {
             DisableAllPanels();
+        }
+
+        if (data.willPlayVO)
+        {
+            AudioClip clip = DataHandler.instance.GetLanguage() == "id" ? data.voClipId : data.voClipEn;
+            voAudioSource.PlayOneShot(clip);
         }
 
         data.sequenceEvent.Invoke();
@@ -89,7 +108,10 @@ public class SequencePanelHandler : MonoBehaviour
     IEnumerator DelayingSkippable()
     {
         isSkippable = false;
+
         yield return new WaitForSeconds(delaySkippable);
+        if (voAudioSource != null) yield return new WaitUntil(() => !voAudioSource.isPlaying);
+
         isSkippable = true;
     }
 }

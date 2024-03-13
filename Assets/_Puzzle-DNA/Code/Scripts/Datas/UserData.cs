@@ -41,21 +41,14 @@ namespace UserDataSpace
     public class CheckpointData
     {
         public bool tutorial_is_done;
-        public List<CheckpointLevelData> checkpoint_level_datas;
-    }
-
-    [Serializable]
-    public class CheckpointLevelData
-    {
-        public int level;
-        public int score;
+        public List<int> checkpoint_level_score;
     }
 
     [Serializable]
     public class PerksValue
     {
-        public int perks_point_plus;
-        public int perks_point_minus;
+        public PerksAbilityData perks_ability_data;
+        public PerksPointData perks_point_data;
         public List<PerksStage> perks_stage_datas;
         public List<PerksValueData> perks_type_datas;
     }
@@ -65,6 +58,23 @@ namespace UserDataSpace
     {
         public PerksType perks_types;
         public List<bool> perks_stage_locks;
+    }
+
+    [Serializable]
+    public class PerksPointData
+    {
+        public int total_perks_point_plus;
+        public int total_perks_point_minus;
+        public int perks_point_plus;
+        public int perks_point_minus;
+    }
+
+    [Serializable]
+    public class PerksAbilityData
+    {
+        public bool driveUpgraded;
+        public bool networkUpgraded;
+        public bool actionUpgraded;
     }
 
     [Serializable]

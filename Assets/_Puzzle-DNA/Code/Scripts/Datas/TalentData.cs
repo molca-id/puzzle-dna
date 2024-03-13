@@ -11,20 +11,20 @@ namespace TalentDataSpace
         public string id;
         public string nama;
         public TalentDescriptionData deskripsi;
-        public string bahasa;
-        public string warna;
+        [HideInInspector] public string bahasa;
+        [HideInInspector] public string warna;
     }
 
     [Serializable]
     public class TalentDescriptionData
     {
         public string deskripsi_singkat;
-        public string deskripsi_paragraf;
         public string deskripsi;
-        public List<string> keterangan_kuat;
-        public List<string> keterangan_lemah;
-        public List<string> keterangan_rekom;
-        public string id;
+        [HideInInspector] public string deskripsi_paragraf;
+        [HideInInspector] public List<string> keterangan_kuat;
+        [HideInInspector] public List<string> keterangan_lemah;
+        [HideInInspector] public List<string> keterangan_rekom;
+        [HideInInspector] public string id;
     }
 
     [Serializable]

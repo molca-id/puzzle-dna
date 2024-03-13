@@ -116,26 +116,27 @@ public class MainMenuHandler : MonoBehaviour
     {
         for (int i = 0; i < levelButtonDatas.Count; i++)
         {
+            int index = i + 1;
             levelButtonDatas[i].transform.Find("Pinpoint").gameObject.SetActive(false);
             levelButtonDatas[i].transform.Find("LevelText").GetComponent<TextMeshProUGUI>().text = $"{i + 1}";
 
-            if (DataHandler.instance.GetUserCheckpointData().checkpoint_level_datas[i].score > 0)
+            if (DataHandler.instance.GetUserCheckpointData().checkpoint_level_score[index] > 0)
             {
                 levelButtonDatas[i].transform.Find("ScorePanel").gameObject.SetActive(true);
                 levelButtonDatas[i].transform.Find("ScorePanel").Find("ScoreText").GetComponent<TextMeshProUGUI>().text =
-                    DataHandler.instance.GetUserCheckpointData().checkpoint_level_datas[i].score.ToString();
+                    DataHandler.instance.GetUserCheckpointData().checkpoint_level_score[index].ToString();
             }
             else
             {
                 levelButtonDatas[i].transform.Find("ScorePanel").gameObject.SetActive(false);
             }
 
-            if (i == 0 || i > 0 && DataHandler.instance.GetUserCheckpointData().checkpoint_level_datas[i - 1].score > 0)
+            if (i == 0 || i > 0 && DataHandler.instance.GetUserCheckpointData().checkpoint_level_score[index - 1] > 0)
             {
                 levelButtonDatas[i].interactable = true;
-                if (i == 0 && DataHandler.instance.GetUserCheckpointData().checkpoint_level_datas[i].score == 0 ||
-                    DataHandler.instance.GetUserCheckpointData().checkpoint_level_datas[i].score == 0 &&
-                    DataHandler.instance.GetUserCheckpointData().checkpoint_level_datas[i - 1].score > 0)
+                if (i == 0 && DataHandler.instance.GetUserCheckpointData().checkpoint_level_score[index] == 0 ||
+                    DataHandler.instance.GetUserCheckpointData().checkpoint_level_score[index] == 0 &&
+                    DataHandler.instance.GetUserCheckpointData().checkpoint_level_score[index - 1] > 0)
                     levelButtonDatas[i].transform.Find("Pinpoint").gameObject.SetActive(true);
             }
             else
@@ -168,6 +169,18 @@ public class MainMenuHandler : MonoBehaviour
             {
                 StartCoroutine(IECloseScreen(loadingPanel));
                 InitMenu();
+            });
+        }));
+    }
+
+    public void PatchPerksFromMenu()
+    {
+        StartCoroutine(IEOpenScreen(loadingPanel, delegate
+        {
+            DataHandler.instance.IEPatchPerksData(delegate
+            {
+                if (!LevelDataHandler.instance.currentLevelData.openPerksPanelAfterGame) return;
+                PerksHandler.instance.OpenPerksPanel();
             });
         }));
     }

@@ -10,6 +10,7 @@ public class LevelData : SingletonScriptableObject<LevelData>
     public GameData gameData;
     public int perksPoinPlus;
     public int perksPoinMinus;
+    public bool openPerksPanelAfterGame;
 
     [Header("Prologue Story")]
     public List<StoryData> prologueStoryData;

@@ -176,6 +176,8 @@ public class DataHandler : MonoBehaviour
     public List<TalentDataSpace.TalentValueData> GetTalentDatas() => talentData.data;
 
     public UserDataSpace.PerksValue GetPerksData() => userData.data.perks_value;
+
+    public void ResetAllPerks() => userData.data.perks_value = defaultUserData.data.perks_value;
     
     public UserDataSpace.UserDataValue GetUserDataValue() => userData.data;
 

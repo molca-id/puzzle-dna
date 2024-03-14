@@ -11,7 +11,7 @@ public class LanguageHandler : MonoBehaviour
 
     TextMeshProUGUI m_TextMeshProUGUI;
 
-    void Awake()
+    void OnEnable()
     {
         SetContentByLanguage();
     }

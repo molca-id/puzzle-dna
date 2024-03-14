@@ -27,6 +27,7 @@ public class SequencePanelHandler : MonoBehaviour
     public string key;
     public bool startAutomatically;
     [Space]
+    public bool skippableAlthoughVO;
     public AudioSource voAudioSource;
     public List<GameObject> parentPanel;
     [Space]
@@ -55,17 +56,10 @@ public class SequencePanelHandler : MonoBehaviour
     public void SetPanel()
     {
         SequenceEventsData data = sequenceEvents[index];
-        for (int i = 0; i < index; i++)
-        {
-            if (panels[i] == null) continue;
-            if (panels[i].GetComponentInChildren<Button>() == null) continue;
-            panels[i].GetComponentInChildren<Button>().interactable = false;
-        }
-
         if (data.willPlayVO)
         {
-            AudioClip clip = DataHandler.instance.GetLanguage() == "id" ? data.voClipId : data.voClipEn;
-            voAudioSource.PlayOneShot(clip);
+            voAudioSource.clip = DataHandler.instance.GetLanguage() == "id" ? data.voClipId : data.voClipEn;
+            voAudioSource.Play();
         }
 
         if (data.willOpenGame)
@@ -83,25 +77,19 @@ public class SequencePanelHandler : MonoBehaviour
         StartCoroutine(DelayingSkippable());
     }
 
-    public void PrevPanel()
-    {
-        SequenceEventsData data = sequenceEvents[index];
-
-        if (index <= 0) return;
-        if (data.willPlayVO) return;
-        if (!isSkippable) return;
-        
-        index--;
-        SetPanel();
-    }
-
     public void NextPanel()
     {
         SequenceEventsData data = sequenceEvents[index];
 
         if (index >= sequenceEvents.Count - 1) return;
-        if (data.willPlayVO) return;
+        if (!skippableAlthoughVO && data.willPlayVO) return;
         if (!isSkippable) return;
+
+        if (voAudioSource != null &&
+            voAudioSource.isPlaying)
+        {
+            voAudioSource.Stop();
+        }
 
         index++;
         SetPanel();
@@ -119,11 +107,20 @@ public class SequencePanelHandler : MonoBehaviour
 
         if (data.willPlayVO)
         {
-            yield return new WaitUntil(() => !voAudioSource.isPlaying);
-            yield return new WaitForSeconds(0.5f);
+            if (skippableAlthoughVO)
+            {
+                if (!data.skippableWithoutDelay) yield return new WaitForSeconds(delaySkippable);
+                else yield return new WaitForSeconds(0f);
+                isSkippable = true;
+            }
+            else
+            {
+                yield return new WaitUntil(() => !voAudioSource.isPlaying);
+                yield return new WaitForSeconds(0.5f);
 
-            index++;
-            SetPanel();
+                index++;
+                SetPanel();
+            }
         }
         else
         {

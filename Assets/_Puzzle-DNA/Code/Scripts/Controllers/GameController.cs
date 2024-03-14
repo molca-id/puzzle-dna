@@ -248,7 +248,11 @@ public class GameController : SingletonMonoBehaviour<GameController>
             DataHandler.instance.GetPerksData().perks_point_data.total_perks_point_minus +=
                 LevelDataHandler.instance.currentLevelData.perksPoinMinus;
 
-            MainMenuHandler.instance.PatchPerksFromMenu();
+            MainMenuHandler.instance.PatchPerksFromMenu(delegate
+            {
+                if (!LevelDataHandler.instance.currentLevelData.openPerksPanelAfterGame) return;
+                PerksHandler.instance.OpenPerksPanel();
+            });
         }
     }
 }

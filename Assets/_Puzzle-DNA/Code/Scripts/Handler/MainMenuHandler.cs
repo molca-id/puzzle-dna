@@ -13,6 +13,8 @@ public class CharacterSelectionUI
     public Character character;
     public GameObject selectedBackground;
     public GameObject descriptionPanel;
+    public AudioClip voClipEn;
+    public AudioClip voClipId;
 }
 
 public class MainMenuHandler : MonoBehaviour
@@ -24,6 +26,7 @@ public class MainMenuHandler : MonoBehaviour
 
     [Header("Character Selection Attributes")]
     [SerializeField] Character character;
+    [SerializeField] AudioSource voAudioSource;
     [SerializeField] List<CharacterSelectionUI> characterSelections;
 
     [Header("Splash Attributes")]
@@ -51,14 +54,14 @@ public class MainMenuHandler : MonoBehaviour
         DataHandler.instance.GetUserDataValue().language = lang;
     }
 
-    public void SubmitLanguage()
+    public void SubmitLanguage(SequencePanelHandler seq)
     {
         StartCoroutine(IEOpenScreen(loadingPanel, delegate
         {
             DataHandler.instance.IEPatchLanguageData(delegate
             {
+                seq.NextPanel();
                 StartCoroutine(IECloseScreen(loadingPanel));
-                InitMenu();
             });
         }));
     }
@@ -74,6 +77,12 @@ public class MainMenuHandler : MonoBehaviour
 
         characterSelections[(int)character].selectedBackground.SetActive(true);
         characterSelections[(int)character].descriptionPanel.SetActive(true);
+
+        voAudioSource.Stop();
+        voAudioSource.clip = DataHandler.instance.GetLanguage() == "id" ?
+            characterSelections[(int)character].voClipId :
+            characterSelections[(int)character].voClipEn;
+        voAudioSource.Play();
     }
 
     public void SubmitCharacter()
@@ -102,7 +111,6 @@ public class MainMenuHandler : MonoBehaviour
             willEnable = tutorialPanel;
             willDisabled = mainMenuPanel;
             playerNameWelcome.text = DataHandler.instance.GetUserDataValue().username;
-            SelectCharacter(0);
         }
 
         willEnable.gameObject.SetActive(true);
@@ -119,21 +127,13 @@ public class MainMenuHandler : MonoBehaviour
             int index = i + 1;
             levelButtonDatas[i].transform.Find("Pinpoint").gameObject.SetActive(false);
             levelButtonDatas[i].transform.Find("LevelText").GetComponent<TextMeshProUGUI>().text = $"{i + 1}";
-
-            if (DataHandler.instance.GetUserCheckpointData().checkpoint_level_score[index] > 0)
-            {
-                levelButtonDatas[i].transform.Find("ScorePanel").gameObject.SetActive(true);
-                levelButtonDatas[i].transform.Find("ScorePanel").Find("ScoreText").GetComponent<TextMeshProUGUI>().text =
-                    DataHandler.instance.GetUserCheckpointData().checkpoint_level_score[index].ToString();
-            }
-            else
-            {
-                levelButtonDatas[i].transform.Find("ScorePanel").gameObject.SetActive(false);
-            }
+            levelButtonDatas[i].transform.Find("ScoreText").GetComponent<TextMeshProUGUI>().text =
+                DataHandler.instance.GetUserCheckpointData().checkpoint_level_score[index].ToString();
 
             if (i == 0 || i > 0 && DataHandler.instance.GetUserCheckpointData().checkpoint_level_score[index - 1] > 0)
             {
                 levelButtonDatas[i].interactable = true;
+                levelButtonDatas[i].transform.Find("Disable").gameObject.SetActive(false);
                 if (i == 0 && DataHandler.instance.GetUserCheckpointData().checkpoint_level_score[index] == 0 ||
                     DataHandler.instance.GetUserCheckpointData().checkpoint_level_score[index] == 0 &&
                     DataHandler.instance.GetUserCheckpointData().checkpoint_level_score[index - 1] > 0)
@@ -141,6 +141,7 @@ public class MainMenuHandler : MonoBehaviour
             }
             else
             {
+                levelButtonDatas[i].transform.Find("Disable").gameObject.SetActive(true);
                 levelButtonDatas[i].interactable = false;
             }
         }
@@ -173,14 +174,14 @@ public class MainMenuHandler : MonoBehaviour
         }));
     }
 
-    public void PatchPerksFromMenu()
+    public void PatchPerksFromMenu(Action executeAfter = null)
     {
         StartCoroutine(IEOpenScreen(loadingPanel, delegate
         {
             DataHandler.instance.IEPatchPerksData(delegate
             {
-                if (!LevelDataHandler.instance.currentLevelData.openPerksPanelAfterGame) return;
-                PerksHandler.instance.OpenPerksPanel();
+                executeAfter.Invoke();
+                StartCoroutine(IECloseScreen(loadingPanel));
             });
         }));
     }

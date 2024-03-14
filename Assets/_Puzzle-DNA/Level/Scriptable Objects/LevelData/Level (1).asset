@@ -15,8 +15,6 @@ MonoBehaviour:
   gameData: {fileID: 11400000, guid: ab90484f1e2012f48af90c05f7fd2075, type: 2}
   perksPoinPlus: 0
   perksPoinMinus: 0
-  prologueStoryData:
-  - {fileID: 11400000, guid: b8ed470d001d0834c9073e9e2f6e6e3c, type: 2}
-  - {fileID: 11400000, guid: e1aed95876c3cb54d8b38642ead317b5, type: 2}
-  - {fileID: 11400000, guid: a822636b176b862418f4fdf49e35f5b2, type: 2}
+  openPerksPanelAfterGame: 0
+  prologueStoryData: []
   epilogueStoryData: []

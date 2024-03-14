@@ -11,10 +11,11 @@ using UnityEngine.UI;
 public class SequenceEventsData
 {
     public bool willOpenGame;
-    public bool willPlayVO;
     [ShowIf("willOpenGame")] public LevelData levelData;
+    public bool willPlayVO;
     [ShowIf("willPlayVO")] public AudioClip voClipEn;
     [ShowIf("willPlayVO")] public AudioClip voClipId;
+    public bool skippableWithoutDelay;
     public UnityEvent whenGameLoaded;
     public UnityEvent whenGameUnloaded;
     public UnityEvent sequenceEvent;
@@ -22,10 +23,12 @@ public class SequenceEventsData
 
 public class SequencePanelHandler : MonoBehaviour
 {
+    public int index;
     public string key;
-    public GameObject parentPanel;
-    public AudioSource voAudioSource;
     public bool startAutomatically;
+    [Space]
+    public AudioSource voAudioSource;
+    public List<GameObject> parentPanel;
     [Space]
     public List<GameObject> panels;
     public List<SequenceEventsData> sequenceEvents;
@@ -33,8 +36,6 @@ public class SequencePanelHandler : MonoBehaviour
     [Header("Add On For Game")]
     public float delaySkippable;
     public bool isSkippable;
-
-    int index;
 
     void Start()
     {
@@ -47,8 +48,8 @@ public class SequencePanelHandler : MonoBehaviour
         index = 0;
         SetPanel();
 
-        if (parentPanel == null) return; 
-        parentPanel.SetActive(true);
+        if (parentPanel.Count == 0) return; 
+        parentPanel.ForEach(panel => panel.SetActive(true));
     }
 
     public void SetPanel()
@@ -59,6 +60,12 @@ public class SequencePanelHandler : MonoBehaviour
             if (panels[i] == null) continue;
             if (panels[i].GetComponentInChildren<Button>() == null) continue;
             panels[i].GetComponentInChildren<Button>().interactable = false;
+        }
+
+        if (data.willPlayVO)
+        {
+            AudioClip clip = DataHandler.instance.GetLanguage() == "id" ? data.voClipId : data.voClipEn;
+            voAudioSource.PlayOneShot(clip);
         }
 
         if (data.willOpenGame)
@@ -72,20 +79,17 @@ public class SequencePanelHandler : MonoBehaviour
             DisableAllPanels();
         }
 
-        if (data.willPlayVO)
-        {
-            AudioClip clip = DataHandler.instance.GetLanguage() == "id" ? data.voClipId : data.voClipEn;
-            voAudioSource.PlayOneShot(clip);
-        }
-
         data.sequenceEvent.Invoke();
         StartCoroutine(DelayingSkippable());
     }
 
     public void PrevPanel()
     {
-        if (!isSkippable) return;
+        SequenceEventsData data = sequenceEvents[index];
+
         if (index <= 0) return;
+        if (data.willPlayVO) return;
+        if (!isSkippable) return;
         
         index--;
         SetPanel();
@@ -93,8 +97,11 @@ public class SequencePanelHandler : MonoBehaviour
 
     public void NextPanel()
     {
-        if (!isSkippable) return;
+        SequenceEventsData data = sequenceEvents[index];
+
         if (index >= sequenceEvents.Count - 1) return;
+        if (data.willPlayVO) return;
+        if (!isSkippable) return;
 
         index++;
         SetPanel();
@@ -108,14 +115,20 @@ public class SequencePanelHandler : MonoBehaviour
     IEnumerator DelayingSkippable()
     {
         isSkippable = false;
-        if (voAudioSource != null)
-        { 
+        SequenceEventsData data = sequenceEvents[index];
+
+        if (data.willPlayVO)
+        {
             yield return new WaitUntil(() => !voAudioSource.isPlaying);
-            NextPanel();
+            yield return new WaitForSeconds(0.5f);
+
+            index++;
+            SetPanel();
         }
         else
         {
-            yield return new WaitForSeconds(delaySkippable);
+            if (!data.skippableWithoutDelay) yield return new WaitForSeconds(delaySkippable);
+            else yield return new WaitForSeconds(0f);
             isSkippable = true;
         }
     }

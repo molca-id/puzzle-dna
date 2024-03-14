@@ -29,20 +29,30 @@ public class PerksHandler : MonoBehaviour
     public class PerksValueData
     {
         public string perks_name;
-        public string perks_id;
-        public string perks_deskripsi_singkat;
-        public string perks_deskripsi_panjang;
+        [HideInInspector] public string perks_id;
+        [HideInInspector] public string perks_deskripsi_singkat;
+        [HideInInspector] public string perks_deskripsi_panjang;
         public int perks_point;
-        
-        [Space]
-        public Button perks_button;
-        public List<GameObject> perks_background;
+        [HideInInspector] public Button perks_button;
+        [HideInInspector] public List<GameObject> perks_background;
+    }
+
+    [Serializable]
+    public class AbilityUIData
+    {
+        public PerksType abilityType;
+        public GameObject iconBefore;
+        public GameObject iconAfter;
     }
 
     public static PerksHandler instance;
-    public PerksValueData currentPerk;
+
     public int pointPlusUsed;
     public int pointMinusUsed;
+    public PerksValueData currentPerk;
+
+    [Header("All Perks")]
+    public List<PerksTypeGroupData> perksTypeDatas;
 
     [Header("UI Attributes")]
     public GameObject perksPanel;
@@ -55,9 +65,7 @@ public class PerksHandler : MonoBehaviour
     [Space]
     public List<TextMeshProUGUI> perkPointPlus;
     public List<TextMeshProUGUI> perkPointMinus;
-
-    [Header("All Perks")]
-    public List<PerksTypeGroupData> perksTypeDatas;
+    public List<AbilityUIData> perkAbilityDatas;
 
     private void Awake()
     {
@@ -70,9 +78,31 @@ public class PerksHandler : MonoBehaviour
         {
             UserDataSpace.PerksValue perksValue = DataHandler.instance.GetPerksData();
             List<TalentDataSpace.TalentValueData> talentValues = DataHandler.instance.GetTalentDatas();
+            UserDataSpace.PerksAbilityData abilityStatus = DataHandler.instance.GetPerksData().perks_ability_data;
+            SetPointText();
 
-            perkPointPlus.ForEach(text => text.text = DataHandler.instance.GetPerksData().perks_point_data.perks_point_plus.ToString());
-            perkPointMinus.ForEach(text => text.text = DataHandler.instance.GetPerksData().perks_point_data.perks_point_minus.ToString());
+            foreach (AbilityUIData data in perkAbilityDatas)
+            {
+                bool upgraded = false;
+                data.iconBefore.SetActive(!upgraded);
+                data.iconAfter.SetActive(upgraded);
+
+                switch (data.abilityType)
+                {
+                    case PerksType.Drive:
+                        upgraded = abilityStatus.driveUpgraded;
+                        break;
+                    case PerksType.Network:
+                        upgraded = abilityStatus.networkUpgraded;
+                        break;
+                    case PerksType.Action:
+                        upgraded = abilityStatus.actionUpgraded;
+                        break;
+                }
+
+                data.iconBefore.SetActive(!upgraded);
+                data.iconAfter.SetActive(upgraded);
+            }
 
             for (int i = 0; i < perksTypeDatas.Count; i++)
             {
@@ -84,34 +114,30 @@ public class PerksHandler : MonoBehaviour
                     for (int k = 0; k < perksTypeDatas[i].perks_stage_datas[j].perks_value_datas.Count; k++)
                     {
                         int index = k;
-                        PerksValueData currPerk = perksTypeDatas[i].perks_stage_datas[j].perks_value_datas[index];
+                        PerksValueData perkTemp = perksTypeDatas[i].perks_stage_datas[j].perks_value_datas[index];
                         UserDataSpace.PerksValueData perk = perksValue.perks_type_datas.Find(perk => perk.perks_name.
-                            Contains(currPerk.perks_name));
+                            Contains(perkTemp.perks_name));
                         TalentDataSpace.TalentValueData talent = talentValues.Find(talent => talent.nama.
-                            Contains(currPerk.perks_name));
+                            Contains(perkTemp.perks_name));
 
                         perk.perks_id = talent.id;
-                        currPerk.perks_id = talent.id;
-                        currPerk.perks_deskripsi_panjang = talent.deskripsi.deskripsi.Replace("\n", "");
-                        currPerk.perks_deskripsi_singkat = talent.deskripsi.deskripsi_singkat;
+                        perkTemp.perks_id = talent.id;
+                        perkTemp.perks_deskripsi_panjang = talent.deskripsi.deskripsi.Replace("\n", "");
+                        perkTemp.perks_deskripsi_singkat = talent.deskripsi.deskripsi_singkat;
 
-                        perkPointObject.ForEach(perk => perk.SetActive(false));
-                        perkPointObject[currPerk.perks_point + 1].SetActive(true);
-
-                        if (currPerk.perks_background.Count == 0)
+                        if (perkTemp.perks_background.Count == 0)
                         {
-                            Transform currButton = currPerk.perks_button.transform;
+                            Transform currButton = perkTemp.perks_button.transform;
                             for (int x = 0; x < currButton.childCount - 1; x++)
                             {
-                                currPerk.perks_background.Add(currButton.GetChild(x).gameObject);
+                                perkTemp.perks_background.Add(currButton.GetChild(x).gameObject);
                             }
                         }
 
-                        currPerk.perks_background.ForEach(p => p.SetActive(false));
-                        currPerk.perks_background[currPerk.perks_point + 1].SetActive(true);
-                        currPerk.perks_button.onClick.AddListener(delegate
+                        SetPerksItemUI(perkTemp);
+                        perkTemp.perks_button.onClick.AddListener(delegate
                         {
-                            currentPerk = currPerk;
+                            currentPerk = perkTemp;
                             SetPerksDescription();
                         });
                     }
@@ -124,10 +150,114 @@ public class PerksHandler : MonoBehaviour
 
     public void ClosePerksDescription()
     {
+        perksDetailPanel.SetActive(false);
         DataHandler.instance.GetPerksData().perks_point_data.perks_point_plus += pointPlusUsed;
         DataHandler.instance.GetPerksData().perks_point_data.perks_point_minus += pointMinusUsed;
+        
+        pointPlusUsed = pointMinusUsed = 0;
+        currentPerk.perks_point = DataHandler.instance.GetPerksData().perks_type_datas.
+            Find(perk => perk.perks_id == currentPerk.perks_id).perks_point;
 
+        SetPerksItemUI(currentPerk);
+        SetPerksDetailUI();
+        SetPointText();
+    }
+
+    public void AddTalentPoint()
+    {
+        PerksValueData perk = currentPerk;
+        int pivot = perk.perks_point;
+
+        if (currentPerk.perks_point >= 3)
+        {
+            return;
+        }
+        else if (currentPerk.perks_point >= pivot)
+        {
+            if (DataHandler.instance.GetPerksData().perks_point_data.perks_point_plus <= 0)
+                return;
+
+            pointPlusUsed++;
+            //currentPerk.perks_point++;
+            DataHandler.instance.GetPerksData().perks_point_data.perks_point_plus--;
+        }
+        else if (currentPerk.perks_point < pivot)
+        {
+            if (DataHandler.instance.GetPerksData().perks_point_data.perks_point_minus <= 0)
+                return;
+
+            pointMinusUsed--;
+            //currentPerk.perks_point++;
+            DataHandler.instance.GetPerksData().perks_point_data.perks_point_minus++;
+        }
+
+        SetPerksItemUI(currentPerk);
+        SetPerksDetailUI();
+        SetPointText();
+    }
+
+    public void SubtractTalentPoint()
+    {
+        PerksValueData perk = currentPerk;
+        int pivot = perk.perks_point;
+
+        if (currentPerk.perks_point <= -1)
+        {
+            return;
+        }
+        else if (currentPerk.perks_point <= pivot)
+        {
+            if (DataHandler.instance.GetPerksData().perks_point_data.perks_point_minus <= 0)
+                return;
+
+            pointMinusUsed++;
+            //currentPerk.perks_point--;
+            DataHandler.instance.GetPerksData().perks_point_data.perks_point_minus--;
+        }
+        else if (currentPerk.perks_point > pivot)
+        {
+            if (DataHandler.instance.GetPerksData().perks_point_data.perks_point_plus <= 0)
+                return;
+
+            pointPlusUsed--;
+            //currentPerk.perks_point--;
+            DataHandler.instance.GetPerksData().perks_point_data.perks_point_plus++;
+        }
+
+        SetPerksItemUI(currentPerk);
+        SetPerksDetailUI();
+        SetPointText();
+    }
+
+    public void SubmitTalentPoint()
+    {
         perksDetailPanel.SetActive(false);
+
+        DataHandler.instance.GetPerksData().perks_point_data.perks_point_minus -= pointMinusUsed;
+        DataHandler.instance.GetPerksData().perks_point_data.perks_point_plus -= pointPlusUsed;
+        DataHandler.instance.GetPerksData().perks_type_datas.
+            Find(perk => perk.perks_id == currentPerk.perks_id).
+            perks_point = currentPerk.perks_point;
+
+        pointMinusUsed = pointPlusUsed = 0;
+    }
+
+    public void SetPerksItemUI(PerksValueData perkTemp)
+    {
+        perkTemp.perks_background.ForEach(p => p.SetActive(false));
+        perkTemp.perks_background[perkTemp.perks_point + 1].SetActive(true);
+    }
+
+    public void SetPerksDetailUI()
+    {
+        perkPointObject.ForEach(perk => perk.SetActive(false));
+        perkPointObject[currentPerk.perks_point + 1].SetActive(true);
+    }
+
+    public void SetPointText()
+    {
+        perkPointPlus.ForEach(text => text.text = DataHandler.instance.GetPerksData().perks_point_data.perks_point_plus.ToString());
+        perkPointMinus.ForEach(text => text.text = DataHandler.instance.GetPerksData().perks_point_data.perks_point_minus.ToString());
     }
 
     public void SetPerksDescription()
@@ -136,8 +266,6 @@ public class PerksHandler : MonoBehaviour
         perkTagline.text = currentPerk.perks_deskripsi_singkat;
         perkDescription.text = currentPerk.perks_deskripsi_panjang;
         perksDetailPanel.SetActive(true);
-
-        perkPointObject.ForEach(perk => perk.SetActive(false));
-        perkPointObject[currentPerk.perks_point + 1].SetActive(true);
+        SetPerksDetailUI();
     }
 }

@@ -69,6 +69,7 @@ public class GameData : SingletonScriptableObject<GameData>
     [Header("Game Attributes")]
     public int gameLevel;
     public Sprite backgroundGame;
+    public Sprite layoutGame;
 
     [Header("Dialogue Bonus Attributes")]
     public string characterInterlocutorName;

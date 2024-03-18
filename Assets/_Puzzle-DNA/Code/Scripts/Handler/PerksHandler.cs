@@ -116,7 +116,7 @@ public class PerksHandler : MonoBehaviour
                     {
                         int index = k;
                         PerksValueData perkTemp = perksTypeDatas[i].perks_stage_datas[j].perks_value_datas[index];
-                        UserDataSpace.PerksValueData perk = perksValue.perks_type_datas.Find(perk => perk.perks_name.
+                        UserDataSpace.PerksValueData perk = perksValue.perks_value_datas.Find(perk => perk.perks_name.
                             Contains(perkTemp.perks_name));
                         TalentDataSpace.TalentValueData talent = talentValues.Find(talent => talent.nama.
                             Contains(perkTemp.perks_name));
@@ -165,7 +165,7 @@ public class PerksHandler : MonoBehaviour
         DataHandler.instance.GetPerksData().perks_point_data.perks_point_plus += plusPointUsed;
         DataHandler.instance.GetPerksData().perks_point_data.perks_point_minus += minusPointUsed;
         
-        currentPerk.perks_point = DataHandler.instance.GetPerksData().perks_type_datas.
+        currentPerk.perks_point = DataHandler.instance.GetPerksData().perks_value_datas.
             Find(perk => perk.perks_id == currentPerk.perks_id).perks_point;
 
         plusPointUsed = minusPointUsed = 0;
@@ -211,9 +211,10 @@ public class PerksHandler : MonoBehaviour
 
     public void SubmitTalentPoint()
     {
-        DataHandler.instance.GetPerksData().perks_type_datas.
-            Find(perk => perk.perks_id == currentPerk.perks_id).
-            perks_point = currentPerk.perks_point;
+        UserDataSpace.PerksValueData currPerk = DataHandler.instance.GetPerksData().perks_value_datas.
+            Find(perk => perk.perks_id == currentPerk.perks_id);
+        currPerk.perks_point = currentPerk.perks_point;
+        currPerk.perks_submit_time = DateTime.Now.ToString();
 
         MainMenuHandler.instance.PatchPerksFromMenu(delegate
         {
@@ -307,7 +308,7 @@ public class PerksHandler : MonoBehaviour
                     {
                         int index = k;
                         PerksValueData perkTemp = perksTypeDatas[i].perks_stage_datas[j].perks_value_datas[index];
-                        UserDataSpace.PerksValueData perk = perksValue.perks_type_datas.Find(perk => perk.perks_name.
+                        UserDataSpace.PerksValueData perk = perksValue.perks_value_datas.Find(perk => perk.perks_name.
                             Contains(perkTemp.perks_name));
                         TalentDataSpace.TalentValueData talent = talentValues.Find(talent => talent.nama.
                             Contains(perkTemp.perks_name));

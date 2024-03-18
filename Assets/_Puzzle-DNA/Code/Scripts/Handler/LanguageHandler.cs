@@ -8,6 +8,7 @@ public class LanguageHandler : MonoBehaviour
 {
     [TextArea(3, 3)] [SerializeField] string en;
     [TextArea(3, 3)] [SerializeField] string id;
+    [TextArea(3, 3)] [SerializeField] string my;
 
     TextMeshProUGUI m_TextMeshProUGUI;
 
@@ -28,6 +29,9 @@ public class LanguageHandler : MonoBehaviour
                 break;
             case "en":
                 m_TextMeshProUGUI.text = en;
+                break;
+            case "my":
+                m_TextMeshProUGUI.text = my;
                 break;
         }
     }

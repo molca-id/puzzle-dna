@@ -50,7 +50,7 @@ namespace UserDataSpace
         public PerksAbilityData perks_ability_data;
         public PerksPointData perks_point_data;
         public List<PerksStage> perks_stage_datas;
-        public List<PerksValueData> perks_type_datas;
+        public List<PerksValueData> perks_value_datas;
     }
 
     [Serializable]
@@ -83,6 +83,7 @@ namespace UserDataSpace
         public string perks_name;
         public string perks_id;
         public int perks_point;
+        public string perks_submit_time;
     }
 
     [Serializable]

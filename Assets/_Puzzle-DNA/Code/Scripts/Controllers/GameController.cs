@@ -116,7 +116,10 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
     IEnumerator IEStartGame()
     {
-        Sprite currLayout = layoutBackgrounds.Find(x => x.name == $"{gameData.boardDimension.x}x{gameData.boardDimension.y}");
+        Sprite currLayout = null;
+        if (gameData.layoutGame != null) currLayout = gameData.layoutGame;
+        else currLayout = layoutBackgrounds.Find(x => x.name == $"{gameData.boardDimension.x}x{gameData.boardDimension.y}");
+        
         UIController.instance.SetupImages(gameData.backgroundGame, currLayout);
         Instantiate(boardController.gameObject).GetComponent<BoardController>();
 

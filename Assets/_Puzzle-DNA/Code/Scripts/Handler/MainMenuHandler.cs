@@ -29,6 +29,10 @@ public class MainMenuHandler : MonoBehaviour
     [SerializeField] AudioSource voAudioSource;
     [SerializeField] List<CharacterSelectionUI> characterSelections;
 
+    [Header("Glossarium Attributes")]
+    public Color idleColor;
+    public Color selectedColor;
+
     [Header("Splash Attributes")]
     [SerializeField] float splashSpeed;
     [SerializeField] CanvasGroup tutorialPanel;
@@ -197,6 +201,8 @@ public class MainMenuHandler : MonoBehaviour
             });
         }));
     }
+
+    public AudioSource GetVOSource() => voAudioSource;
 
     IEnumerator IEOpenScreen(CanvasGroup screen, Action executeAfter = null)
     {

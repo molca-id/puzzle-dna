@@ -28,7 +28,6 @@ public class SequencePanelHandler : MonoBehaviour
     public bool startAutomatically;
     [Space]
     public bool skippableAlthoughVO;
-    public AudioSource voAudioSource;
     public List<GameObject> parentPanel;
     [Space]
     public List<GameObject> panels;
@@ -37,6 +36,8 @@ public class SequencePanelHandler : MonoBehaviour
     [Header("Add On For Game")]
     public float delaySkippable;
     public bool isSkippable;
+
+    AudioSource voAudioSource;
 
     void Start()
     {
@@ -49,6 +50,7 @@ public class SequencePanelHandler : MonoBehaviour
         index = 0;
         SetPanel();
 
+        voAudioSource = MainMenuHandler.instance.GetVOSource();
         if (parentPanel.Count == 0) return; 
         parentPanel.ForEach(panel => panel.SetActive(true));
     }

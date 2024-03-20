@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 using UserDataSpace;
+using UnityEngine.Events;
 
 public enum PerksType { Drive, Network, Action }
 public enum PerksStage { Stage1, Stage2, Stage3 }
@@ -47,10 +48,11 @@ public class PerksHandler : MonoBehaviour
 
     public static PerksHandler instance;
 
-    public int pivotPoint;
-    public int plusPointUsed;
-    public int minusPointUsed;
-    public PerksValueData currentPerk;
+    [HideInInspector] public int pivotPoint;
+    [HideInInspector] public int plusPointUsed;
+    [HideInInspector] public int minusPointUsed;
+    [HideInInspector] public PerksValueData currentPerk;
+    public bool usingAfterEventPanel;
 
     [Header("All Perks")]
     public List<PerksTypeGroupData> perksTypeDatas;
@@ -58,6 +60,7 @@ public class PerksHandler : MonoBehaviour
     [Header("UI Attributes")]
     public GameObject perksPanel;
     public GameObject perksDetailPanel;
+    public Button submitButton;
     [Space]
     public TextMeshProUGUI perkName;
     public TextMeshProUGUI perkTagline;
@@ -67,6 +70,10 @@ public class PerksHandler : MonoBehaviour
     public List<TextMeshProUGUI> perkPointPlus;
     public List<TextMeshProUGUI> perkPointMinus;
     public List<AbilityUIData> perkAbilityDatas;
+
+    [Header("Addon For Perks Panel As Tutorial")]
+    public bool asTutorial;
+    public UnityEvent whenSubmitPerk;
 
     private void Awake()
     {
@@ -156,7 +163,9 @@ public class PerksHandler : MonoBehaviour
         perkName.text = currentPerk.perks_name;
         perkTagline.text = currentPerk.perks_deskripsi_singkat;
         perkDescription.text = currentPerk.perks_deskripsi_panjang;
+        
         perksDetailPanel.SetActive(true);
+        submitButton.interactable = false;
         SetPerksDetailUI();
     }
 
@@ -225,6 +234,9 @@ public class PerksHandler : MonoBehaviour
             perksDetailPanel.SetActive(false);
             minusPointUsed = plusPointUsed = 0;
             currentPerk = new();
+
+            if (!asTutorial) return;
+            whenSubmitPerk.Invoke();
         });
     }
 
@@ -249,6 +261,16 @@ public class PerksHandler : MonoBehaviour
 
             if (minusPointUsed > 0) minusPointUsed--;
             currentPerk.perks_point++;
+        }
+
+        if (currentPerk.perks_point > pivotPoint ||
+            currentPerk.perks_point < pivotPoint)
+        {
+            submitButton.interactable = true;
+        }
+        else
+        {
+            submitButton.interactable = false;
         }
 
         SetPerksItemUI(currentPerk);
@@ -277,6 +299,16 @@ public class PerksHandler : MonoBehaviour
 
             minusPointUsed++;
             currentPerk.perks_point--;
+        }
+
+        if (currentPerk.perks_point > pivotPoint ||
+            currentPerk.perks_point < pivotPoint)
+        {
+            submitButton.interactable = true;
+        }
+        else
+        {
+            submitButton.interactable = false;
         }
 
         SetPerksItemUI(currentPerk);

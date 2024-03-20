@@ -1,10 +1,8 @@
 ﻿using ActionCode.Attributes;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UI;
 using Utilities;
 
 public class GameController : SingletonMonoBehaviour<GameController>
@@ -234,10 +232,15 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
     public void AfterGameOver()
     {
-        int score = DataHandler.instance.GetUserCheckpointData().
-            checkpoint_level_score[LevelDataHandler.instance.currentGameData.gameLevel];
+        bool isOver = DataHandler.instance.GetUserCheckpointData().
+            checkpoint_value[LevelDataHandler.instance.currentGameData.gameLevel].
+            is_opened;
 
-        if (score == 0)
+        int score = DataHandler.instance.GetUserCheckpointData().
+            checkpoint_value[LevelDataHandler.instance.currentGameData.gameLevel].
+            checkpoint_level_score;
+
+        if (!isOver && score == 0)
         {
             DataHandler.instance.GetPerksData().perks_point_data.perks_point_plus +=
                 LevelDataHandler.instance.currentLevelData.perksPoinPlus;
@@ -255,5 +258,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
                 PerksHandler.instance.OpenPerksPanel();
             });
         }
+
+        isOver = true;
     }
 }

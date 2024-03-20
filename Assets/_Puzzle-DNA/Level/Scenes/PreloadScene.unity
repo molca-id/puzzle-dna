@@ -1503,7 +1503,41 @@ MonoBehaviour:
           perks_submit_time: 
       checkpoint_data:
         tutorial_is_done: 0
-        checkpoint_level_score: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+        checkpoint_value:
+        - checkpoint_level_score: 0
+          is_opened: 0
+        - checkpoint_level_score: 0
+          is_opened: 0
+        - checkpoint_level_score: 0
+          is_opened: 0
+        - checkpoint_level_score: 0
+          is_opened: 0
+        - checkpoint_level_score: 0
+          is_opened: 0
+        - checkpoint_level_score: 0
+          is_opened: 0
+        - checkpoint_level_score: 0
+          is_opened: 0
+        - checkpoint_level_score: 0
+          is_opened: 0
+        - checkpoint_level_score: 0
+          is_opened: 0
+        - checkpoint_level_score: 0
+          is_opened: 0
+        - checkpoint_level_score: 0
+          is_opened: 0
+        - checkpoint_level_score: 0
+          is_opened: 0
+        - checkpoint_level_score: 0
+          is_opened: 0
+        - checkpoint_level_score: 0
+          is_opened: 0
+        - checkpoint_level_score: 0
+          is_opened: 0
+        - checkpoint_level_score: 0
+          is_opened: 0
+        - checkpoint_level_score: 0
+          is_opened: 0
   talentData:
     status: success
     data: []
@@ -1602,7 +1636,7 @@ MonoBehaviour:
         perks_value_datas: []
       checkpoint_data:
         tutorial_is_done: 0
-        checkpoint_level_score: 
+        checkpoint_value: []
   currPlayerSpriteData:
     name: 
     character: 0

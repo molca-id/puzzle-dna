@@ -21,6 +21,9 @@ public class DialogueStory
 [Serializable]
 public class ContentData
 {
+    public AudioClip clipId;
+    public AudioClip clipEn;
+    public AudioClip clipMy;
     [TextArea(5, 5)] public string contentId;
     [TextArea(5, 5)] public string contentEn;
     [TextArea(5, 5)] public string contentMy;

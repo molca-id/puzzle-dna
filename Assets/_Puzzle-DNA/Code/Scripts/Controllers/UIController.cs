@@ -69,7 +69,7 @@ public class UIController : SingletonMonoBehaviour<UIController>
 
     public static void UpdateTimeLeft(float timeLeft)
     {
-        if (timeLeft <= 30)
+        if (timeLeft <= 10)
         {
             if (Time.time - instance.timePulse > 1f)
             {

@@ -14,6 +14,7 @@ public class CharacterSelectionUI
     public GameObject descriptionPanel;
     public AudioClip voClipEn;
     public AudioClip voClipId;
+    public AudioClip voClipMy;
 }
 
 [Serializable]
@@ -123,10 +124,15 @@ public class MainMenuHandler : MonoBehaviour
         characterSelections[(int)character].selectedBackground.SetActive(true);
         characterSelections[(int)character].descriptionPanel.SetActive(true);
 
+        AudioClip clip;
         voAudioSource.Stop();
-        voAudioSource.clip = DataHandler.instance.GetLanguage() == "id" ?
-            characterSelections[(int)character].voClipId :
-            characterSelections[(int)character].voClipEn;
+        if (DataHandler.instance.GetLanguage() == "id")
+            clip = characterSelections[(int)character].voClipId;
+        else if (DataHandler.instance.GetLanguage() == "en")
+            clip = characterSelections[(int)character].voClipEn;
+        else
+            clip = characterSelections[(int)character].voClipMy;
+        voAudioSource.clip = clip;
         voAudioSource.Play();
     }
 
@@ -149,8 +155,8 @@ public class MainMenuHandler : MonoBehaviour
     {
         glosHowToButtons.Clear();
         glosHowToPanel.SetActive(true);
-        glossariumTitle.SetActive(true);
-        howToTitle.SetActive(false);
+        glossariumTitle.SetActive(isGlossarium);
+        howToTitle.SetActive(!isGlossarium);
 
         if (glosHowToParentButton.childCount > 0)
             for (int i = 1; i < glosHowToParentButton.childCount; i++)
@@ -208,10 +214,11 @@ public class MainMenuHandler : MonoBehaviour
     public void InitMenu()
     {
         CanvasGroup willEnable, willDisabled;
-        if (DataHandler.instance.GetUserDataValue().checkpoint_data.tutorial_is_done)
+        if (DataHandler.instance.GetUserCheckpointData().tutorial_is_done)
         {
             willEnable = mainMenuPanel;
             willDisabled = tutorialPanel;
+            SetupLevelButtons();
         }
         else
         {
@@ -222,9 +229,6 @@ public class MainMenuHandler : MonoBehaviour
 
         willEnable.gameObject.SetActive(true);
         willDisabled.gameObject.SetActive(false);
-
-        if (!DataHandler.instance.GetUserDataValue().checkpoint_data.tutorial_is_done) return;
-        SetupLevelButtons();
     }
 
     public void SetupLevelButtons()
@@ -238,11 +242,11 @@ public class MainMenuHandler : MonoBehaviour
             levelButton[i].transform.Find("Pinpoint").gameObject.SetActive(false);
             levelButton[i].transform.Find("LevelText").GetComponent<TextMeshProUGUI>().text = $"{i + 1}";
             levelButton[i].transform.Find("ScoreText").GetComponent<TextMeshProUGUI>().text =
-                DataHandler.instance.GetUserCheckpointData().checkpoint_level_score[index].ToString();
+                DataHandler.instance.GetUserCheckpointData().checkpoint_value[index].checkpoint_level_score.ToString();
 
             //setting pinpoint
             if (levelButton.Find(button => button.transform.Find("Pinpoint").gameObject.activeSelf) == null &&
-                DataHandler.instance.GetUserCheckpointData().checkpoint_level_score[index] == 0)
+                DataHandler.instance.GetUserCheckpointData().checkpoint_value[index].checkpoint_level_score == 0)
             {
                 levelButton[i].transform.Find("Pinpoint").gameObject.SetActive(true);
                 middleButtonChecker.buttonTarget = levelButton[i].gameObject;
@@ -300,7 +304,7 @@ public class MainMenuHandler : MonoBehaviour
         {
             tutorialPanel.gameObject.SetActive(false);
             mainMenuPanel.gameObject.SetActive(false);
-            DataHandler.instance.GetUserDataValue().checkpoint_data.tutorial_is_done = cond;
+            DataHandler.instance.GetUserCheckpointData().tutorial_is_done = cond;
             DataHandler.instance.IEPatchCheckpointData(delegate
             {
                 StartCoroutine(IECloseScreen(loadingPanel));

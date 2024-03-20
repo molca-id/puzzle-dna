@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 [Serializable]
 public class DialogueStoryUI
@@ -110,9 +111,17 @@ public class LevelDataHandler : MonoBehaviour
                 SetTitleStory(0);
                 break;
             case StoryData.StoryType.Tutorial:
-                storyPanel.SetActive(false);
-                tutorialParentPanel.SetActive(true);
-                SetTutorialStory(currentStoryData.tutorialKey);
+                if (!DataHandler.instance.GetUserCheckpointData().
+                    checkpoint_value[currentGameData.gameLevel].is_opened)
+                {
+                    storyPanel.SetActive(false);
+                    tutorialParentPanel.SetActive(true);
+                    SetTutorialStory(currentStoryData.tutorialKey);
+                }
+                else
+                {
+                    SetPrologueStory(1);
+                }
                 break;
         }
     }
@@ -127,8 +136,9 @@ public class LevelDataHandler : MonoBehaviour
             
             if (isPrologue) SetPrologueStory(1);
             return;
-        } 
+        }
 
+        #region Setting Content
         DialogueStoryData dialogue = currentStoryData.dialogueStory.dialogueStories[dialogueIndex];
         if (dialogue.playerIsTalking)
         {
@@ -136,9 +146,23 @@ public class LevelDataHandler : MonoBehaviour
             playerDialogue.nameText.text = DataHandler.instance.GetUserDataValue().username;
 
             if (DataHandler.instance.GetLanguage() == "id")
-                playerDialogue.dialogueText.text = dialogue.contentData.contentId;
+                SetStory(
+                    playerDialogue.dialogueText, 
+                    dialogue.contentData.clipId, 
+                    dialogue.contentData.contentId
+                    );
+            else if (DataHandler.instance.GetLanguage() == "en")
+                SetStory(
+                    playerDialogue.dialogueText,
+                    dialogue.contentData.clipEn,
+                    dialogue.contentData.contentEn
+                    );
             else
-                playerDialogue.dialogueText.text = dialogue.contentData.contentEn;
+                SetStory(
+                    playerDialogue.dialogueText,
+                    dialogue.contentData.clipMy,
+                    dialogue.contentData.contentMy
+                    );
         }
         else
         {
@@ -146,13 +170,28 @@ public class LevelDataHandler : MonoBehaviour
             interlocutorDialogue.nameText.text = currentStoryData.dialogueStory.interlocutorName;
 
             if (DataHandler.instance.GetLanguage() == "id")
-                playerDialogue.dialogueText.text = dialogue.contentData.contentId;
+                SetStory(
+                    interlocutorDialogue.dialogueText,
+                    dialogue.contentData.clipId,
+                    dialogue.contentData.contentId
+                    );
+            else if (DataHandler.instance.GetLanguage() == "en")
+                SetStory(
+                    interlocutorDialogue.dialogueText,
+                    dialogue.contentData.clipEn,
+                    dialogue.contentData.contentEn
+                    );
             else
-                playerDialogue.dialogueText.text = dialogue.contentData.contentEn;
+                SetStory(
+                    interlocutorDialogue.dialogueText,
+                    dialogue.contentData.clipMy,
+                    dialogue.contentData.contentMy
+                    );
         }
 
         interlocutorDialogue.dialoguePanel.SetActive(!dialogue.playerIsTalking);
         playerDialogue.dialoguePanel.SetActive(dialogue.playerIsTalking);
+        #endregion
     }
 
     public void SetNarrationStory(int factor)
@@ -167,12 +206,26 @@ public class LevelDataHandler : MonoBehaviour
             return;
         }
 
+        #region Setting Content
         if (DataHandler.instance.GetLanguage() == "id")
-            narrationText.text = currentStoryData.narrationStories[narrationIndex].contentId;
+            SetStory(
+                narrationText,
+                currentStoryData.narrationStories[narrationIndex].clipId,
+                currentStoryData.narrationStories[narrationIndex].contentId
+                );
         else if (DataHandler.instance.GetLanguage() == "en")
-            narrationText.text = currentStoryData.narrationStories[narrationIndex].contentEn;
+            SetStory(
+                narrationText,
+                currentStoryData.narrationStories[narrationIndex].clipEn,
+                currentStoryData.narrationStories[narrationIndex].contentEn
+                );
         else
-            narrationText.text = currentStoryData.narrationStories[narrationIndex].contentMy;
+            SetStory(
+                narrationText,
+                currentStoryData.narrationStories[narrationIndex].clipMy,
+                currentStoryData.narrationStories[narrationIndex].contentMy
+                );
+        #endregion
     }
 
     public void SetPopUpStory(int factor)
@@ -187,12 +240,26 @@ public class LevelDataHandler : MonoBehaviour
             return;
         }
 
+        #region Setting Content
         if (DataHandler.instance.GetLanguage() == "id")
-            popUpText.text = currentStoryData.popUpStories[popUpIndex].contentId;
+            SetStory(
+                popUpText,
+                currentStoryData.popUpStories[narrationIndex].clipId,
+                currentStoryData.popUpStories[narrationIndex].contentId
+                );
         else if (DataHandler.instance.GetLanguage() == "en")
-            popUpText.text = currentStoryData.popUpStories[popUpIndex].contentEn;
+            SetStory(
+                popUpText,
+                currentStoryData.popUpStories[narrationIndex].clipEn,
+                currentStoryData.popUpStories[narrationIndex].contentEn
+                );
         else
-            popUpText.text = currentStoryData.popUpStories[popUpIndex].contentMy;
+            SetStory(
+                popUpText,
+                currentStoryData.popUpStories[narrationIndex].clipMy,
+                currentStoryData.popUpStories[narrationIndex].contentMy
+                );
+        #endregion
     }
 
     public void SetTitleStory(int factor)
@@ -207,17 +274,42 @@ public class LevelDataHandler : MonoBehaviour
             return;
         }
 
+        #region Setting Content
         if (DataHandler.instance.GetLanguage() == "id")
-            titleText.text = currentStoryData.titleStories[titleIndex].contentId;
-        else if(DataHandler.instance.GetLanguage() == "en")
-            titleText.text = currentStoryData.titleStories[titleIndex].contentEn;
+            SetStory(
+                titleText,
+                currentStoryData.titleStories[narrationIndex].clipId,
+                currentStoryData.titleStories[narrationIndex].contentId
+                );
+        else if (DataHandler.instance.GetLanguage() == "en")
+            SetStory(
+                titleText,
+                currentStoryData.titleStories[narrationIndex].clipEn,
+                currentStoryData.titleStories[narrationIndex].contentEn
+                );
         else
-            titleText.text = currentStoryData.titleStories[titleIndex].contentMy;
+            SetStory(
+                titleText,
+                currentStoryData.titleStories[narrationIndex].clipMy,
+                currentStoryData.titleStories[narrationIndex].contentMy
+                );
+        #endregion
     }
 
     public void SetTutorialStory(string key)
     {
         FindObjectsOfType<SequencePanelHandler>().ToList().
             Find(seq => seq.key == key).Init();
+    }
+
+    public void SetStory(TextMeshProUGUI text, AudioClip clip, string textValue)
+    {
+        AudioSource voAudioSource = MainMenuHandler.instance.GetVOSource();
+        voAudioSource.Stop();
+        text.text = textValue;
+        
+        if (clip == null) return;
+        voAudioSource.clip = clip;
+        voAudioSource.Play();
     }
 }

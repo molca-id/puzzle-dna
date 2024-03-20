@@ -147,7 +147,7 @@ public class DataHandler : MonoBehaviour
 
     public void IEPatchCheckpointData(Action executeAfter = null)
     {
-        string json = "{ \"checkpoint_data\" : " + JsonUtility.ToJson(GetUserDataValue().checkpoint_data) + "}";
+        string json = "{ \"checkpoint_data\" : " + JsonUtility.ToJson(GetUserCheckpointData()) + "}";
 
         //hitting api
         StartCoroutine(

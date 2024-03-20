@@ -1,0 +1,410 @@
+{
+    "success": true,
+    "message": "success get Data",
+    "data": {
+        "status": "open",
+        "perks_value": {
+            "perks_ability_data": {
+                "driveUpgraded": false,
+                "networkUpgraded": false,
+                "actionUpgraded": false
+            },
+            "perks_point_data": {
+                "total_perks_point_plus": 3,
+                "total_perks_point_minus": 0,
+                "perks_point_plus": 3,
+                "perks_point_minus": 0
+            },
+            "perks_stage_datas": [
+                {
+                    "perks_types": 0,
+                    "perks_stage_locks": [
+                        false,
+                        true,
+                        true
+                    ]
+                },
+                {
+                    "perks_types": 1,
+                    "perks_stage_locks": [
+                        true,
+                        true,
+                        true
+                    ]
+                },
+                {
+                    "perks_types": 2,
+                    "perks_stage_locks": [
+                        true,
+                        true,
+                        true
+                    ]
+                }
+            ],
+            "perks_value_datas": [
+                {
+                    "perks_name": "COMPETITIVE",
+                    "perks_id": "",
+                    "perks_point": 0,
+                    "perks_submit_time": ""
+                },
+                {
+                    "perks_name": "DIRECTIVE",
+                    "perks_id": "",
+                    "perks_point": 0,
+                    "perks_submit_time": ""
+                },
+                {
+                    "perks_name": "GOAL-GETTER",
+                    "perks_id": "",
+                    "perks_point": 0,
+                    "perks_submit_time": ""
+                },
+                {
+                    "perks_name": "OPTIMIZER",
+                    "perks_id": "",
+                    "perks_point": 0,
+                    "perks_submit_time": ""
+                },
+                {
+                    "perks_name": "PERFECTIONIST",
+                    "perks_id": "",
+                    "perks_point": 0,
+                    "perks_submit_time": ""
+                },
+                {
+                    "perks_name": "SELF-CONFIDENT",
+                    "perks_id": "",
+                    "perks_point": 0,
+                    "perks_submit_time": ""
+                },
+                {
+                    "perks_name": "SIGNIFICANT",
+                    "perks_id": "",
+                    "perks_point": 0,
+                    "perks_submit_time": ""
+                },
+                {
+                    "perks_name": "AVERSIVE",
+                    "perks_id": "",
+                    "perks_point": 0,
+                    "perks_submit_time": ""
+                },
+                {
+                    "perks_name": "COLLECTOR",
+                    "perks_id": "",
+                    "perks_point": 0,
+                    "perks_submit_time": ""
+                },
+                {
+                    "perks_name": "CONTEMPLATIVE",
+                    "perks_id": "",
+                    "perks_point": 0,
+                    "perks_submit_time": ""
+                },
+                {
+                    "perks_name": "EQUITABLE",
+                    "perks_id": "",
+                    "perks_point": 0,
+                    "perks_submit_time": ""
+                },
+                {
+                    "perks_name": "EXPLORER",
+                    "perks_id": "",
+                    "perks_point": 0,
+                    "perks_submit_time": ""
+                },
+                {
+                    "perks_name": "NOBLE",
+                    "perks_id": "",
+                    "perks_point": 0,
+                    "perks_submit_time": ""
+                },
+                {
+                    "perks_name": "VIGOROUS",
+                    "perks_id": "",
+                    "perks_point": 0,
+                    "perks_submit_time": ""
+                },
+                {
+                    "perks_name": "VISIONARY",
+                    "perks_id": "",
+                    "perks_point": 0,
+                    "perks_submit_time": ""
+                },
+                {
+                    "perks_name": "ADVISOR",
+                    "perks_id": "",
+                    "perks_point": 0,
+                    "perks_submit_time": ""
+                },
+                {
+                    "perks_name": "ARTICULATIVE",
+                    "perks_id": "",
+                    "perks_point": 0,
+                    "perks_submit_time": ""
+                },
+                {
+                    "perks_name": "COLLABORATOR",
+                    "perks_id": "",
+                    "perks_point": 0,
+                    "perks_submit_time": ""
+                },
+                {
+                    "perks_name": "COURAGEOUS",
+                    "perks_id": "",
+                    "perks_point": 0,
+                    "perks_submit_time": ""
+                },
+                {
+                    "perks_name": "CONVINCING",
+                    "perks_id": "",
+                    "perks_point": 0,
+                    "perks_submit_time": ""
+                },
+                {
+                    "perks_name": "DEVELOPER",
+                    "perks_id": "",
+                    "perks_point": 0,
+                    "perks_submit_time": ""
+                },
+                {
+                    "perks_name": "ENERGIZER",
+                    "perks_id": "",
+                    "perks_point": 0,
+                    "perks_submit_time": ""
+                },
+                {
+                    "perks_name": "AFFECTIONATE",
+                    "perks_id": "",
+                    "perks_point": 0,
+                    "perks_submit_time": ""
+                },
+                {
+                    "perks_name": "CARING",
+                    "perks_id": "",
+                    "perks_point": 0,
+                    "perks_submit_time": ""
+                },
+                {
+                    "perks_name": "FORGIVING",
+                    "perks_id": "",
+                    "perks_point": 0,
+                    "perks_submit_time": ""
+                },
+                {
+                    "perks_name": "GENEROUS",
+                    "perks_id": "",
+                    "perks_point": 0,
+                    "perks_submit_time": ""
+                },
+                {
+                    "perks_name": "GENUINE",
+                    "perks_id": "",
+                    "perks_point": 0,
+                    "perks_submit_time": ""
+                },
+                {
+                    "perks_name": "HARMONY",
+                    "perks_id": "",
+                    "perks_point": 0,
+                    "perks_submit_time": ""
+                },
+                {
+                    "perks_name": "PERSONALIZER",
+                    "perks_id": "",
+                    "perks_point": 0,
+                    "perks_submit_time": ""
+                },
+                {
+                    "perks_name": "SOCIABLE",
+                    "perks_id": "",
+                    "perks_point": 0,
+                    "perks_submit_time": ""
+                },
+                {
+                    "perks_name": "CONTEXTUAL",
+                    "perks_id": "",
+                    "perks_point": 0,
+                    "perks_submit_time": ""
+                },
+                {
+                    "perks_name": "FOCUSED",
+                    "perks_id": "",
+                    "perks_point": 0,
+                    "perks_submit_time": ""
+                },
+                {
+                    "perks_name": "INTUITIVE",
+                    "perks_id": "",
+                    "perks_point": 0,
+                    "perks_submit_time": ""
+                },
+                {
+                    "perks_name": "INNOVATIVE",
+                    "perks_id": "",
+                    "perks_point": 0,
+                    "perks_submit_time": ""
+                },
+                {
+                    "perks_name": "LOGICAL",
+                    "perks_id": "",
+                    "perks_point": 0,
+                    "perks_submit_time": ""
+                },
+                {
+                    "perks_name": "STRATEGIZER",
+                    "perks_id": "",
+                    "perks_point": 0,
+                    "perks_submit_time": ""
+                },
+                {
+                    "perks_name": "TROUBLESHOOTER",
+                    "perks_id": "",
+                    "perks_point": 0,
+                    "perks_submit_time": ""
+                },
+                {
+                    "perks_name": "ACCOUNTABLE",
+                    "perks_id": "",
+                    "perks_point": 0,
+                    "perks_submit_time": ""
+                },
+                {
+                    "perks_name": "AUTHORITATIVE",
+                    "perks_id": "",
+                    "perks_point": 0,
+                    "perks_submit_time": ""
+                },
+                {
+                    "perks_name": "DECISIVE",
+                    "perks_id": "",
+                    "perks_point": 0,
+                    "perks_submit_time": ""
+                },
+                {
+                    "perks_name": "FIXER",
+                    "perks_id": "",
+                    "perks_point": 0,
+                    "perks_submit_time": ""
+                },
+                {
+                    "perks_name": "FLEXIBLE",
+                    "perks_id": "",
+                    "perks_point": 0,
+                    "perks_submit_time": ""
+                },
+                {
+                    "perks_name": "INITIATOR",
+                    "perks_id": "",
+                    "perks_point": 0,
+                    "perks_submit_time": ""
+                },
+                {
+                    "perks_name": "RESOURCEFUL",
+                    "perks_id": "",
+                    "perks_point": 0,
+                    "perks_submit_time": ""
+                },
+                {
+                    "perks_name": "STRUCTURED",
+                    "perks_id": "",
+                    "perks_point": 0,
+                    "perks_submit_time": ""
+                }
+            ]
+        },
+        "duration": "00:00:00",
+        "game_start": null,
+        "game_finish": null,
+        "game_url": "N0hKUWYyTkVjRkZrTzcyUllPS1ZpdXY2M0RLQ1ZRbEZRSHpyZVR3UzkwN3FYNFlvWHNRc2RkNWFyMGFEK0lsNw==",
+        "language": "en",
+        "checkpoint_data": {
+            "tutorial_is_done": true,
+            "checkpoint_value": [
+                {
+                    "checkpoint_level_score": 150,
+                    "is_opened": false
+                },
+                {
+                    "checkpoint_level_score": 1,
+                    "is_opened": false
+                },
+                {
+                    "checkpoint_level_score": 1,
+                    "is_opened": false
+                },
+                {
+                    "checkpoint_level_score": 1,
+                    "is_opened": false
+                },
+                {
+                    "checkpoint_level_score": 1,
+                    "is_opened": false
+                },
+                {
+                    "checkpoint_level_score": 1,
+                    "is_opened": false
+                },
+                {
+                    "checkpoint_level_score": 1,
+                    "is_opened": false
+                },
+                {
+                    "checkpoint_level_score": 1,
+                    "is_opened": false
+                },
+                {
+                    "checkpoint_level_score": 1,
+                    "is_opened": false
+                },
+                {
+                    "checkpoint_level_score": 1,
+                    "is_opened": false
+                },
+                {
+                    "checkpoint_level_score": 1,
+                    "is_opened": false
+                },
+                {
+                    "checkpoint_level_score": 0,
+                    "is_opened": false
+                },
+                {
+                    "checkpoint_level_score": 0,
+                    "is_opened": false
+                },
+                {
+                    "checkpoint_level_score": 0,
+                    "is_opened": false
+                },
+                {
+                    "checkpoint_level_score": 0,
+                    "is_opened": false
+                },
+                {
+                    "checkpoint_level_score": 0,
+                    "is_opened": false
+                },
+                {
+                    "checkpoint_level_score": 0,
+                    "is_opened": false
+                }
+            ]
+        },
+        "narration_story": 0,
+        "bgm_value": 0,
+        "sfx_value": 0,
+        "character": 1,
+        "createdAt": "2024-03-20T09:40:35.290Z",
+        "updatedAt": "2024-03-20T09:46:01.579Z",
+        "email": "indohack.ih@gmail.com",
+        "job": "Network Engineer",
+        "f_pendidikan": "SMP",
+        "username": "Muhamad Fadhilah",
+        "survey_code": "N0hKUWYyTkVjRkZrTzcyUllPS1ZpdXY2M0RLQ1ZRbEZRSHpyZVR3UzkwN3FYNFlvWHNRc2RkNWFyMGFEK0lsNw==",
+        "survey_dibuat": "2024-02-13 15:09:33",
+        "tgl_lahir": "2024-02-15",
+        "f_jenis_kelamin": "1"
+    }
+}

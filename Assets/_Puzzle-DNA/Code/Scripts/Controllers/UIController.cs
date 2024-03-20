@@ -104,7 +104,7 @@ public class UIController : SingletonMonoBehaviour<UIController>
 
     public void SetMultiplierScoreState(bool cond)
     {
-        int multiplier = BoardController.usingUpgradedPowerUps ? 4 : 2;
+        int multiplier = BoardController.usingUpgradedPowerUpsD ? 4 : 2;
         GameController.multiplierScore = cond ? multiplier : 1;
 
         multiplierText.text = $"x{GameController.multiplierScore}";

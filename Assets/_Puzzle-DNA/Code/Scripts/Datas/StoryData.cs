@@ -23,6 +23,7 @@ public class ContentData
 {
     [TextArea(5, 5)] public string contentId;
     [TextArea(5, 5)] public string contentEn;
+    [TextArea(5, 5)] public string contentMy;
 }
 
 [CreateAssetMenu(fileName = "StoryData", menuName = "DNA/StoryData", order = 1)]

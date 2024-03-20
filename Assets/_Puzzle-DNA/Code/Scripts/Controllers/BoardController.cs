@@ -32,18 +32,25 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
         set { instance._abilityDriveDuration = value; }
     }
 
-    [SerializeField] bool _usingPowerUps;
-    public static bool usingPowerUps
+    [SerializeField] bool _usingUpgradedPowerUpsD;
+    public static bool usingUpgradedPowerUpsD
     {
-        get { return instance._usingPowerUps; }
-        set { instance._usingPowerUps = value; }
+        get { return instance._usingUpgradedPowerUpsD; }
+        set { instance._usingUpgradedPowerUpsD = value; }
     }
 
-    [SerializeField] bool _usingUpgradedPowerUps;
-    public static bool usingUpgradedPowerUps
+    [SerializeField] bool _usingUpgradedPowerUpsN;
+    public static bool usingUpgradedPowerUpsN
     {
-        get { return instance._usingUpgradedPowerUps; }
-        set { instance._usingUpgradedPowerUps = value; }
+        get { return instance._usingUpgradedPowerUpsN; }
+        set { instance._usingUpgradedPowerUpsN = value; }
+    }
+
+    [SerializeField] bool _usingUpgradedPowerUpsA;
+    public static bool usingUpgradedPowerUpsA
+    {
+        get { return instance._usingUpgradedPowerUpsA; }
+        set { instance._usingUpgradedPowerUpsA = value; }
     }
 
     [SerializeField] bool _usingTutorial;
@@ -492,14 +499,14 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
 
     public static MatchInfo GetSpecialMatch(bool isSpecialGem, bool isRocketGem, BaseGem gem, Func<BaseGem, bool> validateGem)
     {
-        if (usingUpgradedPowerUps)
+        if (isRocketGem)
         {
-            if (isRocketGem) return GetCrossMatch(gem, isSpecialGem, validateGem);
-            else return GetBomb5x5Match(gem, validateGem);
+            if (usingUpgradedPowerUpsN) return GetCrossMatch(gem, isSpecialGem, validateGem);
+            else return GetHorizontalMatch(gem, isSpecialGem, validateGem);
         }
         else
         {
-            if (isRocketGem) return GetHorizontalMatch(gem, isSpecialGem, validateGem);
+            if (usingUpgradedPowerUpsA) return GetBomb5x5Match(gem, validateGem);
             else return GetBomb3x3Match(gem, validateGem);
         }
     }
@@ -703,8 +710,7 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
             }
 
             if (matchInfo.IsPowerUpMatch() &&
-                matchInfo.matches.Count >= 4 &&
-                usingPowerUps)
+                matchInfo.matches.Count >= 4)
             {
                 if (matchInfo.GetMatchType() == GemType.Drive)
                 {

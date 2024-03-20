@@ -6,7 +6,6 @@ public class GameGenerator : MonoBehaviour
 {
     public static GameGenerator instance;
     [SerializeField] int currentGameLevel;
-    [SerializeField] Sprite playerSprite;
 
     void Awake()
     {
@@ -34,7 +33,6 @@ public class GameGenerator : MonoBehaviour
         yield return new WaitUntil(() => FindObjectOfType<GameController>() != null);
 
         GameController controller = FindObjectOfType<GameController>();
-        controller.characterPlayerSprite = playerSprite;
         controller.Init(data);
     }
 }

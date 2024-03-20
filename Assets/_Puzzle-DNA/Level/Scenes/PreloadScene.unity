@@ -1503,11 +1503,72 @@ MonoBehaviour:
           perks_submit_time: 
       checkpoint_data:
         tutorial_is_done: 0
-        checkpoint_level_score: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+        checkpoint_level_score: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   talentData:
     status: success
     data: []
-  userData:
+  playerSpriteDatas:
+  - name: Alfa
+    character: 0
+    idleSprite: {fileID: 21300000, guid: d18cfebb315314d41a2ab1917f680472, type: 3}
+    expressionDatas:
+    - expressionType: 0
+      sprite: {fileID: 0}
+    - expressionType: 1
+      sprite: {fileID: 0}
+    - expressionType: 2
+      sprite: {fileID: 0}
+  - name: Rei
+    character: 1
+    idleSprite: {fileID: 21300000, guid: 989db78a6a2a42546a1fe54cd3d21ab5, type: 3}
+    expressionDatas:
+    - expressionType: 0
+      sprite: {fileID: 0}
+    - expressionType: 1
+      sprite: {fileID: 0}
+    - expressionType: 2
+      sprite: {fileID: 0}
+  - name: Budi
+    character: 2
+    idleSprite: {fileID: 21300000, guid: ec1cb66788083c142ba7059b1366c15b, type: 3}
+    expressionDatas:
+    - expressionType: 0
+      sprite: {fileID: 0}
+    - expressionType: 1
+      sprite: {fileID: 0}
+    - expressionType: 2
+      sprite: {fileID: 0}
+  - name: Bunga
+    character: 3
+    idleSprite: {fileID: 21300000, guid: 55971a739b7fe6645b7c1054bc13e401, type: 3}
+    expressionDatas:
+    - expressionType: 0
+      sprite: {fileID: 0}
+    - expressionType: 1
+      sprite: {fileID: 0}
+    - expressionType: 2
+      sprite: {fileID: 0}
+  - name: Fatimah
+    character: 4
+    idleSprite: {fileID: 21300000, guid: 54f023b9e040f7f41b6f0dfbcce09baf, type: 3}
+    expressionDatas:
+    - expressionType: 0
+      sprite: {fileID: 0}
+    - expressionType: 1
+      sprite: {fileID: 0}
+    - expressionType: 2
+      sprite: {fileID: 0}
+  - name: Mentari
+    character: 5
+    idleSprite: {fileID: 21300000, guid: 5ecd0795ea748f64a88cd0efda2c734a, type: 3}
+    expressionDatas:
+    - expressionType: 0
+      sprite: {fileID: 0}
+    - expressionType: 1
+      sprite: {fileID: 0}
+    - expressionType: 2
+      sprite: {fileID: 0}
+  currentUserData:
     success: 0
     message: 
     data:
@@ -1542,9 +1603,32 @@ MonoBehaviour:
       checkpoint_data:
         tutorial_is_done: 0
         checkpoint_level_score: 
+  currPlayerSpriteData:
+    name: 
+    character: 0
+    idleSprite: {fileID: 0}
+    expressionDatas: []
   bgmAudioMixer: {fileID: 24100000, guid: e924da3ea1125eb4a997dba622a13f0e, type: 2}
   sfxAudioMixer: {fileID: 24100000, guid: c3c0b1f744bce6241ac6565d6feaafa3, type: 2}
   languageHandlers: []
+  levelDatas:
+  - {fileID: 11400000, guid: a076cd24d5dbcf24998790fbb7f4b49d, type: 2}
+  - {fileID: 11400000, guid: b0ee9c34e1093ba40b66aa0d5b6c2589, type: 2}
+  - {fileID: 11400000, guid: bc37467a538969b4591c85d92999c8ba, type: 2}
+  - {fileID: 11400000, guid: 58498b9592887694f92f1f7fee7e8d44, type: 2}
+  - {fileID: 11400000, guid: fc93ab766c5334d4a879271a964ed169, type: 2}
+  - {fileID: 11400000, guid: 789124f18cfc5954ba59eafd1c2d14db, type: 2}
+  - {fileID: 11400000, guid: 061c0032c1ea26541bf4b81c99077cb9, type: 2}
+  - {fileID: 11400000, guid: 96f26c8056cbaa240aedcf856b199bda, type: 2}
+  - {fileID: 11400000, guid: ce8e431178189084380dab4192ea7a5c, type: 2}
+  - {fileID: 11400000, guid: edbfcb48f814fd44e927c9ed4be12f95, type: 2}
+  - {fileID: 11400000, guid: e61e6391db55079448e93a7e650c3e1e, type: 2}
+  - {fileID: 11400000, guid: 510654073f762d94f89467820ff9739a, type: 2}
+  - {fileID: 11400000, guid: 0da14fb181c85244ba386dca384da913, type: 2}
+  - {fileID: 11400000, guid: 124695a9437768c4383bbdc7fe1ccf2c, type: 2}
+  - {fileID: 11400000, guid: 22e2033cc8c6658439a78dbbe5fe1e0a, type: 2}
+  - {fileID: 11400000, guid: 464e4407097af934ca4d2b87964524f7, type: 2}
+  - {fileID: 11400000, guid: bffb7f3e76dbd444884ad3c31fb03554, type: 2}
 --- !u!114 &698362474
 MonoBehaviour:
   m_ObjectHideFlags: 0

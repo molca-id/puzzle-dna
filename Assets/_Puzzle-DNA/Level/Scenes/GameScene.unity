@@ -1232,6 +1232,7 @@ MonoBehaviour:
     end
   id: Berikut adalah batas yang kamu miliki waktu, ketika waktu habis, maka permainan
     akan berakhir
+  my: 
 --- !u!1 &501209974
 GameObject:
   m_ObjectHideFlags: 0
@@ -1385,6 +1386,7 @@ MonoBehaviour:
     will increase
   id: Berikut adalah jumlah score mu, semakin banyak puzzle yang digabungkan, semakin
     bertambah banyak score mu
+  my: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2384,7 +2386,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -250.00012, y: 101}
+  m_AnchoredPosition: {x: -250.00058, y: 101}
   m_SizeDelta: {x: -745.6, y: -238.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &920450452
@@ -3043,7 +3045,11 @@ MonoBehaviour:
     dialoguePanel: {fileID: 99902094}
     nameText: {fileID: 678353376}
     dialogueText: {fileID: 1322711079}
-  dialogueBonus: []
+  dialogues:
+    playerIdleSprite: {fileID: 0}
+    interlocutorIdleSprite: {fileID: 0}
+    interlocutorName: 
+    dialogueBonus: []
 --- !u!1 &1181313166
 GameObject:
   m_ObjectHideFlags: 0
@@ -3410,7 +3416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25a613a1c35d4354bb7f368b676d0725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 11400000, guid: 7b8ed63159ffe7840b2210a720eaa54b, type: 2}
+  gameData: {fileID: 11400000, guid: 5198ef349977d874f92e389044dc6c7e, type: 2}
   boardController: {fileID: 524894936068949708, guid: 11bf636dff762504387df3b2170baaaf,
     type: 3}
   layoutBackgrounds:
@@ -3418,6 +3424,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: a06a5d26b5fba2543a5d520c449a9fbb, type: 3}
   - {fileID: 21300000, guid: f4408cade57f1e64ca78b4e08fc5875c, type: 3}
   - {fileID: 21300000, guid: 948b682df88c15e44adf93875783e5bc, type: 3}
+  - {fileID: 21300000, guid: 95f266537f2abf44bb988741c9ab32f2, type: 3}
+  - {fileID: 21300000, guid: 84e3ee4134c175b4281d44cc4b9a8c35, type: 3}
+  - {fileID: 21300000, guid: 909115185aac09a4183aa38246c9c54a, type: 3}
   bombAnimParent: {fileID: 1405521935}
   bombAnimPrefab: {fileID: 2443201941435586885, guid: edd5ff1dfb4613e4a8e636a0db3a3a73,
     type: 3}
@@ -3556,7 +3565,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -25.550049}
+  m_AnchoredPosition: {x: 0, y: -25.550278}
   m_SizeDelta: {x: -100, y: -130.49998}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1322711079
@@ -3717,8 +3726,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1178497469}
   - {fileID: 2066182448}
+  - {fileID: 1178497469}
   - {fileID: 1282053297}
   - {fileID: 1452547058}
   - {fileID: 1601851626}
@@ -3928,6 +3937,7 @@ MonoBehaviour:
     more of the same shape combine
   id: Berikut adalah papan pada minigame, kamu bisa menggerakkan potongan puzzle
     hingga 3 atau lebih bentuk yang sama bergabung
+  my: 
 --- !u!1 &1601851625
 GameObject:
   m_ObjectHideFlags: 0
@@ -4040,8 +4050,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4290032820
-  m_fontColor: {r: 0.7075472, g: 0.7075472, b: 0.7075472, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4163,7 +4173,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -25.550049}
+  m_AnchoredPosition: {x: 0, y: -25.550278}
   m_SizeDelta: {x: -100, y: -130.49998}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1719580380
@@ -4698,7 +4708,7 @@ GameObject:
   - component: {fileID: 2066182448}
   - component: {fileID: 2066182449}
   m_Layer: 0
-  m_Name: Game Tutorial Handler
+  m_Name: First Game Tutorial Handler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

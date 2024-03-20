@@ -1,11 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 using UserDataSpace;
+using TMPro;
 
 [Serializable]
 public class CharacterSelectionUI
@@ -15,6 +14,22 @@ public class CharacterSelectionUI
     public GameObject descriptionPanel;
     public AudioClip voClipEn;
     public AudioClip voClipId;
+}
+
+[Serializable]
+public class GlossariumData
+{
+    public string name;
+    public ContentData titleValue;
+    public ContentData descriptionValue;
+}
+
+[Serializable]
+public class LevelButtonData
+{
+    public GameObject stageObject;
+    public List<Button> beforeButtons;
+    public Button currentButton;
 }
 
 public class MainMenuHandler : MonoBehaviour
@@ -29,9 +44,18 @@ public class MainMenuHandler : MonoBehaviour
     [SerializeField] AudioSource voAudioSource;
     [SerializeField] List<CharacterSelectionUI> characterSelections;
 
-    [Header("Glossarium Attributes")]
-    public Color idleColor;
-    public Color selectedColor;
+    [Header("Glossarium & HowTo Attributes")]
+    [SerializeField] Button buttonTemp;
+    [SerializeField] GameObject glosHowToPanel;
+    [SerializeField] Transform glosHowToParentButton;
+    [SerializeField] TextMeshProUGUI glosHowToDescriptionText;
+    [SerializeField] GameObject glossariumTitle;
+    [SerializeField] GameObject howToTitle;
+    [SerializeField] Color idleColor;
+    [SerializeField] Color selectedColor;
+    [SerializeField] List<GlossariumData> glossariumDatas;
+    [SerializeField] List<GlossariumData> howToDatas;
+    [HideInInspector] public List<Button> glosHowToButtons;
 
     [Header("Splash Attributes")]
     [SerializeField] float splashSpeed;
@@ -40,7 +64,15 @@ public class MainMenuHandler : MonoBehaviour
     [SerializeField] CanvasGroup loadingPanel;
 
     [Header("Level Attributes")]
-    [SerializeField] List<Button> levelButtonDatas;
+    [SerializeField] List<Button> levelButton;
+    [SerializeField] List<LevelButtonData> levelButtons;
+
+    [Header("ScrollView Attributes")]
+    [HideInInspector] public LevelButtonData levelButtonTemp;
+    public MiddleButtonChecker middleButtonChecker;
+    public ScrollRect scrollRect;
+    public float scrollSpeed;
+    public bool scrollAutomatically;
 
     private void Awake()
     {
@@ -50,6 +82,15 @@ public class MainMenuHandler : MonoBehaviour
     private void Start()
     {
         InitMenu();
+    }
+
+    private void Update()
+    {
+        scrollRect.enabled = !scrollAutomatically;
+        if (!scrollAutomatically) return;
+        scrollRect.horizontalNormalizedPosition += scrollSpeed * Time.deltaTime;
+        if (scrollRect.horizontalNormalizedPosition > 1)
+            scrollAutomatically = false;
     }
 
     #region Tutorial
@@ -91,6 +132,7 @@ public class MainMenuHandler : MonoBehaviour
 
     public void SubmitCharacter()
     {
+        DataHandler.instance.currPlayerSpriteData = DataHandler.instance.playerSpriteDatas.Find(data => data.character == character);
         DataHandler.instance.GetUserDataValue().character = (int)character;
         StartCoroutine(IEOpenScreen(loadingPanel, delegate
         {
@@ -102,7 +144,68 @@ public class MainMenuHandler : MonoBehaviour
     }
     #endregion
 
-    public void InitMenu() 
+    #region Glossarium HowTo
+    public void InitGlosHowTo(bool isGlossarium)
+    {
+        glosHowToButtons.Clear();
+        glosHowToPanel.SetActive(true);
+        glossariumTitle.SetActive(true);
+        howToTitle.SetActive(false);
+
+        if (glosHowToParentButton.childCount > 0)
+            for (int i = 1; i < glosHowToParentButton.childCount; i++)
+                if (glosHowToParentButton.GetChild(i).gameObject != buttonTemp)
+                    Destroy(glosHowToParentButton.GetChild(i).gameObject);
+
+        List<GlossariumData> newDatas = isGlossarium ? glossariumDatas : howToDatas;
+        for (int i = 0; i < newDatas.Count; i++)
+        {
+            int index = i;
+            Transform btn = Instantiate(buttonTemp).transform;
+            glosHowToButtons.Add(btn.GetComponent<Button>());
+
+            glosHowToButtons[index].transform.parent = glosHowToParentButton;
+            glosHowToButtons[index].transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+            glosHowToButtons[index].transform.localScale = Vector3.one;
+            btn.gameObject.SetActive(true);
+
+            if (DataHandler.instance.GetLanguage() == "id")
+                glosHowToButtons[index].transform.GetComponentInChildren<TextMeshProUGUI>().text =
+                    newDatas[index].titleValue.contentId;
+            else if (DataHandler.instance.GetLanguage() == "en")
+                glosHowToButtons[index].transform.GetComponentInChildren<TextMeshProUGUI>().text =
+                    newDatas[index].titleValue.contentEn;
+            else
+                glosHowToButtons[index].transform.GetComponentInChildren<TextMeshProUGUI>().text =
+                    newDatas[index].titleValue.contentMy;
+
+            glosHowToButtons[index].onClick.AddListener(delegate
+            {
+                OpenGlosHowTo(newDatas, index);
+            });
+        }
+
+        glosHowToParentButton.GetComponent<RectTransform>().anchoredPosition =
+            new Vector2(glosHowToParentButton.GetComponent<RectTransform>().anchoredPosition.x, 0f);
+        OpenGlosHowTo(newDatas, 0);
+    }
+
+    public void OpenGlosHowTo(List<GlossariumData> datas, int index)
+    {
+        glosHowToButtons.ForEach(item => item.GetComponentInChildren<TextMeshProUGUI>().color = idleColor);
+        glosHowToButtons[index].GetComponentInChildren<TextMeshProUGUI>().color = selectedColor;
+
+        if (DataHandler.instance.GetLanguage() == "id")
+            glosHowToDescriptionText.text = datas[index].descriptionValue.contentId;
+        else if (DataHandler.instance.GetLanguage() == "en")
+            glosHowToDescriptionText.text = datas[index].descriptionValue.contentEn;
+        else
+            glosHowToDescriptionText.text = datas[index].descriptionValue.contentMy;
+    }
+    #endregion
+
+    #region Setup Menu
+    public void InitMenu()
     {
         CanvasGroup willEnable, willDisabled;
         if (DataHandler.instance.GetUserDataValue().checkpoint_data.tutorial_is_done)
@@ -126,31 +229,71 @@ public class MainMenuHandler : MonoBehaviour
 
     public void SetupLevelButtons()
     {
-        for (int i = 0; i < levelButtonDatas.Count; i++)
+        for (int i = 0; i < levelButton.Count; i++)
         {
+            //setting ui
             int index = i + 1;
-            levelButtonDatas[i].transform.Find("Pinpoint").gameObject.SetActive(false);
-            levelButtonDatas[i].transform.Find("LevelText").GetComponent<TextMeshProUGUI>().text = $"{i + 1}";
-            levelButtonDatas[i].transform.Find("ScoreText").GetComponent<TextMeshProUGUI>().text =
+            levelButton[i].interactable = true;
+            levelButton[i].transform.Find("Disable").gameObject.SetActive(true);
+            levelButton[i].transform.Find("Pinpoint").gameObject.SetActive(false);
+            levelButton[i].transform.Find("LevelText").GetComponent<TextMeshProUGUI>().text = $"{i + 1}";
+            levelButton[i].transform.Find("ScoreText").GetComponent<TextMeshProUGUI>().text =
                 DataHandler.instance.GetUserCheckpointData().checkpoint_level_score[index].ToString();
 
-            if (i == 0 || i > 0 && DataHandler.instance.GetUserCheckpointData().checkpoint_level_score[index - 1] > 0)
+            //setting pinpoint
+            if (levelButton.Find(button => button.transform.Find("Pinpoint").gameObject.activeSelf) == null &&
+                DataHandler.instance.GetUserCheckpointData().checkpoint_level_score[index] == 0)
             {
-                levelButtonDatas[i].interactable = true;
-                levelButtonDatas[i].transform.Find("Disable").gameObject.SetActive(false);
-                if (i == 0 && DataHandler.instance.GetUserCheckpointData().checkpoint_level_score[index] == 0 ||
-                    DataHandler.instance.GetUserCheckpointData().checkpoint_level_score[index] == 0 &&
-                    DataHandler.instance.GetUserCheckpointData().checkpoint_level_score[index - 1] > 0)
-                    levelButtonDatas[i].transform.Find("Pinpoint").gameObject.SetActive(true);
+                levelButton[i].transform.Find("Pinpoint").gameObject.SetActive(true);
+                middleButtonChecker.buttonTarget = levelButton[i].gameObject;
+                scrollAutomatically = true;
             }
-            else
+
+            //setting button addlistener
+            int levelIndex = i;
+            levelButton[i].onClick.RemoveAllListeners();
+            levelButton[i].onClick.AddListener(() =>
+                LevelDataHandler.instance.Init(
+                    DataHandler.instance.levelDatas[index]
+                    ));
+        }
+
+        foreach (var data in levelButtons)
+        {
+            if (data.beforeButtons.Count == 0 || ScoreChecker(data.beforeButtons))
             {
-                levelButtonDatas[i].transform.Find("Disable").gameObject.SetActive(true);
-                levelButtonDatas[i].interactable = false;
+                if (data.stageObject != null) data.stageObject.transform.Find("Disable").gameObject.SetActive(false);
+                data.currentButton.transform.Find("Disable").gameObject.SetActive(false);
+                data.currentButton.interactable = true;
             }
         }
     }
 
+    public bool ScoreChecker(List<Button> buttons)
+    {
+        foreach (var button in buttons)
+        {
+            if (button.GetComponent<Transform>().Find("ScoreText").
+                GetComponent<TextMeshProUGUI>().text == "0")
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public void PlayCurrentLevel()
+    {
+        for (int i = 0; i < levelButton.Count; i++)
+        {
+            if (levelButton[i].transform.Find("Pinpoint").gameObject.activeSelf)
+                LevelDataHandler.instance.Init(DataHandler.instance.levelDatas[i + 1]);
+        }
+    }
+    #endregion
+
+    #region API Hit
     public void PostIntroductionState(bool cond)
     {
         StartCoroutine(IEOpenScreen(loadingPanel, delegate
@@ -203,7 +346,9 @@ public class MainMenuHandler : MonoBehaviour
     }
 
     public AudioSource GetVOSource() => voAudioSource;
+    #endregion
 
+    #region OpenClosePanel
     IEnumerator IEOpenScreen(CanvasGroup screen, Action executeAfter = null)
     {
         screen.gameObject.SetActive(true);
@@ -227,4 +372,5 @@ public class MainMenuHandler : MonoBehaviour
         executeAfter?.Invoke();
         screen.gameObject.SetActive(false);
     }
+    #endregion
 }

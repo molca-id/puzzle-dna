@@ -57,7 +57,7 @@ public class PreloadManager : MonoBehaviour
         StartCoroutine(IEOpenScreen(screens[^1]));
 
         yield return new WaitUntil(() => 
-        DataHandler.instance.userData.success && 
+        DataHandler.instance.currentUserData.success && 
         DataHandler.instance.validateData.success
         );
 

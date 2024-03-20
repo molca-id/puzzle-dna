@@ -12,20 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e63af0a87d5c2f45a27c8615bc44409, type: 3}
   m_Name: Game 7
   m_EditorClassIdentifier: 
-  boardDimension: {x: 5, y: 4}
-  gameLevel: 2
-  backgroundGame: {fileID: 21300000, guid: 0bf3db385304db8459b2e1f3b6e2564a, type: 3}
-  characterInterlocutorName: Dia
-  characterInterlocutorSprite: {fileID: 21300000, guid: 8bb26f73810d607408fbef8898493464,
-    type: 3}
+  boardDimension: {x: 6, y: 5}
+  gameLevel: 7
+  abilityDriveDuration: 5
+  backgroundGame: {fileID: 21300000, guid: 5507adc3e05f4f94fb60a6c20b1ef965, type: 3}
+  layoutGame: {fileID: 21300000, guid: 6a5249cc9db722a4189d0ca7e56d99c0, type: 3}
+  dialogues:
+    playerIdleSprite: {fileID: 0}
+    interlocutorIdleSprite: {fileID: 0}
+    interlocutorName: 
+    dialogueBonus: []
   usingDialogueBonus: 0
-  hintDelay: 5
-  totalTime: 120
+  hintDelay: 10
+  totalTime: 60
   usingTutorial: 0
   usingHandHint: 0
-  abilityDriveDuration: 5
-  usingPowerUps: 0
-  usingUpgradedPowerUps: 0
   gems:
   - type: 0
     sprite: {fileID: 21300000, guid: c9b44319f4c3ad9419feaf96b4139599, type: 3}
@@ -53,29 +54,18 @@ MonoBehaviour:
     prefab: {fileID: 6539906006310958499, guid: c0d3ca31d71aa5f4eb54daa97b20bb40,
       type: 3}
   emptyGems:
-  - emptySprite: {fileID: 21300000, guid: 381a9d030237878458e4de815f0a9991, type: 3}
+  - emptySprite: {fileID: 0}
     positions:
     - {x: 0, y: 0}
-    - {x: 0, y: 1}
-    - {x: 1, y: 0}
-    - {x: 7, y: 0}
-    - {x: 8, y: 0}
-    - {x: 8, y: 1}
-    - {x: 0, y: 5}
-    - {x: 0, y: 6}
-    - {x: 1, y: 6}
-    - {x: 7, y: 6}
-    - {x: 7, y: 6}
-    - {x: 8, y: 6}
-    - {x: 8, y: 5}
-  - emptySprite: {fileID: 21300000, guid: 42ba22bfc2a201b479db7523251173fb, type: 3}
+    - {x: 5, y: 0}
+    - {x: 0, y: 4}
+    - {x: 5, y: 4}
+  - emptySprite: {fileID: 21300000, guid: feb9bf1df852c134a8a4a0dfb295e30c, type: 3}
     positions:
-    - {x: 3, y: 3}
-    - {x: 4, y: 3}
-    - {x: 5, y: 3}
+    - {x: 1, y: 2}
   audioClipInfos:
   - name: bgm
-    clip: {fileID: 8300000, guid: f54f914e1258c5f4e90a9226d10af526, type: 3}
+    clip: {fileID: 8300000, guid: 8657fe31eee02d544acb798fdfdbcbae, type: 3}
   - name: click
     clip: {fileID: 8300000, guid: 5db760126814a344da074153bc99dbf3, type: 3}
   - name: swap
@@ -88,53 +78,3 @@ MonoBehaviour:
   - Perfect!!!
   - Glorious!!!!
   - Wonderful!!!!!
-  dialogueBonus:
-  - scoreTrigger: 1500
-    dialogueBonusDatas:
-    - playerIsTalking: 1
-      dialogueDelay: 2
-      contentData:
-        contentId: 
-        contentEn: 
-    - playerIsTalking: 0
-      dialogueDelay: 2
-      contentData:
-        contentId: 
-        contentEn: 
-    - playerIsTalking: 1
-      dialogueDelay: 2
-      contentData:
-        contentId: 
-        contentEn: 
-    isDone: 0
-  - scoreTrigger: 4000
-    dialogueBonusDatas:
-    - playerIsTalking: 0
-      dialogueDelay: 2
-      contentData:
-        contentId: 
-        contentEn: 
-    - playerIsTalking: 1
-      dialogueDelay: 2
-      contentData:
-        contentId: 
-        contentEn: 
-    - playerIsTalking: 0
-      dialogueDelay: 2
-      contentData:
-        contentId: 
-        contentEn: 
-    isDone: 0
-  - scoreTrigger: 6500
-    dialogueBonusDatas:
-    - playerIsTalking: 1
-      dialogueDelay: 2
-      contentData:
-        contentId: 
-        contentEn: 
-    - playerIsTalking: 0
-      dialogueDelay: 3
-      contentData:
-        contentId: 
-        contentEn: 
-    isDone: 0

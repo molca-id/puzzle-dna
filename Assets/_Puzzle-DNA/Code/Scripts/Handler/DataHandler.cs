@@ -1,25 +1,46 @@
-using UnityEngine;
-using Newtonsoft.Json;
-using UnityEngine.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 using UnityEngine.Audio;
+
+public enum ExpressionType { Senang, Optimis, Sedih }
+
+[Serializable]
+public class PlayerSpriteExpressionData
+{
+    public ExpressionType expressionType;
+    public Sprite sprite;
+}
+
+[Serializable]
+public class PlayerSpriteData
+{
+    public string name;
+    public UserDataSpace.Character character;
+    public Sprite idleSprite;
+    public List<PlayerSpriteExpressionData> expressionDatas;
+}
 
 public class DataHandler : MonoBehaviour
 {
     public static DataHandler instance;
     [HideInInspector] public ValidateData validateData;
 
-    [Header("Datas")]
+    [Header("Default Datas")]
     public UserDataSpace.UserData defaultUserData;
     public TalentDataSpace.TalentData talentData;
-    public UserDataSpace.UserData userData;
+    public List<PlayerSpriteData> playerSpriteDatas;
+
+    [Header("Current Datas")]
+    public UserDataSpace.UserData currentUserData;
+    public PlayerSpriteData currPlayerSpriteData;
 
     [Header("Another Attributes")]
     public AudioMixer bgmAudioMixer;
     public AudioMixer sfxAudioMixer;
     public List<LanguageHandler> languageHandlers;
+    public List<LevelData> levelDatas;
 
     private void Awake()
     {
@@ -29,6 +50,31 @@ public class DataHandler : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+        }
+    }
+
+    private void Start()
+    {
+        SetupPlayerSprites();
+    }
+
+    public void SetupPlayerSprites()
+    {
+        foreach (var level in levelDatas)
+        {
+            GameData game = level.gameData;
+            PlayerSpriteData player = DataHandler.instance.currPlayerSpriteData;
+            game.dialogues.playerIdleSprite = player.idleSprite;
+
+            foreach (var dialogue in game.dialogues.dialogueBonus)
+            {
+                foreach (var item in dialogue.dialogueBonusDatas)
+                {
+                    Sprite temp = player.expressionDatas.Find(
+                        exp => exp.expressionType == item.playerExpressionType
+                        ).sprite;
+                }
+            }
         }
     }
 
@@ -165,23 +211,24 @@ public class DataHandler : MonoBehaviour
                     SessionCodeHooker.instance.GetSessionCode()),
                 res =>
                 {
-                    userData = JsonUtility.FromJson<UserDataSpace.UserData>(res);
+                    currentUserData = JsonUtility.FromJson<UserDataSpace.UserData>(res);
                     bgmAudioMixer.SetFloat("MasterVolume", GetUserDataValue().bgm_value);
                     sfxAudioMixer.SetFloat("MasterVolume", GetUserDataValue().sfx_value);
+                    currPlayerSpriteData = playerSpriteDatas.Find(data => (int)data.character == GetUserDataValue().character);
 
-                    if (!userData.success) IECreateUserData();
+                    if (!currentUserData.success) IECreateUserData();
                 }));
     }
 
     public List<TalentDataSpace.TalentValueData> GetTalentDatas() => talentData.data;
 
-    public UserDataSpace.PerksValue GetPerksData() => userData.data.perks_value;
+    public UserDataSpace.PerksValue GetPerksData() => currentUserData.data.perks_value;
 
-    public void ResetAllPerks() => userData.data.perks_value = defaultUserData.data.perks_value;
+    public void ResetAllPerks() => currentUserData.data.perks_value = defaultUserData.data.perks_value;
     
-    public UserDataSpace.UserDataValue GetUserDataValue() => userData.data;
+    public UserDataSpace.UserDataValue GetUserDataValue() => currentUserData.data;
 
-    public UserDataSpace.CheckpointData GetUserCheckpointData() => userData.data.checkpoint_data;
+    public UserDataSpace.CheckpointData GetUserCheckpointData() => currentUserData.data.checkpoint_data;
 
     public string GetUniqueCode() => GetUserDataValue().game_url;
 

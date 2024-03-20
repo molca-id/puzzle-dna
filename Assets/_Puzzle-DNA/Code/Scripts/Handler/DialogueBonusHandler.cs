@@ -21,34 +21,36 @@ public class DialogueBonusHandler : SingletonMonoBehaviour<DialogueBonusHandler>
     [SerializeField] GameObject dialoguePanel;
     [SerializeField] DialogueBonusUI playerDialogue;
     [SerializeField] DialogueBonusUI interlocutorDialogue;
-    [SerializeField] List<DialogueBonus> dialogueBonus;
+    [SerializeField] Dialogue dialogues;
     bool dialogueIsOngoing;
 
-    public void InitDialogue(
-        Sprite playerSprite, 
-        Sprite interlocutorSprite,
-        string interlocutorName,
-        List<DialogueBonus> datas
-        )
-    {   
+    public void InitDialogue(Dialogue dialogue)
+    {
+        dialogues = dialogue;
+        SetCharacterSprites(dialogues.playerIdleSprite, dialogues.interlocutorIdleSprite);
         playerDialogue.nameText.text = DataHandler.instance.GetUserDataValue().username;
-        playerDialogue.charImage.sprite = playerSprite;
-        playerDialogue.charImage.SetNativeSize();
-
-        interlocutorDialogue.nameText.text = interlocutorName;
-        interlocutorDialogue.charImage.sprite = interlocutorSprite;
-        interlocutorDialogue.charImage.SetNativeSize();
+        interlocutorDialogue.nameText.text = dialogue.interlocutorName;
 
         StartCoroutine(UIController.instance.IEOpenScreen(
             dialoguePanel.transform.parent.GetComponent<CanvasGroup>()
             ));
+    }
 
-        dialogueBonus = datas;
+    public void SetCharacterSprites(
+        Sprite playerSprite, 
+        Sprite interlocutorSprite
+        )
+    {
+        interlocutorDialogue.charImage.sprite = interlocutorSprite;
+        interlocutorDialogue.charImage.SetNativeSize();
+
+        playerDialogue.charImage.sprite = playerSprite;
+        playerDialogue.charImage.SetNativeSize();
     }
 
     public void StartDialogue(int score)
     {
-        dialogueBonus.ForEach(data =>
+        dialogues.dialogueBonus.ForEach(data =>
         {
             if (!data.isDone && data.scoreTrigger <= score)
             {
@@ -70,6 +72,7 @@ public class DialogueBonusHandler : SingletonMonoBehaviour<DialogueBonusHandler>
         List<DialogueBonusData> datas = dialogue.dialogueBonusDatas;
         for (int i = 0; i < datas.Count; i++)
         {
+            SetCharacterSprites(datas[i].playerSprite, datas[i].interlocutorSprite);
             if (datas[i].playerIsTalking)
             {
                 playerDialogue.dialogueParentPanel.transform.parent.SetAsLastSibling();

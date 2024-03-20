@@ -169,8 +169,10 @@ public class LevelDataHandler : MonoBehaviour
 
         if (DataHandler.instance.GetLanguage() == "id")
             narrationText.text = currentStoryData.narrationStories[narrationIndex].contentId;
-        else
+        else if (DataHandler.instance.GetLanguage() == "en")
             narrationText.text = currentStoryData.narrationStories[narrationIndex].contentEn;
+        else
+            narrationText.text = currentStoryData.narrationStories[narrationIndex].contentMy;
     }
 
     public void SetPopUpStory(int factor)
@@ -187,8 +189,10 @@ public class LevelDataHandler : MonoBehaviour
 
         if (DataHandler.instance.GetLanguage() == "id")
             popUpText.text = currentStoryData.popUpStories[popUpIndex].contentId;
-        else
+        else if (DataHandler.instance.GetLanguage() == "en")
             popUpText.text = currentStoryData.popUpStories[popUpIndex].contentEn;
+        else
+            popUpText.text = currentStoryData.popUpStories[popUpIndex].contentMy;
     }
 
     public void SetTitleStory(int factor)
@@ -205,8 +209,10 @@ public class LevelDataHandler : MonoBehaviour
 
         if (DataHandler.instance.GetLanguage() == "id")
             titleText.text = currentStoryData.titleStories[titleIndex].contentId;
-        else
+        else if(DataHandler.instance.GetLanguage() == "en")
             titleText.text = currentStoryData.titleStories[titleIndex].contentEn;
+        else
+            titleText.text = currentStoryData.titleStories[titleIndex].contentMy;
     }
 
     public void SetTutorialStory(string key)

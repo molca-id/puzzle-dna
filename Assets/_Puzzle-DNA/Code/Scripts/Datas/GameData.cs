@@ -1,4 +1,4 @@
-﻿using ActionCode.Attributes;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Utilities;
@@ -15,7 +15,7 @@ public enum GemType
     Empty
 }
 
-[System.Serializable]
+[Serializable]
 public class GemData
 {
     public GemType type;
@@ -23,41 +23,53 @@ public class GemData
     public int minMatch = 3;
 }
 
-[System.Serializable]
+[Serializable]
 public class SpecialGemData
 {
     public string name;
     public GameObject prefab;
 }
 
-[System.Serializable]
+[Serializable]
 public class EmptyGemData
 {
     public Sprite emptySprite;
     public List<Vector2Int> positions;
 }
 
-[System.Serializable]
+[Serializable]
 public class AudioClipInfo
 {
     public string name;
     public AudioClip clip;
 }
 
-[System.Serializable]
+[Serializable]
 public class DialogueBonusData
 {
     public bool playerIsTalking;
+    public ExpressionType playerExpressionType;
+    public Sprite playerSprite;
+    public Sprite interlocutorSprite;
     public float dialogueDelay;
     public ContentData contentData;
 }
 
-[System.Serializable]
+[Serializable]
 public class DialogueBonus
 {
     public int scoreTrigger;
     public List<DialogueBonusData> dialogueBonusDatas;
     public bool isDone;
+}
+
+[Serializable]
+public class Dialogue
+{
+    public Sprite playerIdleSprite;
+    public Sprite interlocutorIdleSprite;
+    public string interlocutorName;
+    public List<DialogueBonus> dialogueBonus;
 }
 
 [CreateAssetMenu(fileName = "GameData", menuName = "DNA/GameData", order = 1)]
@@ -68,12 +80,12 @@ public class GameData : SingletonScriptableObject<GameData>
 
     [Header("Game Attributes")]
     public int gameLevel;
+    public float abilityDriveDuration;
     public Sprite backgroundGame;
     public Sprite layoutGame;
 
     [Header("Dialogue Bonus Attributes")]
-    public string characterInterlocutorName;
-    public Sprite characterInterlocutorSprite;
+    public Dialogue dialogues;
     public bool usingDialogueBonus;
 
     [Header("Board Attribute")]
@@ -81,11 +93,6 @@ public class GameData : SingletonScriptableObject<GameData>
     public float totalTime;
     public bool usingTutorial;
     public bool usingHandHint;
-
-    [Header("PowerUps Add On")]
-    public float abilityDriveDuration;
-    public bool usingPowerUps;
-    [ShowIf("usingPowerUps")] public bool usingUpgradedPowerUps;
 
     [Header("Gems Attributes")]
     [SerializeField] List<GemData> gems = new List<GemData>();
@@ -95,7 +102,6 @@ public class GameData : SingletonScriptableObject<GameData>
     [Header("Other Attribute")]
     [SerializeField] List<AudioClipInfo> audioClipInfos = new List<AudioClipInfo>();
     [SerializeField] string[] comboMessages;
-    public List<DialogueBonus> dialogueBonus;
 
     public static int maxCombo
     {

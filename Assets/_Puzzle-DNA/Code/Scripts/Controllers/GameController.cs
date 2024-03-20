@@ -128,10 +128,14 @@ public class GameController : SingletonMonoBehaviour<GameController>
         BoardController.width = gameData.boardDimension.x;
         BoardController.height = gameData.boardDimension.y;
 
-        BoardController.usingPowerUps = gameData.usingPowerUps;
-        BoardController.usingUpgradedPowerUps = gameData.usingUpgradedPowerUps;
-        BoardController.abilityDriveDuration = gameData.abilityDriveDuration;
+        if (!standalone)
+        {
+            BoardController.usingUpgradedPowerUpsD = DataHandler.instance.GetPerksData().perks_ability_data.driveUpgraded;
+            BoardController.usingUpgradedPowerUpsN = DataHandler.instance.GetPerksData().perks_ability_data.networkUpgraded;
+            BoardController.usingUpgradedPowerUpsA = DataHandler.instance.GetPerksData().perks_ability_data.actionUpgraded;
+        }
 
+        BoardController.abilityDriveDuration = gameData.abilityDriveDuration;
         BoardController.emptyPositions = gameData.emptyGems;
         BoardController.matchCounter = 0;
 
@@ -146,19 +150,13 @@ public class GameController : SingletonMonoBehaviour<GameController>
         TouchController.cancel = true;
 
         yield return new WaitForSeconds(BoardController.CreateBoard());
-        gameData.dialogueBonus.ForEach(data =>
-        {
-            data.isDone = false;
-        });
-
         if (gameData.usingDialogueBonus)
         {
-            DialogueBonusHandler.instance.InitDialogue(
-                characterPlayerSprite,
-                gameData.characterInterlocutorSprite,
-                gameData.characterInterlocutorName,
-                gameData.dialogueBonus
-                );
+            DialogueBonusHandler.instance.InitDialogue(gameData.dialogues);
+            gameData.dialogues.dialogueBonus.ForEach(data =>
+            {
+                data.isDone = false;
+            });
         }
 
         BoardController.UpdateBoard();

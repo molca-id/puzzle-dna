@@ -32,6 +32,9 @@ public class LevelDataHandler : MonoBehaviour
     [Header("Narration Attributes")]
     public GameObject narrationPanel;
     public TextMeshProUGUI narrationText;
+    public TextMeshProUGUI narrationTextAbove;
+    public TextMeshProUGUI narrationTextMiddle;
+    public TextMeshProUGUI narrationTextUnder;
 
     [Header("PopUp Attributes")]
     public GameObject popUpPanel;
@@ -204,6 +207,21 @@ public class LevelDataHandler : MonoBehaviour
 
             if (isPrologue) SetPrologueStory(1);
             return;
+        }
+
+        narrationText = null;
+        narrationTextAbove.text = narrationTextMiddle.text = narrationTextUnder.text = "";
+        switch (currentStoryData.narrationType)
+        {
+            case StoryData.NarrationType.Above:
+                narrationText = narrationTextAbove;
+                break;
+            case StoryData.NarrationType.Middle:
+                narrationText = narrationTextMiddle;
+                break;
+            case StoryData.NarrationType.Under:
+                narrationText = narrationTextUnder;
+                break;
         }
 
         #region Setting Content

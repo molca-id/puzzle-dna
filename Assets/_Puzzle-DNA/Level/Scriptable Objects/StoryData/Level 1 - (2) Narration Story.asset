@@ -14,19 +14,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storyType: 1
   backgroundSprite: {fileID: 21300000, guid: 0bf3db385304db8459b2e1f3b6e2564a, type: 3}
+  tutorialKey: 
   dialogueStory:
     playerSprite: {fileID: 0}
     interlocutorSprite: {fileID: 0}
     interlocutorName: 
     dialogueStories: []
+  narrationType: 2
   narrationStories:
-  - contentId: 'Dunia dilanda pandemi Virus Corona yang mengakibatkan dunia lumpuh
+  - clipId: {fileID: 0}
+    clipEn: {fileID: 0}
+    clipMy: {fileID: 0}
+    contentId: 'Dunia dilanda pandemi Virus Corona yang mengakibatkan dunia lumpuh
       dan aktivitas manusia dibatasi. '
     contentEn: The world was hit by the Corona Virus pandemic which resulted in the
       world being paralyzed and human activities being restricted.
-  - contentId: Temui Bravo seorang relawan kesehatan yang sedang membantu masyarakat.
+    contentMy: 
+  - clipId: {fileID: 0}
+    clipEn: {fileID: 0}
+    clipMy: {fileID: 0}
+    contentId: Temui Bravo seorang relawan kesehatan yang sedang membantu masyarakat.
       Bantu selesaikan tugasnya dan dia akan mengantarmu menuju Rumah Sakit tersebut.
     contentEn: Meet Bravo, a health volunteer who is helping the community. Help
       complete the task and he will take you to the hospital.
+    contentMy: 
   popUpStories: []
   titleStories: []

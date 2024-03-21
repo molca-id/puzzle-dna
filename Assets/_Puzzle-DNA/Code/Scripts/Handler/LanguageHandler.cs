@@ -6,9 +6,9 @@ using UnityEngine;
 [RequireComponent(typeof(TextMeshProUGUI))]
 public class LanguageHandler : MonoBehaviour
 {
-    [TextArea(3, 3)] [SerializeField] string en;
-    [TextArea(3, 3)] [SerializeField] string id;
-    [TextArea(3, 3)] [SerializeField] string my;
+    [TextArea(10, 10)] [SerializeField] string en;
+    [TextArea(10, 10)] [SerializeField] string id;
+    [TextArea(10, 10)] [SerializeField] string my;
 
     TextMeshProUGUI m_TextMeshProUGUI;
 

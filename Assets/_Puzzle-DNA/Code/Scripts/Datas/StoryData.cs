@@ -33,16 +33,24 @@ public class ContentData
 public class StoryData : ScriptableObject
 {
     public enum StoryType { Dialogue, Narration, PopUp, Tutorial, Title }
+    public enum NarrationType { Above, Middle, Under }
 
     public StoryType storyType;
+    public Sprite backgroundSprite;
 
     [Header("Selecting Tutorial")]
     public string tutorialKey;
 
-    [Header("Not Selecting Tutorial")]
-    public Sprite backgroundSprite;
+    [Header("Dialogue Story")]
     public DialogueStory dialogueStory;
+
+    [Header("Narration Story")]
+    public NarrationType narrationType;
     public List<ContentData> narrationStories;
+
+    [Header("Pop Up Story")]
     public List<ContentData> popUpStories;
+
+    [Header("Title Story")]
     public List<ContentData> titleStories;
 }

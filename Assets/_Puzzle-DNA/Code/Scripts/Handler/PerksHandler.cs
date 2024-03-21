@@ -52,7 +52,6 @@ public class PerksHandler : MonoBehaviour
     [HideInInspector] public int plusPointUsed;
     [HideInInspector] public int minusPointUsed;
     [HideInInspector] public PerksValueData currentPerk;
-    public bool usingAfterEventPanel;
 
     [Header("All Perks")]
     public List<PerksTypeGroupData> perksTypeDatas;
@@ -61,6 +60,10 @@ public class PerksHandler : MonoBehaviour
     public GameObject perksPanel;
     public GameObject perksDetailPanel;
     public Button submitButton;
+    [Space]
+    public GameObject driveDescPanel;
+    public GameObject networkDescPanel;
+    public GameObject actionDescPanel;
     [Space]
     public TextMeshProUGUI perkName;
     public TextMeshProUGUI perkTagline;
@@ -78,6 +81,13 @@ public class PerksHandler : MonoBehaviour
     private void Awake()
     {
         instance = this;
+    }
+
+    public void SetDNADescriptionState(int index)
+    {
+        if (index == 0) driveDescPanel.SetActive(!driveDescPanel.activeSelf); 
+        else if (index == 1) networkDescPanel.SetActive(!networkDescPanel.activeSelf);
+        else actionDescPanel.SetActive(!actionDescPanel.activeSelf);
     }
 
     public void OpenPerksPanel()

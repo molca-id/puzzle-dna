@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UserDataSpace;
 using Utilities;
 
 public class GameController : SingletonMonoBehaviour<GameController>
@@ -232,33 +233,40 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
     public void AfterGameOver()
     {
-        bool isOver = DataHandler.instance.GetUserCheckpointData().
-            checkpoint_value[LevelDataHandler.instance.currentGameData.gameLevel].
-            is_opened;
-
         int score = DataHandler.instance.GetUserCheckpointData().
             checkpoint_value[LevelDataHandler.instance.currentGameData.gameLevel].
             checkpoint_level_score;
 
-        if (!isOver && score == 0)
+        if (!DataHandler.instance.GetUserCheckpointData().
+            checkpoint_value[LevelDataHandler.instance.currentGameData.gameLevel].
+            is_opened)
         {
-            DataHandler.instance.GetPerksData().perks_point_data.perks_point_plus +=
-                LevelDataHandler.instance.currentLevelData.perksPoinPlus;
-            DataHandler.instance.GetPerksData().perks_point_data.perks_point_minus +=
-                LevelDataHandler.instance.currentLevelData.perksPoinMinus;
+            PerksValue perks = DataHandler.instance.GetPerksData();
+            LevelData level = LevelDataHandler.instance.currentLevelData;
 
-            DataHandler.instance.GetPerksData().perks_point_data.total_perks_point_plus +=
-                LevelDataHandler.instance.currentLevelData.perksPoinPlus;
-            DataHandler.instance.GetPerksData().perks_point_data.total_perks_point_minus +=
-                LevelDataHandler.instance.currentLevelData.perksPoinMinus;
+            perks.perks_point_data.perks_point_plus += level.perksPoinPlus;
+            perks.perks_point_data.perks_point_minus += level.perksPoinMinus;
+            perks.perks_point_data.total_perks_point_plus += level.perksPoinPlus;
+            perks.perks_point_data.total_perks_point_minus += level.perksPoinMinus;
+
+            if (level.usingPerkUnlocking)
+            {
+                foreach (UserDataSpace.PerksStage data in perks.perks_stage_datas)
+                {
+                    if (data.perks_types != level.perkStageForUnlocking.perks_types) continue;
+                    data.perks_stage_locks = level.perkStageForUnlocking.perks_stage_locks;
+                }
+            }
 
             MainMenuHandler.instance.PatchPerksFromMenu(delegate
             {
-                if (!LevelDataHandler.instance.currentLevelData.openPerksPanelAfterGame) return;
+                if (!level.openPerksPanelAfterGame) return;
                 PerksHandler.instance.OpenPerksPanel();
             });
-        }
 
-        isOver = true;
+            DataHandler.instance.GetUserCheckpointData().
+            checkpoint_value[LevelDataHandler.instance.currentGameData.gameLevel].
+            is_opened = true;
+        }
     }
 }

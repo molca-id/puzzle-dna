@@ -48,7 +48,9 @@ namespace UserDataSpace
     public class CheckpointValue
     {
         public int checkpoint_level_score;
-        public bool is_opened;
+        public bool game_is_done;
+        public bool prologue_is_done;
+        public bool epilogue_is_done;
     }
 
     [Serializable]

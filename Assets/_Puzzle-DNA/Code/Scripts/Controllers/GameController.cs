@@ -239,7 +239,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
         if (!DataHandler.instance.GetUserCheckpointData().
             checkpoint_value[LevelDataHandler.instance.currentGameData.gameLevel].
-            is_opened)
+            game_is_done)
         {
             PerksValue perks = DataHandler.instance.GetPerksData();
             LevelData level = LevelDataHandler.instance.currentLevelData;
@@ -266,7 +266,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
             DataHandler.instance.GetUserCheckpointData().
             checkpoint_value[LevelDataHandler.instance.currentGameData.gameLevel].
-            is_opened = true;
+            game_is_done = true;
         }
     }
 }

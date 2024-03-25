@@ -237,7 +237,7 @@ public class MainMenuHandler : MonoBehaviour
         {
             //setting ui
             int index = i + 1;
-            levelButton[i].interactable = true;
+            levelButton[i].interactable = false;
             levelButton[i].transform.Find("Disable").gameObject.SetActive(true);
             levelButton[i].transform.Find("Pinpoint").gameObject.SetActive(false);
             levelButton[i].transform.Find("LevelText").GetComponent<TextMeshProUGUI>().text = $"{i + 1}";

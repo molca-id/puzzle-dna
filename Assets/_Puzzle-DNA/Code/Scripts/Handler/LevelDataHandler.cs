@@ -6,6 +6,7 @@ using UnityEngine;
 using TMPro;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using UnityEngine.Events;
 
 [Serializable]
 public class DialogueStoryUI
@@ -47,16 +48,16 @@ public class LevelDataHandler : MonoBehaviour
     [Header("Tutorial Attributes")]
     public GameObject tutorialParentPanel;
 
-    int prologueIndex, epilogueIndex;
-    int dialogueIndex, narrationIndex, popUpIndex, titleIndex;
-    bool isPrologue, isEpilogue;
-
     [Header("Current Story Attributes")]
     [HideInInspector] public GameData currentGameData;
     [HideInInspector] public LevelData currentLevelData;
-    [HideInInspector] public StoryData currentStoryData;
+    [HideInInspector] StoryData currentStoryData;
     [HideInInspector] public List<StoryData> prologueStoryData;
     [HideInInspector] public List<StoryData> epilogueStoryData;
+
+    int prologueIndex, epilogueIndex;
+    int dialogueIndex, narrationIndex, popUpIndex, titleIndex;
+    bool isPrologue, isEpilogue;
 
     private void Awake()
     {
@@ -80,7 +81,16 @@ public class LevelDataHandler : MonoBehaviour
         {
             prologueIndex = 0;
             isPrologue = false;
-            if (epilogueStoryData.Count == 0) storyPanel.SetActive(false);
+            
+            if (epilogueStoryData.Count == 0) 
+                storyPanel.SetActive(false);
+            else
+            {
+                UnityEvent whenGameUnloaded = new();
+                whenGameUnloaded.AddListener(() => SetEpilogueStory(0));
+                CommonHandler.instance.whenSceneUnloadedCustom = whenGameUnloaded;
+            }
+
             GameGenerator.instance.GenerateLevel(currentGameData);
             return;
         }
@@ -115,7 +125,7 @@ public class LevelDataHandler : MonoBehaviour
                 break;
             case StoryData.StoryType.Tutorial:
                 if (!DataHandler.instance.GetUserCheckpointData().
-                    checkpoint_value[currentGameData.gameLevel].is_opened)
+                    checkpoint_value[currentGameData.gameLevel].prologue_is_done)
                 {
                     storyPanel.SetActive(false);
                     tutorialParentPanel.SetActive(true);
@@ -124,6 +134,62 @@ public class LevelDataHandler : MonoBehaviour
                 else
                 {
                     SetPrologueStory(1);
+                }
+                break;
+        }
+    }
+
+    public void SetEpilogueStory(int factor)
+    {
+        isEpilogue = true;
+        epilogueIndex += factor;
+        if (epilogueIndex == epilogueStoryData.Count)
+        {
+            epilogueIndex = 0;
+            isEpilogue = false;
+            storyPanel.SetActive(false);
+            return;
+        }
+
+        currentStoryData = epilogueStoryData[epilogueIndex];
+        backgroundImage.gameObject.SetActive(false);
+        storyPanel.SetActive(true);
+
+        if (currentStoryData != null)
+        {
+            backgroundImage.sprite = currentStoryData.backgroundSprite;
+            backgroundImage.gameObject.SetActive(true);
+        }
+
+        switch (currentStoryData.storyType)
+        {
+            case StoryData.StoryType.Dialogue:
+                dialoguePanel.SetActive(true);
+                SetDialogueStory(0);
+                break;
+            case StoryData.StoryType.Narration:
+                narrationPanel.SetActive(true);
+                SetNarrationStory(0);
+                break;
+            case StoryData.StoryType.PopUp:
+                popUpPanel.SetActive(true);
+                SetPopUpStory(0);
+                break;
+            case StoryData.StoryType.Title:
+                titlePanel.SetActive(true);
+                SetTitleStory(0);
+                break;
+            case StoryData.StoryType.Tutorial:
+                if (!DataHandler.instance.GetUserCheckpointData().
+                    checkpoint_value[currentGameData.gameLevel].epilogue_is_done)
+                {
+                    storyPanel.SetActive(false);
+                    tutorialParentPanel.SetActive(true);
+                    SetTutorialStory(currentStoryData.tutorialKey);
+                }
+                else
+                {
+                    SetEpilogueStory(1);
                 }
                 break;
         }
@@ -138,6 +204,7 @@ public class LevelDataHandler : MonoBehaviour
             dialoguePanel.SetActive(false);
             
             if (isPrologue) SetPrologueStory(1);
+            else if (isEpilogue) SetEpilogueStory(1);
             return;
         }
 
@@ -206,6 +273,7 @@ public class LevelDataHandler : MonoBehaviour
             narrationPanel.SetActive(false);
 
             if (isPrologue) SetPrologueStory(1);
+            else if (isEpilogue) SetEpilogueStory(1);
             return;
         }
 
@@ -255,6 +323,7 @@ public class LevelDataHandler : MonoBehaviour
             popUpPanel.SetActive(false);
 
             if (isPrologue) SetPrologueStory(1);
+            else if (isEpilogue) SetEpilogueStory(1);
             return;
         }
 
@@ -289,6 +358,7 @@ public class LevelDataHandler : MonoBehaviour
             titlePanel.SetActive(false);
 
             if (isPrologue) SetPrologueStory(1);
+            else if (isEpilogue) SetEpilogueStory(1);
             return;
         }
 
@@ -316,6 +386,7 @@ public class LevelDataHandler : MonoBehaviour
 
     public void SetTutorialStory(string key)
     {
+        Debug.Log($"Open Tutorial: {key}");
         FindObjectsOfType<SequencePanelHandler>().ToList().
             Find(seq => seq.key == key).Init();
     }
@@ -329,5 +400,17 @@ public class LevelDataHandler : MonoBehaviour
         if (clip == null) return;
         voAudioSource.clip = clip;
         voAudioSource.Play();
+    }
+
+    public void SetPrologueStory(bool isDone)
+    {
+        DataHandler.instance.GetUserCheckpointData().
+            checkpoint_value[currentGameData.gameLevel].prologue_is_done = isDone;
+    }
+
+    public void SetEpilogueStory(bool isDone)
+    {
+        DataHandler.instance.GetUserCheckpointData().
+            checkpoint_value[currentGameData.gameLevel].epilogue_is_done = isDone;
     }
 }

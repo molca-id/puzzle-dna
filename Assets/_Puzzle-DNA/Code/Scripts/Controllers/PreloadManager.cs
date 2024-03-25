@@ -80,6 +80,9 @@ public class PreloadManager : MonoBehaviour
 
     IEnumerator IEOpenScreen(CanvasGroup screen)
     {
+        if (screen.GetComponent<Animator>() != null)
+            screen.GetComponent<Animator>().enabled = true;
+
         while (screen.alpha < 1)
         {
             screen.alpha += Time.deltaTime * splashSpeed;

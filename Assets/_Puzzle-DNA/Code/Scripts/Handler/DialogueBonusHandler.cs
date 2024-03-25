@@ -72,7 +72,7 @@ public class DialogueBonusHandler : SingletonMonoBehaviour<DialogueBonusHandler>
         List<DialogueBonusData> datas = dialogue.dialogueBonusDatas;
         for (int i = 0; i < datas.Count; i++)
         {
-            SetCharacterSprites(datas[i].playerSprite, datas[i].interlocutorSprite);
+            SetCharacterSprites(datas[i].contentData.playerSprite, datas[i].contentData.interlocutorSprite);
             if (datas[i].playerIsTalking)
             {
                 playerDialogue.dialogueParentPanel.transform.parent.SetAsLastSibling();
@@ -83,8 +83,10 @@ public class DialogueBonusHandler : SingletonMonoBehaviour<DialogueBonusHandler>
 
                 if (DataHandler.instance.GetLanguage() == "id")
                     playerDialogue.dialogueText.text = datas[i].contentData.contentId;
-                else
+                else if (DataHandler.instance.GetLanguage() == "en")
                     playerDialogue.dialogueText.text = datas[i].contentData.contentEn;
+                else
+                    playerDialogue.dialogueText.text = datas[i].contentData.contentMy;
             }
             else
             {
@@ -96,8 +98,10 @@ public class DialogueBonusHandler : SingletonMonoBehaviour<DialogueBonusHandler>
 
                 if (DataHandler.instance.GetLanguage() == "id")
                     interlocutorDialogue.dialogueText.text = datas[i].contentData.contentId;
-                else
+                else if (DataHandler.instance.GetLanguage() == "en")
                     interlocutorDialogue.dialogueText.text = datas[i].contentData.contentEn;
+                else
+                    interlocutorDialogue.dialogueText.text = datas[i].contentData.contentMy;
             }
 
             yield return new WaitForSeconds(datas[i].dialogueDelay);

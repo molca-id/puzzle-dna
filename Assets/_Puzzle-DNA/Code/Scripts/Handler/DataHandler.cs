@@ -53,17 +53,12 @@ public class DataHandler : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        SetupPlayerSprites();
-    }
-
     public void SetupPlayerSprites()
     {
         foreach (var level in levelDatas)
         {
             GameData game = level.gameData;
-            PlayerSpriteData player = DataHandler.instance.currPlayerSpriteData;
+            PlayerSpriteData player = currPlayerSpriteData;
             game.dialogues.playerIdleSprite = player.idleSprite;
 
             foreach (var dialogue in game.dialogues.dialogueBonus)
@@ -214,9 +209,14 @@ public class DataHandler : MonoBehaviour
                     currentUserData = JsonUtility.FromJson<UserDataSpace.UserData>(res);
                     bgmAudioMixer.SetFloat("MasterVolume", GetUserDataValue().bgm_value);
                     sfxAudioMixer.SetFloat("MasterVolume", GetUserDataValue().sfx_value);
-                    currPlayerSpriteData = playerSpriteDatas.Find(data => (int)data.character == GetUserDataValue().character);
 
-                    if (!currentUserData.success) IECreateUserData();
+                    if (!currentUserData.success) 
+                        IECreateUserData();
+                    else
+                    {
+                        currPlayerSpriteData = playerSpriteDatas.Find(data => (int)data.character == GetUserDataValue().character);
+                        SetupPlayerSprites();
+                    }
                 }));
     }
 

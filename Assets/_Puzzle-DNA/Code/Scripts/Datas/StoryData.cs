@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System;
+using ActionCode.Attributes;
 
 [Serializable]
 public class DialogueStoryData
@@ -12,8 +13,8 @@ public class DialogueStoryData
 [Serializable]
 public class DialogueStory
 {
-    public Sprite playerSprite;
-    public Sprite interlocutorSprite;
+    public Sprite playerIdleSprite;
+    public Sprite interlocutorIdleSprite;
     public string interlocutorName;
     public List<DialogueStoryData> dialogueStories;
 }
@@ -21,6 +22,9 @@ public class DialogueStory
 [Serializable]
 public class ContentData
 {
+    public bool usingCharacterSprite;
+    [ShowIf("usingCharacterSprite")] public Sprite playerSprite;
+    [ShowIf("usingCharacterSprite")] public Sprite interlocutorSprite;
     public AudioClip clipId;
     public AudioClip clipEn;
     public AudioClip clipMy;

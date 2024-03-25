@@ -78,7 +78,9 @@ public class GameController : SingletonMonoBehaviour<GameController>
     public void Init(GameData data)
     {
         gameData = data;
-        SoundController.PlayMusic(GameData.GetAudioClip("bgm"), 1);
+        Instantiate(boardController.gameObject).GetComponent<BoardController>();
+        BoardController.instance.gameData = gameData;
+        SoundController.PlayMusic(BoardController.instance.gameData.GetAudioClip("bgm"), 1);
         StartGame();
     }
 
@@ -120,8 +122,6 @@ public class GameController : SingletonMonoBehaviour<GameController>
         else currLayout = layoutBackgrounds.Find(x => x.name == $"{gameData.boardDimension.x}x{gameData.boardDimension.y}");
         
         UIController.instance.SetupImages(gameData.backgroundGame, currLayout);
-        Instantiate(boardController.gameObject).GetComponent<BoardController>();
-
         BoardController.instance.transform.SetParent(transform.parent);
         BoardController.instance.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
         BoardController.width = gameData.boardDimension.x;

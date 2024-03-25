@@ -15,6 +15,7 @@ public class SequenceEventsData
     public bool willPlayVO;
     [ShowIf("willPlayVO")] public AudioClip voClipEn;
     [ShowIf("willPlayVO")] public AudioClip voClipId;
+    [ShowIf("willPlayVO")] public AudioClip voClipMy;
     public bool skippableWithoutDelay;
     public UnityEvent whenGameLoaded;
     public UnityEvent whenGameUnloaded;
@@ -60,7 +61,12 @@ public class SequencePanelHandler : MonoBehaviour
         SequenceEventsData data = sequenceEvents[index];
         if (data.willPlayVO)
         {
-            voAudioSource.clip = DataHandler.instance.GetLanguage() == "id" ? data.voClipId : data.voClipEn;
+            AudioClip clip;
+            if (DataHandler.instance.GetLanguage() == "id") clip = data.voClipId;
+            else if (DataHandler.instance.GetLanguage() == "en") clip = data.voClipEn;
+            else clip = data.voClipMy;
+
+            voAudioSource.clip = clip;
             voAudioSource.Play();
         }
 
@@ -68,7 +74,7 @@ public class SequencePanelHandler : MonoBehaviour
         {
             CommonHandler.instance.whenSceneLoadedCustom = data.whenGameLoaded;
             CommonHandler.instance.whenSceneUnloadedCustom = data.whenGameUnloaded;
-            LevelDataHandler.instance.Init(data.levelData);
+            LevelDataHandler.instance.InitPrologue(data.levelData);
         }
         else
         {

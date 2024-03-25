@@ -25,6 +25,23 @@ public class LevelDataHandler : MonoBehaviour
     public GameObject storyPanel;
     public Image backgroundImage;
 
+    [Header("Current Story Attributes")]
+    [HideInInspector] public GameData currentGameData;
+    [HideInInspector] public LevelData currentLevelData;
+    [HideInInspector] public StoryData currentStoryData;
+    [HideInInspector] public List<StoryData> prologueStoryData;
+    [HideInInspector] public List<StoryData> epilogueStoryData;
+
+    [Header("Current Index Attributes")]
+    [HideInInspector] public int prologueIndex;
+    [HideInInspector] public int epilogueIndex;
+    [HideInInspector] public int dialogueIndex;
+    [HideInInspector] public int narrationIndex;
+    [HideInInspector] public int popUpIndex;
+    [HideInInspector] public int titleIndex;
+    [HideInInspector] public bool isPrologue;
+    [HideInInspector] public bool isEpilogue;
+
     [Header("Dialogue Attributes")]
     public GameObject dialoguePanel;
     public DialogueStoryUI playerDialogue;
@@ -48,29 +65,35 @@ public class LevelDataHandler : MonoBehaviour
     [Header("Tutorial Attributes")]
     public GameObject tutorialParentPanel;
 
-    [Header("Current Story Attributes")]
-    [HideInInspector] public GameData currentGameData;
-    [HideInInspector] public LevelData currentLevelData;
-    [HideInInspector] StoryData currentStoryData;
-    [HideInInspector] public List<StoryData> prologueStoryData;
-    [HideInInspector] public List<StoryData> epilogueStoryData;
-
-    int prologueIndex, epilogueIndex;
-    int dialogueIndex, narrationIndex, popUpIndex, titleIndex;
-    bool isPrologue, isEpilogue;
-
     private void Awake()
     {
         instance = this;
     }
 
-    public void Init(LevelData levelData)
+    public void InitPrologue(LevelData levelData)
     {
         currentLevelData = levelData;
         currentGameData = levelData.gameData;
         prologueStoryData = levelData.prologueStoryData;
         epilogueStoryData = levelData.epilogueStoryData;
+
+        if (prologueStoryData.Count == 0) SetPrologueStory(true);
+        if (epilogueStoryData.Count == 0) SetEpilogueStory(true);
+
         SetPrologueStory(0);
+    }
+
+    public void InitEpilogue(LevelData levelData)
+    {
+        currentLevelData = levelData;
+        currentGameData = levelData.gameData;
+        prologueStoryData = levelData.prologueStoryData;
+        epilogueStoryData = levelData.epilogueStoryData;
+
+        if (prologueStoryData.Count == 0) SetPrologueStory(true);
+        if (epilogueStoryData.Count == 0) SetEpilogueStory(true);
+
+        SetEpilogueStory(0);
     }
 
     public void SetPrologueStory(int factor)
@@ -96,14 +119,9 @@ public class LevelDataHandler : MonoBehaviour
         }
 
         currentStoryData = prologueStoryData[prologueIndex];
-        backgroundImage.gameObject.SetActive(false);
+        backgroundImage.sprite = currentStoryData.backgroundSprite;
+        backgroundImage.gameObject.SetActive(true);
         storyPanel.SetActive(true);
-
-        if (currentStoryData != null)
-        {
-            backgroundImage.sprite = currentStoryData.backgroundSprite;
-            backgroundImage.gameObject.SetActive(true);
-        }
 
         switch (currentStoryData.storyType)
         {
@@ -152,14 +170,9 @@ public class LevelDataHandler : MonoBehaviour
         }
 
         currentStoryData = epilogueStoryData[epilogueIndex];
-        backgroundImage.gameObject.SetActive(false);
+        backgroundImage.sprite = currentStoryData.backgroundSprite;
+        backgroundImage.gameObject.SetActive(true);
         storyPanel.SetActive(true);
-
-        if (currentStoryData != null)
-        {
-            backgroundImage.sprite = currentStoryData.backgroundSprite;
-            backgroundImage.gameObject.SetActive(true);
-        }
 
         switch (currentStoryData.storyType)
         {
@@ -209,55 +222,36 @@ public class LevelDataHandler : MonoBehaviour
         }
 
         #region Setting Content
+        TextMeshProUGUI currContent;
         DialogueStoryData dialogue = currentStoryData.dialogueStory.dialogueStories[dialogueIndex];
-        if (dialogue.playerIsTalking)
-        {
-            playerDialogue.charImage.sprite = currentStoryData.dialogueStory.playerSprite;
-            playerDialogue.nameText.text = DataHandler.instance.GetUserDataValue().username;
 
-            if (DataHandler.instance.GetLanguage() == "id")
-                SetStory(
-                    playerDialogue.dialogueText, 
-                    dialogue.contentData.clipId, 
-                    dialogue.contentData.contentId
-                    );
-            else if (DataHandler.instance.GetLanguage() == "en")
-                SetStory(
-                    playerDialogue.dialogueText,
-                    dialogue.contentData.clipEn,
-                    dialogue.contentData.contentEn
-                    );
-            else
-                SetStory(
-                    playerDialogue.dialogueText,
-                    dialogue.contentData.clipMy,
-                    dialogue.contentData.contentMy
-                    );
-        }
+        playerDialogue.charImage.sprite = dialogue.contentData.playerSprite;
+        interlocutorDialogue.charImage.sprite = dialogue.contentData.interlocutorSprite;
+
+        playerDialogue.nameText.text = DataHandler.instance.GetUserDataValue().username;
+        interlocutorDialogue.nameText.text = currentStoryData.dialogueStory.interlocutorName;
+
+        if (dialogue.playerIsTalking) currContent = playerDialogue.dialogueText;
+        else currContent = interlocutorDialogue.dialogueText;
+
+        if (DataHandler.instance.GetLanguage() == "id")
+            SetStory(
+                currContent,
+                dialogue.contentData.clipId,
+                dialogue.contentData.contentId
+                );
+        else if (DataHandler.instance.GetLanguage() == "en")
+            SetStory(
+                currContent,
+                dialogue.contentData.clipEn,
+                dialogue.contentData.contentEn
+                );
         else
-        {
-            interlocutorDialogue.charImage.sprite = currentStoryData.dialogueStory.interlocutorSprite;
-            interlocutorDialogue.nameText.text = currentStoryData.dialogueStory.interlocutorName;
-
-            if (DataHandler.instance.GetLanguage() == "id")
-                SetStory(
-                    interlocutorDialogue.dialogueText,
-                    dialogue.contentData.clipId,
-                    dialogue.contentData.contentId
-                    );
-            else if (DataHandler.instance.GetLanguage() == "en")
-                SetStory(
-                    interlocutorDialogue.dialogueText,
-                    dialogue.contentData.clipEn,
-                    dialogue.contentData.contentEn
-                    );
-            else
-                SetStory(
-                    interlocutorDialogue.dialogueText,
-                    dialogue.contentData.clipMy,
-                    dialogue.contentData.contentMy
-                    );
-        }
+            SetStory(
+                currContent,
+                dialogue.contentData.clipMy,
+                dialogue.contentData.contentMy
+                );
 
         interlocutorDialogue.dialoguePanel.SetActive(!dialogue.playerIsTalking);
         playerDialogue.dialoguePanel.SetActive(dialogue.playerIsTalking);
@@ -386,7 +380,6 @@ public class LevelDataHandler : MonoBehaviour
 
     public void SetTutorialStory(string key)
     {
-        Debug.Log($"Open Tutorial: {key}");
         FindObjectsOfType<SequencePanelHandler>().ToList().
             Find(seq => seq.key == key).Init();
     }
@@ -406,11 +399,15 @@ public class LevelDataHandler : MonoBehaviour
     {
         DataHandler.instance.GetUserCheckpointData().
             checkpoint_value[currentGameData.gameLevel].prologue_is_done = isDone;
+
+        DataHandler.instance.IEPatchCheckpointData(() => { });
     }
 
     public void SetEpilogueStory(bool isDone)
     {
         DataHandler.instance.GetUserCheckpointData().
             checkpoint_value[currentGameData.gameLevel].epilogue_is_done = isDone;
+
+        DataHandler.instance.IEPatchCheckpointData(() => { });
     }
 }

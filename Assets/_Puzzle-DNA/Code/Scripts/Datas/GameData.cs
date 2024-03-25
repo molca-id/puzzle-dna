@@ -49,8 +49,6 @@ public class DialogueBonusData
 {
     public bool playerIsTalking;
     public ExpressionType playerExpressionType;
-    public Sprite playerSprite;
-    public Sprite interlocutorSprite;
     public float dialogueDelay;
     public ContentData contentData;
 }
@@ -73,7 +71,7 @@ public class Dialogue
 }
 
 [CreateAssetMenu(fileName = "GameData", menuName = "DNA/GameData", order = 1)]
-public class GameData : SingletonScriptableObject<GameData>
+public class GameData : ScriptableObject
 {
     [Header("Board Dimension")]
     public Vector2Int boardDimension;
@@ -95,41 +93,41 @@ public class GameData : SingletonScriptableObject<GameData>
     public bool usingHandHint;
 
     [Header("Gems Attributes")]
-    [SerializeField] List<GemData> gems = new List<GemData>();
-    [SerializeField] List<SpecialGemData> specialGems = new List<SpecialGemData>();
-    public List<EmptyGemData> emptyGems = new List<EmptyGemData>();
+    public List<GemData> gems = new();
+    public List<SpecialGemData> specialGems = new();
+    public List<EmptyGemData> emptyGems = new();
 
     [Header("Other Attribute")]
-    [SerializeField] List<AudioClipInfo> audioClipInfos = new List<AudioClipInfo>();
-    [SerializeField] string[] comboMessages;
+    public List<AudioClipInfo> audioClipInfos = new();
+    public string[] comboMessages;
 
-    public static int maxCombo
+    public int maxCombo
     {
-        get { return instance.comboMessages.Length; }
+        get { return comboMessages.Length; }
     }
 
-    public static GemData GemOfType(GemType type)
+    public GemData GemOfType(GemType type)
     {
-        return instance.gems.Find(gem => gem.type == type);
+        return gems.Find(gem => gem.type == type);
     }
 
-    public static GemData RandomGem()
+    public GemData RandomGem()
     {
-        return Miscellaneous.Choose(instance.gems);
+        return Miscellaneous.Choose(gems);
     }
 
-    public static GameObject GetSpecialGem(string name)
+    public GameObject GetSpecialGem(string name)
     {
-        SpecialGemData sgd = instance.specialGems.Find(gem => gem.name == name);
+        SpecialGemData sgd = specialGems.Find(gem => gem.name == name);
         if (sgd != null)
             return sgd.prefab;
 
         return null;
     }
 
-    public static AudioClip GetAudioClip(string name)
+    public AudioClip GetAudioClip(string name)
     {
-        AudioClipInfo audioClipInfo = instance.audioClipInfos.Find(
+        AudioClipInfo audioClipInfo = audioClipInfos.Find(
             aci => aci.name == name
         );
 
@@ -139,8 +137,8 @@ public class GameData : SingletonScriptableObject<GameData>
         return null;
     }
 
-    public static string GetComboMessage(int combo)
+    public string GetComboMessage(int combo)
     {
-        return instance.comboMessages[combo];
+        return comboMessages[combo];
     }
 }

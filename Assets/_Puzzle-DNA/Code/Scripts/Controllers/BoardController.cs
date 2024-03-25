@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.U2D.IK;
 using Utilities;
 
 public class BoardController : SingletonMonoBehaviour<BoardController>
 {
     public GameObject gemPrefab;
+    public GameData gameData;
     Coroutine updateBoard = null;
 
     [Header("Board Attributes")]
@@ -95,7 +94,7 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
         get { return instance._matchCounter; }
         set
         {
-            instance._matchCounter = Mathf.Min(value, GameData.maxCombo);
+            instance._matchCounter = Mathf.Min(value, instance.gameData.maxCombo);
         }
     }
 
@@ -141,7 +140,7 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
                 {
                     while (gem.GetMatch().isValid)
                     {
-                        gem.SetType(GameData.RandomGem());
+                        gem.SetType(instance.gameData.RandomGem());
                     }
                 }
 
@@ -193,20 +192,21 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
         return gem;
     }
 
-    BaseGem CreateGem(int x, int y, GemData type, Vector3 worldPosition, float delay)
-    {
-        return CreateGem(x, y, type, worldPosition, delay, out float _);
-    }
+    //BaseGem CreateGem(int x, int y, GemData type, Vector3 worldPosition, float delay)
+    //{
+    //    return CreateGem(x, y, type, worldPosition, delay, out float _);
+    //}
 
-    BaseGem CreateGem(int x, int y, GemData type, Vector3 worldPosition)
-    {
-        return CreateGem(x, y, type, worldPosition, 0, out float _);
-    }
+    //BaseGem CreateGem(int x, int y, GemData type, Vector3 worldPosition)
+    //{
+    //    return CreateGem(x, y, type, worldPosition, 0, out float _);
+    //}
 
     BaseGem CreateRandomGem(int x, int y, Vector3 worldPosition, float delay, out float creatingDuration)
     {
+        GemData gemData = gameData.RandomGem();
         return CreateGem(
-            x, y, GameData.RandomGem(), worldPosition,
+            x, y, gemData, worldPosition,
             delay, out creatingDuration
         );
     }
@@ -216,10 +216,10 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
         return CreateRandomGem(x, y, worldPosition, delay, out float _);
     }
 
-    BaseGem CreateRandomGem(int x, int y, Vector3 worldPosition)
-    {
-        return CreateRandomGem(x, y, worldPosition, 0);
-    }
+    //BaseGem CreateRandomGem(int x, int y, Vector3 worldPosition)
+    //{
+    //    return CreateRandomGem(x, y, worldPosition, 0);
+    //}
 
     // Check if position is valid, then returns a Gem
     public static BaseGem GetGem(int x, int y)
@@ -721,15 +721,15 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
                     GameObject specialGem = null;
 
                     if (matchInfo.GetMatchType() == GemType.Action) 
-                        specialGem = GameData.GetSpecialGem("Bomb");
+                        specialGem = gameData.GetSpecialGem("Bomb");
                     else if (matchInfo.GetMatchType() == GemType.Network) 
-                        specialGem = GameData.GetSpecialGem("Rocket");
+                        specialGem = gameData.GetSpecialGem("Rocket");
 
                     float newGemDuration = 0.0f;
                     BaseGem newGem = CreateGem(
                         matchInfo.pivot.position.x,
                         matchInfo.pivot.position.y,
-                        GameData.GemOfType(GemType.Special),
+                        gameData.GemOfType(GemType.Special),
                         GetWorldPosition(matchInfo.pivot.position + Vector2Int.up),
                         0, out newGemDuration, specialGem
                     );
@@ -755,8 +755,8 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
         else matchTemp = matchCounter;
 
         GameController.scoreTemp = score + matchTemp;
-        UIController.ShowMsg($"{GameData.GetComboMessage(matchCounter - 1)}");
-        SoundController.PlaySfx(GameData.GetAudioClip("match"));
+        UIController.ShowMsg($"{gameData.GetComboMessage(matchCounter - 1)}");
+        SoundController.PlaySfx(gameData.GetAudioClip("match"));
 
         if (!GameController.instance.tutorial_is_done &&
             GameController.instance.gemIsInteractable)

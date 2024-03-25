@@ -205,6 +205,10 @@ public class PerksHandler : MonoBehaviour
         bool networkUpgraded = DataHandler.instance.GetPerksData().perks_ability_data.networkUpgraded;
         bool actionUpgraded = DataHandler.instance.GetPerksData().perks_ability_data.actionUpgraded;
 
+        List<bool> driveStage = DataHandler.instance.GetPerksData().perks_stage_datas[0].perks_stage_locks;
+        List<bool> networkStage = DataHandler.instance.GetPerksData().perks_stage_datas[1].perks_stage_locks;
+        List<bool> actionStage = DataHandler.instance.GetPerksData().perks_stage_datas[2].perks_stage_locks;
+
         //resetting
         DataHandler.instance.ResetAllPerks();
 
@@ -219,6 +223,10 @@ public class PerksHandler : MonoBehaviour
         DataHandler.instance.GetPerksData().perks_ability_data.driveUpgraded = driveUpgraded;
         DataHandler.instance.GetPerksData().perks_ability_data.networkUpgraded = networkUpgraded;
         DataHandler.instance.GetPerksData().perks_ability_data.actionUpgraded = actionUpgraded;
+
+        DataHandler.instance.GetPerksData().perks_stage_datas[0].perks_stage_locks = driveStage;
+        DataHandler.instance.GetPerksData().perks_stage_datas[1].perks_stage_locks = networkStage;
+        DataHandler.instance.GetPerksData().perks_stage_datas[2].perks_stage_locks = actionStage;
 
         MainMenuHandler.instance.PatchPerksFromMenu(delegate
         {

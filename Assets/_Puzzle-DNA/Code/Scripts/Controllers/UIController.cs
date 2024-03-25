@@ -75,7 +75,7 @@ public class UIController : SingletonMonoBehaviour<UIController>
             {
                 instance.timeLeftText.GetComponent<Animator>().SetTrigger("pulse");
                 instance.timePulse = Time.time;
-                SoundController.PlaySfxInstance(GameData.GetAudioClip("click"));
+                SoundController.PlaySfxInstance(BoardController.instance.gameData.GetAudioClip("click"));
             }
         }
         else

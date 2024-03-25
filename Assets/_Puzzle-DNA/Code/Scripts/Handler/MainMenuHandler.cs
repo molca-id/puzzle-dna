@@ -229,6 +229,15 @@ public class MainMenuHandler : MonoBehaviour
 
         willEnable.gameObject.SetActive(true);
         willDisabled.gameObject.SetActive(false);
+
+        for (int i = 0; i < DataHandler.instance.GetUserCheckpointData().checkpoint_value.Count; i++)
+        {
+            if (!DataHandler.instance.GetUserCheckpointData().checkpoint_value[i].epilogue_is_done &&
+                DataHandler.instance.GetUserCheckpointData().checkpoint_value[i].checkpoint_level_score != 0)
+            {
+                LevelDataHandler.instance.InitEpilogue(DataHandler.instance.levelDatas[i]);
+            }
+        }
     }
 
     public void SetupLevelButtons()
@@ -250,6 +259,7 @@ public class MainMenuHandler : MonoBehaviour
             {
                 levelButton[i].transform.Find("Pinpoint").gameObject.SetActive(true);
                 middleButtonChecker.buttonTarget = levelButton[i].gameObject;
+                scrollRect.horizontalNormalizedPosition = 0;
                 scrollAutomatically = true;
             }
 
@@ -257,7 +267,7 @@ public class MainMenuHandler : MonoBehaviour
             int levelIndex = i;
             levelButton[i].onClick.RemoveAllListeners();
             levelButton[i].onClick.AddListener(() =>
-                LevelDataHandler.instance.Init(
+                LevelDataHandler.instance.InitPrologue(
                     DataHandler.instance.levelDatas[index]
                     ));
         }
@@ -292,7 +302,7 @@ public class MainMenuHandler : MonoBehaviour
         for (int i = 0; i < levelButton.Count; i++)
         {
             if (levelButton[i].transform.Find("Pinpoint").gameObject.activeSelf)
-                LevelDataHandler.instance.Init(DataHandler.instance.levelDatas[i + 1]);
+                LevelDataHandler.instance.InitPrologue(DataHandler.instance.levelDatas[i + 1]);
         }
     }
     #endregion

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9b7fad1ffcf1e948bb956499f1099e4, type: 3}
+  m_Name: Level 1
+  m_EditorClassIdentifier: 
+  gameData: {fileID: 11400000, guid: ab90484f1e2012f48af90c05f7fd2075, type: 2}
+  perksPoinPlus: 3
+  perksPoinMinus: 0
+  openPerksPanelAfterGame: 0
+  usingPerkUnlocking: 1
+  perkStageForUnlocking:
+    perks_types: 1
+    perks_stage_locks: 000101
+  prologueStoryData:
+  - {fileID: 11400000, guid: b8ed470d001d0834c9073e9e2f6e6e3c, type: 2}
+  - {fileID: 11400000, guid: e1aed95876c3cb54d8b38642ead317b5, type: 2}
+  - {fileID: 11400000, guid: a822636b176b862418f4fdf49e35f5b2, type: 2}
+  - {fileID: 11400000, guid: 42c09e3f6edd9a64a8e1db5948089804, type: 2}
+  epilogueStoryData: []

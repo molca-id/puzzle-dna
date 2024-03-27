@@ -760,7 +760,7 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
 
         if (!GameController.instance.tutorial_is_done &&
             GameController.instance.gemIsInteractable)
-            GameTutorialHandler.instance.FinishTutorial();
+            GameController.instance.gameTutorialHandler.FinishTutorial();
 
         yield return new WaitForSeconds(maxDuration / 2);
     }

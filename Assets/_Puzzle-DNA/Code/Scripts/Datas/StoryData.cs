@@ -41,6 +41,7 @@ public class StoryData : ScriptableObject
 
     public StoryType storyType;
     public Sprite backgroundSprite;
+    [TextArea(4, 4)] public string storyPreview;
 
     [Header("Selecting Tutorial")]
     public string tutorialKey;

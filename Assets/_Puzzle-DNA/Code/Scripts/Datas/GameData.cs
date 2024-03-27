@@ -89,7 +89,7 @@ public class GameData : ScriptableObject
     [Header("Board Attribute")]
     public float hintDelay;
     public float totalTime;
-    public bool usingTutorial;
+    public string tutorialKey;
     public bool usingHandHint;
 
     [Header("Gems Attributes")]

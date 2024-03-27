@@ -90,9 +90,9 @@ public class PerksHandler : MonoBehaviour
         else actionDescPanel.SetActive(!actionDescPanel.activeSelf);
     }
 
-    public void OpenPerksPanel()
+    public void OpenPerksPanel(bool isSmall)
     {
-        MainMenuHandler.instance.GetTalentPerksFromMenu(delegate
+        MainMenuHandler.instance.GetTalentPerksFromMenu(isSmall, delegate
         {
             UserDataSpace.PerksValue perksValue = DataHandler.instance.GetPerksData();
             List<TalentDataSpace.TalentValueData> talentValues = DataHandler.instance.GetTalentDatas();

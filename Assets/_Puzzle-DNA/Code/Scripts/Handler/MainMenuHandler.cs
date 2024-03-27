@@ -62,7 +62,8 @@ public class MainMenuHandler : MonoBehaviour
     [SerializeField] float splashSpeed;
     [SerializeField] CanvasGroup tutorialPanel;
     [SerializeField] CanvasGroup mainMenuPanel;
-    [SerializeField] CanvasGroup loadingPanel;
+    [SerializeField] CanvasGroup smallLoadingPanel;
+    [SerializeField] CanvasGroup bigLoadingPanel;
 
     [Header("Level Attributes")]
     [SerializeField] List<Button> levelButton;
@@ -83,6 +84,14 @@ public class MainMenuHandler : MonoBehaviour
     private void Start()
     {
         InitMenu();
+        for (int i = 0; i < DataHandler.instance.GetUserCheckpointData().checkpoint_value.Count; i++)
+        {
+            if (!DataHandler.instance.GetUserCheckpointData().checkpoint_value[i].epilogue_is_done &&
+                DataHandler.instance.GetUserCheckpointData().checkpoint_value[i].checkpoint_level_score != 0)
+            {
+                LevelDataHandler.instance.InitEpilogue(DataHandler.instance.levelDatas[i]);
+            }
+        }
     }
 
     private void Update()
@@ -102,12 +111,12 @@ public class MainMenuHandler : MonoBehaviour
 
     public void SubmitLanguage(SequencePanelHandler seq)
     {
-        StartCoroutine(IEOpenScreen(loadingPanel, delegate
+        StartCoroutine(IEOpenScreen(smallLoadingPanel, delegate
         {
             DataHandler.instance.IEPatchLanguageData(delegate
             {
-                seq.NextPanel();
-                StartCoroutine(IECloseScreen(loadingPanel));
+                if (seq != null) seq.NextPanel();
+                StartCoroutine(IECloseScreen(smallLoadingPanel));
             });
         }));
     }
@@ -140,11 +149,11 @@ public class MainMenuHandler : MonoBehaviour
     {
         DataHandler.instance.currPlayerSpriteData = DataHandler.instance.playerSpriteDatas.Find(data => data.character == character);
         DataHandler.instance.GetUserDataValue().character = (int)character;
-        StartCoroutine(IEOpenScreen(loadingPanel, delegate
+        StartCoroutine(IEOpenScreen(smallLoadingPanel, delegate
         {
             DataHandler.instance.IEPatchCharacterData(delegate
             {
-                StartCoroutine(IECloseScreen(loadingPanel));
+                StartCoroutine(IECloseScreen(smallLoadingPanel));
             });
         }));
     }
@@ -229,15 +238,6 @@ public class MainMenuHandler : MonoBehaviour
 
         willEnable.gameObject.SetActive(true);
         willDisabled.gameObject.SetActive(false);
-
-        for (int i = 0; i < DataHandler.instance.GetUserCheckpointData().checkpoint_value.Count; i++)
-        {
-            if (!DataHandler.instance.GetUserCheckpointData().checkpoint_value[i].epilogue_is_done &&
-                DataHandler.instance.GetUserCheckpointData().checkpoint_value[i].checkpoint_level_score != 0)
-            {
-                LevelDataHandler.instance.InitEpilogue(DataHandler.instance.levelDatas[i]);
-            }
-        }
     }
 
     public void SetupLevelButtons()
@@ -310,14 +310,14 @@ public class MainMenuHandler : MonoBehaviour
     #region API Hit
     public void PostIntroductionState(bool cond)
     {
-        StartCoroutine(IEOpenScreen(loadingPanel, delegate
+        StartCoroutine(IEOpenScreen(smallLoadingPanel, delegate
         {
             tutorialPanel.gameObject.SetActive(false);
             mainMenuPanel.gameObject.SetActive(false);
             DataHandler.instance.GetUserCheckpointData().tutorial_is_done = cond;
             DataHandler.instance.IEPatchCheckpointData(delegate
             {
-                StartCoroutine(IECloseScreen(loadingPanel));
+                StartCoroutine(IECloseScreen(smallLoadingPanel));
                 InitMenu();
             });
         }));
@@ -325,11 +325,11 @@ public class MainMenuHandler : MonoBehaviour
 
     public void PatchCheckpointFromMenu()
     {
-        StartCoroutine(IEOpenScreen(loadingPanel, delegate
+        StartCoroutine(IEOpenScreen(smallLoadingPanel, delegate
         {
             DataHandler.instance.IEPatchCheckpointData(delegate
             {
-                StartCoroutine(IECloseScreen(loadingPanel));
+                StartCoroutine(IECloseScreen(smallLoadingPanel));
                 InitMenu();
             });
         }));
@@ -337,24 +337,25 @@ public class MainMenuHandler : MonoBehaviour
 
     public void PatchPerksFromMenu(Action executeAfter = null)
     {
-        StartCoroutine(IEOpenScreen(loadingPanel, delegate
+        StartCoroutine(IEOpenScreen(smallLoadingPanel, delegate
         {
             DataHandler.instance.IEPatchPerksData(delegate
             {
                 executeAfter.Invoke();
-                StartCoroutine(IECloseScreen(loadingPanel));
+                StartCoroutine(IECloseScreen(smallLoadingPanel));
             });
         }));
     }
 
-    public void GetTalentPerksFromMenu(Action executeAfter = null)
+    public void GetTalentPerksFromMenu(bool isSmall, Action executeAfter = null)
     {
-        StartCoroutine(IEOpenScreen(loadingPanel, delegate
+        CanvasGroup canvas = isSmall ? smallLoadingPanel : bigLoadingPanel;
+        StartCoroutine(IEOpenScreen(canvas, delegate
         {
             DataHandler.instance.IEGetTalentData(delegate
             {
                 executeAfter.Invoke();
-                StartCoroutine(IECloseScreen(loadingPanel));
+                StartCoroutine(IECloseScreen(canvas));
             });
         }));
     }

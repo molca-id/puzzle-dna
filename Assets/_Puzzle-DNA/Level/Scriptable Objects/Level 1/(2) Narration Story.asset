@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0d3ec688709c214a8c7fe11dd2475cf, type: 3}
+  m_Name: (2) Narration Story
+  m_EditorClassIdentifier: 
+  storyType: 1
+  backgroundSprite: {fileID: 21300000, guid: 0bf3db385304db8459b2e1f3b6e2564a, type: 3}
+  storyPreview: 'Dunia dilanda pandemi Virus Corona yang mengakibatkan dunia lumpuh
+    dan aktivitas manusia dibatasi. '
+  tutorialKey: 
+  dialogueStory:
+    playerIdleSprite: {fileID: 0}
+    interlocutorIdleSprite: {fileID: 0}
+    interlocutorName: 
+    dialogueStories: []
+  narrationType: 2
+  narrationStories:
+  - usingCharacterSprite: 0
+    playerSprite: {fileID: 0}
+    interlocutorSprite: {fileID: 0}
+    clipId: {fileID: 0}
+    clipEn: {fileID: 0}
+    clipMy: {fileID: 0}
+    contentId: Pada tahun 2020, dunia dilanda pandemi Virus Corona yang mengakibatkan
+      dunia lumpuh dan aktivitas manusia dibatasi.
+    contentEn: The world was hit by the Corona Virus pandemic which resulted in the
+      world being paralyzed and human activities being restricted.
+    contentMy: Pada tahun 2020, dunia dilanda pandemi Virus Corona yang mengakibatkan
+      dunia lumpuh dan aktivitas manusia dibatasi.
+  - usingCharacterSprite: 0
+    playerSprite: {fileID: 0}
+    interlocutorSprite: {fileID: 0}
+    clipId: {fileID: 0}
+    clipEn: {fileID: 0}
+    clipMy: {fileID: 0}
+    contentId: DNA Atom terdeteksi berada di sebuah Rumah Sakit di daerah terisolasi
+    contentEn: Atomic DNA was detected in a hospital in an isolated area
+    contentMy: DNA Atom terdeteksi berada di sebuah Rumah Sakit di daerah terisolasi
+  - usingCharacterSprite: 0
+    playerSprite: {fileID: 0}
+    interlocutorSprite: {fileID: 0}
+    clipId: {fileID: 0}
+    clipEn: {fileID: 0}
+    clipMy: {fileID: 0}
+    contentId: Ayo! Temui seorang relawan kesehatan yang sedang membantu masyarakat
+      sekitar. Bantu Dia menyelesaikan tugasnya dan Dia akan mengantarmu ke tujuanmu!
+    contentEn: Come on! Meet a health volunteer who is helping the local community.
+      Help Him complete his task and He will take you to your destination!
+    contentMy: Ayo! Temui seorang relawan kesehatan yang sedang membantu masyarakat
+      sekitar. Bantu Dia menyelesaikan tugasnya dan Dia akan mengantarmu ke tujuanmu!
+  popUpStories: []
+  titleStories: []

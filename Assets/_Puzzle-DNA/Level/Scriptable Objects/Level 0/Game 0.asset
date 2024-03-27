@@ -25,7 +25,7 @@ MonoBehaviour:
   usingDialogueBonus: 0
   hintDelay: 1.5
   totalTime: 30
-  usingTutorial: 1
+  tutorialKey: FirstTutorial
   usingHandHint: 1
   gems:
   - type: 3

@@ -17,12 +17,10 @@ MonoBehaviour:
   perksPoinMinus: 0
   openPerksPanelAfterGame: 0
   usingPerkUnlocking: 0
-  perkStageForUnlocking:
-    perks_types: 0
-    perks_stage_locks: 000001
+  perkStageForUnlocking: []
   prologueStoryData:
-  - {fileID: 11400000, guid: bdab084ba7933574eb283b7fe9466b4e, type: 2}
   - {fileID: 11400000, guid: 04db94757c79a4040acff15f38955bd1, type: 2}
   epilogueStoryData:
+  - {fileID: 11400000, guid: bdab084ba7933574eb283b7fe9466b4e, type: 2}
   - {fileID: 11400000, guid: 850cfad581541b647b9821357b696eef, type: 2}
   - {fileID: 11400000, guid: ad14a80a5f7bdd74787de08d7a49fa54, type: 2}

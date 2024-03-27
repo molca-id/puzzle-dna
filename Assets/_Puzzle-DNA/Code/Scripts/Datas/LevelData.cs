@@ -22,7 +22,7 @@ public class LevelData : SingletonScriptableObject<LevelData>
 
     [Header("Addon For Game Unlocking Perk Stage")]
     public bool usingPerkUnlocking;
-    public PerksStage perkStageForUnlocking;
+    public List<PerksStage> perkStageForUnlocking;
 
     [Header("Story")]
     public List<StoryData> prologueStoryData;

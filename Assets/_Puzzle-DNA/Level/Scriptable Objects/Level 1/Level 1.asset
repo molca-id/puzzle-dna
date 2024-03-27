@@ -18,11 +18,15 @@ MonoBehaviour:
   openPerksPanelAfterGame: 0
   usingPerkUnlocking: 1
   perkStageForUnlocking:
-    perks_types: 1
+  - perks_types: 0
     perks_stage_locks: 000101
+  - perks_types: 1
+    perks_stage_locks: 000101
+  - perks_types: 2
+    perks_stage_locks: 010101
   prologueStoryData:
   - {fileID: 11400000, guid: b8ed470d001d0834c9073e9e2f6e6e3c, type: 2}
   - {fileID: 11400000, guid: e1aed95876c3cb54d8b38642ead317b5, type: 2}
-  - {fileID: 11400000, guid: a822636b176b862418f4fdf49e35f5b2, type: 2}
   - {fileID: 11400000, guid: 42c09e3f6edd9a64a8e1db5948089804, type: 2}
-  epilogueStoryData: []
+  epilogueStoryData:
+  - {fileID: 11400000, guid: a822636b176b862418f4fdf49e35f5b2, type: 2}

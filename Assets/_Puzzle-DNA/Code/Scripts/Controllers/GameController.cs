@@ -1,6 +1,7 @@
 ﻿using ActionCode.Attributes;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using UserDataSpace;
@@ -11,6 +12,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
     [Header("Game Data")]
     [SerializeField] GameData gameData;
     [SerializeField] BoardController boardController;
+    public GameTutorialHandler gameTutorialHandler;
     [SerializeField] List<Sprite> layoutBackgrounds;
 
     [Header("PowerUps VFX")]
@@ -138,9 +140,6 @@ public class GameController : SingletonMonoBehaviour<GameController>
         BoardController.emptyPositions = gameData.emptyGems;
         BoardController.matchCounter = 0;
 
-        BoardController.usingTutorial = gameData.usingTutorial; 
-        GameTutorialHandler.instance.InitTutorial(gameData.usingTutorial);
-
         HintController.needHandAnim = gameData.usingHandHint;
         HintController.hintDelay = gameData.hintDelay;
         UIController.instance.ShowGameScreen();
@@ -159,6 +158,18 @@ public class GameController : SingletonMonoBehaviour<GameController>
         }
 
         BoardController.UpdateBoard();
+        BoardController.usingTutorial = gameData.tutorialKey != string.Empty;
+        if (BoardController.usingTutorial)
+        {
+            gameTutorialHandler = FindObjectsOfType<GameTutorialHandler>().ToList().
+                Find(res => res.tutorialKey == gameData.tutorialKey);
+            gameTutorialHandler.InitTutorial(BoardController.usingTutorial);
+        }
+        else
+        {
+            FindObjectOfType<GameTutorialHandler>().InitTutorial(false);
+        }
+
         PoolingMatchEffect();
     }
 
@@ -253,15 +264,18 @@ public class GameController : SingletonMonoBehaviour<GameController>
             {
                 foreach (UserDataSpace.PerksStage data in perks.perks_stage_datas)
                 {
-                    if (data.perks_types != level.perkStageForUnlocking.perks_types) continue;
-                    data.perks_stage_locks = level.perkStageForUnlocking.perks_stage_locks;
+                    foreach (LevelData.PerksStage stage in level.perkStageForUnlocking)
+                    {
+                        if (data.perks_types != stage.perks_types) continue;
+                        data.perks_stage_locks = stage.perks_stage_locks;
+                    }
                 }
             }
 
             MainMenuHandler.instance.PatchPerksFromMenu(delegate
             {
                 if (!level.openPerksPanelAfterGame) return;
-                PerksHandler.instance.OpenPerksPanel();
+                PerksHandler.instance.OpenPerksPanel(true);
             });
 
             DataHandler.instance.GetUserCheckpointData().

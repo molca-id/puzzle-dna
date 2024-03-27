@@ -6,8 +6,8 @@ using Utilities;
 
 public class GameTutorialHandler : MonoBehaviour
 {
-    public static GameTutorialHandler instance;
     [SerializeField] int index;
+    public string tutorialKey;
     [SerializeField] Canvas generalCanvas;
     [SerializeField] Transform gamePanel;
     [SerializeField] Transform tutorialPanel;
@@ -18,14 +18,11 @@ public class GameTutorialHandler : MonoBehaviour
     [SerializeField] float delaySkippable;
     [SerializeField] bool isSkippable;
 
-    void Awake()
-    {
-        instance = this;      
-    }
-
     public void InitTutorial(bool use)
     {
-        if (use)
+        if (!DataHandler.instance.GetUserCheckpointData().
+            checkpoint_value[LevelDataHandler.instance.currentGameData.gameLevel].
+            game_is_done && use)
         {
             tutorialPanel.gameObject.SetActive(true);
             NextTutorial();

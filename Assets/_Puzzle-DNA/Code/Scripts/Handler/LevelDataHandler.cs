@@ -28,9 +28,9 @@ public class LevelDataHandler : MonoBehaviour
     [Header("Current Story Attributes")]
     [HideInInspector] public GameData currentGameData;
     [HideInInspector] public LevelData currentLevelData;
-    [HideInInspector] public StoryData currentStoryData;
-    [HideInInspector] public List<StoryData> prologueStoryData;
-    [HideInInspector] public List<StoryData> epilogueStoryData;
+    public StoryData currentStoryData;
+    public List<StoryData> prologueStoryData;
+    public List<StoryData> epilogueStoryData;
 
     [Header("Current Index Attributes")]
     [HideInInspector] public int prologueIndex;
@@ -39,8 +39,8 @@ public class LevelDataHandler : MonoBehaviour
     [HideInInspector] public int narrationIndex;
     [HideInInspector] public int popUpIndex;
     [HideInInspector] public int titleIndex;
-    [HideInInspector] public bool isPrologue;
-    [HideInInspector] public bool isEpilogue;
+    public bool isPrologue;
+    public bool isEpilogue;
 
     [Header("Dialogue Attributes")]
     public GameObject dialoguePanel;
@@ -114,6 +114,7 @@ public class LevelDataHandler : MonoBehaviour
                 CommonHandler.instance.whenSceneUnloadedCustom = whenGameUnloaded;
             }
 
+            SetPrologueStory(true);
             GameGenerator.instance.GenerateLevel(currentGameData);
             return;
         }
@@ -161,11 +162,13 @@ public class LevelDataHandler : MonoBehaviour
     {
         isEpilogue = true;
         epilogueIndex += factor;
+        Debug.Log("Epilogue-ing");
         if (epilogueIndex == epilogueStoryData.Count)
         {
             epilogueIndex = 0;
             isEpilogue = false;
             storyPanel.SetActive(false);
+            SetEpilogueStory(true);
             return;
         }
 

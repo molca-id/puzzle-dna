@@ -43,6 +43,7 @@ public class SettingHandler : MonoBehaviour
     {
         LangIdButton.SetActive(true);
         LangEnButton.SetActive(true);
+        LangEnButton.SetActive(true);
 
         string currLang = DataHandler.instance.GetLanguage();
         switch (currLang)
@@ -51,6 +52,9 @@ public class SettingHandler : MonoBehaviour
                 LangEnButton.SetActive(false);
                 break;
             case "en":
+                LangIdButton.SetActive(false);
+                break;
+            case "my":
                 LangIdButton.SetActive(false);
                 break;
         }
@@ -65,6 +69,7 @@ public class SettingHandler : MonoBehaviour
     public void SelectLanguage(string lang)
     {
         MainMenuHandler.instance.SelectLanguage(lang);
+        MainMenuHandler.instance.SubmitLanguage(null);
         DataHandler.instance.RefreshAllTextLanguage();
         OpenSettingPanel();
     }

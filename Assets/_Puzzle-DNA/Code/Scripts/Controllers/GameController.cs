@@ -35,7 +35,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
     int _scoreTotal = 0;
     int _scoreTemp = 0;
     int _scoreMultiplier = 1;
-    float _timeLeft = 120;
+    public float _timeLeft = 120;
 
     public static int scoreTemp
     {

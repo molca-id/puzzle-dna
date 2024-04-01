@@ -36,7 +36,7 @@ public class ContentData
 [CreateAssetMenu(fileName = "StoryData", menuName = "DNA/StoryData", order = 1)]
 public class StoryData : ScriptableObject
 {
-    public enum StoryType { Dialogue, Narration, PopUp, Tutorial, Title }
+    public enum StoryType { Dialogue, Narration, PopUp, Tutorial, Title, Event }
     public enum NarrationType { Above, Middle, Under }
 
     public StoryType storyType;
@@ -58,4 +58,7 @@ public class StoryData : ScriptableObject
 
     [Header("Title Story")]
     public List<ContentData> titleStories;
+
+    [Header("Event Story")]
+    public EventData eventDataStory;
 }

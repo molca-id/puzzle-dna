@@ -74,6 +74,9 @@ public class PerksHandler : MonoBehaviour
     public List<TextMeshProUGUI> perkPointMinus;
     public List<AbilityUIData> perkAbilityDatas;
 
+    [Header("Addon For Perks Panel After Event Panel")]
+    public bool asEvent;
+
     [Header("Addon For Perks Panel As Tutorial")]
     public bool asTutorial;
     public UnityEvent whenSubmitPerk;
@@ -94,9 +97,9 @@ public class PerksHandler : MonoBehaviour
     {
         MainMenuHandler.instance.GetTalentPerksFromMenu(isSmall, delegate
         {
-            UserDataSpace.PerksValue perksValue = DataHandler.instance.GetPerksData();
+            PerksValue perksValue = DataHandler.instance.GetPerksData();
             List<TalentDataSpace.TalentValueData> talentValues = DataHandler.instance.GetTalentDatas();
-            UserDataSpace.PerksAbilityData abilityStatus = DataHandler.instance.GetPerksData().perks_ability_data;
+            PerksAbilityData abilityStatus = DataHandler.instance.GetPerksData().perks_ability_data;
             SetPointText();
 
             foreach (AbilityUIData data in perkAbilityDatas)
@@ -126,8 +129,15 @@ public class PerksHandler : MonoBehaviour
             {
                 for (int j = 0; j < perksTypeDatas[i].perks_stage_datas.Count; j++)
                 {
-                    perksTypeDatas[i].perks_stage_datas[j].lock_panel.
-                        SetActive(perksValue.perks_stage_datas[i].perks_stage_locks[j]);
+                    if (!asEvent)
+                    {
+                        perksTypeDatas[i].perks_stage_datas[j].lock_panel.
+                            SetActive(perksValue.perks_stage_datas[i].perks_stage_locks[j]);
+                    }
+                    else
+                    {
+
+                    }
 
                     for (int k = 0; k < perksTypeDatas[i].perks_stage_datas[j].perks_value_datas.Count; k++)
                     {

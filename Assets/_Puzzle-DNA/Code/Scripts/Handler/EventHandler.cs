@@ -5,11 +5,12 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 [Serializable]
 public class EventAnswerData
 {
-    public string answer;
+    [TextArea(4, 4)] public string answer;
     public List<EventPointData> eventPointDatas;
 }
 
@@ -23,8 +24,8 @@ public class EventPointData
 [Serializable]
 public class EventData
 {
-    public string question;
-    public ExpressionType playerExpression;
+    [TextArea(7, 7)] public string question;
+    public Sprite characterSprite;
     public List<EventAnswerData> answers;
 }
 
@@ -34,12 +35,14 @@ public class EventAnswerUI
     public TextMeshProUGUI answerText;
     public TextMeshProUGUI minusPointText;
     public TextMeshProUGUI plusPointText;
+    public Button button;
 }
 
 public class EventHandler : MonoBehaviour
 {
+    public PerksHandler customPerkPanel;
+    public GameObject eventPanel;
     public EventData currentEventData;
-    public bool eventExist;
 
     [Header("UI Attribute")]
     public Image playerCharImage;
@@ -50,39 +53,95 @@ public class EventHandler : MonoBehaviour
     public void Init(EventData data)
     {
         currentEventData = data;
-        questionText.text = data.question;
+        questionText.text = currentEventData.question;
+        eventPanel.SetActive(true);
 
-        firstAnswer.answerText.text = data.answers[0].answer;
-        if (data.answers[0].eventPointDatas[0].perkType == PerksType.Drive) firstAnswer.plusPointText.text = "D";
-        else if (data.answers[0].eventPointDatas[0].perkType == PerksType.Network) firstAnswer.plusPointText.text = "N";
-        else if (data.answers[0].eventPointDatas[0].perkType == PerksType.Action) firstAnswer.plusPointText.text = "A";
+        firstAnswer.answerText.text = currentEventData.answers[0].answer;
+        if (currentEventData.answers[0].eventPointDatas[0].perkType == PerksType.Drive) firstAnswer.plusPointText.text = "D";
+        else if (currentEventData.answers[0].eventPointDatas[0].perkType == PerksType.Network) firstAnswer.plusPointText.text = "N";
+        else firstAnswer.plusPointText.text = "A";
 
-        if (data.answers[0].eventPointDatas[1].perkType == PerksType.Drive) firstAnswer.minusPointText.text = "D";
-        else if (data.answers[0].eventPointDatas[1].perkType == PerksType.Network) firstAnswer.minusPointText.text = "N";
-        else if (data.answers[0].eventPointDatas[1].perkType == PerksType.Action) firstAnswer.minusPointText.text = "A";
+        if (currentEventData.answers[0].eventPointDatas[1].perkType == PerksType.Drive) firstAnswer.minusPointText.text = "D";
+        else if (currentEventData.answers[0].eventPointDatas[1].perkType == PerksType.Network) firstAnswer.minusPointText.text = "N";
+        else firstAnswer.minusPointText.text = "A";
 
-        secondAnswer.answerText.text = data.answers[1].answer;
-        if (data.answers[1].eventPointDatas[0].perkType == PerksType.Drive) secondAnswer.plusPointText.text = "D";
-        else if (data.answers[1].eventPointDatas[0].perkType == PerksType.Network) secondAnswer.plusPointText.text = "N";
-        else if (data.answers[1].eventPointDatas[0].perkType == PerksType.Action) secondAnswer.plusPointText.text = "A";
+        secondAnswer.answerText.text = currentEventData.answers[1].answer;
+        if (currentEventData.answers[1].eventPointDatas[0].perkType == PerksType.Drive) secondAnswer.plusPointText.text = "D";
+        else if (currentEventData.answers[1].eventPointDatas[0].perkType == PerksType.Network) secondAnswer.plusPointText.text = "N";
+        else secondAnswer.plusPointText.text = "A";
 
-        if (data.answers[1].eventPointDatas[1].perkType == PerksType.Drive) secondAnswer.minusPointText.text = "D";
-        else if (data.answers[1].eventPointDatas[1].perkType == PerksType.Network) secondAnswer.minusPointText.text = "N";
-        else if (data.answers[1].eventPointDatas[1].perkType == PerksType.Action) secondAnswer.minusPointText.text = "A";
+        if (currentEventData.answers[1].eventPointDatas[1].perkType == PerksType.Drive) secondAnswer.minusPointText.text = "D";
+        else if (currentEventData.answers[1].eventPointDatas[1].perkType == PerksType.Network) secondAnswer.minusPointText.text = "N";
+        else secondAnswer.minusPointText.text = "A";
 
-        playerCharImage.sprite = DataHandler.instance.currPlayerSpriteData.expressionDatas.
-            Find(res => res.expressionType == data.playerExpression).sprite;
-
-        eventExist = true;
+        DataHandler.instance.GetPerksData().perks_point_data.specific_perks_point.perks_story_type = 
+            LevelDataHandler.instance.isPrologue ? UserDataSpace.StoryType.Prologue : UserDataSpace.StoryType.Epilogue;
+        playerCharImage.sprite = currentEventData.characterSprite;
     }
 
     public void ChooseFirstAnswer()
     {
+        if (DataHandler.instance.GetSpecificPerksPoint(currentEventData.answers[0].eventPointDatas[0].perkType).perks_point_plus == 0)
+        {
+            DataHandler.instance.GetSpecificPerksPoint(currentEventData.answers[0].eventPointDatas[0].perkType).perks_point_plus += 2;
+            DataHandler.instance.GetPerksData().perks_point_data.total_perks_point_plus +=
+                DataHandler.instance.GetSpecificPerksPoint(currentEventData.answers[0].eventPointDatas[0].perkType).perks_point_plus;
 
+            DataHandler.instance.GetPerksData().perks_point_data.
+                specific_perks_point.perks_point_plus = DataHandler.instance.GetSpecificPerksPoint(currentEventData.answers[0].eventPointDatas[0].perkType).perks_point_plus;
+            DataHandler.instance.GetPerksData().perks_point_data.
+                specific_perks_point.perks_plus_type = currentEventData.answers[0].eventPointDatas[0].perkType;
+        }
+        if (DataHandler.instance.GetSpecificPerksPoint(currentEventData.answers[0].eventPointDatas[1].perkType).perks_point_minus == 0)
+        {
+            DataHandler.instance.GetSpecificPerksPoint(currentEventData.answers[0].eventPointDatas[1].perkType).perks_point_minus += 2;
+            DataHandler.instance.GetPerksData().perks_point_data.total_perks_point_minus +=
+                DataHandler.instance.GetSpecificPerksPoint(currentEventData.answers[0].eventPointDatas[1].perkType).perks_point_minus;
+
+            DataHandler.instance.GetPerksData().perks_point_data.
+                specific_perks_point.perks_point_minus = DataHandler.instance.GetSpecificPerksPoint(currentEventData.answers[0].eventPointDatas[1].perkType).perks_point_minus;
+            DataHandler.instance.GetPerksData().perks_point_data.
+                specific_perks_point.perks_plus_type = currentEventData.answers[0].eventPointDatas[1].perkType;
+        }
+
+        MainMenuHandler.instance.PatchPerksFromMenu(() =>
+        {
+            eventPanel.SetActive(false);
+            customPerkPanel.OpenPerksPanel(true);
+            currentEventData = new();
+        }); 
     }
 
     public void ChooseSecondAnswer()
     {
+        if (DataHandler.instance.GetSpecificPerksPoint(currentEventData.answers[1].eventPointDatas[0].perkType).perks_point_plus == 0)
+        {
+            DataHandler.instance.GetSpecificPerksPoint(currentEventData.answers[1].eventPointDatas[0].perkType).perks_point_plus += 2;
+            DataHandler.instance.GetPerksData().perks_point_data.total_perks_point_plus +=
+                DataHandler.instance.GetSpecificPerksPoint(currentEventData.answers[1].eventPointDatas[0].perkType).perks_point_plus;
 
+            DataHandler.instance.GetPerksData().perks_point_data.
+                specific_perks_point.perks_point_plus = DataHandler.instance.GetSpecificPerksPoint(currentEventData.answers[1].eventPointDatas[0].perkType).perks_point_plus;
+            DataHandler.instance.GetPerksData().perks_point_data.
+                specific_perks_point.perks_plus_type = currentEventData.answers[1].eventPointDatas[0].perkType;
+        }
+        if (DataHandler.instance.GetSpecificPerksPoint(currentEventData.answers[1].eventPointDatas[1].perkType).perks_point_minus == 0)
+        {
+            DataHandler.instance.GetSpecificPerksPoint(currentEventData.answers[1].eventPointDatas[1].perkType).perks_point_minus += 2;
+            DataHandler.instance.GetPerksData().perks_point_data.total_perks_point_minus +=
+                DataHandler.instance.GetSpecificPerksPoint(currentEventData.answers[1].eventPointDatas[1].perkType).perks_point_minus;
+
+            DataHandler.instance.GetPerksData().perks_point_data.
+                specific_perks_point.perks_point_minus = DataHandler.instance.GetSpecificPerksPoint(currentEventData.answers[1].eventPointDatas[1].perkType).perks_point_minus;
+            DataHandler.instance.GetPerksData().perks_point_data.
+                specific_perks_point.perks_plus_type = currentEventData.answers[1].eventPointDatas[1].perkType;
+        }
+
+        MainMenuHandler.instance.PatchPerksFromMenu(() =>
+        {
+            eventPanel.SetActive(false);
+            customPerkPanel.OpenPerksPanel(true);
+            currentEventData = new();
+        });
     }
 }

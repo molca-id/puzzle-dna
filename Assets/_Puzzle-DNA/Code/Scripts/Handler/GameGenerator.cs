@@ -17,7 +17,7 @@ public class GameGenerator : MonoBehaviour
         if (currentGameLevel < 0) return;
         if (DataHandler.instance.GetUserCheckpointData().checkpoint_value[currentGameLevel].checkpoint_level_score > score) return;
         DataHandler.instance.GetUserCheckpointData().checkpoint_value[currentGameLevel].checkpoint_level_score = score;
-        MainMenuHandler.instance.PatchCheckpointFromMenu();
+        MainMenuHandler.instance.PatchCheckpointFromMenu(() => MainMenuHandler.instance.InitMenu());
     }
 
     public void GenerateLevel(GameData data)

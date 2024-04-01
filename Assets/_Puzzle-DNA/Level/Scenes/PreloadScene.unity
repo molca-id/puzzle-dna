@@ -1307,6 +1307,22 @@ MonoBehaviour:
           total_perks_point_minus: 0
           perks_point_plus: 0
           perks_point_minus: 0
+          specific_perks_point:
+            peks_story_type: 0
+            perks_plus_type: 0
+            perks_minus_type: 0
+            perks_point_plus: 0
+            perks_point_minus: 0
+            specific_perks_point_datas:
+            - perks_type: 0
+              perks_point_plus: 0
+              perks_point_minus: 0
+            - perks_type: 1
+              perks_point_plus: 0
+              perks_point_minus: 0
+            - perks_type: 2
+              perks_point_plus: 0
+              perks_point_minus: 0
         perks_stage_datas:
         - perks_types: 0
           perks_point_plus: 0
@@ -1666,6 +1682,13 @@ MonoBehaviour:
           total_perks_point_minus: 0
           perks_point_plus: 0
           perks_point_minus: 0
+          specific_perks_point:
+            peks_story_type: 2
+            perks_plus_type: 0
+            perks_minus_type: 0
+            perks_point_plus: 0
+            perks_point_minus: 0
+            specific_perks_point_datas: []
         perks_stage_datas: []
         perks_value_datas: []
       checkpoint_data:
@@ -2142,7 +2165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.77647066, g: 0.85098046, b: 0.97647065, a: 1}
+  m_Color: {r: 0.654902, g: 0.8078432, b: 0.9490197, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2311,7 +2334,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
+  m_BackGroundColor: {r: 0.654902, g: 0.80784315, b: 0.9490196, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -2622,7 +2645,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.654902, g: 0.8078432, b: 0.9490197, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3701,7 +3724,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.654902, g: 0.8078432, b: 0.9490197, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

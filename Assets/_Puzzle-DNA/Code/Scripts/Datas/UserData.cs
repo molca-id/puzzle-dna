@@ -2,9 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace UserDataSpace
 {
+    public enum StoryType { Prologue, Epilogue, Unknown }
+
     public enum Character { Alfa, Rei, Budi, Bunga, Fatimah, Mentari }
 
     [Serializable]
@@ -76,6 +79,29 @@ namespace UserDataSpace
     {
         public int total_perks_point_plus;
         public int total_perks_point_minus;
+        [Space]
+        public int perks_point_plus;
+        public int perks_point_minus;
+        [Space]
+        public SpecificPerksPoint specific_perks_point;
+    }
+
+    [Serializable]
+    public class SpecificPerksPoint
+    {
+        public StoryType perks_story_type;
+        public PerksType perks_plus_type;
+        public PerksType perks_minus_type;
+        public int perks_point_plus;
+        public int perks_point_minus;
+        [Space]
+        public List<SpecificPerksPointData> specific_perks_point_datas;
+    }
+
+    [Serializable]
+    public class SpecificPerksPointData
+    {
+        public PerksType perks_type;
         public int perks_point_plus;
         public int perks_point_minus;
     }

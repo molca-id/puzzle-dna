@@ -36,6 +36,7 @@ public class LevelButtonData
 public class MainMenuHandler : MonoBehaviour
 {
     public static MainMenuHandler instance;
+    public PerksHandler afterEventPerksHandler;
 
     [Header("Welcome Attributes")]
     [SerializeField] TextMeshProUGUI playerNameWelcome;
@@ -84,6 +85,8 @@ public class MainMenuHandler : MonoBehaviour
     private void Start()
     {
         InitMenu();
+
+        //epilogue checker
         for (int i = 0; i < DataHandler.instance.GetUserCheckpointData().checkpoint_value.Count; i++)
         {
             if (!DataHandler.instance.GetUserCheckpointData().checkpoint_value[i].epilogue_is_done &&
@@ -91,6 +94,13 @@ public class MainMenuHandler : MonoBehaviour
             {
                 LevelDataHandler.instance.InitEpilogue(DataHandler.instance.levelDatas[i]);
             }
+        }
+
+        //after event handler checker
+        if (DataHandler.instance.GetPerksData().perks_point_data.specific_perks_point.perks_point_plus != 0 ||
+            DataHandler.instance.GetPerksData().perks_point_data.specific_perks_point.perks_point_minus != 0)
+        {
+            afterEventPerksHandler.OpenPerksPanel(false);
         }
     }
 
@@ -323,14 +333,14 @@ public class MainMenuHandler : MonoBehaviour
         }));
     }
 
-    public void PatchCheckpointFromMenu()
+    public void PatchCheckpointFromMenu(Action executeAfter = null)
     {
         StartCoroutine(IEOpenScreen(smallLoadingPanel, delegate
         {
             DataHandler.instance.IEPatchCheckpointData(delegate
             {
+                executeAfter.Invoke();
                 StartCoroutine(IECloseScreen(smallLoadingPanel));
-                InitMenu();
             });
         }));
     }

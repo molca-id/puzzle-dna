@@ -275,7 +275,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
             MainMenuHandler.instance.PatchPerksFromMenu(delegate
             {
                 if (!level.openPerksPanelAfterGame) return;
-                PerksHandler.instance.OpenPerksPanel(true);
+                //PerksHandler.instance.OpenPerksPanel(true);
             });
 
             DataHandler.instance.GetUserCheckpointData().

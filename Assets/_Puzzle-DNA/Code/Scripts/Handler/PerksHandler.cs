@@ -5,6 +5,7 @@ using UnityEngine;
 using TMPro;
 using UserDataSpace;
 using UnityEngine.Events;
+using static UnityEditor.Progress;
 
 public enum PerksType { Drive, Network, Action }
 public enum PerksStage { Stage1, Stage2, Stage3 }
@@ -46,14 +47,14 @@ public class PerksHandler : MonoBehaviour
         public GameObject iconAfter;
     }
 
-    public static PerksHandler instance;
-
     [HideInInspector] public int pivotPoint;
     [HideInInspector] public int plusPointUsed;
     [HideInInspector] public int minusPointUsed;
     [HideInInspector] public PerksValueData currentPerk;
 
     [Header("All Perks")]
+    public int protonPoint;
+    public int electronPoint;
     public List<PerksTypeGroupData> perksTypeDatas;
 
     [Header("UI Attributes")]
@@ -76,14 +77,15 @@ public class PerksHandler : MonoBehaviour
 
     [Header("Addon For Perks Panel After Event Panel")]
     public bool asEvent;
+    public PerksType currentPerksType;
 
     [Header("Addon For Perks Panel As Tutorial")]
     public bool asTutorial;
     public UnityEvent whenSubmitPerk;
 
-    private void Awake()
+    public void SetCurrentPerkType(int index)
     {
-        instance = this;
+        currentPerksType = (PerksType)index;
     }
 
     public void SetDNADescriptionState(int index)
@@ -95,6 +97,58 @@ public class PerksHandler : MonoBehaviour
 
     public void OpenPerksPanel(bool isSmall)
     {
+        if (asEvent)
+        {
+            bool isOver = true;
+            foreach (var item in DataHandler.instance.GetPerksData().perks_point_data.specific_perks_point.specific_perks_point_datas)
+            {
+                if (item.perks_point_plus != 0)
+                {
+                    DataHandler.instance.GetPerksData().perks_point_data.
+                        specific_perks_point.perks_point_plus = item.perks_point_plus;
+                    DataHandler.instance.GetPerksData().perks_point_data.
+                        specific_perks_point.perks_plus_type = item.perks_type;
+
+                    protonPoint = item.perks_point_plus;
+                    isOver = false;
+                }
+
+                if (item.perks_point_minus != 0)
+                {
+                    DataHandler.instance.GetPerksData().perks_point_data.
+                        specific_perks_point.perks_point_minus = item.perks_point_minus;
+                    DataHandler.instance.GetPerksData().perks_point_data.
+                        specific_perks_point.perks_minus_type = item.perks_type;
+
+                    electronPoint = item.perks_point_minus;
+                    isOver = false;
+                }
+            }
+            if (isOver)
+            {
+                if (DataHandler.instance.GetPerksData().perks_point_data.specific_perks_point.perks_story_type == StoryType.Prologue)
+                    DataHandler.instance.GetUserCheckpointData().
+                        checkpoint_value[LevelDataHandler.instance.currentGameData.gameLevel].prologue_is_done = true;
+                else
+                    DataHandler.instance.GetUserCheckpointData().
+                        checkpoint_value[LevelDataHandler.instance.currentGameData.gameLevel].epilogue_is_done = true;
+
+                MainMenuHandler.instance.PatchCheckpointFromMenu(() =>
+                {
+                    if (DataHandler.instance.GetPerksData().perks_point_data.specific_perks_point.perks_story_type == StoryType.Prologue) 
+                        LevelDataHandler.instance.SetPrologueStory(1);    
+                    else 
+                        LevelDataHandler.instance.SetEpilogueStory(1);    
+                });
+                return;
+            }
+        }
+        else
+        {
+            protonPoint = DataHandler.instance.GetPerksData().perks_point_data.perks_point_plus;
+            electronPoint = DataHandler.instance.GetPerksData().perks_point_data.perks_point_minus;
+        }
+
         MainMenuHandler.instance.GetTalentPerksFromMenu(isSmall, delegate
         {
             PerksValue perksValue = DataHandler.instance.GetPerksData();
@@ -136,7 +190,8 @@ public class PerksHandler : MonoBehaviour
                     }
                     else
                     {
-
+                        perksTypeDatas[i].perks_stage_datas[j].lock_panel.
+                            SetActive(true);
                     }
 
                     for (int k = 0; k < perksTypeDatas[i].perks_stage_datas[j].perks_value_datas.Count; k++)
@@ -173,6 +228,22 @@ public class PerksHandler : MonoBehaviour
                 }
             }
 
+            if (asEvent)
+            {
+                foreach (var item in DataHandler.instance.GetPerksData().perks_point_data.specific_perks_point.specific_perks_point_datas)
+                {
+                    if (item.perks_point_plus != 0 ||
+                        item.perks_point_minus != 0)
+                    {
+                        perksTypeDatas.Find(res => res.perks_type == item.perks_type).
+                            perks_stage_datas.ForEach(perk =>
+                            {
+                                perk.lock_panel.SetActive(false);
+                            });
+                    }
+                }
+            }
+
             perksPanel.SetActive(true);
         });
     }
@@ -191,8 +262,8 @@ public class PerksHandler : MonoBehaviour
 
     public void ClosePerksDescription()
     {
-        DataHandler.instance.GetPerksData().perks_point_data.perks_point_plus += plusPointUsed;
-        DataHandler.instance.GetPerksData().perks_point_data.perks_point_minus += minusPointUsed;
+        protonPoint += plusPointUsed;
+        electronPoint += minusPointUsed;
         
         currentPerk.perks_point = DataHandler.instance.GetPerksData().perks_value_datas.
             Find(perk => perk.perks_id == currentPerk.perks_id).perks_point;
@@ -253,6 +324,21 @@ public class PerksHandler : MonoBehaviour
         currPerk.perks_point = currentPerk.perks_point;
         currPerk.perks_submit_time = DateTime.Now.ToString();
 
+        if (asEvent)
+        {
+            DataHandler.instance.GetPerksData().perks_point_data.specific_perks_point.specific_perks_point_datas.
+                Find(res => res.perks_type == DataHandler.instance.GetPerksData().perks_point_data.specific_perks_point.perks_plus_type).
+                perks_point_plus = protonPoint;
+            DataHandler.instance.GetPerksData().perks_point_data.specific_perks_point.specific_perks_point_datas.
+                Find(res => res.perks_type == DataHandler.instance.GetPerksData().perks_point_data.specific_perks_point.perks_minus_type).
+                perks_point_minus = electronPoint;
+        }
+        else
+        {
+            DataHandler.instance.GetPerksData().perks_point_data.perks_point_plus = protonPoint;
+            DataHandler.instance.GetPerksData().perks_point_data.perks_point_minus = electronPoint;
+        }
+
         MainMenuHandler.instance.PatchPerksFromMenu(delegate
         {
             SetPerksItemUI(currentPerk);
@@ -270,25 +356,41 @@ public class PerksHandler : MonoBehaviour
 
     public void AddTalentPoint()
     {
-        if (currentPerk.perks_point == 3)
+        if (currentPerk.perks_point == 3) return;
+
+        if (asEvent)
         {
-            return;
+            if (currentPerksType == DataHandler.instance.GetPerksData().perks_point_data.specific_perks_point.perks_plus_type && 
+                currentPerk.perks_point >= pivotPoint &&
+                protonPoint > 0)
+            {
+                protonPoint--;
+                plusPointUsed++;
+                currentPerk.perks_point++;
+            }
+            else if (currentPerksType == DataHandler.instance.GetPerksData().perks_point_data.specific_perks_point.perks_minus_type && 
+                currentPerk.perks_point < pivotPoint &&
+                minusPointUsed > 0)
+            {
+                electronPoint++;
+                if (minusPointUsed > 0) minusPointUsed--;
+                currentPerk.perks_point++;
+            }
         }
-
-        if (currentPerk.perks_point >= pivotPoint &&
-            DataHandler.instance.GetPerksData().perks_point_data.perks_point_plus > 0)
+        else
         {
-            DataHandler.instance.GetPerksData().perks_point_data.perks_point_plus--;
-
-            plusPointUsed++;
-            currentPerk.perks_point++;
-        }
-        else if (currentPerk.perks_point < pivotPoint)
-        {
-            DataHandler.instance.GetPerksData().perks_point_data.perks_point_minus++;
-
-            if (minusPointUsed > 0) minusPointUsed--;
-            currentPerk.perks_point++;
+            if (currentPerk.perks_point >= pivotPoint && protonPoint > 0)
+            {
+                protonPoint--;
+                plusPointUsed++;
+                currentPerk.perks_point++;
+            }
+            else if (currentPerk.perks_point < pivotPoint)
+            {
+                electronPoint++;
+                if (minusPointUsed > 0) minusPointUsed--;
+                currentPerk.perks_point++;
+            }
         }
 
         if (currentPerk.perks_point > pivotPoint ||
@@ -308,25 +410,41 @@ public class PerksHandler : MonoBehaviour
 
     public void SubtractTalentPoint()
     {
-        if (currentPerk.perks_point == -1)
+        if (currentPerk.perks_point == -1) return;
+
+        if (asEvent)
         {
-            return;
+            if (currentPerksType == DataHandler.instance.GetPerksData().perks_point_data.specific_perks_point.perks_plus_type &&
+                currentPerk.perks_point > pivotPoint &&
+                plusPointUsed > 0)
+            {
+                protonPoint++;
+                if (plusPointUsed > 0) plusPointUsed--;
+                currentPerk.perks_point--;
+            }
+            else if (currentPerksType == DataHandler.instance.GetPerksData().perks_point_data.specific_perks_point.perks_minus_type &&
+                currentPerk.perks_point <= pivotPoint &&
+                electronPoint > 0)
+            {
+                electronPoint--;
+                minusPointUsed++;
+                currentPerk.perks_point--;
+            }
         }
-
-        if (currentPerk.perks_point > pivotPoint)
+        else
         {
-            DataHandler.instance.GetPerksData().perks_point_data.perks_point_plus++;
-
-            if (plusPointUsed > 0) plusPointUsed--;
-            currentPerk.perks_point--;
-        }
-        else if (currentPerk.perks_point <= pivotPoint &&
-            DataHandler.instance.GetPerksData().perks_point_data.perks_point_minus > 0)
-        {
-            DataHandler.instance.GetPerksData().perks_point_data.perks_point_minus--;
-
-            minusPointUsed++;
-            currentPerk.perks_point--;
+            if (currentPerk.perks_point > pivotPoint)
+            {
+                protonPoint++;
+                if (plusPointUsed > 0) plusPointUsed--;
+                currentPerk.perks_point--;
+            }
+            else if (currentPerk.perks_point <= pivotPoint && electronPoint > 0)
+            {
+                electronPoint--;
+                minusPointUsed++;
+                currentPerk.perks_point--;
+            }
         }
 
         if (currentPerk.perks_point > pivotPoint ||
@@ -405,7 +523,7 @@ public class PerksHandler : MonoBehaviour
 
     public void SetPointText()
     {
-        perkPointPlus.ForEach(text => text.text = DataHandler.instance.GetPerksData().perks_point_data.perks_point_plus.ToString());
-        perkPointMinus.ForEach(text => text.text = DataHandler.instance.GetPerksData().perks_point_data.perks_point_minus.ToString());
+        perkPointPlus.ForEach(text => text.text = protonPoint.ToString());
+        perkPointMinus.ForEach(text => text.text = electronPoint.ToString());
     }
 }

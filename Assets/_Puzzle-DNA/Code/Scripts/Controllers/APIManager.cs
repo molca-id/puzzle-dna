@@ -53,8 +53,8 @@ public class APIManager : MonoBehaviour
         var request = new UnityWebRequest(url, "POST");
 
         request.SetRequestHeader("Content-Type", "application/json");
-        request.uploadHandler = (UploadHandler)new UploadHandlerRaw(bodyRaw);
-        request.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
+        request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+        request.downloadHandler = new DownloadHandlerBuffer();
 
         yield return request.SendWebRequest();
         if (request.result != UnityWebRequest.Result.Success)
@@ -69,8 +69,8 @@ public class APIManager : MonoBehaviour
         var request = new UnityWebRequest(url, "PATCH");
 
         request.SetRequestHeader("Content-Type", "application/json");
-        request.uploadHandler = (UploadHandler)new UploadHandlerRaw(bodyRaw);
-        request.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
+        request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+        request.downloadHandler = new DownloadHandlerBuffer();
 
         yield return request.SendWebRequest();
         if (request.result != UnityWebRequest.Result.Success)

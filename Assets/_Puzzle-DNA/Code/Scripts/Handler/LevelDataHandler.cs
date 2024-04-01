@@ -62,6 +62,9 @@ public class LevelDataHandler : MonoBehaviour
     public GameObject titlePanel;
     public TextMeshProUGUI titleText;
 
+    [Header("Event Attributes")]
+    public EventHandler eventHandler;
+
     [Header("Tutorial Attributes")]
     public GameObject tutorialParentPanel;
 
@@ -142,6 +145,17 @@ public class LevelDataHandler : MonoBehaviour
                 titlePanel.SetActive(true);
                 SetTitleStory(0);
                 break;
+            case StoryData.StoryType.Event:
+                if (!DataHandler.instance.GetUserCheckpointData().
+                    checkpoint_value[currentGameData.gameLevel].prologue_is_done)
+                {
+                    eventHandler.Init(currentStoryData.eventDataStory);
+                }
+                else
+                {
+                    SetPrologueStory(1);
+                }
+                break;
             case StoryData.StoryType.Tutorial:
                 if (!DataHandler.instance.GetUserCheckpointData().
                     checkpoint_value[currentGameData.gameLevel].prologue_is_done)
@@ -162,7 +176,6 @@ public class LevelDataHandler : MonoBehaviour
     {
         isEpilogue = true;
         epilogueIndex += factor;
-        Debug.Log("Epilogue-ing");
         if (epilogueIndex == epilogueStoryData.Count)
         {
             epilogueIndex = 0;
@@ -194,6 +207,17 @@ public class LevelDataHandler : MonoBehaviour
             case StoryData.StoryType.Title:
                 titlePanel.SetActive(true);
                 SetTitleStory(0);
+                break;
+            case StoryData.StoryType.Event:
+                if (!DataHandler.instance.GetUserCheckpointData().
+                    checkpoint_value[currentGameData.gameLevel].epilogue_is_done)
+                {
+                    eventHandler.Init(currentStoryData.eventDataStory);
+                }
+                else
+                {
+                    SetEpilogueStory(1);
+                }
                 break;
             case StoryData.StoryType.Tutorial:
                 if (!DataHandler.instance.GetUserCheckpointData().

@@ -233,4 +233,7 @@ public class DataHandler : MonoBehaviour
     public string GetUniqueCode() => GetUserDataValue().game_url;
 
     public string GetLanguage() => GetUserDataValue().language;
+
+    public UserDataSpace.SpecificPerksPointData GetSpecificPerksPoint(PerksType type) =>
+        GetPerksData().perks_point_data.specific_perks_point.specific_perks_point_datas.Find(res => res.perks_type == type);
 }

@@ -100,14 +100,12 @@ public class PerksHandler : MonoBehaviour
         if (asEvent)
         {
             bool isOver = true;
-            foreach (var item in DataHandler.instance.GetPerksData().perks_point_data.specific_perks_point.specific_perks_point_datas)
+            foreach (var item in DataHandler.instance.GetUserSpecificPerksPoint().specific_perks_point_datas)
             {
                 if (item.perks_point_plus != 0)
                 {
-                    DataHandler.instance.GetPerksData().perks_point_data.
-                        specific_perks_point.perks_point_plus = item.perks_point_plus;
-                    DataHandler.instance.GetPerksData().perks_point_data.
-                        specific_perks_point.perks_plus_type = item.perks_type;
+                    DataHandler.instance.GetUserSpecificPerksPoint().perks_point_plus = item.perks_point_plus;
+                    DataHandler.instance.GetUserSpecificPerksPoint().perks_plus_type = item.perks_type;
 
                     protonPoint = item.perks_point_plus;
                     isOver = false;
@@ -115,10 +113,8 @@ public class PerksHandler : MonoBehaviour
 
                 if (item.perks_point_minus != 0)
                 {
-                    DataHandler.instance.GetPerksData().perks_point_data.
-                        specific_perks_point.perks_point_minus = item.perks_point_minus;
-                    DataHandler.instance.GetPerksData().perks_point_data.
-                        specific_perks_point.perks_minus_type = item.perks_type;
+                    DataHandler.instance.GetUserSpecificPerksPoint().perks_point_minus = item.perks_point_minus;
+                    DataHandler.instance.GetUserSpecificPerksPoint().perks_minus_type = item.perks_type;
 
                     electronPoint = item.perks_point_minus;
                     isOver = false;
@@ -126,7 +122,7 @@ public class PerksHandler : MonoBehaviour
             }
             if (isOver)
             {
-                if (DataHandler.instance.GetPerksData().perks_point_data.specific_perks_point.perks_story_type == StoryType.Prologue)
+                if (DataHandler.instance.GetUserSpecificPerksPoint().perks_story_type == StoryType.Prologue)
                     DataHandler.instance.GetUserCheckpointData().
                         checkpoint_value[LevelDataHandler.instance.currentGameData.gameLevel].prologue_is_done = true;
                 else
@@ -135,7 +131,8 @@ public class PerksHandler : MonoBehaviour
 
                 MainMenuHandler.instance.PatchCheckpointFromMenu(() =>
                 {
-                    if (DataHandler.instance.GetPerksData().perks_point_data.specific_perks_point.perks_story_type == StoryType.Prologue) 
+                    perksPanel.SetActive(false);
+                    if (DataHandler.instance.GetUserSpecificPerksPoint().perks_story_type == StoryType.Prologue) 
                         LevelDataHandler.instance.SetPrologueStory(1);    
                     else 
                         LevelDataHandler.instance.SetEpilogueStory(1);    
@@ -230,7 +227,7 @@ public class PerksHandler : MonoBehaviour
 
             if (asEvent)
             {
-                foreach (var item in DataHandler.instance.GetPerksData().perks_point_data.specific_perks_point.specific_perks_point_datas)
+                foreach (var item in DataHandler.instance.GetUserSpecificPerksPoint().specific_perks_point_datas)
                 {
                     if (item.perks_point_plus != 0 ||
                         item.perks_point_minus != 0)
@@ -326,11 +323,11 @@ public class PerksHandler : MonoBehaviour
 
         if (asEvent)
         {
-            DataHandler.instance.GetPerksData().perks_point_data.specific_perks_point.specific_perks_point_datas.
-                Find(res => res.perks_type == DataHandler.instance.GetPerksData().perks_point_data.specific_perks_point.perks_plus_type).
+            DataHandler.instance.GetUserSpecificPerksPoint().specific_perks_point_datas.
+                Find(res => res.perks_type == DataHandler.instance.GetUserSpecificPerksPoint().perks_plus_type).
                 perks_point_plus = protonPoint;
-            DataHandler.instance.GetPerksData().perks_point_data.specific_perks_point.specific_perks_point_datas.
-                Find(res => res.perks_type == DataHandler.instance.GetPerksData().perks_point_data.specific_perks_point.perks_minus_type).
+            DataHandler.instance.GetUserSpecificPerksPoint().specific_perks_point_datas.
+                Find(res => res.perks_type == DataHandler.instance.GetUserSpecificPerksPoint().perks_minus_type).
                 perks_point_minus = electronPoint;
         }
         else
@@ -360,7 +357,7 @@ public class PerksHandler : MonoBehaviour
 
         if (asEvent)
         {
-            if (currentPerksType == DataHandler.instance.GetPerksData().perks_point_data.specific_perks_point.perks_plus_type && 
+            if (currentPerksType == DataHandler.instance.GetUserSpecificPerksPoint().perks_plus_type && 
                 currentPerk.perks_point >= pivotPoint &&
                 protonPoint > 0)
             {
@@ -368,7 +365,7 @@ public class PerksHandler : MonoBehaviour
                 plusPointUsed++;
                 currentPerk.perks_point++;
             }
-            else if (currentPerksType == DataHandler.instance.GetPerksData().perks_point_data.specific_perks_point.perks_minus_type && 
+            else if (currentPerksType == DataHandler.instance.GetUserSpecificPerksPoint().perks_minus_type && 
                 currentPerk.perks_point < pivotPoint &&
                 minusPointUsed > 0)
             {
@@ -414,7 +411,7 @@ public class PerksHandler : MonoBehaviour
 
         if (asEvent)
         {
-            if (currentPerksType == DataHandler.instance.GetPerksData().perks_point_data.specific_perks_point.perks_plus_type &&
+            if (currentPerksType == DataHandler.instance.GetUserSpecificPerksPoint().perks_plus_type &&
                 currentPerk.perks_point > pivotPoint &&
                 plusPointUsed > 0)
             {
@@ -422,7 +419,7 @@ public class PerksHandler : MonoBehaviour
                 if (plusPointUsed > 0) plusPointUsed--;
                 currentPerk.perks_point--;
             }
-            else if (currentPerksType == DataHandler.instance.GetPerksData().perks_point_data.specific_perks_point.perks_minus_type &&
+            else if (currentPerksType == DataHandler.instance.GetUserSpecificPerksPoint().perks_minus_type &&
                 currentPerk.perks_point <= pivotPoint &&
                 electronPoint > 0)
             {

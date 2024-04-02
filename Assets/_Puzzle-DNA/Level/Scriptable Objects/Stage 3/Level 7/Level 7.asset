@@ -19,5 +19,7 @@ MonoBehaviour:
   usingPerkUnlocking: 0
   perkStageForUnlocking: []
   prologueStoryData:
+  - {fileID: 11400000, guid: 6f55d5cf97804f345baad2d48180ddaf, type: 2}
   - {fileID: 11400000, guid: f63c90d66e440af489df649bef1d58ef, type: 2}
+  - {fileID: 11400000, guid: 0dd16004be926844ba6e5b599dc58633, type: 2}
   epilogueStoryData: []

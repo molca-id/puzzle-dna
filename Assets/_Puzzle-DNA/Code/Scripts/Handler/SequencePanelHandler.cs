@@ -78,7 +78,7 @@ public class SequencePanelHandler : MonoBehaviour
         }
         else
         {
-            DisableAllPanels();
+            panels.ForEach(panel => panel.SetActive(false));
         }
 
         data.sequenceEvent.Invoke();
@@ -101,11 +101,6 @@ public class SequencePanelHandler : MonoBehaviour
 
         index++;
         SetPanel();
-    }
-
-    public void DisableAllPanels()
-    {
-        panels.ForEach(panel => panel.SetActive(false));
     }
 
     IEnumerator DelayingSkippable()

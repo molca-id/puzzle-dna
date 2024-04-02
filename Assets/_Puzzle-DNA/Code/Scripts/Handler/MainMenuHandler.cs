@@ -97,10 +97,13 @@ public class MainMenuHandler : MonoBehaviour
         }
 
         //after event handler checker
-        if (DataHandler.instance.GetPerksData().perks_point_data.specific_perks_point.perks_point_plus != 0 ||
-            DataHandler.instance.GetPerksData().perks_point_data.specific_perks_point.perks_point_minus != 0)
+        if (DataHandler.instance.GetUserSpecificPerksPoint().perks_point_plus != 0 ||
+            DataHandler.instance.GetUserSpecificPerksPoint().perks_point_minus != 0)
         {
-            afterEventPerksHandler.OpenPerksPanel(false);
+            afterEventPerksHandler.OpenPerksPanel(true);
+            LevelDataHandler.instance.InitAllData(DataHandler.instance.levelDatas[
+                DataHandler.instance.GetUserSpecificPerksPoint().current_game_level
+                ]);
         }
     }
 

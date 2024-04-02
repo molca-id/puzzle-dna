@@ -73,29 +73,27 @@ public class LevelDataHandler : MonoBehaviour
         instance = this;
     }
 
-    public void InitPrologue(LevelData levelData)
+    public void InitAllData(LevelData levelData)
     {
         currentLevelData = levelData;
         currentGameData = levelData.gameData;
         prologueStoryData = levelData.prologueStoryData;
         epilogueStoryData = levelData.epilogueStoryData;
+    }
 
+    public void InitPrologue(LevelData levelData)
+    {
+        InitAllData(levelData);
         if (prologueStoryData.Count == 0) SetPrologueStory(true);
         if (epilogueStoryData.Count == 0) SetEpilogueStory(true);
-
         SetPrologueStory(0);
     }
 
     public void InitEpilogue(LevelData levelData)
     {
-        currentLevelData = levelData;
-        currentGameData = levelData.gameData;
-        prologueStoryData = levelData.prologueStoryData;
-        epilogueStoryData = levelData.epilogueStoryData;
-
+        InitAllData(levelData);
         if (prologueStoryData.Count == 0) SetPrologueStory(true);
         if (epilogueStoryData.Count == 0) SetEpilogueStory(true);
-
         SetEpilogueStory(0);
     }
 

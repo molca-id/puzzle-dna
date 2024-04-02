@@ -89,7 +89,9 @@ namespace UserDataSpace
     [Serializable]
     public class SpecificPerksPoint
     {
+        public int current_game_level;
         public StoryType perks_story_type;
+        [Space]
         public PerksType perks_plus_type;
         public PerksType perks_minus_type;
         public int perks_point_plus;

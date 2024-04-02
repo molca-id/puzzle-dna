@@ -230,6 +230,8 @@ public class DataHandler : MonoBehaviour
 
     public UserDataSpace.CheckpointData GetUserCheckpointData() => currentUserData.data.checkpoint_data;
 
+    public UserDataSpace.SpecificPerksPoint GetUserSpecificPerksPoint() => GetPerksData().perks_point_data.specific_perks_point;
+
     public string GetUniqueCode() => GetUserDataValue().game_url;
 
     public string GetLanguage() => GetUserDataValue().language;

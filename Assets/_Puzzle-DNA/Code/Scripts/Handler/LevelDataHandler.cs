@@ -1,12 +1,10 @@
 using System;
-using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using UnityEngine.Events;
 
 [Serializable]
 public class DialogueStoryUI
@@ -27,8 +25,8 @@ public class LevelDataHandler : MonoBehaviour
 
     [Header("Current Story Attributes")]
     [HideInInspector] public GameData currentGameData;
-    [HideInInspector] public LevelData currentLevelData;
-    public StoryData currentStoryData;
+    public LevelData currentLevelData;
+    [HideInInspector] public StoryData currentStoryData;
     public List<StoryData> prologueStoryData;
     public List<StoryData> epilogueStoryData;
 
@@ -77,8 +75,14 @@ public class LevelDataHandler : MonoBehaviour
     {
         currentLevelData = levelData;
         currentGameData = levelData.gameData;
+
         prologueStoryData = levelData.prologueStoryData;
         epilogueStoryData = levelData.epilogueStoryData;
+
+        if (levelData.prologueStoryData.Count != 0)
+            currentStoryData = levelData.prologueStoryData[0];
+        else if (levelData.epilogueStoryData.Count != 0)
+            currentStoryData = levelData.epilogueStoryData[0];
     }
 
     public void InitPrologue(LevelData levelData)
@@ -101,14 +105,14 @@ public class LevelDataHandler : MonoBehaviour
     {
         isPrologue = true;
         prologueIndex += factor;
+        storyPanel.SetActive(false);
+        tutorialParentPanel.SetActive(false);
         if (prologueIndex == prologueStoryData.Count)
         {
             prologueIndex = 0;
             isPrologue = false;
             
-            if (epilogueStoryData.Count == 0) 
-                storyPanel.SetActive(false);
-            else
+            if (epilogueStoryData.Count != 0)
             {
                 UnityEvent whenGameUnloaded = new();
                 whenGameUnloaded.AddListener(() => SetEpilogueStory(0));
@@ -145,7 +149,9 @@ public class LevelDataHandler : MonoBehaviour
                 break;
             case StoryData.StoryType.Event:
                 if (!DataHandler.instance.GetUserCheckpointData().
-                    checkpoint_value[currentGameData.gameLevel].prologue_is_done)
+                    checkpoint_value[currentGameData.gameLevel].prologue_is_done &&
+                    DataHandler.instance.GetUserSpecificPerksPoint().perks_point_plus == 0 &&
+                    DataHandler.instance.GetUserSpecificPerksPoint().perks_point_minus == 0)
                 {
                     eventHandler.Init(currentStoryData.eventDataStory);
                 }
@@ -158,7 +164,6 @@ public class LevelDataHandler : MonoBehaviour
                 if (!DataHandler.instance.GetUserCheckpointData().
                     checkpoint_value[currentGameData.gameLevel].prologue_is_done)
                 {
-                    storyPanel.SetActive(false);
                     tutorialParentPanel.SetActive(true);
                     SetTutorialStory(currentStoryData.tutorialKey);
                 }
@@ -174,11 +179,12 @@ public class LevelDataHandler : MonoBehaviour
     {
         isEpilogue = true;
         epilogueIndex += factor;
+        storyPanel.SetActive(false);
+        tutorialParentPanel.SetActive(false);
         if (epilogueIndex == epilogueStoryData.Count)
         {
             epilogueIndex = 0;
             isEpilogue = false;
-            storyPanel.SetActive(false);
             SetEpilogueStory(true);
             return;
         }
@@ -208,7 +214,9 @@ public class LevelDataHandler : MonoBehaviour
                 break;
             case StoryData.StoryType.Event:
                 if (!DataHandler.instance.GetUserCheckpointData().
-                    checkpoint_value[currentGameData.gameLevel].epilogue_is_done)
+                    checkpoint_value[currentGameData.gameLevel].epilogue_is_done &&
+                    DataHandler.instance.GetUserSpecificPerksPoint().perks_point_plus == 0 &&
+                    DataHandler.instance.GetUserSpecificPerksPoint().perks_point_minus == 0)
                 {
                     eventHandler.Init(currentStoryData.eventDataStory);
                 }
@@ -221,7 +229,6 @@ public class LevelDataHandler : MonoBehaviour
                 if (!DataHandler.instance.GetUserCheckpointData().
                     checkpoint_value[currentGameData.gameLevel].epilogue_is_done)
                 {
-                    storyPanel.SetActive(false);
                     tutorialParentPanel.SetActive(true);
                     SetTutorialStory(currentStoryData.tutorialKey);
                 }

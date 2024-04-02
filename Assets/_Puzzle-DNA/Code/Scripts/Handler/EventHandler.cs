@@ -1,16 +1,15 @@
-using JetBrains.Annotations;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
 
 [Serializable]
 public class EventAnswerData
 {
-    [TextArea(4, 4)] public string answer;
+    [TextArea(4, 4)] public string answerId;
+    [TextArea(4, 4)] public string answerEn;
+    [TextArea(4, 4)] public string answerMy;
     public List<EventPointData> eventPointDatas;
 }
 
@@ -25,7 +24,11 @@ public class EventPointData
 public class EventData
 {
     public bool autoOpenPerks;
-    [TextArea(7, 7)] public string question;
+    [Space]
+    [TextArea(7, 7)] public string questionId;
+    [TextArea(7, 7)] public string questionEn;
+    [TextArea(7, 7)] public string questionMy;
+    [Space]
     public Sprite characterSprite;
     public List<EventAnswerData> answers;
 }
@@ -54,10 +57,29 @@ public class EventHandler : MonoBehaviour
     public void Init(EventData data)
     {
         currentEventData = data;
-        questionText.text = currentEventData.question;
         eventPanel.SetActive(true);
 
-        firstAnswer.answerText.text = currentEventData.answers[0].answer;
+        //set question text
+        if (DataHandler.instance.GetLanguage() == "id")
+        {
+            questionText.text = currentEventData.questionId;
+            firstAnswer.answerText.text = currentEventData.answers[0].answerId;
+            secondAnswer.answerText.text = currentEventData.answers[1].answerId;
+        }
+        else if (DataHandler.instance.GetLanguage() == "en")
+        {
+            questionText.text = currentEventData.questionEn;
+            firstAnswer.answerText.text = currentEventData.answers[0].answerEn;
+            secondAnswer.answerText.text = currentEventData.answers[1].answerEn;
+        }
+        else if (DataHandler.instance.GetLanguage() == "my")
+        {
+            questionText.text = currentEventData.questionMy;
+            firstAnswer.answerText.text = currentEventData.answers[0].answerMy;
+            secondAnswer.answerText.text = currentEventData.answers[1].answerMy;
+        }
+
+        //set first answer
         if (currentEventData.answers[0].eventPointDatas[0].perkType == PerksType.Drive) firstAnswer.plusPointText.text = "D";
         else if (currentEventData.answers[0].eventPointDatas[0].perkType == PerksType.Network) firstAnswer.plusPointText.text = "N";
         else firstAnswer.plusPointText.text = "A";
@@ -66,7 +88,7 @@ public class EventHandler : MonoBehaviour
         else if (currentEventData.answers[0].eventPointDatas[1].perkType == PerksType.Network) firstAnswer.minusPointText.text = "N";
         else firstAnswer.minusPointText.text = "A";
 
-        secondAnswer.answerText.text = currentEventData.answers[1].answer;
+        //set second answer
         if (currentEventData.answers[1].eventPointDatas[0].perkType == PerksType.Drive) secondAnswer.plusPointText.text = "D";
         else if (currentEventData.answers[1].eventPointDatas[0].perkType == PerksType.Network) secondAnswer.plusPointText.text = "N";
         else secondAnswer.plusPointText.text = "A";
@@ -105,16 +127,17 @@ public class EventHandler : MonoBehaviour
         MainMenuHandler.instance.PatchPerksFromMenu(() =>
         {
             eventPanel.SetActive(false);
-            currentEventData = new();
-
             if (!currentEventData.autoOpenPerks)
             {
                 if (LevelDataHandler.instance.isPrologue) LevelDataHandler.instance.SetPrologueStory(1);
                 if (LevelDataHandler.instance.isEpilogue) LevelDataHandler.instance.SetEpilogueStory(1);
-                return;
             }
-            
-            customPerkPanel.OpenPerksPanel(true);
+            else
+            {
+                customPerkPanel.OpenPerksPanel(true);
+            }
+
+            currentEventData = new();
         }); 
     }
 
@@ -143,16 +166,17 @@ public class EventHandler : MonoBehaviour
         MainMenuHandler.instance.PatchPerksFromMenu(() =>
         {
             eventPanel.SetActive(false);
-            currentEventData = new();
-
             if (!currentEventData.autoOpenPerks)
             {
                 if (LevelDataHandler.instance.isPrologue) LevelDataHandler.instance.SetPrologueStory(1);
                 if (LevelDataHandler.instance.isEpilogue) LevelDataHandler.instance.SetEpilogueStory(1);
-                return;
+            }
+            else
+            {
+                customPerkPanel.OpenPerksPanel(true);
             }
 
-            customPerkPanel.OpenPerksPanel(true);
+            currentEventData = new();
         });
     }
 }

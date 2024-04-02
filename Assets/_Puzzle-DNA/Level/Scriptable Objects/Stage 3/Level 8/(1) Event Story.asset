@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0d3ec688709c214a8c7fe11dd2475cf, type: 3}
+  m_Name: (1) Event Story
+  m_EditorClassIdentifier: 
+  storyType: 5
+  backgroundSprite: {fileID: 21300000, guid: 0bf3db385304db8459b2e1f3b6e2564a, type: 3}
+  tutorialKey: 
+  dialogueStory:
+    playerIdleSprite: {fileID: 0}
+    interlocutorIdleSprite: {fileID: 0}
+    interlocutorName: 
+    dialogueStories: []
+  narrationType: 0
+  narrationStories: []
+  popUpStories: []
+  titleStories: []
+  eventDataStory:
+    autoOpenPerks: 1
+    questionId: 'Setelah berlatih beberapa saat, Kevin merasa ada beberapa metode
+      latihannya yang kurang tepat dengannya. Dia selalu merasa kelelahan yang berlebihan
+      sehingga membuatnya tidak bersemangat menjalani latihan di keesokan harinya. '
+    questionEn: After practicing for a while, Kevin felt that some of his training
+      methods were not quite right for him. He always felt excessively tired, which
+      made him less enthusiastic about training the next day.
+    questionMy: 'Setelah berlatih beberapa saat, Kevin merasa ada beberapa metode
+      latihannya yang kurang tepat dengannya. Dia selalu merasa kelelahan yang berlebihan
+      sehingga membuatnya tidak bersemangat menjalani latihan di keesokan harinya. '
+    characterSprite: {fileID: 21300000, guid: 5ecd0795ea748f64a88cd0efda2c734a, type: 3}
+    answers:
+    - answerId: Bersama dengan Kevin mencari masalah yang menyebabkan kelelahan dan
+        menyelesaikannya satu per satu
+      answerEn: Together with Kevin look for problems that cause fatigue and solve
+        them one by one
+      answerMy: Bersama dengan Kevin mencari masalah yang menyebabkan kelelahan dan
+        menyelesaikannya satu per satu
+      eventPointDatas:
+      - point: 2
+        perkType: 2
+      - point: 2
+        perkType: 0
+    - answerId: Menyampaikan simpulan penyebab masalah berdasarkan cerita Kevin dan
+        tidak ikut campur dengan keputusan yang diambil Kevin
+      answerEn: Convey conclusions about the cause of the problem based on Kevin's
+        story and do not interfere with the decisions Kevin takes
+      answerMy: Menyampaikan simpulan penyebab masalah berdasarkan cerita Kevin dan
+        tidak ikut campur dengan keputusan yang diambil Kevin
+      eventPointDatas:
+      - point: 2
+        perkType: 2
+      - point: 2
+        perkType: 1

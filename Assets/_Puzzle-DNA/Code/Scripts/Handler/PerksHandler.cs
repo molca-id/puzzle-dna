@@ -5,7 +5,6 @@ using UnityEngine;
 using TMPro;
 using UserDataSpace;
 using UnityEngine.Events;
-using static UnityEditor.Progress;
 
 public enum PerksType { Drive, Network, Action }
 public enum PerksStage { Stage1, Stage2, Stage3 }
@@ -325,10 +324,15 @@ public class PerksHandler : MonoBehaviour
         {
             DataHandler.instance.GetUserSpecificPerksPoint().specific_perks_point_datas.
                 Find(res => res.perks_type == DataHandler.instance.GetUserSpecificPerksPoint().perks_plus_type).
-                perks_point_plus = protonPoint;
+                perks_point_plus =
+            DataHandler.instance.GetUserSpecificPerksPoint().perks_point_plus = 
+                protonPoint;
+            
             DataHandler.instance.GetUserSpecificPerksPoint().specific_perks_point_datas.
                 Find(res => res.perks_type == DataHandler.instance.GetUserSpecificPerksPoint().perks_minus_type).
-                perks_point_minus = electronPoint;
+                perks_point_minus =
+            DataHandler.instance.GetUserSpecificPerksPoint().perks_point_minus = 
+                electronPoint;
         }
         else
         {

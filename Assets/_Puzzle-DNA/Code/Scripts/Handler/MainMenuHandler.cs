@@ -100,10 +100,21 @@ public class MainMenuHandler : MonoBehaviour
         if (DataHandler.instance.GetUserSpecificPerksPoint().perks_point_plus != 0 ||
             DataHandler.instance.GetUserSpecificPerksPoint().perks_point_minus != 0)
         {
-            afterEventPerksHandler.OpenPerksPanel(true);
             LevelDataHandler.instance.InitAllData(DataHandler.instance.levelDatas[
-                DataHandler.instance.GetUserSpecificPerksPoint().current_game_level
-                ]);
+                DataHandler.instance.GetUserSpecificPerksPoint().current_game_level]);
+
+            if (LevelDataHandler.instance.currentStoryData.storyType == StoryData.StoryType.Event)
+                afterEventPerksHandler.OpenPerksPanel(false);
+            else 
+            {
+                if (DataHandler.instance.GetUserSpecificPerksPoint().perks_story_type == StoryType.Prologue)
+                    LevelDataHandler.instance.InitPrologue(DataHandler.instance.levelDatas[
+                        DataHandler.instance.GetUserSpecificPerksPoint().current_game_level]);
+                else
+
+                    LevelDataHandler.instance.InitEpilogue(DataHandler.instance.levelDatas[
+                        DataHandler.instance.GetUserSpecificPerksPoint().current_game_level]);
+            }
         }
     }
 

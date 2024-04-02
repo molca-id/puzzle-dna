@@ -29,6 +29,7 @@ public class SequencePanelHandler : MonoBehaviour
     public bool startAutomatically;
     [Space]
     public bool skippableAlthoughVO;
+    public bool disableParentPanelAfterDone;
     public List<GameObject> parentPanel;
     [Space]
     public List<GameObject> panels;
@@ -101,6 +102,10 @@ public class SequencePanelHandler : MonoBehaviour
 
         index++;
         SetPanel();
+
+        if (!disableParentPanelAfterDone) return;
+        if (index < sequenceEvents.Count - 1) return;
+        parentPanel.ForEach(panel => panel.SetActive(false));
     }
 
     IEnumerator DelayingSkippable()

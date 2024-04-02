@@ -1308,7 +1308,8 @@ MonoBehaviour:
           perks_point_plus: 0
           perks_point_minus: 0
           specific_perks_point:
-            peks_story_type: 0
+            current_game_level: 0
+            perks_story_type: 0
             perks_plus_type: 0
             perks_minus_type: 0
             perks_point_plus: 0
@@ -1683,7 +1684,8 @@ MonoBehaviour:
           perks_point_plus: 0
           perks_point_minus: 0
           specific_perks_point:
-            peks_story_type: 2
+            current_game_level: 0
+            perks_story_type: 0
             perks_plus_type: 0
             perks_minus_type: 0
             perks_point_plus: 0

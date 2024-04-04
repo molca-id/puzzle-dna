@@ -18,14 +18,101 @@ MonoBehaviour:
   backgroundGame: {fileID: 21300000, guid: 272e9353bb92f5448b14827f1366c923, type: 3}
   layoutGame: {fileID: 21300000, guid: 5917939e2fa7ab8418017c96a7a2a7cb, type: 3}
   dialogues:
-    playerIdleSprite: {fileID: 0}
-    interlocutorIdleSprite: {fileID: 0}
-    interlocutorName: 
-    dialogueBonus: []
-  usingDialogueBonus: 0
+    interlocutorName: Malala
+    interlocutorIdleSprite: {fileID: 21300000, guid: e60be4408d319ab4ebaff0dd7dc8a07f,
+      type: 3}
+    dialogueBonus:
+    - scoreTrigger: 1000
+      dialogueBonusDatas:
+      - playerIsTalking: 1
+        dialogueDelay: 2.5
+        contentData:
+          playerExpression: 0
+          interlocutorSprite: {fileID: 21300000, guid: e60be4408d319ab4ebaff0dd7dc8a07f,
+            type: 3}
+          clipId: {fileID: 0}
+          clipEn: {fileID: 0}
+          clipMy: {fileID: 0}
+          contentId: Nobel Perdamaian yang kamu dapatkan sangat menginspirasi banyak
+            anak-anak di dunia. Apakah tujuanmu sudah tercapai?
+          contentEn: The Nobel Peace Prize you won really inspired many children
+            in the world. Have you achieved your goal?
+          contentMy: Nobel Perdamaian yang kamu dapatkan sangat menginspirasi banyak
+            anak-anak di dunia. Apakah tujuanmu sudah tercapai?
+      - playerIsTalking: 0
+        dialogueDelay: 2.5
+        contentData:
+          playerExpression: 0
+          interlocutorSprite: {fileID: 21300000, guid: e60be4408d319ab4ebaff0dd7dc8a07f,
+            type: 3}
+          clipId: {fileID: 0}
+          clipEn: {fileID: 0}
+          clipMy: {fileID: 0}
+          contentId: Perjuangan harus terus dilanjutkan. Tidak boleh ada satupun
+            pihak di dunia ini yang melarang manusia untuk hidup bebas dan berpendidikan.
+          contentEn: The struggle must continue. There should not be a single party
+            in this world that prohibits humans from living freely and being educated.
+          contentMy: Perjuangan harus terus dilanjutkan. Tidak boleh ada satupun
+            pihak di dunia ini yang melarang manusia untuk hidup bebas dan berpendidikan.
+      - playerIsTalking: 1
+        dialogueDelay: 2.5
+        contentData:
+          playerExpression: 0
+          interlocutorSprite: {fileID: 21300000, guid: e60be4408d319ab4ebaff0dd7dc8a07f,
+            type: 3}
+          clipId: {fileID: 0}
+          clipEn: {fileID: 0}
+          clipMy: {fileID: 0}
+          contentId: Mengapa kamu sangat berani melawan?
+          contentEn: Why are you so brave to resist?
+          contentMy: Mengapa kamu sangat berani melawan?
+      - playerIsTalking: 0
+        dialogueDelay: 2.5
+        contentData:
+          playerExpression: 0
+          interlocutorSprite: {fileID: 21300000, guid: e60be4408d319ab4ebaff0dd7dc8a07f,
+            type: 3}
+          clipId: {fileID: 0}
+          clipEn: {fileID: 0}
+          clipMy: {fileID: 0}
+          contentId: Itu bentuk komitmenku. Aku sangat percaya bahwa hidup kita akan
+            lebih baik dengan pendidikan dan tanpa adanya terorisme di sekitar kita.
+          contentEn: That is my form of commitment. I really believe that our lives
+            would be better with education and without terrorism around us.
+          contentMy: Itu bentuk komitmenku. Aku sangat percaya bahwa hidup kita akan
+            lebih baik dengan pendidikan dan tanpa adanya terorisme di sekitar kita.
+      - playerIsTalking: 1
+        dialogueDelay: 2.5
+        contentData:
+          playerExpression: 0
+          interlocutorSprite: {fileID: 21300000, guid: e60be4408d319ab4ebaff0dd7dc8a07f,
+            type: 3}
+          clipId: {fileID: 0}
+          clipEn: {fileID: 0}
+          clipMy: {fileID: 0}
+          contentId: Kamu tidak takut?
+          contentEn: Aren't you afraid?
+          contentMy: Kamu tidak takut?
+      - playerIsTalking: 0
+        dialogueDelay: 2.5
+        contentData:
+          playerExpression: 0
+          interlocutorSprite: {fileID: 21300000, guid: e60be4408d319ab4ebaff0dd7dc8a07f,
+            type: 3}
+          clipId: {fileID: 0}
+          clipEn: {fileID: 0}
+          clipMy: {fileID: 0}
+          contentId: Tidak! Walaupun saya perempuan, kami memliki hak yang sama di
+            dunia ini.
+          contentEn: No! Even though I am a woman, we have the same rights in this
+            world.
+          contentMy: Tidak! Walaupun saya perempuan, kami memliki hak yang sama di
+            dunia ini.
+      isDone: 0
+  usingDialogueBonus: 1
   hintDelay: 10
   totalTime: 90
-  usingTutorial: 0
+  tutorialKey: 
   usingHandHint: 0
   gems:
   - type: 0

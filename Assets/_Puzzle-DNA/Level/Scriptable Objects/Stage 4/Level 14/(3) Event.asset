@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0d3ec688709c214a8c7fe11dd2475cf, type: 3}
+  m_Name: (3) Event
+  m_EditorClassIdentifier: 
+  storyType: 5
+  backgroundSprite: {fileID: 21300000, guid: 5ad6039e348729e4d824b77356905f16, type: 3}
+  tutorialKey: 
+  dialogueStory:
+    interlocutorName: 
+    dialogueStories: []
+  narrationType: 0
+  narrationStories: []
+  popUpStories: []
+  titleStories: []
+  eventDataStory:
+    autoOpenPerks: 1
+    questionId: Adam Malik menunjukkan beberapa koleksi bukunya, dan mempersilakan
+      kamu memilih salah satu buku untuk kamu bawa pulang ke masa depan. Berbagai
+      macam jenis buku ada di sana. Buku seperti apa yang akan kamu pilih?
+    questionEn: Adam Malik shows some of his book collections, and invites you to
+      choose one of the books to take home with you in the future. Various types
+      of books are there. What kind of book would you choose?
+    questionMy: Adam Malik menunjukkan beberapa koleksi bukunya, dan mempersilakan
+      kamu memilih salah satu buku untuk kamu bawa pulang ke masa depan. Berbagai
+      macam jenis buku ada di sana. Buku seperti apa yang akan kamu pilih?
+    playerExpression: 0
+    characterSprite: {fileID: 0}
+    answers:
+    - answerId: Inovasi Teknologi untuk Melawan Musuh di Masa Lalu
+      answerEn: Technological Innovation to Fight Enemies in the Past
+      answerMy: Inovasi Teknologi untuk Melawan Musuh di Masa Lalu
+      eventPointDatas:
+      - point: 2
+        perkType: 2
+      - point: 2
+        perkType: 1
+    - answerId: Catatan Sejarah dalam Perbedaan Budaya Manusia
+      answerEn: Historical Notes in Human Cultural Differences
+      answerMy: Catatan Sejarah dalam Perbedaan Budaya Manusia
+      eventPointDatas:
+      - point: 2
+        perkType: 2
+      - point: 2
+        perkType: 0

@@ -17,15 +17,99 @@ MonoBehaviour:
   abilityDriveDuration: 5
   backgroundGame: {fileID: 21300000, guid: 5ad6039e348729e4d824b77356905f16, type: 3}
   layoutGame: {fileID: 21300000, guid: 5917939e2fa7ab8418017c96a7a2a7cb, type: 3}
+  usingDialogueBonus: 1
   dialogues:
-    playerIdleSprite: {fileID: 0}
-    interlocutorIdleSprite: {fileID: 0}
-    interlocutorName: 
-    dialogueBonus: []
-  usingDialogueBonus: 0
+    interlocutorName: Amelia
+    interlocutorIdleSprite: {fileID: 21300000, guid: 3c3e7f6704efb2b49aecdea490f46b54,
+      type: 3}
+    dialogueBonus:
+    - scoreTrigger: 1000
+      dialogueBonusDatas:
+      - playerIsTalking: 1
+        dialogueDelay: 2.5
+        contentData:
+          playerExpression: 0
+          interlocutorSprite: {fileID: 21300000, guid: 3c3e7f6704efb2b49aecdea490f46b54,
+            type: 3}
+          clipId: {fileID: 0}
+          clipEn: {fileID: 0}
+          clipMy: {fileID: 0}
+          contentId: Dibutuhkan keberanian untuk mewujudkan mimpi sepertimu.
+          contentEn: It takes courage to realize a dream like yours.
+          contentMy: Dibutuhkan keberanian untuk mewujudkan mimpi sepertimu.
+      - playerIsTalking: 0
+        dialogueDelay: 2.5
+        contentData:
+          playerExpression: 0
+          interlocutorSprite: {fileID: 21300000, guid: 3c3e7f6704efb2b49aecdea490f46b54,
+            type: 3}
+          clipId: {fileID: 0}
+          clipEn: {fileID: 0}
+          clipMy: {fileID: 0}
+          contentId: Tidak hanya mimpiku. Setiap mimpi membutuhkan tindakan nyata
+            untuk mewujudkannya.
+          contentEn: Not just my dream. Every dream requires concrete action to make
+            it come true.
+          contentMy: Tidak hanya mimpiku. Setiap mimpi membutuhkan tindakan nyata
+            untuk mewujudkannya.
+      - playerIsTalking: 0
+        dialogueDelay: 2.5
+        contentData:
+          playerExpression: 0
+          interlocutorSprite: {fileID: 21300000, guid: 3c3e7f6704efb2b49aecdea490f46b54,
+            type: 3}
+          clipId: {fileID: 0}
+          clipEn: {fileID: 0}
+          clipMy: {fileID: 0}
+          contentId: Kita harus siap menghadapi segala kesulitan dan resiko pastinya.
+          contentEn: We must be ready to face all difficulties and risks of course.
+          contentMy: Kita harus siap menghadapi segala kesulitan dan resiko pastinya.
+      - playerIsTalking: 1
+        dialogueDelay: 2.5
+        contentData:
+          playerExpression: 0
+          interlocutorSprite: {fileID: 21300000, guid: 3c3e7f6704efb2b49aecdea490f46b54,
+            type: 3}
+          clipId: {fileID: 0}
+          clipEn: {fileID: 0}
+          clipMy: {fileID: 0}
+          contentId: Aku tidak bisa membayangkan, resiko yang kamu hadapi selama
+            melintasi Samudra Atlantik selama 14 jam.
+          contentEn: I can't imagine the risks you face while crossing the Atlantic
+            Ocean for 14 hours.
+          contentMy: Aku tidak bisa membayangkan, resiko yang kamu hadapi selama
+            melintasi Samudra Atlantik selama 14 jam.
+      - playerIsTalking: 0
+        dialogueDelay: 2.5
+        contentData:
+          playerExpression: 0
+          interlocutorSprite: {fileID: 21300000, guid: 3c3e7f6704efb2b49aecdea490f46b54,
+            type: 3}
+          clipId: {fileID: 0}
+          clipEn: {fileID: 0}
+          clipMy: {fileID: 0}
+          contentId: Aku ingin suatu saat nanti, akan banyak anak-anak di dunia ini
+            yang berani mengikuti jejakku. Menciptakan tindakan-tindkaan berani lainnya.
+          contentEn: I hope that one day, there will be many children in this world
+            who dare to follow in my footsteps. Create other bold actions.
+          contentMy: Aku ingin suatu saat nanti, akan banyak anak-anak di dunia ini
+            yang berani mengikuti jejakku. Menciptakan tindakan-tindkaan berani lainnya.
+      - playerIsTalking: 1
+        dialogueDelay: 2.5
+        contentData:
+          playerExpression: 0
+          interlocutorSprite: {fileID: 21300000, guid: 3c3e7f6704efb2b49aecdea490f46b54,
+            type: 3}
+          clipId: {fileID: 0}
+          clipEn: {fileID: 0}
+          clipMy: {fileID: 0}
+          contentId: Tentu! Aku akan ingat dan sebarkan pesan-pesanmu ini.
+          contentEn: Of course! I will remember and spread your messages.
+          contentMy: Tentu! Aku akan ingat dan sebarkan pesan-pesanmu ini.
+      isDone: 0
   hintDelay: 10
   totalTime: 90
-  usingTutorial: 0
+  tutorialKey: 
   usingHandHint: 0
   gems:
   - type: 0

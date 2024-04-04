@@ -17,15 +17,84 @@ MonoBehaviour:
   abilityDriveDuration: 5
   backgroundGame: {fileID: 21300000, guid: eb85b6572c28d30469da9c40e653a927, type: 3}
   layoutGame: {fileID: 21300000, guid: 5917939e2fa7ab8418017c96a7a2a7cb, type: 3}
+  usingDialogueBonus: 1
   dialogues:
-    playerIdleSprite: {fileID: 0}
-    interlocutorIdleSprite: {fileID: 0}
-    interlocutorName: 
-    dialogueBonus: []
-  usingDialogueBonus: 0
+    interlocutorName: Mandela
+    interlocutorIdleSprite: {fileID: 21300000, guid: bf98677e029460b45863ccb8d1288001,
+      type: 3}
+    dialogueBonus:
+    - scoreTrigger: 1000
+      dialogueBonusDatas:
+      - playerIsTalking: 1
+        dialogueDelay: 2.5
+        contentData:
+          playerExpression: 0
+          interlocutorSprite: {fileID: 21300000, guid: bf98677e029460b45863ccb8d1288001,
+            type: 3}
+          clipId: {fileID: 0}
+          clipEn: {fileID: 0}
+          clipMy: {fileID: 0}
+          contentId: Bagaimana anda bisa mewujudkan cita cita anda walaupun sempat
+            dipenjara selama 27 tahun?
+          contentEn: How can you realize your dreams even though you were imprisoned
+            for 27 years?
+          contentMy: Bagaimana anda bisa mewujudkan cita cita anda walaupun sempat
+            dipenjara selama 27 tahun?
+      - playerIsTalking: 0
+        dialogueDelay: 2.5
+        contentData:
+          playerExpression: 0
+          interlocutorSprite: {fileID: 21300000, guid: bf98677e029460b45863ccb8d1288001,
+            type: 3}
+          clipId: {fileID: 0}
+          clipEn: {fileID: 0}
+          clipMy: {fileID: 0}
+          contentId: Saya tidak sendiri. Membangun hubungan dengan orang-orang yang
+            memiliki mimpi yang sama menjadi salah satu kunci.
+          contentEn: I'm not alone. Building relationships with people who have the
+            same dreams is one of the keys.
+          contentMy: Saya tidak sendiri. Membangun hubungan dengan orang-orang yang
+            memiliki mimpi yang sama menjadi salah satu kunci.
+      - playerIsTalking: 1
+        dialogueDelay: 2.5
+        contentData:
+          playerExpression: 0
+          interlocutorSprite: {fileID: 21300000, guid: bf98677e029460b45863ccb8d1288001,
+            type: 3}
+          clipId: {fileID: 0}
+          clipEn: {fileID: 0}
+          clipMy: {fileID: 0}
+          contentId: Tindakan Bapak sangat berani dan tulus. Pesan apa yang ingin
+            Bapak sampaikan pada dunia?
+          contentEn: Your actions were very brave and sincere. What message do you
+            want to convey to the world?
+          contentMy: Tindakan Bapak sangat berani dan tulus. Pesan apa yang ingin
+            Bapak sampaikan pada dunia?
+      - playerIsTalking: 0
+        dialogueDelay: 2.5
+        contentData:
+          playerExpression: 0
+          interlocutorSprite: {fileID: 21300000, guid: bf98677e029460b45863ccb8d1288001,
+            type: 3}
+          clipId: {fileID: 0}
+          clipEn: {fileID: 0}
+          clipMy: {fileID: 0}
+          contentId: Saya menghargai cita-cita masyarakat yang demokratis dan bebas
+            di mana semua orang hidup bersama dalam harmoni dan dengan kesempatan
+            yang sama. Saya berharap dapat hidup untuk cita-cita ini. Tetapi, jika
+            perlu, saya siap mati untuk cita-cita ini.
+          contentEn: I cherish the ideal of a democratic and free society in which
+            all people live together in harmony and with equal opportunities. I hope
+            to live up to these ideals. But, if necessary, I am ready to die for
+            this ideal.
+          contentMy: Saya menghargai cita-cita masyarakat yang demokratis dan bebas
+            di mana semua orang hidup bersama dalam harmoni dan dengan kesempatan
+            yang sama. Saya berharap dapat hidup untuk cita-cita ini. Tetapi, jika
+            perlu, saya siap mati untuk cita-cita ini.
+      isDone: 0
   hintDelay: 10
   totalTime: 90
-  usingTutorial: 0
+  tutorialKey: 
   usingHandHint: 0
   gems:
   - type: 0

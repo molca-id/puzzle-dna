@@ -25,10 +25,10 @@ public class LevelDataHandler : MonoBehaviour
 
     [Header("Current Story Attributes")]
     [HideInInspector] public GameData currentGameData;
-    public LevelData currentLevelData;
+    [HideInInspector] public LevelData currentLevelData;
     [HideInInspector] public StoryData currentStoryData;
-    public List<StoryData> prologueStoryData;
-    public List<StoryData> epilogueStoryData;
+    [HideInInspector] public List<StoryData> prologueStoryData;
+    [HideInInspector] public List<StoryData> epilogueStoryData;
 
     [Header("Current Index Attributes")]
     [HideInInspector] public int prologueIndex;
@@ -37,8 +37,8 @@ public class LevelDataHandler : MonoBehaviour
     [HideInInspector] public int narrationIndex;
     [HideInInspector] public int popUpIndex;
     [HideInInspector] public int titleIndex;
-    public bool isPrologue;
-    public bool isEpilogue;
+    [HideInInspector] public bool isPrologue;
+    [HideInInspector] public bool isEpilogue;
 
     [Header("Dialogue Attributes")]
     public GameObject dialoguePanel;
@@ -111,7 +111,7 @@ public class LevelDataHandler : MonoBehaviour
         {
             prologueIndex = 0;
             isPrologue = false;
-            
+
             if (epilogueStoryData.Count != 0)
             {
                 UnityEvent whenGameUnloaded = new();
@@ -119,60 +119,13 @@ public class LevelDataHandler : MonoBehaviour
                 CommonHandler.instance.whenSceneUnloadedCustom = whenGameUnloaded;
             }
 
-            SetPrologueStory(true);
             GameGenerator.instance.GenerateLevel(currentGameData);
+            SetPrologueStory(true);
             return;
         }
 
         currentStoryData = prologueStoryData[prologueIndex];
-        backgroundImage.sprite = currentStoryData.backgroundSprite;
-        backgroundImage.gameObject.SetActive(true);
-        storyPanel.SetActive(true);
-
-        switch (currentStoryData.storyType)
-        {
-            case StoryData.StoryType.Dialogue:
-                dialoguePanel.SetActive(true);
-                SetDialogueStory(0);
-                break;
-            case StoryData.StoryType.Narration:
-                narrationPanel.SetActive(true);
-                SetNarrationStory(0);
-                break;
-            case StoryData.StoryType.PopUp:
-                popUpPanel.SetActive(true);
-                SetPopUpStory(0);
-                break;
-            case StoryData.StoryType.Title:
-                titlePanel.SetActive(true);
-                SetTitleStory(0);
-                break;
-            case StoryData.StoryType.Event:
-                if (!DataHandler.instance.GetUserCheckpointData().
-                    checkpoint_value[currentGameData.gameLevel].prologue_is_done &&
-                    DataHandler.instance.GetUserSpecificPerksPoint().perks_point_plus == 0 &&
-                    DataHandler.instance.GetUserSpecificPerksPoint().perks_point_minus == 0)
-                {
-                    eventHandler.Init(currentStoryData.eventDataStory);
-                }
-                else
-                {
-                    SetPrologueStory(1);
-                }
-                break;
-            case StoryData.StoryType.Tutorial:
-                if (!DataHandler.instance.GetUserCheckpointData().
-                    checkpoint_value[currentGameData.gameLevel].prologue_is_done)
-                {
-                    tutorialParentPanel.SetActive(true);
-                    SetTutorialStory(currentStoryData.tutorialKey);
-                }
-                else
-                {
-                    SetPrologueStory(1);
-                }
-                break;
-        }
+        SetStoryData();
     }
 
     public void SetEpilogueStory(int factor)
@@ -186,12 +139,21 @@ public class LevelDataHandler : MonoBehaviour
             epilogueIndex = 0;
             isEpilogue = false;
             SetEpilogueStory(true);
+
+            if (currentLevelData.openPerksPanelAfterEpilogue)
+                MainMenuHandler.instance.commonPerksHandler.OpenPerksPanel(true);
             return;
         }
 
         currentStoryData = epilogueStoryData[epilogueIndex];
+        SetStoryData();
+    }
+
+    public void SetStoryData()
+    {
         backgroundImage.sprite = currentStoryData.backgroundSprite;
-        backgroundImage.gameObject.SetActive(true);
+        if (currentStoryData.backgroundSprite == null) backgroundImage.gameObject.SetActive(false);
+        else backgroundImage.gameObject.SetActive(true);
         storyPanel.SetActive(true);
 
         switch (currentStoryData.storyType)
@@ -213,8 +175,10 @@ public class LevelDataHandler : MonoBehaviour
                 SetTitleStory(0);
                 break;
             case StoryData.StoryType.Event:
-                if (!DataHandler.instance.GetUserCheckpointData().
-                    checkpoint_value[currentGameData.gameLevel].epilogue_is_done &&
+                if (((isPrologue && !DataHandler.instance.GetUserCheckpointData().
+                    checkpoint_value[currentGameData.gameLevel].prologue_is_done) ||
+                    (isEpilogue && !DataHandler.instance.GetUserCheckpointData().
+                    checkpoint_value[currentGameData.gameLevel].epilogue_is_done)) &&
                     DataHandler.instance.GetUserSpecificPerksPoint().perks_point_plus == 0 &&
                     DataHandler.instance.GetUserSpecificPerksPoint().perks_point_minus == 0)
                 {
@@ -222,19 +186,23 @@ public class LevelDataHandler : MonoBehaviour
                 }
                 else
                 {
-                    SetEpilogueStory(1);
+                    if (isPrologue) SetPrologueStory(1);
+                    else if (isEpilogue) SetEpilogueStory(1);
                 }
                 break;
             case StoryData.StoryType.Tutorial:
-                if (!DataHandler.instance.GetUserCheckpointData().
-                    checkpoint_value[currentGameData.gameLevel].epilogue_is_done)
+                if ((isPrologue && !DataHandler.instance.GetUserCheckpointData().
+                    checkpoint_value[currentGameData.gameLevel].prologue_is_done) ||
+                    (isEpilogue && !DataHandler.instance.GetUserCheckpointData().
+                    checkpoint_value[currentGameData.gameLevel].epilogue_is_done))
                 {
                     tutorialParentPanel.SetActive(true);
                     SetTutorialStory(currentStoryData.tutorialKey);
                 }
                 else
                 {
-                    SetEpilogueStory(1);
+                    if (isPrologue) SetPrologueStory(1);
+                    else if (isEpilogue) SetEpilogueStory(1);
                 }
                 break;
         }
@@ -257,7 +225,7 @@ public class LevelDataHandler : MonoBehaviour
         TextMeshProUGUI currContent;
         DialogueStoryData dialogue = currentStoryData.dialogueStory.dialogueStories[dialogueIndex];
 
-        playerDialogue.charImage.sprite = dialogue.contentData.playerSprite;
+        playerDialogue.charImage.sprite = DataHandler.instance.GetPlayerSprite(dialogue.contentData.playerExpression);
         interlocutorDialogue.charImage.sprite = dialogue.contentData.interlocutorSprite;
 
         playerDialogue.nameText.text = DataHandler.instance.GetUserDataValue().username;
@@ -265,6 +233,13 @@ public class LevelDataHandler : MonoBehaviour
 
         if (dialogue.playerIsTalking) currContent = playerDialogue.dialogueText;
         else currContent = interlocutorDialogue.dialogueText;
+
+        dialogue.contentData.contentId = dialogue.contentData.contentId.
+            Replace("(playerName)", DataHandler.instance.GetUserDataValue().username);
+        dialogue.contentData.contentMy = dialogue.contentData.contentMy.
+            Replace("(playerName)", DataHandler.instance.GetUserDataValue().username);
+        dialogue.contentData.contentEn = dialogue.contentData.contentEn.
+            Replace("(playerName)", DataHandler.instance.GetUserDataValue().username);
 
         if (DataHandler.instance.GetLanguage() == "id")
             SetStory(

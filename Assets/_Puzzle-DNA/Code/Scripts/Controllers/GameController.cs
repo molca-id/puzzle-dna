@@ -214,8 +214,8 @@ public class GameController : SingletonMonoBehaviour<GameController>
         HintController.StopHinting();
         UIController.ShowMsg("Game Over");
 
+        SetScoreGameLevel(_scoreTotal);
         AfterGameOver();
-        GameGenerator.instance.SetScoreGameLevel(_scoreTotal);
 
         yield return new WaitForSeconds(BoardController.DestroyGems() + .5f);
 
@@ -244,10 +244,6 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
     public void AfterGameOver()
     {
-        int score = DataHandler.instance.GetUserCheckpointData().
-            checkpoint_value[LevelDataHandler.instance.currentGameData.gameLevel].
-            checkpoint_level_score;
-
         if (!DataHandler.instance.GetUserCheckpointData().
             checkpoint_value[LevelDataHandler.instance.currentGameData.gameLevel].
             game_is_done)
@@ -272,15 +268,18 @@ public class GameController : SingletonMonoBehaviour<GameController>
                 }
             }
 
-            MainMenuHandler.instance.PatchPerksFromMenu(delegate
-            {
-                if (!level.openPerksPanelAfterGame) return;
-                //PerksHandler.instance.OpenPerksPanel(true);
-            });
-
+            MainMenuHandler.instance.PatchPerksFromMenu(() => { });
             DataHandler.instance.GetUserCheckpointData().
-            checkpoint_value[LevelDataHandler.instance.currentGameData.gameLevel].
-            game_is_done = true;
+                checkpoint_value[LevelDataHandler.instance.currentGameData.gameLevel].
+                game_is_done = true;
         }
+    }
+
+    public void SetScoreGameLevel(int score)
+    {
+        if (GameGenerator.instance.currentGameLevel < 0) return;
+        if (DataHandler.instance.GetUserCheckpointData().checkpoint_value[GameGenerator.instance.currentGameLevel].checkpoint_level_score > score) return;
+        DataHandler.instance.GetUserCheckpointData().checkpoint_value[GameGenerator.instance.currentGameLevel].checkpoint_level_score = score;
+        MainMenuHandler.instance.PatchCheckpointFromMenu(() => MainMenuHandler.instance.InitMenu());
     }
 }

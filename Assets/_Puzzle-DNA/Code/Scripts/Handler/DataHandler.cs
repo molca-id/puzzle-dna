@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public enum ExpressionType { Senang, Optimis, Sedih }
+public enum ExpressionType { Netral, Senang, Optimis, Sedih, Unknown }
 
 [Serializable]
 public class PlayerSpriteExpressionData
@@ -18,7 +18,6 @@ public class PlayerSpriteData
 {
     public string name;
     public UserDataSpace.Character character;
-    public Sprite idleSprite;
     public List<PlayerSpriteExpressionData> expressionDatas;
 }
 
@@ -53,24 +52,10 @@ public class DataHandler : MonoBehaviour
         }
     }
 
-    public void SetupPlayerSprites()
+    public Sprite GetPlayerSprite(ExpressionType expressionType)
     {
-        foreach (var level in levelDatas)
-        {
-            GameData game = level.gameData;
-            PlayerSpriteData player = currPlayerSpriteData;
-            game.dialogues.playerIdleSprite = player.idleSprite;
-
-            foreach (var dialogue in game.dialogues.dialogueBonus)
-            {
-                foreach (var item in dialogue.dialogueBonusDatas)
-                {
-                    Sprite temp = player.expressionDatas.Find(
-                        exp => exp.expressionType == item.playerExpressionType
-                        ).sprite;
-                }
-            }
-        }
+        return currPlayerSpriteData.expressionDatas.
+            Find(exp => exp.expressionType == expressionType).sprite;
     }
 
     public AudioHandler GetAudioHandler(string key)
@@ -215,7 +200,7 @@ public class DataHandler : MonoBehaviour
                     else
                     {
                         currPlayerSpriteData = playerSpriteDatas.Find(data => (int)data.character == GetUserDataValue().character);
-                        SetupPlayerSprites();
+                        //SetupPlayerSprites();
                     }
                 }));
     }

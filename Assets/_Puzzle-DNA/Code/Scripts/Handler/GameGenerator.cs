@@ -5,19 +5,11 @@ using UnityEngine;
 public class GameGenerator : MonoBehaviour
 {
     public static GameGenerator instance;
-    [SerializeField] int currentGameLevel;
+    public int currentGameLevel;
 
     void Awake()
     {
         instance = this;
-    }
-
-    public void SetScoreGameLevel(int score)
-    {
-        if (currentGameLevel < 0) return;
-        if (DataHandler.instance.GetUserCheckpointData().checkpoint_value[currentGameLevel].checkpoint_level_score > score) return;
-        DataHandler.instance.GetUserCheckpointData().checkpoint_value[currentGameLevel].checkpoint_level_score = score;
-        MainMenuHandler.instance.PatchCheckpointFromMenu(() => MainMenuHandler.instance.InitMenu());
     }
 
     public void GenerateLevel(GameData data)

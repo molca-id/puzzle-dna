@@ -17,15 +17,102 @@ MonoBehaviour:
   abilityDriveDuration: 5
   backgroundGame: {fileID: 21300000, guid: eb85b6572c28d30469da9c40e653a927, type: 3}
   layoutGame: {fileID: 21300000, guid: 5917939e2fa7ab8418017c96a7a2a7cb, type: 3}
+  usingDialogueBonus: 1
   dialogues:
-    playerIdleSprite: {fileID: 0}
-    interlocutorIdleSprite: {fileID: 0}
-    interlocutorName: 
-    dialogueBonus: []
-  usingDialogueBonus: 0
+    interlocutorName: Marcus
+    interlocutorIdleSprite: {fileID: 21300000, guid: 85c2e51e13b57df45b84fbee74f41167,
+      type: 3}
+    dialogueBonus:
+    - scoreTrigger: 1000
+      dialogueBonusDatas:
+      - playerIsTalking: 1
+        dialogueDelay: 2.5
+        contentData:
+          playerExpression: 0
+          interlocutorSprite: {fileID: 21300000, guid: 85c2e51e13b57df45b84fbee74f41167,
+            type: 3}
+          clipId: {fileID: 0}
+          clipEn: {fileID: 0}
+          clipMy: {fileID: 0}
+          contentId: Bagaimana kamu tetap menjaga stabilitas kekaisaran Romawi ini?
+          contentEn: How do you maintain the stability of the Roman empire?
+          contentMy: Bagaimana kamu tetap menjaga stabilitas kekaisaran Romawi ini?
+      - playerIsTalking: 0
+        dialogueDelay: 2.5
+        contentData:
+          playerExpression: 0
+          interlocutorSprite: {fileID: 21300000, guid: 85c2e51e13b57df45b84fbee74f41167,
+            type: 3}
+          clipId: {fileID: 0}
+          clipEn: {fileID: 0}
+          clipMy: {fileID: 0}
+          contentId: Romawi adalah sebuah kekaisaran yang sangat besar. Membina interaksi
+            & komunikasi dengan pihak-pihak lain menjadi salah satu kuncinya.
+          contentEn: Rome was a very large empire. Fostering interaction & communication
+            with other parties is one of the keys.
+          contentMy: Romawi adalah sebuah kekaisaran yang sangat besar. Membina interaksi
+            & komunikasi dengan pihak-pihak lain menjadi salah satu kuncinya.
+      - playerIsTalking: 1
+        dialogueDelay: 2.5
+        contentData:
+          playerExpression: 0
+          interlocutorSprite: {fileID: 21300000, guid: 85c2e51e13b57df45b84fbee74f41167,
+            type: 3}
+          clipId: {fileID: 0}
+          clipEn: {fileID: 0}
+          clipMy: {fileID: 0}
+          contentId: Aku baru tau, walaupun termasuk kekaisaran yang kuat, Romawi
+            tetap membutuhkan pihak lain.
+          contentEn: I just found out, even though it is a strong empire, Rome still
+            needs other parties.
+          contentMy: Aku baru tau, walaupun termasuk kekaisaran yang kuat, Romawi
+            tetap membutuhkan pihak lain.
+      - playerIsTalking: 0
+        dialogueDelay: 2.5
+        contentData:
+          playerExpression: 0
+          interlocutorSprite: {fileID: 21300000, guid: 85c2e51e13b57df45b84fbee74f41167,
+            type: 3}
+          clipId: {fileID: 0}
+          clipEn: {fileID: 0}
+          clipMy: {fileID: 0}
+          contentId: Tentu dong! Tidak ada dalam sejarah bangsa kuat berdiri sendiri
+            tanpa bantuan pihak lain.
+          contentEn: Of course! There has never been a strong nation in history that
+            has stood alone without the help of others.
+          contentMy: Tentu dong! Tidak ada dalam sejarah bangsa kuat berdiri sendiri
+            tanpa bantuan pihak lain.
+      - playerIsTalking: 1
+        dialogueDelay: 2.5
+        contentData:
+          playerExpression: 0
+          interlocutorSprite: {fileID: 21300000, guid: 85c2e51e13b57df45b84fbee74f41167,
+            type: 3}
+          clipId: {fileID: 0}
+          clipEn: {fileID: 0}
+          clipMy: {fileID: 0}
+          contentId: Jangan lupa. Dalam menjalin hubungan, kepercayaan dan integritas
+            juga harus dijaga.
+          contentEn: Do not forget. In establishing a relationship, trust and integrity
+            must also be maintained.
+          contentMy: Jangan lupa. Dalam menjalin hubungan, kepercayaan dan integritas
+            juga harus dijaga.
+      - playerIsTalking: 0
+        dialogueDelay: 2.5
+        contentData:
+          playerExpression: 0
+          interlocutorSprite: {fileID: 21300000, guid: 85c2e51e13b57df45b84fbee74f41167,
+            type: 3}
+          clipId: {fileID: 0}
+          clipEn: {fileID: 0}
+          clipMy: {fileID: 0}
+          contentId: Oh betul! Agar hubungan berjalan lama ya.
+          contentEn: Oh right! So that the relationship lasts a long time.
+          contentMy: Oh betul! Agar hubungan berjalan lama ya.
+      isDone: 0
   hintDelay: 10
   totalTime: 90
-  usingTutorial: 0
+  tutorialKey: 
   usingHandHint: 0
   gems:
   - type: 0

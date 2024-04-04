@@ -59,6 +59,7 @@ public class PerksHandler : MonoBehaviour
     [Header("UI Attributes")]
     public GameObject perksPanel;
     public GameObject perksDetailPanel;
+    public GameObject instructionText;
     public Button submitButton;
     [Space]
     public GameObject driveDescPanel;
@@ -82,6 +83,8 @@ public class PerksHandler : MonoBehaviour
     public bool asTutorial;
     public UnityEvent whenSubmitPerk;
 
+    bool isOpened = false;
+
     public void SetCurrentPerkType(int index)
     {
         currentPerksType = (PerksType)index;
@@ -96,6 +99,7 @@ public class PerksHandler : MonoBehaviour
 
     public void OpenPerksPanel(bool isSmall)
     {
+        isOpened = false;
         if (asEvent)
         {
             bool isOver = true;
@@ -215,6 +219,7 @@ public class PerksHandler : MonoBehaviour
                         }
 
                         SetPerksItemUI(perkTemp);
+                        perkTemp.perks_button.onClick.RemoveAllListeners();
                         perkTemp.perks_button.onClick.AddListener(delegate
                         {
                             currentPerk = perkTemp;
@@ -240,9 +245,20 @@ public class PerksHandler : MonoBehaviour
                 }
             }
 
+            if (instructionText != null)
+            {
+                if (MainMenuHandler.instance.GameOverChecker()) 
+                    instructionText.SetActive(true);
+                else
+                    instructionText.SetActive(false);
+            }
+
             perksPanel.SetActive(true);
+            isOpened = true;
         });
     }
+
+    public bool GetPanelState() => isOpened;
 
     public void OpenPerksDescription()
     {
@@ -292,9 +308,11 @@ public class PerksHandler : MonoBehaviour
         //after reset
         DataHandler.instance.GetPerksData().perks_point_data.perks_point_minus =
             DataHandler.instance.GetPerksData().perks_point_data.total_perks_point_minus =
+            electronPoint =
             totalElectron;
         DataHandler.instance.GetPerksData().perks_point_data.perks_point_plus =
             DataHandler.instance.GetPerksData().perks_point_data.total_perks_point_plus =
+            protonPoint =
             totalProton;
 
         DataHandler.instance.GetPerksData().perks_ability_data.driveUpgraded = driveUpgraded;
@@ -315,6 +333,18 @@ public class PerksHandler : MonoBehaviour
 
     public void SubmitTalentPoint()
     {
+        if (MainMenuHandler.instance.GameOverChecker() && 
+            protonPoint == 0 && electronPoint == 0)
+        {
+            FinishHandler.instance.InitFinalSubmitPanel();
+            return;
+        }
+
+        FinalSubmitTalentPoint();
+    }
+
+    public void FinalSubmitTalentPoint()
+    {
         UserDataSpace.PerksValueData currPerk = DataHandler.instance.GetPerksData().perks_value_datas.
             Find(perk => perk.perks_id == currentPerk.perks_id);
         currPerk.perks_point = currentPerk.perks_point;
@@ -325,13 +355,13 @@ public class PerksHandler : MonoBehaviour
             DataHandler.instance.GetUserSpecificPerksPoint().specific_perks_point_datas.
                 Find(res => res.perks_type == DataHandler.instance.GetUserSpecificPerksPoint().perks_plus_type).
                 perks_point_plus =
-            DataHandler.instance.GetUserSpecificPerksPoint().perks_point_plus = 
+            DataHandler.instance.GetUserSpecificPerksPoint().perks_point_plus =
                 protonPoint;
-            
+
             DataHandler.instance.GetUserSpecificPerksPoint().specific_perks_point_datas.
                 Find(res => res.perks_type == DataHandler.instance.GetUserSpecificPerksPoint().perks_minus_type).
                 perks_point_minus =
-            DataHandler.instance.GetUserSpecificPerksPoint().perks_point_minus = 
+            DataHandler.instance.GetUserSpecificPerksPoint().perks_point_minus =
                 electronPoint;
         }
         else
@@ -340,8 +370,32 @@ public class PerksHandler : MonoBehaviour
             DataHandler.instance.GetPerksData().perks_point_data.perks_point_minus = electronPoint;
         }
 
+        AbilityChecker();
         MainMenuHandler.instance.PatchPerksFromMenu(delegate
         {
+            foreach (AbilityUIData data in perkAbilityDatas)
+            {
+                bool upgraded = false;
+                data.iconBefore.SetActive(!upgraded);
+                data.iconAfter.SetActive(upgraded);
+
+                switch (data.abilityType)
+                {
+                    case PerksType.Drive:
+                        upgraded = DataHandler.instance.GetPerksData().perks_ability_data.driveUpgraded;
+                        break;
+                    case PerksType.Network:
+                        upgraded = DataHandler.instance.GetPerksData().perks_ability_data.networkUpgraded;
+                        break;
+                    case PerksType.Action:
+                        upgraded = DataHandler.instance.GetPerksData().perks_ability_data.actionUpgraded;
+                        break;
+                }
+
+                data.iconBefore.SetActive(!upgraded);
+                data.iconAfter.SetActive(upgraded);
+            }
+
             SetPerksItemUI(currentPerk);
             SetPerksDetailUI();
             SetPointText();
@@ -349,6 +403,10 @@ public class PerksHandler : MonoBehaviour
             perksDetailPanel.SetActive(false);
             minusPointUsed = plusPointUsed = 0;
             currentPerk = new();
+
+            if (MainMenuHandler.instance.GameOverChecker() &&
+                protonPoint == 0 && electronPoint == 0)
+                FinishHandler.instance.CalculateFinalResult();
 
             if (!asTutorial) return;
             whenSubmitPerk.Invoke();
@@ -524,7 +582,56 @@ public class PerksHandler : MonoBehaviour
 
     public void SetPointText()
     {
-        perkPointPlus.ForEach(text => text.text = protonPoint.ToString());
-        perkPointMinus.ForEach(text => text.text = electronPoint.ToString());
+        string plus = string.Empty, minus = string.Empty;
+
+        if (asEvent)
+        {
+            if (DataHandler.instance.GetUserSpecificPerksPoint().perks_plus_type == PerksType.Drive) plus = "D";
+            if (DataHandler.instance.GetUserSpecificPerksPoint().perks_plus_type == PerksType.Network) plus = "N";
+            if (DataHandler.instance.GetUserSpecificPerksPoint().perks_plus_type == PerksType.Action) plus = "A";
+
+            if (DataHandler.instance.GetUserSpecificPerksPoint().perks_minus_type == PerksType.Drive) minus = "D";
+            if (DataHandler.instance.GetUserSpecificPerksPoint().perks_minus_type == PerksType.Network) minus = "N";
+            if (DataHandler.instance.GetUserSpecificPerksPoint().perks_minus_type == PerksType.Action) minus = "A";
+        }
+
+        perkPointPlus.ForEach(text => text.text = protonPoint.ToString() + plus);
+        perkPointMinus.ForEach(text => text.text = electronPoint.ToString() + minus);
+    }
+
+    public void AbilityChecker()
+    {
+        foreach (var perkTypeData in perksTypeDatas)
+        {
+            int totalPoint = 0;
+            PerksType perksType = perkTypeData.perks_type;
+
+            foreach (var perkStageData in perkTypeData.perks_stage_datas)
+            {
+                foreach (var perkValueData in perkStageData.perks_value_datas)
+                {
+                    totalPoint += perkValueData.perks_point;
+                }
+            }
+
+            if (totalPoint >= 25)
+            {
+                if (perksType == PerksType.Drive) 
+                    DataHandler.instance.GetPerksData().perks_ability_data.driveUpgraded = true;
+                else if (perksType == PerksType.Network) 
+                    DataHandler.instance.GetPerksData().perks_ability_data.networkUpgraded = true;
+                else if (perksType == PerksType.Action) 
+                    DataHandler.instance.GetPerksData().perks_ability_data.actionUpgraded = true;
+            }
+            else
+            {
+                if (perksType == PerksType.Drive)
+                    DataHandler.instance.GetPerksData().perks_ability_data.driveUpgraded = false;
+                else if (perksType == PerksType.Network)
+                    DataHandler.instance.GetPerksData().perks_ability_data.networkUpgraded = false;
+                else if (perksType == PerksType.Action)
+                    DataHandler.instance.GetPerksData().perks_ability_data.actionUpgraded = false;
+            }
+        }
     }
 }

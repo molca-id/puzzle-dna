@@ -22,3 +22,4 @@ MonoBehaviour:
   epilogueStoryData:
   - {fileID: 11400000, guid: b4b8679b748b1fa49a06ff2fdf8e6eb5, type: 2}
   - {fileID: 11400000, guid: 8cf9ab290dc8d2a40b772a2082095e7c, type: 2}
+  - {fileID: 11400000, guid: 1298cd123e9e88d459e8216df43e0578, type: 2}

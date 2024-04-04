@@ -44,7 +44,8 @@ MonoBehaviour:
       Ternyata kamu menyadari bahwa dia Kevin Santaya, pemain yang akan menjadi legenda
       badminton nomor 1  di Dunia. Dalam kondisi saat ini dia ingin menyerah, sekarang
       apa yang akan kamu lakukan?
-    characterSprite: {fileID: 21300000, guid: 5ecd0795ea748f64a88cd0efda2c734a, type: 3}
+    playerExpression: 0
+    characterSprite: {fileID: 0}
     answers:
     - answerId: Mengarahkan Kevin untuk terus berlatih tanpa memberi tau fakta di
         masa depan

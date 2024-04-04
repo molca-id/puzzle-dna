@@ -36,6 +36,7 @@ public class LevelButtonData
 public class MainMenuHandler : MonoBehaviour
 {
     public static MainMenuHandler instance;
+    public PerksHandler commonPerksHandler;
     public PerksHandler afterEventPerksHandler;
 
     [Header("Welcome Attributes")]
@@ -85,37 +86,8 @@ public class MainMenuHandler : MonoBehaviour
     private void Start()
     {
         InitMenu();
-
-        //epilogue checker
-        for (int i = 0; i < DataHandler.instance.GetUserCheckpointData().checkpoint_value.Count; i++)
-        {
-            if (!DataHandler.instance.GetUserCheckpointData().checkpoint_value[i].epilogue_is_done &&
-                DataHandler.instance.GetUserCheckpointData().checkpoint_value[i].checkpoint_level_score != 0)
-            {
-                LevelDataHandler.instance.InitEpilogue(DataHandler.instance.levelDatas[i]);
-            }
-        }
-
-        //after event handler checker
-        if (DataHandler.instance.GetUserSpecificPerksPoint().perks_point_plus != 0 ||
-            DataHandler.instance.GetUserSpecificPerksPoint().perks_point_minus != 0)
-        {
-            LevelDataHandler.instance.InitAllData(DataHandler.instance.levelDatas[
-                DataHandler.instance.GetUserSpecificPerksPoint().current_game_level]);
-
-            if (LevelDataHandler.instance.currentStoryData.storyType == StoryData.StoryType.Event)
-                afterEventPerksHandler.OpenPerksPanel(false);
-            else 
-            {
-                if (DataHandler.instance.GetUserSpecificPerksPoint().perks_story_type == StoryType.Prologue)
-                    LevelDataHandler.instance.InitPrologue(DataHandler.instance.levelDatas[
-                        DataHandler.instance.GetUserSpecificPerksPoint().current_game_level]);
-                else
-
-                    LevelDataHandler.instance.InitEpilogue(DataHandler.instance.levelDatas[
-                        DataHandler.instance.GetUserSpecificPerksPoint().current_game_level]);
-            }
-        }
+        EpilogueChecker();
+        EventChecker();
     }
 
     private void Update()
@@ -126,6 +98,47 @@ public class MainMenuHandler : MonoBehaviour
         if (scrollRect.horizontalNormalizedPosition > 1)
             scrollAutomatically = false;
     }
+    
+    #region Function Checker
+    void EpilogueChecker()
+    {
+        for (int i = 0; i < DataHandler.instance.GetUserCheckpointData().checkpoint_value.Count; i++)
+        {
+            if (!DataHandler.instance.GetUserCheckpointData().checkpoint_value[i].epilogue_is_done &&
+                DataHandler.instance.GetUserCheckpointData().checkpoint_value[i].checkpoint_level_score != 0)
+            {
+                LevelDataHandler.instance.InitEpilogue(DataHandler.instance.levelDatas[i]);
+            }
+        }
+    }
+
+    void EventChecker()
+    {
+        if (DataHandler.instance.GetUserSpecificPerksPoint().perks_point_plus != 0 ||
+            DataHandler.instance.GetUserSpecificPerksPoint().perks_point_minus != 0)
+        {
+            LevelDataHandler.instance.InitAllData(DataHandler.instance.levelDatas[
+                DataHandler.instance.GetUserSpecificPerksPoint().current_game_level]);
+            afterEventPerksHandler.OpenPerksPanel(false);
+        }
+    }
+
+    public bool GameOverChecker()
+    {
+        foreach (var item in DataHandler.instance.GetUserCheckpointData().checkpoint_value)
+        {
+            if (!item.game_is_done ||
+                !item.prologue_is_done || 
+                !item.epilogue_is_done ||
+                item.checkpoint_level_score == 0)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+    #endregion
 
     #region Tutorial
     public void SelectLanguage(string lang)
@@ -304,6 +317,15 @@ public class MainMenuHandler : MonoBehaviour
                 data.currentButton.transform.Find("Disable").gameObject.SetActive(false);
                 data.currentButton.interactable = true;
             }
+        }
+
+        if (GameOverChecker())
+        {
+            if (DataHandler.instance.GetPerksData().perks_point_data.perks_point_plus != 0 ||
+                DataHandler.instance.GetPerksData().perks_point_data.perks_point_minus != 0)
+                commonPerksHandler.OpenPerksPanel(true);
+            else
+                FinishHandler.instance.CalculateFinalResult();
         }
     }
 

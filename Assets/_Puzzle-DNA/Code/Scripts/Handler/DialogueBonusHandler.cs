@@ -27,7 +27,7 @@ public class DialogueBonusHandler : SingletonMonoBehaviour<DialogueBonusHandler>
     public void InitDialogue(Dialogue dialogue)
     {
         dialogues = dialogue;
-        SetCharacterSprites(dialogues.playerIdleSprite, dialogues.interlocutorIdleSprite);
+        SetCharacterSprites(DataHandler.instance.GetPlayerSprite(ExpressionType.Netral), dialogues.interlocutorIdleSprite);
         playerDialogue.nameText.text = DataHandler.instance.GetUserDataValue().username;
         interlocutorDialogue.nameText.text = dialogue.interlocutorName;
 
@@ -42,10 +42,16 @@ public class DialogueBonusHandler : SingletonMonoBehaviour<DialogueBonusHandler>
         )
     {
         interlocutorDialogue.charImage.sprite = interlocutorSprite;
-        interlocutorDialogue.charImage.SetNativeSize();
 
-        playerDialogue.charImage.sprite = playerSprite;
-        playerDialogue.charImage.SetNativeSize();
+        if (playerSprite == null)
+        {
+            playerDialogue.charImage.gameObject.SetActive(false);
+        }
+        else
+        {
+            playerDialogue.charImage.gameObject.SetActive(true);
+            playerDialogue.charImage.sprite = playerSprite;
+        }
     }
 
     public void StartDialogue(int score)
@@ -63,8 +69,8 @@ public class DialogueBonusHandler : SingletonMonoBehaviour<DialogueBonusHandler>
     IEnumerator SetupDialogue(DialogueBonus dialogue)
     {
         yield return new WaitUntil(() => !dialogueIsOngoing);
+        dialogueIsOngoing = dialogue.isDone = true;
         StartCoroutine(Dialogue(dialogue));
-        dialogueIsOngoing = true;
     }
 
     IEnumerator Dialogue(DialogueBonus dialogue)
@@ -72,12 +78,9 @@ public class DialogueBonusHandler : SingletonMonoBehaviour<DialogueBonusHandler>
         List<DialogueBonusData> datas = dialogue.dialogueBonusDatas;
         for (int i = 0; i < datas.Count; i++)
         {
-            SetCharacterSprites(datas[i].contentData.playerSprite, datas[i].contentData.interlocutorSprite);
+            SetCharacterSprites(DataHandler.instance.GetPlayerSprite(datas[i].contentData.playerExpression), datas[i].contentData.interlocutorSprite);
             if (datas[i].playerIsTalking)
             {
-                playerDialogue.dialogueParentPanel.transform.parent.SetAsLastSibling();
-                interlocutorDialogue.dialogueParentPanel.transform.parent.SetAsFirstSibling();
-
                 playerDialogue.dialoguePanel.SetActive(true);
                 interlocutorDialogue.dialoguePanel.SetActive(false);
 
@@ -90,9 +93,6 @@ public class DialogueBonusHandler : SingletonMonoBehaviour<DialogueBonusHandler>
             }
             else
             {
-                playerDialogue.dialogueParentPanel.transform.parent.SetAsFirstSibling();
-                interlocutorDialogue.dialogueParentPanel.transform.parent.SetAsLastSibling();
-
                 playerDialogue.dialoguePanel.SetActive(false);
                 interlocutorDialogue.dialoguePanel.SetActive(true);
 
@@ -111,6 +111,5 @@ public class DialogueBonusHandler : SingletonMonoBehaviour<DialogueBonusHandler>
         interlocutorDialogue.dialoguePanel.SetActive(false);
         dialoguePanel.SetActive(false);
         dialogueIsOngoing = false;
-        dialogue.isDone = true;
     }
 }

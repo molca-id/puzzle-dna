@@ -18,7 +18,7 @@ public class LevelData : SingletonScriptableObject<LevelData>
     public GameData gameData;
     public int perksPoinPlus;
     public int perksPoinMinus;
-    public bool openPerksPanelAfterGame;
+    public bool openPerksPanelAfterEpilogue;
 
     [Header("Addon For Game Unlocking Perk Stage")]
     public bool usingPerkUnlocking;

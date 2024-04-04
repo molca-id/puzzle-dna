@@ -150,7 +150,7 @@ RectTransform:
   m_GameObject: {fileID: 13030102}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: -1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 329084019}
@@ -180,9 +180,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6b32bc13d3e280948ad22943b30ccc2e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e60be4408d319ab4ebaff0dd7dc8a07f, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -2312,7 +2312,7 @@ RectTransform:
   m_GameObject: {fileID: 851920001}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 284529617}
@@ -2342,9 +2342,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6b32bc13d3e280948ad22943b30ccc2e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e60be4408d319ab4ebaff0dd7dc8a07f, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -2599,7 +2599,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -250.00134, y: 101}
+  m_AnchoredPosition: {x: -250.00139, y: 101}
   m_SizeDelta: {x: -745.6, y: -238.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &920450452
@@ -3259,9 +3259,8 @@ MonoBehaviour:
     nameText: {fileID: 678353376}
     dialogueText: {fileID: 1322711079}
   dialogues:
-    playerIdleSprite: {fileID: 0}
-    interlocutorIdleSprite: {fileID: 0}
     interlocutorName: 
+    interlocutorIdleSprite: {fileID: 0}
     dialogueBonus: []
 --- !u!1 &1181313166
 GameObject:
@@ -3654,6 +3653,7 @@ MonoBehaviour:
     type: 3}
   gemIsInteractable: 0
   tutorial_is_done: 0
+  _timeLeft: 120
 --- !u!4 &1282053297
 Transform:
   m_ObjectHideFlags: 0
@@ -3779,8 +3779,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -25.55066}
-  m_SizeDelta: {x: -100, y: -130.49998}
+  m_AnchoredPosition: {x: 0, y: -17.500076}
+  m_SizeDelta: {x: -160, y: -165.00015}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1322711079
 MonoBehaviour:
@@ -3802,7 +3802,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Hai, bagaimana kabarmu?
+  m_text: Hi, I have received a message from Prof. Woo. Let me introduce myself,
+    Ada Lovelace. Maybe you don't know me. But people call him the First Computer
+    Programmer in the World
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fbad4c41a70b5bb42927694c6ab4da49, type: 2}
   m_sharedMaterial: {fileID: -5699074500821974625, guid: fbad4c41a70b5bb42927694c6ab4da49,
@@ -3830,7 +3832,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 52
+  m_fontSize: 26.65
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4635,8 +4637,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -25.55066}
-  m_SizeDelta: {x: -100, y: -130.49998}
+  m_AnchoredPosition: {x: 0, y: -17.500076}
+  m_SizeDelta: {x: -160, y: -165.00015}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1719580380
 MonoBehaviour:
@@ -4658,7 +4660,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Hai, bagaimana kabarmu?
+  m_text: Hi, I have received a message from Prof. Woo. Let me introduce myself,
+    Ada Lovelace. Maybe you don't know me. But people call him the First Computer
+    Programmer in the World
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fbad4c41a70b5bb42927694c6ab4da49, type: 2}
   m_sharedMaterial: {fileID: -5699074500821974625, guid: fbad4c41a70b5bb42927694c6ab4da49,
@@ -4686,7 +4690,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 52
+  m_fontSize: 26.65
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

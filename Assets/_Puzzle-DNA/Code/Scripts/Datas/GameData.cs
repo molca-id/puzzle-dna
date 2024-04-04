@@ -48,7 +48,6 @@ public class AudioClipInfo
 public class DialogueBonusData
 {
     public bool playerIsTalking;
-    public ExpressionType playerExpressionType;
     public float dialogueDelay;
     public ContentData contentData;
 }
@@ -64,9 +63,8 @@ public class DialogueBonus
 [Serializable]
 public class Dialogue
 {
-    public Sprite playerIdleSprite;
-    public Sprite interlocutorIdleSprite;
     public string interlocutorName;
+    public Sprite interlocutorIdleSprite;
     public List<DialogueBonus> dialogueBonus;
 }
 
@@ -83,8 +81,8 @@ public class GameData : ScriptableObject
     public Sprite layoutGame;
 
     [Header("Dialogue Bonus Attributes")]
-    public Dialogue dialogues;
     public bool usingDialogueBonus;
+    public Dialogue dialogues;
 
     [Header("Board Attribute")]
     public float hintDelay;

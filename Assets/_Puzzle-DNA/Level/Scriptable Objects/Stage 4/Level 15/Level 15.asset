@@ -18,5 +18,9 @@ MonoBehaviour:
   openPerksPanelAfterGame: 0
   usingPerkUnlocking: 0
   perkStageForUnlocking: []
-  prologueStoryData: []
-  epilogueStoryData: []
+  prologueStoryData:
+  - {fileID: 11400000, guid: 064089ea088a79245b46c7cdaa325ade, type: 2}
+  - {fileID: 11400000, guid: 6d98e2737c064434da3371891b224162, type: 2}
+  - {fileID: 11400000, guid: d03075d0ea3e31042a388b868fab3306, type: 2}
+  epilogueStoryData:
+  - {fileID: 11400000, guid: b190ba996c041304d803e1135d6d5da5, type: 2}

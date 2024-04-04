@@ -16,8 +16,6 @@ MonoBehaviour:
   backgroundSprite: {fileID: 21300000, guid: 0bf3db385304db8459b2e1f3b6e2564a, type: 3}
   tutorialKey: 
   dialogueStory:
-    playerIdleSprite: {fileID: 0}
-    interlocutorIdleSprite: {fileID: 0}
     interlocutorName: 
     dialogueStories: []
   narrationType: 0
@@ -37,7 +35,8 @@ MonoBehaviour:
       Kevin berpendapat kamu adalah teman yang baik dan cocok untuk menemaninya berlatih.
       Kevin ingin kamu tetap berada disini dan melarangmu untuk pergi. Apa yang kamu
       katakan?
-    characterSprite: {fileID: 21300000, guid: 5ecd0795ea748f64a88cd0efda2c734a, type: 3}
+    playerExpression: 0
+    characterSprite: {fileID: 0}
     answers:
     - answerId: '"Aku ingin berteman lama denganmu Kevin, tapi sepertinya olahraga
         badminton tidak cocok denganku."'

@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UserDataSpace;
 using TMPro;
-using static UnityEditor.Progress;
 
 [Serializable]
 public class CharacterSelectionUI
@@ -82,7 +81,7 @@ public class MainMenuHandler : MonoBehaviour
     public bool scrollAutomatically;
 
     [Header("When Finished 15 Levels")]
-    public GameObject narrationFinished15Levels;
+    public GameObject storyAfter15Levels;
 
     private void Awake()
     {
@@ -145,6 +144,9 @@ public class MainMenuHandler : MonoBehaviour
 
     public bool UpTo15LevelsChecker()
     {
+        if (!levelButton[levelButtons.Count - 1].transform.Find("Disable").gameObject.activeSelf)
+            return false;
+
         for (int i = 1; i < DataHandler.instance.GetUserCheckpointData().checkpoint_value.Count - 1; i++)
         {
             CheckpointValue item = DataHandler.instance.GetUserCheckpointData().checkpoint_value[i];
@@ -154,6 +156,8 @@ public class MainMenuHandler : MonoBehaviour
 
         return true;
     }
+
+    public bool Level16Unlocked() => !levelButton[levelButtons.Count - 1].transform.Find("Disable").gameObject.activeSelf;
     #endregion
 
     #region Tutorial
@@ -368,7 +372,7 @@ public class MainMenuHandler : MonoBehaviour
         if (GameOverChecker())
             FinishHandler.instance.CalculateFinalResult();
         else if (UpTo15LevelsChecker())
-            narrationFinished15Levels.SetActive(true);
+            storyAfter15Levels.SetActive(true);
     }
 
     public bool ScoreChecker(List<Button> buttons)

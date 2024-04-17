@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: (1) Narration
   m_EditorClassIdentifier: 
   storyType: 1
-  backgroundSprite: {fileID: 21300000, guid: 5507adc3e05f4f94fb60a6c20b1ef965, type: 3}
+  backgroundSprite: {fileID: 0}
   tutorialKey: 
   dialogueStory:
     interlocutorName: 
@@ -21,37 +21,29 @@ MonoBehaviour:
   narrationType: 2
   narrationStories:
   - playerExpression: 0
-    interlocutorSprite: {fileID: 0}
+    interlocutorSprite: {fileID: 21300000, guid: 5b9cc1bd4df0fbb49b2e14ab21dd616c,
+      type: 3}
     clipId: {fileID: 0}
     clipEn: {fileID: 0}
     clipMy: {fileID: 0}
-    contentId: "Kamu telah mengumpulkan semua atom di belahan dunia dan berbagai
-      tahun.\LKita perlu sampaikan ke profesor Woo."
-    contentEn: You have collected all the atoms in various parts of the world and
-      various years. We need to tell Professor Woo.
-    contentMy: "Kamu telah mengumpulkan semua atom di belahan dunia dan berbagai
-      tahun.\LKita perlu sampaikan ke profesor Woo."
-  - playerExpression: 0
-    interlocutorSprite: {fileID: 0}
-    clipId: {fileID: 0}
-    clipEn: {fileID: 0}
-    clipMy: {fileID: 0}
-    contentId: Kembali ke tahun 3045...
-    contentEn: Back to the year 3045...
-    contentMy: Kembali ke tahun 3045...
-  - playerExpression: 0
-    interlocutorSprite: {fileID: 0}
-    clipId: {fileID: 0}
-    clipEn: {fileID: 0}
-    clipMy: {fileID: 0}
-    contentId: "Kamu berhasil kembali ke tahun 3045 dan mengumpulkan DNA Atom dengan
-      baik. \nProf. Woo sudah menunggumu di laboratoriumnya bersama Aiden."
-    contentEn: 'You managed to return to the year 3045 and collect Atom DNA properly.
+    contentId: "Aiden kembali tenang...\LKamu berhasil membangkitkan talenta Aiden
+      kembali.\LAiden kini sudah dapat kembali membantu manusia untuk dunia."
+    contentEn: 'Aiden calmed down again...
 
-      Prof.
-      Woo is waiting for you in his laboratory with Aiden.'
-    contentMy: "Kamu berhasil kembali ke tahun 3045 dan mengumpulkan DNA Atom dengan
-      baik. \nProf. Woo sudah menunggumu di laboratoriumnya bersama Aiden."
+      You succeeded in awakening Aiden''s
+      talents again.
+
+      Aiden can now return to helping humans in the world.'
+    contentMy: "Aiden kembali tenang...\LKamu berhasil membangkitkan talenta Aiden
+      kembali.\LAiden kini sudah dapat kembali membantu manusia untuk dunia."
+  - playerExpression: 0
+    interlocutorSprite: {fileID: 0}
+    clipId: {fileID: 0}
+    clipEn: {fileID: 0}
+    clipMy: {fileID: 0}
+    contentId: Terima Kasih Talent Voyager..
+    contentEn: Thank you Talent Voyager..
+    contentMy: Terima Kasih Talent Voyager..
   popUpStories: []
   titleStories: []
   eventDataStory:

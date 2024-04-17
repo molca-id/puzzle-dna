@@ -21,6 +21,9 @@ public class APIManager : MonoBehaviour
     [SerializeField] string talentPerksEnDomain = "get_dna/en-US";
     [SerializeField] string talentPerksIdDomain = "get_dna/id-ID";
 
+    [Header("Error Handler")]
+    public GameObject errorPanel;
+
     private void Awake()
     {
         instance = this;
@@ -58,7 +61,7 @@ public class APIManager : MonoBehaviour
 
         yield return request.SendWebRequest();
         if (request.result != UnityWebRequest.Result.Success)
-            Debug.LogError("Error posting data: " + request.error);
+            errorPanel.SetActive(true);
         else
             SetDataEvent?.Invoke(request.downloadHandler.text);
     }
@@ -74,7 +77,7 @@ public class APIManager : MonoBehaviour
 
         yield return request.SendWebRequest();
         if (request.result != UnityWebRequest.Result.Success)
-            Debug.LogError("Error patching checkpoint data: " + request.error);
+            errorPanel.SetActive(true);
         else
             SetDataEvent(request.downloadHandler.text);
     }
@@ -85,7 +88,7 @@ public class APIManager : MonoBehaviour
 
         yield return request.SendWebRequest();
         if (request.result != UnityWebRequest.Result.Success)
-            Debug.LogError("Error getting checkpoint data: " + request.error);
+            errorPanel.SetActive(true);
         else
             SetDataEvent(request.downloadHandler.text);
     }

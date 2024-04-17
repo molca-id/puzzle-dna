@@ -64,8 +64,8 @@ public class PerksHandler : MonoBehaviour
     [Space]
     public GameObject perksPanel;
     public GameObject perksDetailPanel;
-    public GameObject instructionText;
     public Button submitButton;
+    public Button resetButton;
     [Space]
     public GameObject driveDescPanel;
     public GameObject networkDescPanel;
@@ -132,6 +132,8 @@ public class PerksHandler : MonoBehaviour
     public void OpenPerksPanel(bool isSmall)
     {
         isOpened = false;
+        if (resetButton != null) resetButton.interactable = !MainMenuHandler.instance.Level16Unlocked();
+
         if (asEvent)
         {
             bool isOver = true;
@@ -314,14 +316,6 @@ public class PerksHandler : MonoBehaviour
                         });
                     }
                 }
-            }
-
-            if (instructionText != null)
-            {
-                if (MainMenuHandler.instance.GameOverChecker()) 
-                    instructionText.SetActive(true);
-                else
-                    instructionText.SetActive(false);
             }
 
             perksPanel.SetActive(true);

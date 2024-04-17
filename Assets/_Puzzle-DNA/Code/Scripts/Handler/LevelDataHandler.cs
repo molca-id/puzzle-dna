@@ -47,10 +47,13 @@ public class LevelDataHandler : MonoBehaviour
 
     [Header("Narration Attributes")]
     public GameObject narrationPanel;
+    public GameObject narrationPanelWithBG;
+    public Image narrationCharImage;
     public TextMeshProUGUI narrationText;
     public TextMeshProUGUI narrationTextAbove;
     public TextMeshProUGUI narrationTextMiddle;
     public TextMeshProUGUI narrationTextUnder;
+    public TextMeshProUGUI narrationTextWithBG;
 
     [Header("PopUp Attributes")]
     public GameObject popUpPanel;
@@ -140,6 +143,8 @@ public class LevelDataHandler : MonoBehaviour
             isEpilogue = false;
             SetEpilogueStory(true);
 
+            if (currentLevelData.showResultPanel)
+                FinishHandler.instance.CalculateFinalResult();
             if (currentLevelData.openPerksPanelAfterEpilogue)
                 MainMenuHandler.instance.commonPerksHandler.OpenPerksPanel(true);
             return;
@@ -279,6 +284,7 @@ public class LevelDataHandler : MonoBehaviour
         }
 
         narrationText = null;
+        narrationPanelWithBG.SetActive(false);
         narrationTextAbove.text = narrationTextMiddle.text = narrationTextUnder.text = "";
         switch (currentStoryData.narrationType)
         {
@@ -291,6 +297,21 @@ public class LevelDataHandler : MonoBehaviour
             case StoryData.NarrationType.Under:
                 narrationText = narrationTextUnder;
                 break;
+            case StoryData.NarrationType.WithBG:
+                narrationText = narrationTextWithBG;
+                narrationPanelWithBG.SetActive(true);
+                break;
+        }
+
+        if (currentStoryData.narrationStories[narrationIndex].interlocutorSprite != null)
+        {
+            narrationCharImage.sprite = currentStoryData.narrationStories[narrationIndex].interlocutorSprite;
+            narrationCharImage.transform.parent.gameObject.SetActive(true);
+        }
+        else
+        {
+            narrationCharImage.sprite = null;
+            narrationCharImage.transform.parent.gameObject.SetActive(false);
         }
 
         #region Setting Content

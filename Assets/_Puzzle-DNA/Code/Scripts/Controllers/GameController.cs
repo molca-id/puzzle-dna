@@ -248,6 +248,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
             checkpoint_value[LevelDataHandler.instance.currentGameData.gameLevel].
             game_is_done)
         {
+            int protonTemp = 0, electronTemp = 0;
             PerksValue perks = DataHandler.instance.GetPerksData();
             LevelData level = LevelDataHandler.instance.currentLevelData;
 
@@ -255,6 +256,16 @@ public class GameController : SingletonMonoBehaviour<GameController>
             perks.perks_point_data.perks_point_minus += level.perksPoinMinus;
             perks.perks_point_data.total_perks_point_plus += level.perksPoinPlus;
             perks.perks_point_data.total_perks_point_minus += level.perksPoinMinus;
+
+            if (perks.perks_point_data.total_perks_point_plus > DataHandler.instance.protonMax)
+                protonTemp = perks.perks_point_data.total_perks_point_plus - DataHandler.instance.protonMax;
+            if (perks.perks_point_data.total_perks_point_minus > DataHandler.instance.electronMax)
+                electronTemp = perks.perks_point_data.total_perks_point_minus - DataHandler.instance.electronMax;
+
+            perks.perks_point_data.perks_point_plus -= protonTemp;
+            perks.perks_point_data.perks_point_minus -= electronTemp;
+            perks.perks_point_data.total_perks_point_plus -= protonTemp;
+            perks.perks_point_data.total_perks_point_minus -= electronTemp;
 
             if (level.usingPerkUnlocking)
             {

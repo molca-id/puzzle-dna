@@ -34,7 +34,7 @@ public class ContentData
 public class StoryData : ScriptableObject
 {
     public enum StoryType { Dialogue, Narration, PopUp, Tutorial, Title, Event }
-    public enum NarrationType { Above, Middle, Under }
+    public enum NarrationType { Above, Middle, Under, WithBG }
 
     public StoryType storyType;
     public Sprite backgroundSprite;

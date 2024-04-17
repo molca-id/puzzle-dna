@@ -55,8 +55,13 @@ public class PerksHandler : MonoBehaviour
     public int protonPoint;
     public int electronPoint;
     public List<PerksTypeGroupData> perksTypeDatas;
+    public List<Image> perksTypeBorder;
+    public List<Image> perksTypeFade;
 
     [Header("UI Attributes")]
+    public Color protonColor;
+    public Color electronColor;
+    [Space]
     public GameObject perksPanel;
     public GameObject perksDetailPanel;
     public GameObject instructionText;
@@ -65,6 +70,10 @@ public class PerksHandler : MonoBehaviour
     public GameObject driveDescPanel;
     public GameObject networkDescPanel;
     public GameObject actionDescPanel;
+    [Space]
+    public GameObject driveAbilityDescPanel;
+    public GameObject networkAbilityDescPanel;
+    public GameObject actionAbilityDescPanel;
     [Space]
     public TextMeshProUGUI perkName;
     public TextMeshProUGUI perkTagline;
@@ -92,9 +101,32 @@ public class PerksHandler : MonoBehaviour
 
     public void SetDNADescriptionState(int index)
     {
+        driveDescPanel.SetActive(false);
+        networkDescPanel.SetActive(false);
+        actionDescPanel.SetActive(false);
+
+        driveAbilityDescPanel.SetActive(false);
+        networkAbilityDescPanel.SetActive(false);
+        actionAbilityDescPanel.SetActive(false);
+
         if (index == 0) driveDescPanel.SetActive(!driveDescPanel.activeSelf); 
         else if (index == 1) networkDescPanel.SetActive(!networkDescPanel.activeSelf);
-        else actionDescPanel.SetActive(!actionDescPanel.activeSelf);
+        else if (index == 2) actionDescPanel.SetActive(!actionDescPanel.activeSelf);
+    }
+
+    public void SetDNAAbilityDescriptionState(int index)
+    {
+        driveDescPanel.SetActive(false);
+        networkDescPanel.SetActive(false);
+        actionDescPanel.SetActive(false);
+
+        driveAbilityDescPanel.SetActive(false);
+        networkAbilityDescPanel.SetActive(false);
+        actionAbilityDescPanel.SetActive(false);
+
+        if (index == 0) driveAbilityDescPanel.SetActive(!driveAbilityDescPanel.activeSelf);
+        else if (index == 1) networkAbilityDescPanel.SetActive(!networkAbilityDescPanel.activeSelf);
+        else if (index == 2) actionAbilityDescPanel.SetActive(!actionAbilityDescPanel.activeSelf);
     }
 
     public void OpenPerksPanel(bool isSmall)
@@ -190,8 +222,8 @@ public class PerksHandler : MonoBehaviour
                     }
                     else
                     {
-                        perksTypeDatas[i].perks_stage_datas[j].lock_panel.
-                            SetActive(true);
+                        perksTypeBorder[i].gameObject.SetActive(false);
+                        perksTypeFade[i].gameObject.SetActive(true);
                     }
 
                     for (int k = 0; k < perksTypeDatas[i].perks_stage_datas[j].perks_value_datas.Count; k++)
@@ -236,11 +268,50 @@ public class PerksHandler : MonoBehaviour
                     if (item.perks_point_plus != 0 ||
                         item.perks_point_minus != 0)
                     {
-                        perksTypeDatas.Find(res => res.perks_type == item.perks_type).
-                            perks_stage_datas.ForEach(perk =>
+                        if (item.perks_point_plus > 0) switch (item.perks_type)
+                        {
+                            case PerksType.Drive:
+                                perksTypeFade[0].gameObject.SetActive(false);
+                                perksTypeBorder[0].gameObject.SetActive(true);
+                                perksTypeBorder[0].color = protonColor;
+                                break;
+                            case PerksType.Network:
+                                perksTypeFade[1].gameObject.SetActive(false);
+                                perksTypeBorder[1].gameObject.SetActive(true);
+                                perksTypeBorder[1].color = protonColor;
+                                break;
+                            case PerksType.Action:
+                                perksTypeFade[2].gameObject.SetActive(false);
+                                perksTypeBorder[2].gameObject.SetActive(true);
+                                perksTypeBorder[2].color = protonColor;
+                                break;
+                        }
+                        if (item.perks_point_minus > 0) switch (item.perks_type)
+                        {
+                            case PerksType.Drive:
+                                perksTypeFade[0].gameObject.SetActive(false);
+                                perksTypeBorder[0].gameObject.SetActive(true);
+                                perksTypeBorder[0].color = electronColor;
+                                break;
+                            case PerksType.Network:
+                                perksTypeFade[1].gameObject.SetActive(false);
+                                perksTypeBorder[1].gameObject.SetActive(true);
+                                perksTypeBorder[1].color = electronColor;
+                                break;
+                            case PerksType.Action:
+                                perksTypeFade[2].gameObject.SetActive(false);
+                                perksTypeBorder[2].gameObject.SetActive(true);
+                                perksTypeBorder[2].color = electronColor;
+                                break;
+                        }
+
+                        perksTypeDatas.ForEach(data =>
+                        {
+                            data.perks_stage_datas.ForEach(stage =>
                             {
-                                perk.lock_panel.SetActive(false);
+                                stage.lock_panel.SetActive(false);
                             });
+                        });
                     }
                 }
             }
@@ -333,7 +404,8 @@ public class PerksHandler : MonoBehaviour
 
     public void SubmitTalentPoint()
     {
-        if (MainMenuHandler.instance.GameOverChecker() && 
+        if (!asEvent && !asTutorial && 
+            MainMenuHandler.instance.UpTo15LevelsChecker() && 
             protonPoint == 0 && electronPoint == 0)
         {
             FinishHandler.instance.InitFinalSubmitPanel();
@@ -404,9 +476,15 @@ public class PerksHandler : MonoBehaviour
             minusPointUsed = plusPointUsed = 0;
             currentPerk = new();
 
-            if (MainMenuHandler.instance.GameOverChecker() &&
-                protonPoint == 0 && electronPoint == 0)
-                FinishHandler.instance.CalculateFinalResult();
+            if (protonPoint == 0 && electronPoint == 0)
+            {
+                perksPanel.SetActive(false);
+                SetDNADescriptionState(-1);
+                MainMenuHandler.instance.InitMenu();
+
+                if (MainMenuHandler.instance.GameOverChecker())
+                    FinishHandler.instance.CalculateFinalResult();
+            }
 
             if (!asTutorial) return;
             whenSubmitPerk.Invoke();
@@ -538,8 +616,16 @@ public class PerksHandler : MonoBehaviour
             {
                 for (int j = 0; j < perksTypeDatas[i].perks_stage_datas.Count; j++)
                 {
-                    perksTypeDatas[i].perks_stage_datas[j].lock_panel.
-                        SetActive(perksValue.perks_stage_datas[i].perks_stage_locks[j]);
+                    if (!asEvent)
+                    {
+                        perksTypeDatas[i].perks_stage_datas[j].lock_panel.
+                            SetActive(perksValue.perks_stage_datas[i].perks_stage_locks[j]);
+                    }
+                    else
+                    {
+                        perksTypeBorder[i].gameObject.SetActive(false);
+                        perksTypeFade[i].gameObject.SetActive(true);
+                    }
 
                     for (int k = 0; k < perksTypeDatas[i].perks_stage_datas[j].perks_value_datas.Count; k++)
                     {

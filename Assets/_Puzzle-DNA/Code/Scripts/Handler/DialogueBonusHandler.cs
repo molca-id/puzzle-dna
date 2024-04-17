@@ -70,12 +70,16 @@ public class DialogueBonusHandler : SingletonMonoBehaviour<DialogueBonusHandler>
     {
         yield return new WaitUntil(() => !dialogueIsOngoing);
         dialogueIsOngoing = dialogue.isDone = true;
-        StartCoroutine(Dialogue(dialogue));
+        yield return StartCoroutine(Dialogue(dialogue));
     }
 
     IEnumerator Dialogue(DialogueBonus dialogue)
     {
+        // Pause the game
+        Time.timeScale = 0;
+
         List<DialogueBonusData> datas = dialogue.dialogueBonusDatas;
+
         for (int i = 0; i < datas.Count; i++)
         {
             SetCharacterSprites(DataHandler.instance.GetPlayerSprite(datas[i].contentData.playerExpression), datas[i].contentData.interlocutorSprite);
@@ -104,12 +108,20 @@ public class DialogueBonusHandler : SingletonMonoBehaviour<DialogueBonusHandler>
                     interlocutorDialogue.dialogueText.text = datas[i].contentData.contentMy;
             }
 
-            yield return new WaitForSeconds(datas[i].dialogueDelay);
+            // Instead of WaitForSeconds, manually handle the delay
+            float timer = 0f;
+            while (timer < datas[i].dialogueDelay)
+            {
+                timer += Time.unscaledDeltaTime; // Use unscaledDeltaTime to ensure accurate timing even when the game is paused
+                yield return null;
+            }
         }
+
+        // Resume the game
+        Time.timeScale = 1;
 
         playerDialogue.dialoguePanel.SetActive(false);
         interlocutorDialogue.dialoguePanel.SetActive(false);
         dialoguePanel.SetActive(false);
-        dialogueIsOngoing = false;
     }
 }

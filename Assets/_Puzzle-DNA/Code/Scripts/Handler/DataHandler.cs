@@ -36,6 +36,8 @@ public class DataHandler : MonoBehaviour
     public PlayerSpriteData currPlayerSpriteData;
 
     [Header("Another Attributes")]
+    public int protonMax;
+    public int electronMax;
     public AudioMixer bgmAudioMixer;
     public AudioMixer sfxAudioMixer;
     public List<LanguageHandler> languageHandlers;

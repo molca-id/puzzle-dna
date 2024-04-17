@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -42,6 +43,7 @@ public class EventAnswerUI
     public TextMeshProUGUI plusPointText;
     public TextMeshProUGUI minusPointText;
     public GameObject checkObject;
+    public Animator animator;
 }
 
 public class EventHandler : MonoBehaviour
@@ -114,14 +116,22 @@ public class EventHandler : MonoBehaviour
     public void ChooseFirstAnswer()
     {
         firstAnswer.checkObject.SetActive(true);
+        firstAnswer.animator.SetBool("isAnimated", true);
+
         secondAnswer.checkObject.SetActive(false);
+        secondAnswer.animator.SetBool("isAnimated", false);
+        
         answerChosen = 0;
     }
 
     public void ChooseSecondAnswer()
     {
         firstAnswer.checkObject.SetActive(false);
+        firstAnswer.animator.SetBool("isAnimated", false);
+
         secondAnswer.checkObject.SetActive(true);
+        secondAnswer.animator.SetBool("isAnimated", true);
+
         answerChosen = 1;
     }
 

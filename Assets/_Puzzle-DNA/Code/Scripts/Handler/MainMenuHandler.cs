@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UserDataSpace;
 using TMPro;
+using static UnityEditor.Progress;
 
 [Serializable]
 public class CharacterSelectionUI
@@ -28,9 +29,10 @@ public class GlossariumData
 [Serializable]
 public class LevelButtonData
 {
+    public bool isFinalLevel;
     public GameObject stageObject;
-    public List<Button> beforeButtons;
     public Button currentButton;
+    public List<Button> beforeButtons;
 }
 
 public class MainMenuHandler : MonoBehaviour
@@ -38,6 +40,7 @@ public class MainMenuHandler : MonoBehaviour
     public static MainMenuHandler instance;
     public PerksHandler commonPerksHandler;
     public PerksHandler afterEventPerksHandler;
+    public Button playButton;
 
     [Header("Welcome Attributes")]
     [SerializeField] TextMeshProUGUI playerNameWelcome;
@@ -77,6 +80,9 @@ public class MainMenuHandler : MonoBehaviour
     public ScrollRect scrollRect;
     public float scrollSpeed;
     public bool scrollAutomatically;
+
+    [Header("When Finished 15 Levels")]
+    public GameObject narrationFinished15Levels;
 
     private void Awake()
     {
@@ -131,9 +137,19 @@ public class MainMenuHandler : MonoBehaviour
                 !item.prologue_is_done || 
                 !item.epilogue_is_done ||
                 item.checkpoint_level_score == 0)
-            {
                 return false;
-            }
+        }
+
+        return true;
+    }
+
+    public bool UpTo15LevelsChecker()
+    {
+        for (int i = 1; i < DataHandler.instance.GetUserCheckpointData().checkpoint_value.Count - 1; i++)
+        {
+            CheckpointValue item = DataHandler.instance.GetUserCheckpointData().checkpoint_value[i];
+            if (item.checkpoint_level_score == 0)
+                return false;
         }
 
         return true;
@@ -309,24 +325,50 @@ public class MainMenuHandler : MonoBehaviour
                     ));
         }
 
+        bool isDone = true;
         foreach (var data in levelButtons)
         {
-            if (data.beforeButtons.Count == 0 || ScoreChecker(data.beforeButtons))
+            if (!data.isFinalLevel)
             {
-                if (data.stageObject != null) data.stageObject.transform.Find("Disable").gameObject.SetActive(false);
-                data.currentButton.transform.Find("Disable").gameObject.SetActive(false);
-                data.currentButton.interactable = true;
+                if (data.beforeButtons.Count == 0 || ScoreChecker(data.beforeButtons))
+                {
+                    if (data.stageObject != null) data.stageObject.transform.Find("Disable").gameObject.SetActive(false);
+                    data.currentButton.transform.Find("Disable").gameObject.SetActive(false);
+                    data.currentButton.interactable = true;
+
+                    if (data.currentButton.GetComponent<Transform>().Find("ScoreText").
+                        GetComponent<TextMeshProUGUI>().text == "0")
+                        isDone = false;
+                }
+                else
+                {
+                    isDone = false;
+                }
+            }
+            else
+            {
+                if ((DataHandler.instance.GetPerksData().perks_point_data.total_perks_point_plus == DataHandler.instance.protonMax &&
+                    DataHandler.instance.GetPerksData().perks_point_data.total_perks_point_minus == DataHandler.instance.electronMax) &&
+                    (DataHandler.instance.GetPerksData().perks_point_data.perks_point_plus == 0 &&
+                    DataHandler.instance.GetPerksData().perks_point_data.perks_point_minus == 0))
+                {
+                    if (data.stageObject != null) data.stageObject.transform.Find("Disable").gameObject.SetActive(false);
+                    data.currentButton.transform.Find("Disable").gameObject.SetActive(false);
+                    data.currentButton.interactable = true;
+                }
             }
         }
 
-        if (GameOverChecker())
+        for (int i = 0; i < levelButton.Count; i++)
         {
-            if (DataHandler.instance.GetPerksData().perks_point_data.perks_point_plus != 0 ||
-                DataHandler.instance.GetPerksData().perks_point_data.perks_point_minus != 0)
-                commonPerksHandler.OpenPerksPanel(true);
-            else
-                FinishHandler.instance.CalculateFinalResult();
+            if (levelButton[i].transform.Find("Pinpoint").gameObject.activeSelf)
+                playButton.interactable = !levelButton[i].transform.Find("Disable").gameObject.activeSelf;
         }
+
+        if (GameOverChecker())
+            FinishHandler.instance.CalculateFinalResult();
+        else if (UpTo15LevelsChecker())
+            narrationFinished15Levels.SetActive(true);
     }
 
     public bool ScoreChecker(List<Button> buttons)

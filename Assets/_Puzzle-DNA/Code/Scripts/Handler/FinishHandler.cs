@@ -6,6 +6,22 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+[Serializable]
+public class ResultValueData
+{
+    public int id_talent;
+    public string nama_talent;
+    public int score_talent;
+    public int ranking_talent;
+}
+
+[Serializable]
+public class ResultData
+{
+    public string survey_code;
+    public List<ResultValueData> hasil_isi;
+}
+
 public class FinishHandler : MonoBehaviour
 {
     public static FinishHandler instance;
@@ -18,11 +34,21 @@ public class FinishHandler : MonoBehaviour
     public Image charReplaceSprite;
     public ExpressionType expressionType;
 
+    [Header("Perks UI Parent Ranking")]
+    public GameObject parent5;
+    public GameObject parent10;
+    public GameObject parent4565;
+
     [Header("Perks UI Ranking")]
+    public List<GameObject> top5PerksObject;
+    public List<GameObject> topJust10PerksObject;
     public List<GameObject> top10PerksObject;
     public List<GameObject> bottom5PerksObject;
 
     [Header("Perks Ranking")]
+    public ResultData resultData;
+    public List<UserDataSpace.PerksValueData> rankingPerks;
+    public List<UserDataSpace.PerksValueData> top5Perks;
     public List<UserDataSpace.PerksValueData> top10Perks;
     public List<UserDataSpace.PerksValueData> bottom5Perks;
 
@@ -41,37 +67,102 @@ public class FinishHandler : MonoBehaviour
     {
         //top 10 perks
         var perksData = DataHandler.instance.GetPerksData().perks_value_datas;
-        var topSortedPerks = perksData.OrderByDescending(x => x.perks_point)
+        rankingPerks = perksData.OrderByDescending(x => x.perks_point)
                                    .ThenBy(x => DateTime.TryParse(x.perks_submit_time, out var dt) ? dt : DateTime.MinValue)
                                    .ThenBy(x => x.perks_name)
                                    .ToList();
 
-        var bottomSortedPerks = perksData.OrderBy(x => x.perks_point)
-                                   .ThenBy(x => DateTime.TryParse(x.perks_submit_time, out var dt) ? dt : DateTime.MinValue)
-                                   .ThenBy(x => x.perks_name)
-                                   .ToList();
-
-        top10Perks = topSortedPerks.Take(10).ToList();
-        bottom5Perks = bottomSortedPerks.Take(5).ToList();
+        bottom5Perks.Clear();
+        top5Perks = rankingPerks.Take(5).ToList();
+        top10Perks = rankingPerks.Take(10).ToList();
+        for (int i = 40; i < rankingPerks.Count; i++)
+        {
+            bottom5Perks.Add(rankingPerks[i]);
+        }
 
         parentPanel.SetActive(true);
         finalResultPanel.SetActive(true);
         charReplaceSprite.sprite = DataHandler.instance.GetPlayerSprite(expressionType);
-
-        for (int i = 0; i < top10PerksObject.Count; i++)
+        switch (DataHandler.instance.GetUserDataValue().f_report_type)
         {
-            top10PerksObject[i].transform.GetComponentInChildren<Image>().sprite = 
-                perkIcons.Find(res => res.name.ToLower().Contains(top10Perks[i].perks_name.ToLower()));
-            top10PerksObject[i].transform.GetComponentInChildren<TextMeshProUGUI>().text =
-                top10Perks[i].perks_name;
+            case "5":
+                parent5.SetActive(true);
+                for (int i = 0; i < top5PerksObject.Count; i++)
+                {
+                    top5PerksObject[i].transform.GetComponentInChildren<Image>().sprite =
+                        perkIcons.Find(res => res.name.ToLower().Contains(top10Perks[i].perks_name.ToLower()));
+                    top5PerksObject[i].transform.GetComponentInChildren<TextMeshProUGUI>().text =
+                        $"{i + 1}. " + top10Perks[i].perks_name;
+                }
+                break;
+            case "10":
+                parent10.SetActive(true);
+                for (int i = 0; i < topJust10PerksObject.Count; i++)
+                {
+                    topJust10PerksObject[i].transform.GetComponentInChildren<Image>().sprite =
+                        perkIcons.Find(res => res.name.ToLower().Contains(top10Perks[i].perks_name.ToLower()));
+                    topJust10PerksObject[i].transform.GetComponentInChildren<TextMeshProUGUI>().text =
+                        $"{i + 1}. " + top10Perks[i].perks_name;
+                }
+                break;
+            case "45":
+                parent4565.SetActive(true);
+                for (int i = 0; i < top10PerksObject.Count; i++)
+                {
+                    top10PerksObject[i].transform.GetComponentInChildren<Image>().sprite =
+                        perkIcons.Find(res => res.name.ToLower().Contains(top10Perks[i].perks_name.ToLower()));
+                    top10PerksObject[i].transform.GetComponentInChildren<TextMeshProUGUI>().text =
+                        $"{i + 1}. " + top10Perks[i].perks_name;
+                }
+
+                for (int i = 0; i < bottom5PerksObject.Count; i++)
+                {
+                    bottom5PerksObject[i].transform.GetComponentInChildren<Image>().sprite =
+                        perkIcons.Find(res => res.name.ToLower().Contains(bottom5Perks[i].perks_name.ToLower()));
+                    bottom5PerksObject[i].transform.GetComponentInChildren<TextMeshProUGUI>().text =
+                        $"{i + 1}. " + bottom5Perks[i].perks_name;
+                }
+                break;
+            case "65":
+                parent4565.SetActive(true);
+                for (int i = 0; i < top10PerksObject.Count; i++)
+                {
+                    top10PerksObject[i].transform.GetComponentInChildren<Image>().sprite =
+                        perkIcons.Find(res => res.name.ToLower().Contains(top10Perks[i].perks_name.ToLower()));
+                    top10PerksObject[i].transform.GetComponentInChildren<TextMeshProUGUI>().text =
+                        $"{i + 1}. " + top10Perks[i].perks_name;
+                }
+
+                for (int i = 0; i < bottom5PerksObject.Count; i++)
+                {
+                    bottom5PerksObject[i].transform.GetComponentInChildren<Image>().sprite =
+                        perkIcons.Find(res => res.name.ToLower().Contains(bottom5Perks[i].perks_name.ToLower()));
+                    bottom5PerksObject[i].transform.GetComponentInChildren<TextMeshProUGUI>().text =
+                        $"{i + 1}. " + bottom5Perks[i].perks_name;
+                }
+                break;
         }
 
-        for (int i = 0; i < bottom5PerksObject.Count; i++)
+        List<ResultValueData> datas = new List<ResultValueData>();
+        foreach (UserDataSpace.PerksValueData perk in perksData)
         {
-            bottom5PerksObject[i].transform.GetComponentInChildren<Image>().sprite =
-                perkIcons.Find(res => res.name.ToLower().Contains(bottom5Perks[i].perks_name.ToLower()));
-            bottom5PerksObject[i].transform.GetComponentInChildren<TextMeshProUGUI>().text =
-                bottom5Perks[i].perks_name;
+            ResultValueData data = new()
+            {
+                id_talent = Convert.ToInt32(perk.perks_id),
+                ranking_talent = rankingPerks.FindIndex(res => res.perks_id == perk.perks_id),
+                nama_talent = perk.perks_name,
+                score_talent = perk.perks_point
+            };
+
+            datas.Add(data);
         }
+        resultData.survey_code = DataHandler.instance.GetUserDataValue().game_url;
+        resultData.hasil_isi = datas.OrderBy(x => x.id_talent).ToList();
+        
+        StartCoroutine(
+                APIManager.instance.PostDataWithTokenCoroutine(
+                    APIManager.instance.SetupSendResultUrl(),
+                    JsonUtility.ToJson(resultData),
+                    res => { Debug.Log("Posted Game Result!"); }));
     }
 }

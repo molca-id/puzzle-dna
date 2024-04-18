@@ -26,6 +26,7 @@ namespace UserDataSpace
         public string status;
         public string duration;
         public string game_url;
+        public string f_report_type;
         public string language;
         public string username;
         public int character;

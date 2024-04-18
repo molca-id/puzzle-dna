@@ -20,6 +20,8 @@ public class APIManager : MonoBehaviour
     [SerializeField] string rootActUrl = "https://talentdna.me/tdna/api_molca";
     [SerializeField] string talentPerksEnDomain = "get_dna/en-US";
     [SerializeField] string talentPerksIdDomain = "get_dna/id-ID";
+    [SerializeField] string talentPerksMyDomain = "get_dna/ms-My";
+    [SerializeField] string sendResult = "get_result";
 
     [Header("Error Handler")]
     public GameObject errorPanel;
@@ -37,6 +39,11 @@ public class APIManager : MonoBehaviour
     public string SetupValidateUrl(string sessionCode = "")
     {
         return string.Format("{0}/{1}/{2}", rootUrl, validateDomain, sessionCode);
+    }
+
+    public string SetupSendResultUrl(string sessionCode = "")
+    {
+        return string.Format("{0}/{1}", rootActUrl, sendResult);
     }
 
     public string SetupDeleteUrl(string sessionCode = "")
@@ -60,6 +67,28 @@ public class APIManager : MonoBehaviour
         request.downloadHandler = new DownloadHandlerBuffer();
 
         yield return request.SendWebRequest();
+        if (request.result != UnityWebRequest.Result.Success)
+            errorPanel.SetActive(true);
+        else
+            SetDataEvent?.Invoke(request.downloadHandler.text);
+    }
+
+    public IEnumerator PostDataWithTokenCoroutine(string url, string jsonData, Action<string> SetDataEvent = null)
+    {
+        byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonData);
+        var request = new UnityWebRequest(url, "POST");
+
+        // Set the Authorization header with Basic token
+        string token = "dGRuYXhtb2xjYQ=="; // This is your Basic token
+        string authHeaderValue = $"Basic {token}";
+        request.SetRequestHeader("Authorization", authHeaderValue);
+
+        request.SetRequestHeader("Content-Type", "application/json");
+        request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+        request.downloadHandler = new DownloadHandlerBuffer();
+
+        yield return request.SendWebRequest();
+
         if (request.result != UnityWebRequest.Result.Success)
             errorPanel.SetActive(true);
         else

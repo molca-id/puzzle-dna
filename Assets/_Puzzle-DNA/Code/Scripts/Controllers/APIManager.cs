@@ -78,21 +78,33 @@ public class APIManager : MonoBehaviour
         byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonData);
         var request = new UnityWebRequest(url, "POST");
 
-        // Set the Authorization header with Basic token
-        string token = "dGRuYXhtb2xjYQ=="; // This is your Basic token
-        string authHeaderValue = $"Basic {token}";
+        // Set the authorization header
+        string authHeaderValue = $"Basic dGRuYXhtb2xjYQ==";
         request.SetRequestHeader("Authorization", authHeaderValue);
 
+        // Set the content type header
         request.SetRequestHeader("Content-Type", "application/json");
+
+        // Set the request method and upload/download handlers
+        request.method = UnityWebRequest.kHttpVerbPOST;
         request.uploadHandler = new UploadHandlerRaw(bodyRaw);
         request.downloadHandler = new DownloadHandlerBuffer();
 
+        // Send the request asynchronously
         yield return request.SendWebRequest();
 
+        // Check for errors
         if (request.result != UnityWebRequest.Result.Success)
-            errorPanel.SetActive(true);
+        {
+            Debug.LogError(request.error);
+            // Handle error, for example, activate an error panel
+            // errorPanel.SetActive(true);
+        }
         else
+        {
+            // Invoke the callback with the response data
             SetDataEvent?.Invoke(request.downloadHandler.text);
+        }
     }
 
     public IEnumerator PatchDataCoroutine(string url, string jsonData, Action<string> SetDataEvent = null)

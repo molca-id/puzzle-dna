@@ -158,11 +158,12 @@ public class FinishHandler : MonoBehaviour
         }
         resultData.survey_code = DataHandler.instance.GetUserDataValue().game_url;
         resultData.hasil_isi = datas.OrderBy(x => x.id_talent).ToList();
-        
+
+        string json = JsonUtility.ToJson(resultData);
+        Debug.Log(json);
         StartCoroutine(
                 APIManager.instance.PostDataWithTokenCoroutine(
-                    APIManager.instance.SetupSendResultUrl(),
-                    JsonUtility.ToJson(resultData),
+                    APIManager.instance.SetupSendResultUrl(), json,
                     res => { Debug.Log("Posted Game Result!"); }));
     }
 }

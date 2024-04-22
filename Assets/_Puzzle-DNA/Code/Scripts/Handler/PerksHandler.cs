@@ -664,6 +664,12 @@ public class PerksHandler : MonoBehaviour
     {
         string plus = string.Empty, minus = string.Empty;
 
+        if (protonPoint < 0) plus = "0";
+        else plus = protonPoint.ToString();
+
+        if (electronPoint < 0) minus = "0";
+        else minus = electronPoint.ToString();
+
         if (asEvent)
         {
             if (DataHandler.instance.GetUserSpecificPerksPoint().perks_plus_type == PerksType.Drive) plus = "D";
@@ -675,8 +681,8 @@ public class PerksHandler : MonoBehaviour
             if (DataHandler.instance.GetUserSpecificPerksPoint().perks_minus_type == PerksType.Action) minus = "A";
         }
 
-        perkPointPlus.ForEach(text => text.text = protonPoint.ToString() + plus);
-        perkPointMinus.ForEach(text => text.text = electronPoint.ToString() + minus);
+        perkPointPlus.ForEach(text => text.text = plus);
+        perkPointMinus.ForEach(text => text.text = minus);
     }
 
     public void AbilityChecker()

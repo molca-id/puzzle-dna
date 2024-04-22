@@ -1451,6 +1451,8 @@ MonoBehaviour:
   rootActUrl: https://talentdna.me/tdna/api_molca
   talentPerksEnDomain: get_dna/en-US
   talentPerksIdDomain: get_dna/id-ID
+  talentPerksMyDomain: get_dna/ms-My
+  sendResult: get_result
   errorPanel: {fileID: 1953656062}
 --- !u!114 &698362473
 MonoBehaviour:
@@ -1481,6 +1483,7 @@ MonoBehaviour:
       status: open
       duration: 00:00:00
       game_url: (url)
+      f_report_type: 
       language: en
       username: (username)
       character: 0
@@ -1863,6 +1866,7 @@ MonoBehaviour:
       status: 
       duration: 
       game_url: 
+      f_report_type: 
       language: 
       username: 
       character: 0
@@ -3290,7 +3294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4454780b506f074886272324dc5b6bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dummyCodeTemp: N0hKUWYyTkVjRkZrTzcyUllPS1ZpdXY2M0RLQ1ZRbEZRSHpyZVR3UzkwN3FYNFlvWHNRc2RkNWFyMGFEK0lsNw==
+  dummyCodeTemp: Ukl1TUdscWFDQmF5TWxKUGZtQ0kvZDdkdkMrbmZTampoeW1mcEEweFgza0Q2MGdoMjMycSt5U3Z0ZmgxbnIycw==
   currCodeTemp: 
 --- !u!1 &1528748836
 GameObject:

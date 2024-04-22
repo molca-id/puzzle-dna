@@ -351,10 +351,10 @@ public class MainMenuHandler : MonoBehaviour
             }
             else
             {
-                if ((DataHandler.instance.GetPerksData().perks_point_data.total_perks_point_plus == DataHandler.instance.protonMax &&
-                    DataHandler.instance.GetPerksData().perks_point_data.total_perks_point_minus == DataHandler.instance.electronMax) &&
-                    (DataHandler.instance.GetPerksData().perks_point_data.perks_point_plus == 0 &&
-                    DataHandler.instance.GetPerksData().perks_point_data.perks_point_minus == 0))
+                if ((DataHandler.instance.GetPerksData().perks_point_data.total_perks_point_plus >= DataHandler.instance.protonMax &&
+                    DataHandler.instance.GetPerksData().perks_point_data.total_perks_point_minus >= DataHandler.instance.electronMax) &&
+                    (DataHandler.instance.GetPerksData().perks_point_data.perks_point_plus <= 0 &&
+                    DataHandler.instance.GetPerksData().perks_point_data.perks_point_minus <= 0))
                 {
                     if (data.stageObject != null) data.stageObject.transform.Find("Disable").gameObject.SetActive(false);
                     data.currentButton.transform.Find("Disable").gameObject.SetActive(false);

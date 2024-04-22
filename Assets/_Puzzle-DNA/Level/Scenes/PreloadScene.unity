@@ -1081,9 +1081,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '<size=90>Maaf, terjadi kesalahan saat memproses permintaan Anda.</size>
+  m_text: '<size=50>Maaf, terjadi kesalahan saat memproses permintaan Anda.</size>
 
-    <size=40>Silakan
+    <size=25>Silakan
     coba lagi nanti atau hubungi tim dukungan kami untuk bantuan lebih lanjut.</size>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 079e3753c8afa8949a18d4cb8621e3af, type: 2}
@@ -1174,17 +1174,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 036184d6f6f92be49a3e4ab16eb485e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  en: '<size=90>Sorry, an error occurred while processing your request.</size>
+  en: '<size=50>Sorry, an error occurred while processing your request.</size>
 
-    <size=40>Please
+    <size=25>Please
     try again later or contact our support team for further assistance.</size>'
-  id: '<size=90>Maaf, terjadi kesalahan saat memproses permintaan Anda.</size>
+  id: '<size=50>Maaf, terjadi kesalahan saat memproses permintaan Anda.</size>
 
-    <size=40>Silakan
+    <size=25>Silakan
     coba lagi nanti atau hubungi tim dukungan kami untuk bantuan lebih lanjut.</size>'
-  my: '<size=90>Maaf, terjadi kesalahan saat memproses permintaan Anda.</size>
+  my: '<size=50>Maaf, terjadi kesalahan saat memproses permintaan Anda.</size>
 
-    <size=40>Silakan
+    <size=25>Silakan
     coba lagi nanti atau hubungi tim dukungan kami untuk bantuan lebih lanjut.</size>'
 --- !u!1 &516952412
 GameObject:
@@ -3123,7 +3123,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 534.97986}
+  m_SizeDelta: {x: 0, y: 69.70068}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1441667574
 MonoBehaviour:

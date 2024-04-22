@@ -101,17 +101,28 @@ public class PerksHandler : MonoBehaviour
 
     public void SetDNADescriptionState(int index)
     {
-        driveDescPanel.SetActive(false);
-        networkDescPanel.SetActive(false);
-        actionDescPanel.SetActive(false);
-
         driveAbilityDescPanel.SetActive(false);
         networkAbilityDescPanel.SetActive(false);
         actionAbilityDescPanel.SetActive(false);
 
-        if (index == 0) driveDescPanel.SetActive(!driveDescPanel.activeSelf); 
-        else if (index == 1) networkDescPanel.SetActive(!networkDescPanel.activeSelf);
-        else if (index == 2) actionDescPanel.SetActive(!actionDescPanel.activeSelf);
+        if (index == 0)
+        {
+            driveDescPanel.SetActive(!driveDescPanel.activeSelf);
+            networkDescPanel.SetActive(false);
+            actionDescPanel.SetActive(false);
+        }
+        else if (index == 1)
+        {
+            driveDescPanel.SetActive(false);
+            networkDescPanel.SetActive(!networkDescPanel.activeSelf);
+            actionDescPanel.SetActive(false);
+        }
+        else if (index == 2)
+        {
+            driveDescPanel.SetActive(false);
+            networkDescPanel.SetActive(false);
+            actionDescPanel.SetActive(!actionDescPanel.activeSelf);
+        }
     }
 
     public void SetDNAAbilityDescriptionState(int index)
@@ -120,13 +131,24 @@ public class PerksHandler : MonoBehaviour
         networkDescPanel.SetActive(false);
         actionDescPanel.SetActive(false);
 
-        driveAbilityDescPanel.SetActive(false);
-        networkAbilityDescPanel.SetActive(false);
-        actionAbilityDescPanel.SetActive(false);
-
-        if (index == 0) driveAbilityDescPanel.SetActive(!driveAbilityDescPanel.activeSelf);
-        else if (index == 1) networkAbilityDescPanel.SetActive(!networkAbilityDescPanel.activeSelf);
-        else if (index == 2) actionAbilityDescPanel.SetActive(!actionAbilityDescPanel.activeSelf);
+        if (index == 0)
+        {
+            driveAbilityDescPanel.SetActive(!driveAbilityDescPanel.activeSelf);
+            networkAbilityDescPanel.SetActive(false);
+            actionAbilityDescPanel.SetActive(false);
+        }
+        else if (index == 1)
+        {
+            driveAbilityDescPanel.SetActive(false);
+            networkAbilityDescPanel.SetActive(!networkAbilityDescPanel.activeSelf);
+            actionAbilityDescPanel.SetActive(false);
+        }
+        else if (index == 2)
+        {
+            driveAbilityDescPanel.SetActive(false);
+            networkAbilityDescPanel.SetActive(false);
+            actionAbilityDescPanel.SetActive(!actionAbilityDescPanel.activeSelf);
+        }
     }
 
     public void OpenPerksPanel(bool isSmall)
@@ -672,13 +694,13 @@ public class PerksHandler : MonoBehaviour
 
         if (asEvent)
         {
-            if (DataHandler.instance.GetUserSpecificPerksPoint().perks_plus_type == PerksType.Drive) plus = "D";
-            if (DataHandler.instance.GetUserSpecificPerksPoint().perks_plus_type == PerksType.Network) plus = "N";
-            if (DataHandler.instance.GetUserSpecificPerksPoint().perks_plus_type == PerksType.Action) plus = "A";
+            if (DataHandler.instance.GetUserSpecificPerksPoint().perks_plus_type == PerksType.Drive) plus += "D";
+            if (DataHandler.instance.GetUserSpecificPerksPoint().perks_plus_type == PerksType.Network) plus += "N";
+            if (DataHandler.instance.GetUserSpecificPerksPoint().perks_plus_type == PerksType.Action) plus += "A";
 
-            if (DataHandler.instance.GetUserSpecificPerksPoint().perks_minus_type == PerksType.Drive) minus = "D";
-            if (DataHandler.instance.GetUserSpecificPerksPoint().perks_minus_type == PerksType.Network) minus = "N";
-            if (DataHandler.instance.GetUserSpecificPerksPoint().perks_minus_type == PerksType.Action) minus = "A";
+            if (DataHandler.instance.GetUserSpecificPerksPoint().perks_minus_type == PerksType.Drive) minus += "D";
+            if (DataHandler.instance.GetUserSpecificPerksPoint().perks_minus_type == PerksType.Network) minus += "N";
+            if (DataHandler.instance.GetUserSpecificPerksPoint().perks_minus_type == PerksType.Action) minus += "A";
         }
 
         perkPointPlus.ForEach(text => text.text = plus);

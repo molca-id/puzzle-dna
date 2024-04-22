@@ -160,7 +160,6 @@ public class FinishHandler : MonoBehaviour
         resultData.hasil_isi = datas.OrderBy(x => x.id_talent).ToList();
 
         string json = JsonUtility.ToJson(resultData);
-        Debug.Log(json);
         StartCoroutine(
                 APIManager.instance.PostDataWithTokenCoroutine(
                     APIManager.instance.SetupSendResultUrl(), json,

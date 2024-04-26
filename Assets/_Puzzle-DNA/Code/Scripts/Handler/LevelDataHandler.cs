@@ -145,8 +145,13 @@ public class LevelDataHandler : MonoBehaviour
 
             if (currentLevelData.showResultPanel)
                 FinishHandler.instance.CalculateFinalResult();
-            if (currentLevelData.openPerksPanelAfterEpilogue)
+            if (currentLevelData.openPerksPanelAfterEpilogue &&
+                (DataHandler.instance.GetPerksData().perks_point_data.perks_point_plus > 0 ||
+                DataHandler.instance.GetPerksData().perks_point_data.perks_point_minus > 0))
+            {
+                MainMenuHandler.instance.commonPerksHandler.SetAfterGame(true);
                 MainMenuHandler.instance.commonPerksHandler.OpenPerksPanel(true);
+            }
             return;
         }
 

@@ -51,10 +51,11 @@ public class APIManager : MonoBehaviour
         return string.Format("{0}/{1}/{2}", rootUrl, deleteDomain, sessionCode);
     }
 
-    public string SetupTalentPerksUrl(bool isID)
+    public string SetupTalentPerksUrl(string lang)
     {
-        if (isID) return string.Format("{0}/{1}", rootActUrl, talentPerksIdDomain);
-        else return string.Format("{0}/{1}", rootActUrl, talentPerksEnDomain);
+        if (lang == "id") return string.Format("{0}/{1}", rootActUrl, talentPerksIdDomain);
+        else if (lang == "en") return string.Format("{0}/{1}", rootActUrl, talentPerksEnDomain);
+        else return string.Format("{0}/{1}", rootActUrl, talentPerksMyDomain);
     }
 
     public IEnumerator PostDataCoroutine(string url, string jsonData, Action<string> SetDataEvent = null)

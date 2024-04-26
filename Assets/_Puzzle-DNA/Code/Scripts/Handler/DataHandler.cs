@@ -167,14 +167,10 @@ public class DataHandler : MonoBehaviour
 
     public void IEGetTalentData(Action executeAfter = null)
     {
-        bool isID = false;
-        if (GetUserDataValue().language == "id")
-            isID = true;
-
         //hitting api
         StartCoroutine(
             APIManager.instance.GetDataCoroutine(
-                APIManager.instance.SetupTalentPerksUrl(isID),
+                APIManager.instance.SetupTalentPerksUrl(GetUserDataValue().language),
                 res =>
                 {
                     talentData = JsonUtility.FromJson<TalentDataSpace.TalentData>(res);

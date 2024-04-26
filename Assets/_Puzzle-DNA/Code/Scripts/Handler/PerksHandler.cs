@@ -66,6 +66,7 @@ public class PerksHandler : MonoBehaviour
     public GameObject perksDetailPanel;
     public Button submitButton;
     public Button resetButton;
+    public Button exitButton;
     [Space]
     public GameObject driveDescPanel;
     public GameObject networkDescPanel;
@@ -90,8 +91,10 @@ public class PerksHandler : MonoBehaviour
 
     [Header("Addon For Perks Panel As Tutorial")]
     public bool asTutorial;
+    public UnityEvent whenProtonElectronEmpty;
     public UnityEvent whenSubmitPerk;
 
+    bool isAfterGame = false;
     bool isOpened = false;
 
     public void SetCurrentPerkType(int index)
@@ -149,6 +152,11 @@ public class PerksHandler : MonoBehaviour
             networkAbilityDescPanel.SetActive(false);
             actionAbilityDescPanel.SetActive(!actionAbilityDescPanel.activeSelf);
         }
+    }
+
+    public void SetAfterGame(bool cond)
+    {
+        isAfterGame = cond;
     }
 
     public void OpenPerksPanel(bool isSmall)
@@ -343,6 +351,22 @@ public class PerksHandler : MonoBehaviour
             perksPanel.SetActive(true);
             isOpened = true;
         });
+
+        // if as tutorial
+        if (asTutorial && exitButton != null)
+            exitButton.interactable = false;
+
+        // if after game
+        if (isAfterGame && exitButton != null)
+        {
+            if (protonPoint != 0 || electronPoint != 0)
+                exitButton.interactable = false;
+            else
+            {
+                exitButton.interactable = true;
+                SetAfterGame(false);
+            }
+        }
     }
 
     public bool GetPanelState() => isOpened;
@@ -505,6 +529,27 @@ public class PerksHandler : MonoBehaviour
             if (!asTutorial) return;
             whenSubmitPerk.Invoke();
         });
+
+        // if as tutorial
+        if (asTutorial)
+        {
+            if (exitButton != null) 
+                exitButton.interactable = true;
+            if (protonPoint == 0 && electronPoint == 0)
+                whenProtonElectronEmpty.Invoke();
+        }
+
+        // if after game
+        if (isAfterGame && exitButton != null)
+        {
+            if (protonPoint != 0 || electronPoint != 0)
+                exitButton.interactable = false;
+            else
+            {
+                exitButton.interactable = true;
+                SetAfterGame(false);
+            }
+        }
     }
 
     public void AddTalentPoint()

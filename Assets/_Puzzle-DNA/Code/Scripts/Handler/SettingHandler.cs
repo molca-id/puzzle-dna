@@ -12,6 +12,7 @@ public class SettingHandler : MonoBehaviour
     [Header("Language Attributes")]
     [SerializeField] GameObject LangIdButton;
     [SerializeField] GameObject LangEnButton;
+    [SerializeField] GameObject LangMyButton;
 
     [Header("Audio Attributes")]
     [SerializeField] Slider bgmSlider;
@@ -43,18 +44,21 @@ public class SettingHandler : MonoBehaviour
     {
         LangIdButton.SetActive(true);
         LangEnButton.SetActive(true);
-        LangEnButton.SetActive(true);
+        LangMyButton.SetActive(true);
 
         string currLang = DataHandler.instance.GetLanguage();
         switch (currLang)
         {
             case "id":
+                LangIdButton.SetActive(false);
                 LangEnButton.SetActive(false);
                 break;
             case "en":
-                LangIdButton.SetActive(false);
+                LangEnButton.SetActive(false);
+                LangMyButton.SetActive(false);
                 break;
             case "my":
+                LangMyButton.SetActive(false);
                 LangIdButton.SetActive(false);
                 break;
         }

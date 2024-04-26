@@ -16,6 +16,7 @@ MonoBehaviour:
   perksPoinPlus: 3
   perksPoinMinus: 0
   openPerksPanelAfterEpilogue: 0
+  showResultPanel: 0
   usingPerkUnlocking: 0
   perkStageForUnlocking: []
   prologueStoryData:

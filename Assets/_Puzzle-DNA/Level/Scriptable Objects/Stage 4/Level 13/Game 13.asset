@@ -52,6 +52,9 @@ MonoBehaviour:
             with other parties is one of the keys.
           contentMy: Romawi adalah sebuah kekaisaran yang sangat besar. Membina interaksi
             & komunikasi dengan pihak-pihak lain menjadi salah satu kuncinya.
+      isDone: 0
+    - scoreTrigger: 1500
+      dialogueBonusDatas:
       - playerIsTalking: 1
         dialogueDelay: 2.5
         contentData:
@@ -82,6 +85,9 @@ MonoBehaviour:
             has stood alone without the help of others.
           contentMy: Tentu dong! Tidak ada dalam sejarah bangsa kuat berdiri sendiri
             tanpa bantuan pihak lain.
+      isDone: 0
+    - scoreTrigger: 2000
+      dialogueBonusDatas:
       - playerIsTalking: 1
         dialogueDelay: 2.5
         contentData:

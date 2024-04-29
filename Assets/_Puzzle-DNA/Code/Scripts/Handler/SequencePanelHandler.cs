@@ -54,7 +54,10 @@ public class SequencePanelHandler : MonoBehaviour
 
         voAudioSource = MainMenuHandler.instance.GetVOSource();
         if (parentPanel.Count == 0) return; 
-        parentPanel.ForEach(panel => panel.SetActive(true));
+        parentPanel.ForEach(panel =>
+        {
+            panel.SetActive(true);
+        });
     }
 
     public void SetPanel()
@@ -79,7 +82,10 @@ public class SequencePanelHandler : MonoBehaviour
         }
         else
         {
-            panels.ForEach(panel => panel.SetActive(false));
+            panels.ForEach(panel =>
+            {
+                panel.SetActive(false);
+            });
         }
 
         data.sequenceEvent.Invoke();
@@ -105,7 +111,10 @@ public class SequencePanelHandler : MonoBehaviour
 
         if (!disableParentPanelAfterDone) return;
         if (index < sequenceEvents.Count - 1) return;
-        parentPanel.ForEach(panel => panel.SetActive(false));
+        parentPanel.ForEach(panel =>
+        {
+            panel.SetActive(false);
+        });
     }
 
     IEnumerator DelayingSkippable()

@@ -48,6 +48,7 @@ public class EventAnswerUI
 
 public class EventHandler : MonoBehaviour
 {
+    public int splashSpeed;
     public int answerChosen;
     public PerksHandler customPerkPanel;
     public GameObject eventPanel;
@@ -63,6 +64,7 @@ public class EventHandler : MonoBehaviour
     {
         currentEventData = data;
         eventPanel.SetActive(true);
+        StartCoroutine(IEOpenScreen(eventPanel.GetComponent<CanvasGroup>()));
 
         //set question text
         if (DataHandler.instance.GetLanguage() == "id")
@@ -201,6 +203,35 @@ public class EventHandler : MonoBehaviour
     IEnumerator SetDisableEventPanel()
     {
         yield return new WaitUntil(() => customPerkPanel.GetPanelState());
-        eventPanel.SetActive(false);
+        StartCoroutine(IECloseScreen(eventPanel.GetComponent<CanvasGroup>(), () =>
+        {
+            eventPanel.SetActive(false);
+        }));
     }
+
+    #region OpenClosePanel
+    IEnumerator IEOpenScreen(CanvasGroup screen, Action executeAfter = null)
+    {
+        screen.gameObject.SetActive(true);
+        while (screen.alpha < 1)
+        {
+            screen.alpha += Time.deltaTime * splashSpeed;
+            yield return null;
+        }
+
+        executeAfter?.Invoke();
+    }
+
+    IEnumerator IECloseScreen(CanvasGroup screen, Action executeAfter = null)
+    {
+        while (screen.alpha > 0)
+        {
+            screen.alpha -= Time.deltaTime * splashSpeed;
+            yield return null;
+        }
+
+        executeAfter?.Invoke();
+        screen.gameObject.SetActive(false);
+    }
+    #endregion
 }

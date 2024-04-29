@@ -52,6 +52,9 @@ MonoBehaviour:
             childhood I have always liked mathematics.
           contentMy: Cita-citaku selalu berubah. Tapi yang pasti sejak kecil aku
             selalu menyukai matematika.
+      isDone: 0
+    - scoreTrigger: 1500
+      dialogueBonusDatas:
       - playerIsTalking: 1
         dialogueDelay: 2.5
         contentData:
@@ -79,6 +82,9 @@ MonoBehaviour:
             will be very fun.
           contentMy: Saat seusiamu aku selalu berkata seperti itu. Tapi dengan berlatih,
             Matematika akan sangat menyenangkan.
+      isDone: 0
+    - scoreTrigger: 2000
+      dialogueBonusDatas:
       - playerIsTalking: 0
         dialogueDelay: 2.5
         contentData:

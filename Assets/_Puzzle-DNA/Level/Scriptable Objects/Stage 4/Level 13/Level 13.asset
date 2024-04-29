@@ -22,5 +22,6 @@ MonoBehaviour:
   prologueStoryData:
   - {fileID: 11400000, guid: ad5bcab6de70c7e48b34766366f0a60e, type: 2}
   - {fileID: 11400000, guid: 866d89f1dd2ee4240be5f4df784e7936, type: 2}
+  - {fileID: 11400000, guid: 96a5e3e9eb1a2304bad42a40d32e1382, type: 2}
   epilogueStoryData:
   - {fileID: 11400000, guid: 9f90fc81fff28d84bbb88773cfa1e225, type: 2}

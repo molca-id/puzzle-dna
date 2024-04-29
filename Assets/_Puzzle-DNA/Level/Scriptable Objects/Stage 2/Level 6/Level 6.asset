@@ -25,7 +25,8 @@ MonoBehaviour:
     perks_stage_locks: 000000
   - perks_types: 2
     perks_stage_locks: 000000
-  prologueStoryData: []
+  prologueStoryData:
+  - {fileID: 11400000, guid: 9634ab251d161034aa6539cf283e5f97, type: 2}
   epilogueStoryData:
   - {fileID: 11400000, guid: 49bb5ba4e2c31cb4a99d799f95ba6015, type: 2}
   - {fileID: 11400000, guid: 753577fbbe4c84049aaf0a7f26ed0e2e, type: 2}

@@ -5,6 +5,7 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
+using System.Collections;
 
 [Serializable]
 public class DialogueStoryUI
@@ -20,6 +21,7 @@ public class LevelDataHandler : MonoBehaviour
     public static LevelDataHandler instance;
 
     [Header("General Story Attributes")]
+    public int splashSpeed;
     public GameObject storyPanel;
     public Image backgroundImage;
 
@@ -109,7 +111,7 @@ public class LevelDataHandler : MonoBehaviour
         isPrologue = true;
         prologueIndex += factor;
         storyPanel.SetActive(false);
-        tutorialParentPanel.SetActive(false);
+        StartCoroutine(IECloseScreen(tutorialParentPanel.GetComponent<CanvasGroup>(), () => tutorialParentPanel.SetActive(false)));
         if (prologueIndex == prologueStoryData.Count)
         {
             prologueIndex = 0;
@@ -136,7 +138,7 @@ public class LevelDataHandler : MonoBehaviour
         isEpilogue = true;
         epilogueIndex += factor;
         storyPanel.SetActive(false);
-        tutorialParentPanel.SetActive(false);
+        StartCoroutine(IECloseScreen(tutorialParentPanel.GetComponent<CanvasGroup>(), () => tutorialParentPanel.SetActive(false)));
         if (epilogueIndex == epilogueStoryData.Count)
         {
             epilogueIndex = 0;
@@ -170,18 +172,22 @@ public class LevelDataHandler : MonoBehaviour
         {
             case StoryData.StoryType.Dialogue:
                 dialoguePanel.SetActive(true);
+                StartCoroutine(IEOpenScreen(dialoguePanel.GetComponent<CanvasGroup>()));
                 SetDialogueStory(0);
                 break;
             case StoryData.StoryType.Narration:
                 narrationPanel.SetActive(true);
+                StartCoroutine(IEOpenScreen(narrationPanel.GetComponent<CanvasGroup>()));
                 SetNarrationStory(0);
                 break;
             case StoryData.StoryType.PopUp:
                 popUpPanel.SetActive(true);
+                StartCoroutine(IEOpenScreen(popUpPanel.GetComponent<CanvasGroup>()));
                 SetPopUpStory(0);
                 break;
             case StoryData.StoryType.Title:
                 titlePanel.SetActive(true);
+                StartCoroutine(IEOpenScreen(titlePanel.GetComponent<CanvasGroup>()));
                 SetTitleStory(0);
                 break;
             case StoryData.StoryType.Event:
@@ -207,6 +213,7 @@ public class LevelDataHandler : MonoBehaviour
                     checkpoint_value[currentGameData.gameLevel].epilogue_is_done))
                 {
                     tutorialParentPanel.SetActive(true);
+                    StartCoroutine(IEOpenScreen(tutorialParentPanel.GetComponent<CanvasGroup>()));
                     SetTutorialStory(currentStoryData.tutorialKey);
                 }
                 else
@@ -224,7 +231,10 @@ public class LevelDataHandler : MonoBehaviour
         if (dialogueIndex == currentStoryData.dialogueStory.dialogueStories.Count)
         {
             dialogueIndex = 0;
-            dialoguePanel.SetActive(false);
+            StartCoroutine(IECloseScreen(dialoguePanel.GetComponent<CanvasGroup>(), () =>
+            {
+                dialoguePanel.SetActive(false);
+            }));
             
             if (isPrologue) SetPrologueStory(1);
             else if (isEpilogue) SetEpilogueStory(1);
@@ -281,7 +291,10 @@ public class LevelDataHandler : MonoBehaviour
         if (narrationIndex == currentStoryData.narrationStories.Count)
         {
             narrationIndex = 0;
-            narrationPanel.SetActive(false);
+            StartCoroutine(IECloseScreen(narrationPanel.GetComponent<CanvasGroup>(), () =>
+            {
+                narrationPanel.SetActive(false);
+            }));
 
             if (isPrologue) SetPrologueStory(1);
             else if (isEpilogue) SetEpilogueStory(1);
@@ -347,7 +360,10 @@ public class LevelDataHandler : MonoBehaviour
         if (popUpIndex == currentStoryData.popUpStories.Count)
         {
             popUpIndex = 0;
-            popUpPanel.SetActive(false);
+            StartCoroutine(IECloseScreen(popUpPanel.GetComponent<CanvasGroup>(), () =>
+            {
+                popUpPanel.SetActive(false);
+            }));
 
             if (isPrologue) SetPrologueStory(1);
             else if (isEpilogue) SetEpilogueStory(1);
@@ -382,7 +398,10 @@ public class LevelDataHandler : MonoBehaviour
         if (titleIndex == currentStoryData.titleStories.Count)
         {
             titleIndex = 0;
-            titlePanel.SetActive(false);
+            StartCoroutine(IECloseScreen(titlePanel.GetComponent<CanvasGroup>(), () =>
+            {
+                titlePanel.SetActive(false);
+            }));
 
             if (isPrologue) SetPrologueStory(1);
             else if (isEpilogue) SetEpilogueStory(1);
@@ -443,4 +462,28 @@ public class LevelDataHandler : MonoBehaviour
 
         DataHandler.instance.IEPatchCheckpointData(() => { });
     }
+
+    #region OpenClosePanel
+    IEnumerator IEOpenScreen(CanvasGroup screen, Action executeAfter = null)
+    {
+        while (screen.alpha < 1)
+        {
+            screen.alpha += Time.deltaTime * splashSpeed;
+            yield return null;
+        }
+
+        executeAfter?.Invoke();
+    }
+
+    IEnumerator IECloseScreen(CanvasGroup screen, Action executeAfter = null)
+    {
+        while (screen.alpha > 0)
+        {
+            screen.alpha -= Time.deltaTime * splashSpeed;
+            yield return null;
+        }
+
+        executeAfter?.Invoke();
+    }
+    #endregion
 }

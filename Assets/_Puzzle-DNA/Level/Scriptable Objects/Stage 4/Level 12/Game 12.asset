@@ -55,6 +55,9 @@ MonoBehaviour:
             same dreams is one of the keys.
           contentMy: Saya tidak sendiri. Membangun hubungan dengan orang-orang yang
             memiliki mimpi yang sama menjadi salah satu kunci.
+      isDone: 0
+    - scoreTrigger: 1500
+      dialogueBonusDatas:
       - playerIsTalking: 1
         dialogueDelay: 2.5
         contentData:

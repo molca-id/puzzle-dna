@@ -23,5 +23,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fe5885f6f8cd3dd49a610fa8f5a940f5, type: 2}
   - {fileID: 11400000, guid: 73139d20a5aac5a40a1787eab12537ae, type: 2}
   - {fileID: 11400000, guid: 9eb913318919acf46bed88771501f93b, type: 2}
+  - {fileID: 11400000, guid: da424c012d22e9244b8461dfcfdc768b, type: 2}
   epilogueStoryData:
   - {fileID: 11400000, guid: 165e227b4d504ef48932090af5393bc4, type: 2}

@@ -52,6 +52,9 @@ MonoBehaviour:
             it come true.
           contentMy: Tidak hanya mimpiku. Setiap mimpi membutuhkan tindakan nyata
             untuk mewujudkannya.
+      isDone: 0
+    - scoreTrigger: 1500
+      dialogueBonusDatas:
       - playerIsTalking: 0
         dialogueDelay: 2.5
         contentData:
@@ -79,6 +82,9 @@ MonoBehaviour:
             Ocean for 14 hours.
           contentMy: Aku tidak bisa membayangkan, resiko yang kamu hadapi selama
             melintasi Samudra Atlantik selama 14 jam.
+      isDone: 0
+    - scoreTrigger: 2000
+      dialogueBonusDatas:
       - playerIsTalking: 0
         dialogueDelay: 2.5
         contentData:

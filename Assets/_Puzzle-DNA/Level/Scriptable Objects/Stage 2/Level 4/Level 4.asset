@@ -19,5 +19,6 @@ MonoBehaviour:
   showResultPanel: 0
   usingPerkUnlocking: 0
   perkStageForUnlocking: []
-  prologueStoryData: []
+  prologueStoryData:
+  - {fileID: 11400000, guid: 06471d8ea485a79458c646ce30c38daf, type: 2}
   epilogueStoryData: []

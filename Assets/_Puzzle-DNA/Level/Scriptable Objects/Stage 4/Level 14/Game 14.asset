@@ -34,33 +34,6 @@ MonoBehaviour:
           clipId: {fileID: 0}
           clipEn: {fileID: 0}
           clipMy: {fileID: 0}
-          contentId: Apa yang diperlukan untuk menjadi orang hebat seperti Bapak?
-          contentEn: What does it take to become a great person like you?
-          contentMy: Apa yang diperlukan untuk menjadi orang hebat seperti Bapak?
-      - playerIsTalking: 0
-        dialogueDelay: 2.5
-        contentData:
-          playerExpression: 0
-          interlocutorSprite: {fileID: 21300000, guid: d2de0823e0e6a914199b5f1df57357a0,
-            type: 3}
-          clipId: {fileID: 0}
-          clipEn: {fileID: 0}
-          clipMy: {fileID: 0}
-          contentId: Tidak hanya kepintaran. Kamu memerlukan kegigihan dan konsistensi
-            dalam bertindak mencapai tujuan.
-          contentEn: Not just intelligence. You need persistence and consistency
-            in acting to achieve your goals.
-          contentMy: Tidak hanya kepintaran. Kamu memerlukan kegigihan dan konsistensi
-            dalam bertindak mencapai tujuan.
-      - playerIsTalking: 1
-        dialogueDelay: 2.5
-        contentData:
-          playerExpression: 0
-          interlocutorSprite: {fileID: 21300000, guid: d2de0823e0e6a914199b5f1df57357a0,
-            type: 3}
-          clipId: {fileID: 0}
-          clipEn: {fileID: 0}
-          clipMy: {fileID: 0}
           contentId: Pengalaman apa yang tidak akan pernah Bapak lupakan?
           contentEn: What experience will you never forget?
           contentMy: Pengalaman apa yang tidak akan pernah Bapak lupakan?
@@ -82,6 +55,36 @@ MonoBehaviour:
           contentMy: Zaman penjajahan Jepang dan detik-detik proklamasi akan selalu
             saya ingat. Melihat semua lapisan masyarakat berjuang bersama membuat
             saya lebih bersemangat.
+      isDone: 0
+    - scoreTrigger: 1500
+      dialogueBonusDatas:
+      - playerIsTalking: 1
+        dialogueDelay: 2.5
+        contentData:
+          playerExpression: 0
+          interlocutorSprite: {fileID: 21300000, guid: d2de0823e0e6a914199b5f1df57357a0,
+            type: 3}
+          clipId: {fileID: 0}
+          clipEn: {fileID: 0}
+          clipMy: {fileID: 0}
+          contentId: Apa yang diperlukan untuk menjadi orang hebat seperti Bapak?
+          contentEn: What does it take to become a great person like you?
+          contentMy: Apa yang diperlukan untuk menjadi orang hebat seperti Bapak?
+      - playerIsTalking: 0
+        dialogueDelay: 2.5
+        contentData:
+          playerExpression: 0
+          interlocutorSprite: {fileID: 21300000, guid: d2de0823e0e6a914199b5f1df57357a0,
+            type: 3}
+          clipId: {fileID: 0}
+          clipEn: {fileID: 0}
+          clipMy: {fileID: 0}
+          contentId: Tidak hanya kepintaran. Kamu memerlukan kegigihan dan konsistensi
+            dalam bertindak mencapai tujuan.
+          contentEn: Not just intelligence. You need persistence and consistency
+            in acting to achieve your goals.
+          contentMy: Tidak hanya kepintaran. Kamu memerlukan kegigihan dan konsistensi
+            dalam bertindak mencapai tujuan.
       isDone: 0
   hintDelay: 10
   totalTime: 90

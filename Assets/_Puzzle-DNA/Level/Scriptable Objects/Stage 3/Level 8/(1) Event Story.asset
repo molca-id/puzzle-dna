@@ -33,8 +33,8 @@ MonoBehaviour:
     questionMy: 'Setelah berlatih beberapa saat, Kevin merasa ada beberapa metode
       latihannya yang kurang tepat dengannya. Dia selalu merasa kelelahan yang berlebihan
       sehingga membuatnya tidak bersemangat menjalani latihan di keesokan harinya. '
-    playerExpression: 0
-    characterSprite: {fileID: 0}
+    playerExpression: 4
+    characterSprite: {fileID: 21300000, guid: 614c672b23e277e4b96bf4264e9fb294, type: 3}
     answers:
     - answerId: Bersama dengan Kevin mencari masalah yang menyebabkan kelelahan dan
         menyelesaikannya satu per satu

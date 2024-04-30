@@ -29,29 +29,33 @@ MonoBehaviour:
         dialogueDelay: 2.5
         contentData:
           playerExpression: 0
-          interlocutorSprite: {fileID: 21300000, guid: d2de0823e0e6a914199b5f1df57357a0,
+          interlocutorSprite: {fileID: 21300000, guid: cac255dc7704a8a4285c6bd430f2a527,
             type: 3}
+          bgmClip: {fileID: 0}
           clipId: {fileID: 0}
           clipEn: {fileID: 0}
           clipMy: {fileID: 0}
-          contentId: Pengalaman apa yang tidak akan pernah Bapak lupakan?
+          animPrefab: {fileID: 0}
           contentEn: What experience will you never forget?
+          contentId: Pengalaman apa yang tidak akan pernah Bapak lupakan?
           contentMy: Pengalaman apa yang tidak akan pernah Bapak lupakan?
       - playerIsTalking: 0
         dialogueDelay: 2.5
         contentData:
           playerExpression: 0
-          interlocutorSprite: {fileID: 21300000, guid: d2de0823e0e6a914199b5f1df57357a0,
+          interlocutorSprite: {fileID: 21300000, guid: cac255dc7704a8a4285c6bd430f2a527,
             type: 3}
+          bgmClip: {fileID: 0}
           clipId: {fileID: 0}
           clipEn: {fileID: 0}
           clipMy: {fileID: 0}
-          contentId: Zaman penjajahan Jepang dan detik-detik proklamasi akan selalu
-            saya ingat. Melihat semua lapisan masyarakat berjuang bersama membuat
-            saya lebih bersemangat.
+          animPrefab: {fileID: 0}
           contentEn: I will always remember the Japanese colonial era and the moments
             of the proclamation. Seeing all levels of society fighting together makes
             me more enthusiastic.
+          contentId: Zaman penjajahan Jepang dan detik-detik proklamasi akan selalu
+            saya ingat. Melihat semua lapisan masyarakat berjuang bersama membuat
+            saya lebih bersemangat.
           contentMy: Zaman penjajahan Jepang dan detik-detik proklamasi akan selalu
             saya ingat. Melihat semua lapisan masyarakat berjuang bersama membuat
             saya lebih bersemangat.
@@ -64,25 +68,29 @@ MonoBehaviour:
           playerExpression: 0
           interlocutorSprite: {fileID: 21300000, guid: d2de0823e0e6a914199b5f1df57357a0,
             type: 3}
+          bgmClip: {fileID: 0}
           clipId: {fileID: 0}
           clipEn: {fileID: 0}
           clipMy: {fileID: 0}
-          contentId: Apa yang diperlukan untuk menjadi orang hebat seperti Bapak?
+          animPrefab: {fileID: 0}
           contentEn: What does it take to become a great person like you?
+          contentId: Apa yang diperlukan untuk menjadi orang hebat seperti Bapak?
           contentMy: Apa yang diperlukan untuk menjadi orang hebat seperti Bapak?
       - playerIsTalking: 0
         dialogueDelay: 2.5
         contentData:
-          playerExpression: 0
-          interlocutorSprite: {fileID: 21300000, guid: d2de0823e0e6a914199b5f1df57357a0,
+          playerExpression: 2
+          interlocutorSprite: {fileID: 21300000, guid: cac255dc7704a8a4285c6bd430f2a527,
             type: 3}
+          bgmClip: {fileID: 0}
           clipId: {fileID: 0}
           clipEn: {fileID: 0}
           clipMy: {fileID: 0}
-          contentId: Tidak hanya kepintaran. Kamu memerlukan kegigihan dan konsistensi
-            dalam bertindak mencapai tujuan.
+          animPrefab: {fileID: 0}
           contentEn: Not just intelligence. You need persistence and consistency
             in acting to achieve your goals.
+          contentId: Tidak hanya kepintaran. Kamu memerlukan kegigihan dan konsistensi
+            dalam bertindak mencapai tujuan.
           contentMy: Tidak hanya kepintaran. Kamu memerlukan kegigihan dan konsistensi
             dalam bertindak mencapai tujuan.
       isDone: 0

@@ -16,8 +16,6 @@ MonoBehaviour:
   backgroundSprite: {fileID: 21300000, guid: 0bf3db385304db8459b2e1f3b6e2564a, type: 3}
   tutorialKey: 
   dialogueStory:
-    playerIdleSprite: {fileID: 0}
-    interlocutorIdleSprite: {fileID: 0}
     interlocutorName: 
     dialogueStories: []
   narrationType: 0
@@ -44,8 +42,8 @@ MonoBehaviour:
       Ternyata kamu menyadari bahwa dia Kevin Santaya, pemain yang akan menjadi legenda
       badminton nomor 1  di Dunia. Dalam kondisi saat ini dia ingin menyerah, sekarang
       apa yang akan kamu lakukan?
-    playerExpression: 0
-    characterSprite: {fileID: 0}
+    playerExpression: 4
+    characterSprite: {fileID: 21300000, guid: 735bf6c70f9cef04a87aa023ca42f4c9, type: 3}
     answers:
     - answerId: Mengarahkan Kevin untuk terus berlatih tanpa memberi tau fakta di
         masa depan

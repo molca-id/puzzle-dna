@@ -31,11 +31,13 @@ MonoBehaviour:
           playerExpression: 0
           interlocutorSprite: {fileID: 21300000, guid: aca4036633c3f1948b9e65af93a7c729,
             type: 3}
+          bgmClip: {fileID: 0}
           clipId: {fileID: 0}
           clipEn: {fileID: 0}
           clipMy: {fileID: 0}
-          contentId: Kalau boleh tau, apa cita-citamu saat kamu kecil?
+          animPrefab: {fileID: 0}
           contentEn: If I may ask, what was your dream when you were little?
+          contentId: Kalau boleh tau, apa cita-citamu saat kamu kecil?
           contentMy: Kalau boleh tau, apa cita-citamu saat kamu kecil?
       - playerIsTalking: 0
         dialogueDelay: 2.5
@@ -43,13 +45,15 @@ MonoBehaviour:
           playerExpression: 0
           interlocutorSprite: {fileID: 21300000, guid: aca4036633c3f1948b9e65af93a7c729,
             type: 3}
+          bgmClip: {fileID: 0}
           clipId: {fileID: 0}
           clipEn: {fileID: 0}
           clipMy: {fileID: 0}
-          contentId: Cita-citaku selalu berubah. Tapi yang pasti sejak kecil aku
-            selalu menyukai matematika.
+          animPrefab: {fileID: 0}
           contentEn: My goals are always changing. But what is certain is that since
             childhood I have always liked mathematics.
+          contentId: Cita-citaku selalu berubah. Tapi yang pasti sejak kecil aku
+            selalu menyukai matematika.
           contentMy: Cita-citaku selalu berubah. Tapi yang pasti sejak kecil aku
             selalu menyukai matematika.
       isDone: 0
@@ -58,28 +62,32 @@ MonoBehaviour:
       - playerIsTalking: 1
         dialogueDelay: 2.5
         contentData:
-          playerExpression: 0
+          playerExpression: 3
           interlocutorSprite: {fileID: 21300000, guid: aca4036633c3f1948b9e65af93a7c729,
             type: 3}
+          bgmClip: {fileID: 0}
           clipId: {fileID: 0}
           clipEn: {fileID: 0}
           clipMy: {fileID: 0}
-          contentId: Aku selalu mengalami kesusahan dalam mengerjakan matematika
+          animPrefab: {fileID: 0}
           contentEn: I always have difficulty doing mathematics
+          contentId: Aku selalu mengalami kesusahan dalam mengerjakan matematika
           contentMy: Aku selalu mengalami kesusahan dalam mengerjakan matematika
       - playerIsTalking: 0
         dialogueDelay: 2.5
         contentData:
-          playerExpression: 0
-          interlocutorSprite: {fileID: 21300000, guid: aca4036633c3f1948b9e65af93a7c729,
+          playerExpression: 2
+          interlocutorSprite: {fileID: 21300000, guid: 809e52fa9b6c91c4d9a0a42421c55fae,
             type: 3}
+          bgmClip: {fileID: 0}
           clipId: {fileID: 0}
           clipEn: {fileID: 0}
           clipMy: {fileID: 0}
-          contentId: Saat seusiamu aku selalu berkata seperti itu. Tapi dengan berlatih,
-            Matematika akan sangat menyenangkan.
+          animPrefab: {fileID: 0}
           contentEn: When I was your age I always said that. But with practice, Mathematics
             will be very fun.
+          contentId: Saat seusiamu aku selalu berkata seperti itu. Tapi dengan berlatih,
+            Matematika akan sangat menyenangkan.
           contentMy: Saat seusiamu aku selalu berkata seperti itu. Tapi dengan berlatih,
             Matematika akan sangat menyenangkan.
       isDone: 0
@@ -89,30 +97,34 @@ MonoBehaviour:
         dialogueDelay: 2.5
         contentData:
           playerExpression: 0
-          interlocutorSprite: {fileID: 21300000, guid: aca4036633c3f1948b9e65af93a7c729,
+          interlocutorSprite: {fileID: 21300000, guid: 809e52fa9b6c91c4d9a0a42421c55fae,
             type: 3}
+          bgmClip: {fileID: 0}
           clipId: {fileID: 0}
           clipEn: {fileID: 0}
           clipMy: {fileID: 0}
+          animPrefab: {fileID: 0}
+          contentEn: I'm lucky to be around people who understand the talents I have.
+            They encourage me to continue working on things I enjoy.
           contentId: Aku beruntung berada di sekitar orang-orang yang memahami bakat
             yang aku miliki. Mereka mendorongku untuk terus berkarya melalui hal
             yang aku gemari.
-          contentEn: I'm lucky to be around people who understand the talents I have.
-            They encourage me to continue working on things I enjoy.
           contentMy: Aku beruntung berada di sekitar orang-orang yang memahami bakat
             yang aku miliki. Mereka mendorongku untuk terus berkarya melalui hal
             yang aku gemari.
       - playerIsTalking: 1
         dialogueDelay: 2.5
         contentData:
-          playerExpression: 0
+          playerExpression: 2
           interlocutorSprite: {fileID: 21300000, guid: aca4036633c3f1948b9e65af93a7c729,
             type: 3}
+          bgmClip: {fileID: 0}
           clipId: {fileID: 0}
           clipEn: {fileID: 0}
           clipMy: {fileID: 0}
-          contentId: Wah! Mungkin aku harus belajar lebih giat untuk itu.
+          animPrefab: {fileID: 0}
           contentEn: Wow! Maybe I should study harder for that.
+          contentId: Wah! Mungkin aku harus belajar lebih giat untuk itu.
           contentMy: Wah! Mungkin aku harus belajar lebih giat untuk itu.
       isDone: 0
   hintDelay: 10

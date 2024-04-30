@@ -33,7 +33,7 @@ MonoBehaviour:
     questionMy: Adam Malik menunjukkan beberapa koleksi bukunya, dan mempersilakan
       kamu memilih salah satu buku untuk kamu bawa pulang ke masa depan. Berbagai
       macam jenis buku ada di sana. Buku seperti apa yang akan kamu pilih?
-    playerExpression: 0
+    playerExpression: 2
     characterSprite: {fileID: 0}
     answers:
     - answerId: Inovasi Teknologi untuk Melawan Musuh di Masa Lalu

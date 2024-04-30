@@ -21,37 +21,43 @@ MonoBehaviour:
     - playerIsTalking: 1
       contentData:
         playerExpression: 0
-        interlocutorSprite: {fileID: 21300000, guid: bf98677e029460b45863ccb8d1288001,
+        interlocutorSprite: {fileID: 21300000, guid: 2fa1030855e59f143b164bd163581d6a,
           type: 3}
+        bgmClip: {fileID: 0}
         clipId: {fileID: 0}
         clipEn: {fileID: 0}
         clipMy: {fileID: 0}
-        contentId: Nelson Mandela?
+        animPrefab: {fileID: 0}
         contentEn: Nelson Mandela?
+        contentId: Nelson Mandela?
         contentMy: Nelson Mandela?
     - playerIsTalking: 0
       contentData:
-        playerExpression: 0
-        interlocutorSprite: {fileID: 21300000, guid: bf98677e029460b45863ccb8d1288001,
+        playerExpression: 1
+        interlocutorSprite: {fileID: 21300000, guid: a597a4c0dc3dab847abf768be845df13,
           type: 3}
+        bgmClip: {fileID: 0}
         clipId: {fileID: 0}
         clipEn: {fileID: 0}
         clipMy: {fileID: 0}
-        contentId: Betul, Siapa kamu? dari mana kamu mengenalku?
+        animPrefab: {fileID: 0}
         contentEn: That's right, who are you? where do you know me?
+        contentId: Betul, Siapa kamu? dari mana kamu mengenalku?
         contentMy: Betul, Siapa kamu? dari mana kamu mengenalku?
     - playerIsTalking: 1
       contentData:
-        playerExpression: 0
-        interlocutorSprite: {fileID: 21300000, guid: bf98677e029460b45863ccb8d1288001,
+        playerExpression: 2
+        interlocutorSprite: {fileID: 21300000, guid: 5a24df4841c57fe45a6ca02a86d07948,
           type: 3}
+        bgmClip: {fileID: 0}
         clipId: {fileID: 0}
         clipEn: {fileID: 0}
         clipMy: {fileID: 0}
-        contentId: Aku (playerName). Aku mengenalmu dari buku sejarahku. Aku mengagumimu,
-          hehe.
+        animPrefab: {fileID: 0}
         contentEn: I am (playerName). I know you from my history books. I admire
           you, hehe.
+        contentId: Aku (playerName). Aku mengenalmu dari buku sejarahku. Aku mengagumimu,
+          hehe.
         contentMy: Aku (playerName). Aku mengenalmu dari buku sejarahku. Aku mengagumimu,
           hehe.
   narrationType: 0

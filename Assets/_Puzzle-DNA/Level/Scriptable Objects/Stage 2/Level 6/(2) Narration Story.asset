@@ -14,50 +14,71 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storyType: 1
   backgroundSprite: {fileID: 21300000, guid: 0bf3db385304db8459b2e1f3b6e2564a, type: 3}
-  storyPreview: 
   tutorialKey: 
   dialogueStory:
-    playerIdleSprite: {fileID: 0}
-    interlocutorIdleSprite: {fileID: 0}
     interlocutorName: 
     dialogueStories: []
   narrationType: 2
   narrationStories:
-  - usingCharacterSprite: 0
-    playerSprite: {fileID: 0}
+  - playerExpression: 0
     interlocutorSprite: {fileID: 0}
+    bgmClip: {fileID: 0}
     clipId: {fileID: 0}
     clipEn: {fileID: 0}
     clipMy: {fileID: 0}
-    contentId: Berhasil! Kamu bersiap melanjutkan ke tempat berikutnya. Kamu sangat
-      bersemangat menghadapi tantangan dan pengalaman seru di depan mata.
+    animPrefab: {fileID: 0}
     contentEn: Succeed! You are ready to move on to the next place. You are very
       enthusiastic about facing the challenges and exciting experiences that lie
       ahead.
+    contentId: Berhasil! Kamu bersiap melanjutkan ke tempat berikutnya. Kamu sangat
+      bersemangat menghadapi tantangan dan pengalaman seru di depan mata.
     contentMy: Berhasil! Kamu bersiap melanjutkan ke tempat berikutnya. Kamu sangat
       bersemangat menghadapi tantangan dan pengalaman seru di depan mata.
-  - usingCharacterSprite: 0
-    playerSprite: {fileID: 0}
+  - playerExpression: 0
     interlocutorSprite: {fileID: 0}
+    bgmClip: {fileID: 0}
     clipId: {fileID: 0}
     clipEn: {fileID: 0}
     clipMy: {fileID: 0}
+    animPrefab: {fileID: 0}
+    contentEn: '"Titut titut" (Voice Message sounds)'
+    contentId: '"Titut titut" (Pesan Suara berbunyi) '
+    contentMy: '"Titut titut" (Pesan Suara berbunyi) '
+  - playerExpression: 0
+    interlocutorSprite: {fileID: 0}
+    bgmClip: {fileID: 0}
+    clipId: {fileID: 0}
+    clipEn: {fileID: 0}
+    clipMy: {fileID: 0}
+    animPrefab: {fileID: 0}
+    contentEn: You get a notification that an atom was detected in the year 3008.
     contentId: Kamu mendapatkan notifikasi bahwa ada atom yang terdeteksi di tahun
       3008.
-    contentEn: You get a notification that an atom was detected in the year 3008.
     contentMy: Kamu mendapatkan notifikasi bahwa ada atom yang terdeteksi di tahun
       3008.
-  - usingCharacterSprite: 0
-    playerSprite: {fileID: 0}
+  - playerExpression: 0
     interlocutorSprite: {fileID: 0}
+    bgmClip: {fileID: 0}
     clipId: {fileID: 0}
     clipEn: {fileID: 0}
     clipMy: {fileID: 0}
-    contentId: Atom itu ditemukan oleh Kevin Santaya, seorang atlet muda badminton
-      yang sedang berlatih untuk turnamen pertamanya.
-    contentEn: The atom was discovered by Kevin Santaya, a young badminton athlete
-      who was training for his first tournament.
-    contentMy: Atom itu ditemukan oleh Kevin Santaya, seorang atlet muda badminton
-      yang sedang berlatih untuk turnamen pertamanya.
+    animPrefab: {fileID: 0}
+    contentEn: '(Airplane Sound)
+
+      Towards 3008'
+    contentId: '(Suara Pesawat)
+
+      Menuju 3008'
+    contentMy: '(Suara Pesawat)
+
+      Menuju 3008'
   popUpStories: []
   titleStories: []
+  eventDataStory:
+    autoOpenPerks: 0
+    questionId: 
+    questionEn: 
+    questionMy: 
+    playerExpression: 0
+    characterSprite: {fileID: 0}
+    answers: []

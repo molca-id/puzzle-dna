@@ -40,7 +40,7 @@ MonoBehaviour:
       Kamu meminta tanda tangan dan pesan personal untukmu dari Amelia. Pesan apa
       yang kamu inginkan untuk ditulis oleh Amelia.
     playerExpression: 4
-    characterSprite: {fileID: 21300000, guid: 3c3e7f6704efb2b49aecdea490f46b54, type: 3}
+    characterSprite: {fileID: 21300000, guid: 2f516b1c10b609143bb0b1e7288af99e, type: 3}
     answers:
     - answerId: Fokuslah dengan tujuanmu walaupun seisi dunia tidak bersamamu
       answerEn: Focus on your goals even if the whole world is not with you

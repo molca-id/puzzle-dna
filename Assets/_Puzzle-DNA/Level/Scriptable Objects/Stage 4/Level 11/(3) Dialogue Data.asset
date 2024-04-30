@@ -20,37 +20,39 @@ MonoBehaviour:
     dialogueStories:
     - playerIsTalking: 0
       contentData:
-        usingCharacterSprite: 1
         playerExpression: 0
-        interlocutorSprite: {fileID: 21300000, guid: aca4036633c3f1948b9e65af93a7c729,
+        interlocutorSprite: {fileID: 21300000, guid: 809e52fa9b6c91c4d9a0a42421c55fae,
           type: 3}
+        bgmClip: {fileID: 0}
         clipId: {fileID: 0}
         clipEn: {fileID: 0}
         clipMy: {fileID: 0}
-        contentId: Hai, aku sudah mendapatkan pesan dari Prof. Woo. Perkenalkan aku
-          Ada Lovelace. Mungkin kamu tidak mengenalku. Tapi orang menjuluki sebagai
-          Programer Komputer Pertama di Dunia
+        animPrefab: {fileID: 0}
         contentEn: Hi, I have received a message from Prof. Woo. Let me introduce
           myself, Ada Lovelace. Maybe you don't know me. But people call him the
           First Computer Programmer in the World
+        contentId: Hai, aku sudah mendapatkan pesan dari Prof. Woo. Perkenalkan aku
+          Ada Lovelace. Mungkin kamu tidak mengenalku. Tapi orang menjuluki sebagai
+          Programer Komputer Pertama di Dunia
         contentMy: Hai, aku sudah mendapatkan pesan dari Prof. Woo. Perkenalkan aku
           Ada Lovelace. Mungkin kamu tidak mengenalku. Tapi orang menjuluki sebagai
           Programer Komputer Pertama di Dunia
     - playerIsTalking: 1
       contentData:
-        usingCharacterSprite: 1
-        playerExpression: 0
-        interlocutorSprite: {fileID: 21300000, guid: aca4036633c3f1948b9e65af93a7c729,
+        playerExpression: 2
+        interlocutorSprite: {fileID: 21300000, guid: 809e52fa9b6c91c4d9a0a42421c55fae,
           type: 3}
+        bgmClip: {fileID: 0}
         clipId: {fileID: 0}
         clipEn: {fileID: 0}
         clipMy: {fileID: 0}
-        contentId: Halo Ada Lovelace! Tentu saja aku mengenalimu! Kamu adalah sosok
-          yang sangat berpengaruh dalam sejarah dunia komputer. Senang berkenalan
-          dan bertemu denganmu!
+        animPrefab: {fileID: 0}
         contentEn: Hello Ada Lovelace! Of course I recognize you! You are a very
           influential figure in the history of the computer world. Nice to meet you
           and meet you!
+        contentId: Halo Ada Lovelace! Tentu saja aku mengenalimu! Kamu adalah sosok
+          yang sangat berpengaruh dalam sejarah dunia komputer. Senang berkenalan
+          dan bertemu denganmu!
         contentMy: Halo Ada Lovelace! Tentu saja aku mengenalimu! Kamu adalah sosok
           yang sangat berpengaruh dalam sejarah dunia komputer. Senang berkenalan
           dan bertemu denganmu!

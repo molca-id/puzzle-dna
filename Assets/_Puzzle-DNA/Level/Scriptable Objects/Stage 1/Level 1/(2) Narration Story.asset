@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: (2) Narration Story
   m_EditorClassIdentifier: 
   storyType: 1
-  backgroundSprite: {fileID: 21300000, guid: 0bf3db385304db8459b2e1f3b6e2564a, type: 3}
+  backgroundSprite: {fileID: 21300000, guid: 64957760a3b551f4393ab723e11aac6d, type: 3}
   tutorialKey: 
   dialogueStory:
     interlocutorName: 
@@ -25,19 +25,19 @@ MonoBehaviour:
     clipId: {fileID: 0}
     clipEn: {fileID: 0}
     clipMy: {fileID: 0}
-    contentId: Pada tahun 2020, dunia dilanda pandemi Virus Corona yang mengakibatkan
-      dunia lumpuh dan aktivitas manusia dibatasi.
     contentEn: The world was hit by the Corona Virus pandemic which resulted in the
       world being paralyzed and human activities being restricted.
-    contentMy: Pada tahun 2020, dunia dilanda pandemi Virus Corona yang mengakibatkan
-      dunia lumpuh dan aktivitas manusia dibatasi.
+    contentId: Dunia dilanda pandemi virus corona yang mengakibatkan dunia lumpuh
+      dan aktivitas manusia dibatasi.
+    contentMy: Dunia dilanda pandemi virus corona yang mengakibatkan dunia lumpuh
+      dan aktivitas manusia dibatasi.
   - playerExpression: 0
     interlocutorSprite: {fileID: 0}
     clipId: {fileID: 0}
     clipEn: {fileID: 0}
     clipMy: {fileID: 0}
-    contentId: DNA Atom terdeteksi berada di sebuah Rumah Sakit di daerah terisolasi
     contentEn: Atomic DNA was detected in a hospital in an isolated area
+    contentId: DNA Atom terdeteksi berada di sebuah Rumah Sakit di daerah terisolasi
     contentMy: DNA Atom terdeteksi berada di sebuah Rumah Sakit di daerah terisolasi
   popUpStories: []
   titleStories: []

@@ -22,7 +22,7 @@ public class DialogueBonusHandler : SingletonMonoBehaviour<DialogueBonusHandler>
     [SerializeField] DialogueBonusUI playerDialogue;
     [SerializeField] DialogueBonusUI interlocutorDialogue;
     [SerializeField] Dialogue dialogues;
-    bool dialogueIsOngoing;
+    [SerializeField] bool dialogueIsOngoing;
 
     public void InitDialogue(Dialogue dialogue)
     {
@@ -120,6 +120,7 @@ public class DialogueBonusHandler : SingletonMonoBehaviour<DialogueBonusHandler>
         // Resume the game
         Time.timeScale = 1;
 
+        dialogueIsOngoing = false;
         playerDialogue.dialoguePanel.SetActive(false);
         interlocutorDialogue.dialoguePanel.SetActive(false);
         dialoguePanel.SetActive(false);

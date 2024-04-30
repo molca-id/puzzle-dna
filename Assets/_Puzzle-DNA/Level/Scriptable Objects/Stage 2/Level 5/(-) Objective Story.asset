@@ -12,24 +12,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0d3ec688709c214a8c7fe11dd2475cf, type: 3}
   m_Name: (-) Objective Story
   m_EditorClassIdentifier: 
-  storyType: 1
+  storyType: 4
   backgroundSprite: {fileID: 21300000, guid: 0bf3db385304db8459b2e1f3b6e2564a, type: 3}
   tutorialKey: 
   dialogueStory:
     interlocutorName: 
     dialogueStories: []
   narrationType: 1
-  narrationStories:
+  narrationStories: []
+  popUpStories: []
+  titleStories:
   - playerExpression: 0
     interlocutorSprite: {fileID: 0}
+    bgmClip: {fileID: 0}
     clipId: {fileID: 0}
     clipEn: {fileID: 0}
     clipMy: {fileID: 0}
-    contentId: -600 SM, Pembangunan Tembok China
+    animPrefab: {fileID: 0}
     contentEn: -600 BC, Construction of the Chinese Wall
+    contentId: -600 SM, Pembangunan Tembok China
     contentMy: -600 SM, Pembangunan Tembok China
-  popUpStories: []
-  titleStories: []
   eventDataStory:
     autoOpenPerks: 0
     questionId: 

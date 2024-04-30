@@ -20,7 +20,7 @@ MonoBehaviour:
   usingDialogueBonus: 1
   dialogues:
     interlocutorName: Malala
-    interlocutorIdleSprite: {fileID: 21300000, guid: e60be4408d319ab4ebaff0dd7dc8a07f,
+    interlocutorIdleSprite: {fileID: 21300000, guid: 543e6feca00a0f04299844172c7cc76d,
       type: 3}
     dialogueBonus:
     - scoreTrigger: 1000
@@ -28,31 +28,35 @@ MonoBehaviour:
       - playerIsTalking: 1
         dialogueDelay: 2.5
         contentData:
-          playerExpression: 0
-          interlocutorSprite: {fileID: 21300000, guid: e60be4408d319ab4ebaff0dd7dc8a07f,
+          playerExpression: 2
+          interlocutorSprite: {fileID: 21300000, guid: 543e6feca00a0f04299844172c7cc76d,
             type: 3}
+          bgmClip: {fileID: 0}
           clipId: {fileID: 0}
           clipEn: {fileID: 0}
           clipMy: {fileID: 0}
-          contentId: Nobel Perdamaian yang kamu dapatkan sangat menginspirasi banyak
-            anak-anak di dunia. Apakah tujuanmu sudah tercapai?
+          animPrefab: {fileID: 0}
           contentEn: The Nobel Peace Prize you won really inspired many children
             in the world. Have you achieved your goal?
+          contentId: Nobel Perdamaian yang kamu dapatkan sangat menginspirasi banyak
+            anak-anak di dunia. Apakah tujuanmu sudah tercapai?
           contentMy: Nobel Perdamaian yang kamu dapatkan sangat menginspirasi banyak
             anak-anak di dunia. Apakah tujuanmu sudah tercapai?
       - playerIsTalking: 0
         dialogueDelay: 2.5
         contentData:
-          playerExpression: 0
-          interlocutorSprite: {fileID: 21300000, guid: e60be4408d319ab4ebaff0dd7dc8a07f,
+          playerExpression: 2
+          interlocutorSprite: {fileID: 21300000, guid: 49f72ddc2d4a21343bb4665c02eab6a0,
             type: 3}
+          bgmClip: {fileID: 0}
           clipId: {fileID: 0}
           clipEn: {fileID: 0}
           clipMy: {fileID: 0}
-          contentId: Perjuangan harus terus dilanjutkan. Tidak boleh ada satupun
-            pihak di dunia ini yang melarang manusia untuk hidup bebas dan berpendidikan.
+          animPrefab: {fileID: 0}
           contentEn: The struggle must continue. There should not be a single party
             in this world that prohibits humans from living freely and being educated.
+          contentId: Perjuangan harus terus dilanjutkan. Tidak boleh ada satupun
+            pihak di dunia ini yang melarang manusia untuk hidup bebas dan berpendidikan.
           contentMy: Perjuangan harus terus dilanjutkan. Tidak boleh ada satupun
             pihak di dunia ini yang melarang manusia untuk hidup bebas dan berpendidikan.
       isDone: 0
@@ -62,27 +66,31 @@ MonoBehaviour:
         dialogueDelay: 2.5
         contentData:
           playerExpression: 0
-          interlocutorSprite: {fileID: 21300000, guid: e60be4408d319ab4ebaff0dd7dc8a07f,
+          interlocutorSprite: {fileID: 21300000, guid: 543e6feca00a0f04299844172c7cc76d,
             type: 3}
+          bgmClip: {fileID: 0}
           clipId: {fileID: 0}
           clipEn: {fileID: 0}
           clipMy: {fileID: 0}
-          contentId: Mengapa kamu sangat berani melawan?
+          animPrefab: {fileID: 0}
           contentEn: Why are you so brave to resist?
+          contentId: Mengapa kamu sangat berani melawan?
           contentMy: Mengapa kamu sangat berani melawan?
       - playerIsTalking: 0
         dialogueDelay: 2.5
         contentData:
-          playerExpression: 0
-          interlocutorSprite: {fileID: 21300000, guid: e60be4408d319ab4ebaff0dd7dc8a07f,
+          playerExpression: 2
+          interlocutorSprite: {fileID: 21300000, guid: 49f72ddc2d4a21343bb4665c02eab6a0,
             type: 3}
+          bgmClip: {fileID: 0}
           clipId: {fileID: 0}
           clipEn: {fileID: 0}
           clipMy: {fileID: 0}
-          contentId: Itu bentuk komitmenku. Aku sangat percaya bahwa hidup kita akan
-            lebih baik dengan pendidikan dan tanpa adanya terorisme di sekitar kita.
+          animPrefab: {fileID: 0}
           contentEn: That is my form of commitment. I really believe that our lives
             would be better with education and without terrorism around us.
+          contentId: Itu bentuk komitmenku. Aku sangat percaya bahwa hidup kita akan
+            lebih baik dengan pendidikan dan tanpa adanya terorisme di sekitar kita.
           contentMy: Itu bentuk komitmenku. Aku sangat percaya bahwa hidup kita akan
             lebih baik dengan pendidikan dan tanpa adanya terorisme di sekitar kita.
       isDone: 0
@@ -92,27 +100,31 @@ MonoBehaviour:
         dialogueDelay: 2.5
         contentData:
           playerExpression: 0
-          interlocutorSprite: {fileID: 21300000, guid: e60be4408d319ab4ebaff0dd7dc8a07f,
+          interlocutorSprite: {fileID: 21300000, guid: 543e6feca00a0f04299844172c7cc76d,
             type: 3}
+          bgmClip: {fileID: 0}
           clipId: {fileID: 0}
           clipEn: {fileID: 0}
           clipMy: {fileID: 0}
-          contentId: Kamu tidak takut?
+          animPrefab: {fileID: 0}
           contentEn: Aren't you afraid?
+          contentId: Kamu tidak takut?
           contentMy: Kamu tidak takut?
       - playerIsTalking: 0
         dialogueDelay: 2.5
         contentData:
           playerExpression: 0
-          interlocutorSprite: {fileID: 21300000, guid: e60be4408d319ab4ebaff0dd7dc8a07f,
+          interlocutorSprite: {fileID: 21300000, guid: 49f72ddc2d4a21343bb4665c02eab6a0,
             type: 3}
+          bgmClip: {fileID: 0}
           clipId: {fileID: 0}
           clipEn: {fileID: 0}
           clipMy: {fileID: 0}
-          contentId: Tidak! Walaupun saya perempuan, kami memliki hak yang sama di
-            dunia ini.
+          animPrefab: {fileID: 0}
           contentEn: No! Even though I am a woman, we have the same rights in this
             world.
+          contentId: Tidak! Walaupun saya perempuan, kami memliki hak yang sama di
+            dunia ini.
           contentMy: Tidak! Walaupun saya perempuan, kami memliki hak yang sama di
             dunia ini.
       isDone: 0

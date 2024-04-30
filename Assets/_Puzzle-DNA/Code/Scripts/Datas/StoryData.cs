@@ -22,11 +22,13 @@ public class ContentData
 {
     public ExpressionType playerExpression;
     public Sprite interlocutorSprite;
+    public AudioClip bgmClip;
     public AudioClip clipId;
     public AudioClip clipEn;
     public AudioClip clipMy;
-    [TextArea(5, 5)] public string contentId;
+    public GameObject animPrefab;
     [TextArea(5, 5)] public string contentEn;
+    [TextArea(5, 5)] public string contentId;
     [TextArea(5, 5)] public string contentMy;
 }
 

@@ -46,6 +46,7 @@ public class MainMenuHandler : MonoBehaviour
 
     [Header("Character Selection Attributes")]
     [SerializeField] Character character;
+    [SerializeField] AudioSource storyAudioSource;
     [SerializeField] AudioSource voAudioSource;
     [SerializeField] List<CharacterSelectionUI> characterSelections;
 
@@ -79,9 +80,6 @@ public class MainMenuHandler : MonoBehaviour
     public ScrollRect scrollRect;
     public float scrollSpeed;
     public bool scrollAutomatically;
-
-    [Header("When Finished 15 Levels")]
-    public GameObject storyAfter15Levels;
 
     private void Awake()
     {
@@ -372,7 +370,7 @@ public class MainMenuHandler : MonoBehaviour
         if (GameOverChecker())
             FinishHandler.instance.CalculateFinalResult();
         else if (UpTo15LevelsChecker())
-            storyAfter15Levels.SetActive(true);
+            LevelDataHandler.instance.SetTutorialStory("Story15Levels");
     }
 
     public bool ScoreChecker(List<Button> buttons)
@@ -453,6 +451,7 @@ public class MainMenuHandler : MonoBehaviour
     }
 
     public AudioSource GetVOSource() => voAudioSource;
+    public AudioSource GetStorySource() => storyAudioSource;
     #endregion
 
     #region OpenClosePanel

@@ -20,41 +20,47 @@ MonoBehaviour:
     dialogueStories:
     - playerIsTalking: 0
       contentData:
-        playerExpression: 0
-        interlocutorSprite: {fileID: 21300000, guid: 85c2e51e13b57df45b84fbee74f41167,
+        playerExpression: 2
+        interlocutorSprite: {fileID: 21300000, guid: 9eec07e68cd27bf45b3cf5dfba2ebade,
           type: 3}
+        bgmClip: {fileID: 0}
         clipId: {fileID: 0}
         clipEn: {fileID: 0}
         clipMy: {fileID: 0}
-        contentId: Halo selamat datang. Kamu datang jauh-jauh dari masa depan. Apakah
-          kamu mengenalku?
+        animPrefab: {fileID: 0}
         contentEn: Hello, welcome. You came all the way from the future. Do you know
           me?
+        contentId: Halo selamat datang. Kamu datang jauh-jauh dari masa depan. Apakah
+          kamu mengenalku?
         contentMy: Halo selamat datang. Kamu datang jauh-jauh dari masa depan. Apakah
           kamu mengenalku?
     - playerIsTalking: 1
       contentData:
         playerExpression: 0
-        interlocutorSprite: {fileID: 21300000, guid: 85c2e51e13b57df45b84fbee74f41167,
+        interlocutorSprite: {fileID: 21300000, guid: 96482bb989ea1c146bbf0f2ca31d263e,
           type: 3}
+        bgmClip: {fileID: 0}
         clipId: {fileID: 0}
         clipEn: {fileID: 0}
         clipMy: {fileID: 0}
-        contentId: Maafkan saya tidak mengenalmu.
+        animPrefab: {fileID: 0}
         contentEn: I'm sorry I don't know you.
+        contentId: Maafkan saya tidak mengenalmu.
         contentMy: Maafkan saya tidak mengenalmu.
     - playerIsTalking: 0
       contentData:
-        playerExpression: 0
-        interlocutorSprite: {fileID: 21300000, guid: 85c2e51e13b57df45b84fbee74f41167,
+        playerExpression: 1
+        interlocutorSprite: {fileID: 21300000, guid: 6a5dce08e0d594c478ef3346a6d37cd4,
           type: 3}
+        bgmClip: {fileID: 0}
         clipId: {fileID: 0}
         clipEn: {fileID: 0}
         clipMy: {fileID: 0}
-        contentId: Hahahaha tidak apa-apa. Perkenalkan saya Marcus Aeurelius. Aku
-          adalah  Kaisar Romawi ke-16. Ayo ikut aku berkeliling.
+        animPrefab: {fileID: 0}
         contentEn: Hahahaha it's okay. Let me introduce myself, Marcus Aurelius.
           I am the 16th Roman Emperor. Come with me around.
+        contentId: Hahahaha tidak apa-apa. Perkenalkan saya Marcus Aeurelius. Aku
+          adalah  Kaisar Romawi ke-16. Ayo ikut aku berkeliling.
         contentMy: Hahahaha tidak apa-apa. Perkenalkan saya Marcus Aeurelius. Aku
           adalah  Kaisar Romawi ke-16. Ayo ikut aku berkeliling.
   narrationType: 0

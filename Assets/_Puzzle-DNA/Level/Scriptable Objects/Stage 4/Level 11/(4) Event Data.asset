@@ -16,8 +16,6 @@ MonoBehaviour:
   backgroundSprite: {fileID: 21300000, guid: 272e9353bb92f5448b14827f1366c923, type: 3}
   tutorialKey: 
   dialogueStory:
-    playerIdleSprite: {fileID: 0}
-    interlocutorIdleSprite: {fileID: 0}
     interlocutorName: 
     dialogueStories: []
   narrationType: 2
@@ -36,7 +34,7 @@ MonoBehaviour:
       teka-teki sebelum dia memberikan atom. Teka-teki itu nampaknya tidak terlalu
       susah tapi memerlukan waktu untuk menyelesaikannya. Apa yang akan kamu lakukan?
     playerExpression: 4
-    characterSprite: {fileID: 21300000, guid: aca4036633c3f1948b9e65af93a7c729, type: 3}
+    characterSprite: {fileID: 21300000, guid: 34f421e42f8d7534ca223f3efdb317a4, type: 3}
     answers:
     - answerId: Dengan percaya diri menyelesaikan teka-teki itu tanpa meminta bantuan
         Ada Lovelace

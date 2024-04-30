@@ -16,44 +16,55 @@ MonoBehaviour:
   backgroundSprite: {fileID: 21300000, guid: 0bf3db385304db8459b2e1f3b6e2564a, type: 3}
   tutorialKey: 
   dialogueStory:
-    playerIdleSprite: {fileID: 0}
-    interlocutorIdleSprite: {fileID: 0}
     interlocutorName: 
     dialogueStories: []
   narrationType: 2
   narrationStories:
-  - usingCharacterSprite: 0
-    playerSprite: {fileID: 0}
+  - playerExpression: 0
     interlocutorSprite: {fileID: 0}
+    bgmClip: {fileID: 0}
     clipId: {fileID: 0}
     clipEn: {fileID: 0}
     clipMy: {fileID: 0}
-    contentId: Prof Woo menyampaikan adanya banyak atom baru yang terdeteksi di berbagai
-      belahan dunia, atomnya berada di orang orang hebat sepanjang masa.
+    animPrefab: {fileID: 0}
+    contentEn: '"Titut titut" (Voice Message sounds)'
+    contentId: '"Titut titut" (Pesan Suara berbunyi) '
+    contentMy: '"Titut titut" (Pesan Suara berbunyi) '
+  - playerExpression: 0
+    interlocutorSprite: {fileID: 0}
+    bgmClip: {fileID: 0}
+    clipId: {fileID: 0}
+    clipEn: {fileID: 0}
+    clipMy: {fileID: 0}
+    animPrefab: {fileID: 0}
     contentEn: Prof. Woo said that there were many new atoms detected in various
       parts of the world, the atoms of which were in great people of all time.
+    contentId: Prof Woo menyampaikan adanya banyak atom baru yang terdeteksi di berbagai
+      belahan dunia, atomnya berada di orang orang hebat sepanjang masa.
     contentMy: Prof Woo menyampaikan adanya banyak atom baru yang terdeteksi di berbagai
       belahan dunia, atomnya berada di orang orang hebat sepanjang masa.
-  - usingCharacterSprite: 0
-    playerSprite: {fileID: 0}
+  - playerExpression: 0
     interlocutorSprite: {fileID: 0}
+    bgmClip: {fileID: 0}
     clipId: {fileID: 0}
     clipEn: {fileID: 0}
     clipMy: {fileID: 0}
-    contentId: Ini kesempatan baik untukmu, untuk mengenal tokoh tokoh hebat sepanjang
-      masa dan menciptakan robot Aiden versi terbaik.
+    animPrefab: {fileID: 0}
     contentEn: This is a good opportunity for you to get to know the great characters
       of all time and create the best version of the Aiden robot.
+    contentId: Ini kesempatan baik untukmu, untuk mengenal tokoh tokoh hebat sepanjang
+      masa dan menciptakan robot Aiden versi terbaik.
     contentMy: Ini kesempatan baik untukmu, untuk mengenal tokoh tokoh hebat sepanjang
       masa dan menciptakan robot Aiden versi terbaik.
-  - usingCharacterSprite: 0
-    playerSprite: {fileID: 0}
+  - playerExpression: 0
     interlocutorSprite: {fileID: 0}
+    bgmClip: {fileID: 0}
     clipId: {fileID: 0}
     clipEn: {fileID: 0}
     clipMy: {fileID: 0}
-    contentId: Mari kita berangkat!!
+    animPrefab: {fileID: 0}
     contentEn: Let's go!!
+    contentId: Mari kita berangkat!!
     contentMy: Mari kita berangkat!!
   popUpStories: []
   titleStories: []
@@ -70,6 +81,7 @@ MonoBehaviour:
       Kevin berpendapat kamu adalah teman yang baik dan cocok untuk menemaninya berlatih.
       Kevin ingin kamu tetap berada disini dan melarangmu untuk pergi. Apa yang kamu
       katakan?
+    playerExpression: 0
     characterSprite: {fileID: 21300000, guid: 5ecd0795ea748f64a88cd0efda2c734a, type: 3}
     answers:
     - answerId: '"Aku ingin berteman lama denganmu Kevin, tapi sepertinya olahraga

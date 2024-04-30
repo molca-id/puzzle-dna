@@ -2,6 +2,7 @@ using ActionCode.Attributes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
@@ -16,7 +17,11 @@ public class SequenceEventsData
     [ShowIf("willPlayVO")] public AudioClip voClipEn;
     [ShowIf("willPlayVO")] public AudioClip voClipId;
     [ShowIf("willPlayVO")] public AudioClip voClipMy;
+    public bool willGetPlayerSprite;
+    [ShowIf("willGetPlayerSprite")] public ExpressionType playerExpressionType;
+    [ShowIf("willGetPlayerSprite")] public Image playerCharImage;
     public bool skippableWithoutDelay;
+    public AudioClip bgmClip;
     public UnityEvent whenGameLoaded;
     public UnityEvent whenGameUnloaded;
     public UnityEvent sequenceEvent;
@@ -39,6 +44,7 @@ public class SequencePanelHandler : MonoBehaviour
     public float delaySkippable;
     public bool isSkippable;
 
+    AudioSource storyAudioSource;
     AudioSource voAudioSource;
 
     void Start()
@@ -53,6 +59,7 @@ public class SequencePanelHandler : MonoBehaviour
         SetPanel();
 
         voAudioSource = MainMenuHandler.instance.GetVOSource();
+        storyAudioSource = MainMenuHandler.instance.GetStorySource();
         if (parentPanel.Count == 0) return; 
         parentPanel.ForEach(panel =>
         {
@@ -63,6 +70,18 @@ public class SequencePanelHandler : MonoBehaviour
     public void SetPanel()
     {
         SequenceEventsData data = sequenceEvents[index];
+        if (data.willGetPlayerSprite)
+        {
+            data.playerCharImage.sprite = 
+                DataHandler.instance.GetPlayerSprite(data.playerExpressionType);
+        }
+
+        if (data.bgmClip != null)
+        {
+            storyAudioSource.clip = data.bgmClip;
+            storyAudioSource.Play();
+        }
+
         if (data.willPlayVO)
         {
             AudioClip clip;
@@ -99,6 +118,12 @@ public class SequencePanelHandler : MonoBehaviour
         if (index >= sequenceEvents.Count - 1) return;
         if (!skippableAlthoughVO && data.willPlayVO) return;
         if (!isSkippable) return;
+
+        if (storyAudioSource != null &&
+            storyAudioSource.isPlaying)
+        {
+            storyAudioSource.Stop();
+        }
 
         if (voAudioSource != null &&
             voAudioSource.isPlaying)

@@ -21,6 +21,8 @@ public class LevelDataHandler : MonoBehaviour
     public static LevelDataHandler instance;
 
     [Header("General Story Attributes")]
+    public bool isSkippable;
+    public int delayTime;
     public int splashSpeed;
     public GameObject storyPanel;
     public Image backgroundImage;
@@ -227,6 +229,7 @@ public class LevelDataHandler : MonoBehaviour
 
     public void SetDialogueStory(int factor)
     {
+        if (!isSkippable) return;
         dialogueIndex += factor;
         if (dialogueIndex == currentStoryData.dialogueStory.dialogueStories.Count)
         {
@@ -264,18 +267,21 @@ public class LevelDataHandler : MonoBehaviour
         if (DataHandler.instance.GetLanguage() == "id")
             SetStory(
                 currContent,
+                dialogue.contentData.bgmClip,
                 dialogue.contentData.clipId,
                 dialogue.contentData.contentId
                 );
         else if (DataHandler.instance.GetLanguage() == "en")
             SetStory(
                 currContent,
+                dialogue.contentData.bgmClip,
                 dialogue.contentData.clipEn,
                 dialogue.contentData.contentEn
                 );
         else
             SetStory(
                 currContent,
+                dialogue.contentData.bgmClip,
                 dialogue.contentData.clipMy,
                 dialogue.contentData.contentMy
                 );
@@ -287,6 +293,7 @@ public class LevelDataHandler : MonoBehaviour
 
     public void SetNarrationStory(int factor)
     {
+        if (!isSkippable) return;
         narrationIndex += factor;
         if (narrationIndex == currentStoryData.narrationStories.Count)
         {
@@ -302,18 +309,25 @@ public class LevelDataHandler : MonoBehaviour
         }
 
         narrationText = null;
+        narrationTextAbove.transform.parent.gameObject.SetActive(false);
+        narrationTextMiddle.transform.parent.gameObject.SetActive(false);
+        narrationTextUnder.transform.parent.gameObject.SetActive(false);
         narrationPanelWithBG.SetActive(false);
+
         narrationTextAbove.text = narrationTextMiddle.text = narrationTextUnder.text = "";
         switch (currentStoryData.narrationType)
         {
             case StoryData.NarrationType.Above:
                 narrationText = narrationTextAbove;
+                narrationText.transform.parent.gameObject.SetActive(true);
                 break;
             case StoryData.NarrationType.Middle:
                 narrationText = narrationTextMiddle;
+                narrationText.transform.parent.gameObject.SetActive(true);
                 break;
             case StoryData.NarrationType.Under:
                 narrationText = narrationTextUnder;
+                narrationText.transform.parent.gameObject.SetActive(true);
                 break;
             case StoryData.NarrationType.WithBG:
                 narrationText = narrationTextWithBG;
@@ -336,18 +350,21 @@ public class LevelDataHandler : MonoBehaviour
         if (DataHandler.instance.GetLanguage() == "id")
             SetStory(
                 narrationText,
+                currentStoryData.narrationStories[narrationIndex].bgmClip,
                 currentStoryData.narrationStories[narrationIndex].clipId,
                 currentStoryData.narrationStories[narrationIndex].contentId
                 );
         else if (DataHandler.instance.GetLanguage() == "en")
             SetStory(
                 narrationText,
+                currentStoryData.narrationStories[narrationIndex].bgmClip,
                 currentStoryData.narrationStories[narrationIndex].clipEn,
                 currentStoryData.narrationStories[narrationIndex].contentEn
                 );
         else
             SetStory(
                 narrationText,
+                currentStoryData.narrationStories[narrationIndex].bgmClip,
                 currentStoryData.narrationStories[narrationIndex].clipMy,
                 currentStoryData.narrationStories[narrationIndex].contentMy
                 );
@@ -356,6 +373,7 @@ public class LevelDataHandler : MonoBehaviour
 
     public void SetPopUpStory(int factor)
     {
+        if (!isSkippable) return;
         popUpIndex += factor;
         if (popUpIndex == currentStoryData.popUpStories.Count)
         {
@@ -374,18 +392,21 @@ public class LevelDataHandler : MonoBehaviour
         if (DataHandler.instance.GetLanguage() == "id")
             SetStory(
                 popUpText,
+                currentStoryData.popUpStories[narrationIndex].bgmClip,
                 currentStoryData.popUpStories[narrationIndex].clipId,
                 currentStoryData.popUpStories[narrationIndex].contentId
                 );
         else if (DataHandler.instance.GetLanguage() == "en")
             SetStory(
                 popUpText,
+                currentStoryData.popUpStories[narrationIndex].bgmClip,
                 currentStoryData.popUpStories[narrationIndex].clipEn,
                 currentStoryData.popUpStories[narrationIndex].contentEn
                 );
         else
             SetStory(
                 popUpText,
+                currentStoryData.popUpStories[narrationIndex].bgmClip,
                 currentStoryData.popUpStories[narrationIndex].clipMy,
                 currentStoryData.popUpStories[narrationIndex].contentMy
                 );
@@ -394,6 +415,7 @@ public class LevelDataHandler : MonoBehaviour
 
     public void SetTitleStory(int factor)
     {
+        if (!isSkippable) return;
         titleIndex += factor;
         if (titleIndex == currentStoryData.titleStories.Count)
         {
@@ -412,18 +434,21 @@ public class LevelDataHandler : MonoBehaviour
         if (DataHandler.instance.GetLanguage() == "id")
             SetStory(
                 titleText,
+                currentStoryData.titleStories[narrationIndex].bgmClip,
                 currentStoryData.titleStories[narrationIndex].clipId,
                 currentStoryData.titleStories[narrationIndex].contentId
                 );
         else if (DataHandler.instance.GetLanguage() == "en")
             SetStory(
                 titleText,
+                currentStoryData.titleStories[narrationIndex].bgmClip,
                 currentStoryData.titleStories[narrationIndex].clipEn,
                 currentStoryData.titleStories[narrationIndex].contentEn
                 );
         else
             SetStory(
                 titleText,
+                currentStoryData.titleStories[narrationIndex].bgmClip,
                 currentStoryData.titleStories[narrationIndex].clipMy,
                 currentStoryData.titleStories[narrationIndex].contentMy
                 );
@@ -432,19 +457,33 @@ public class LevelDataHandler : MonoBehaviour
 
     public void SetTutorialStory(string key)
     {
+        if (!isSkippable) return;
         FindObjectsOfType<SequencePanelHandler>().ToList().
             Find(seq => seq.key == key).Init();
     }
 
-    public void SetStory(TextMeshProUGUI text, AudioClip clip, string textValue)
+    public void SetStory(TextMeshProUGUI text, AudioClip storyClip, AudioClip clip, string textValue)
     {
         AudioSource voAudioSource = MainMenuHandler.instance.GetVOSource();
+        AudioSource storyAudioSource = MainMenuHandler.instance.GetStorySource();
+
         voAudioSource.Stop();
+        storyAudioSource.Stop();
         text.text = textValue;
-        
-        if (clip == null) return;
-        voAudioSource.clip = clip;
-        voAudioSource.Play();
+
+        if (storyClip != null)
+        {
+            storyAudioSource.clip = storyClip;
+            storyAudioSource.Play();
+        }
+
+        if (clip != null)
+        {
+            voAudioSource.clip = clip;
+            voAudioSource.Play();
+        }
+
+        StartCoroutine(IESetSkippable());
     }
 
     public void SetPrologueStory(bool isDone)
@@ -486,4 +525,11 @@ public class LevelDataHandler : MonoBehaviour
         executeAfter?.Invoke();
     }
     #endregion
+
+    IEnumerator IESetSkippable()
+    {
+        isSkippable = false;
+        yield return new WaitForSeconds(delayTime);
+        isSkippable = true;
+    }
 }

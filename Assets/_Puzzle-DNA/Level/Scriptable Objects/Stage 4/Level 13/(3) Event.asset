@@ -36,8 +36,8 @@ MonoBehaviour:
       romawi dengan sangat baik. Kamu sempat berbicara dengan beberapa warga dan
       pegawai kerajaan. Banyak hal positif yang mereka sampaikan mengenai kepemimpinan
       Marcus Aurelius. Tapi ada satu hal yang menurutmu sangat menarik, yaitu:'
-    playerExpression: 0
-    characterSprite: {fileID: 0}
+    playerExpression: 4
+    characterSprite: {fileID: 21300000, guid: 9eec07e68cd27bf45b3cf5dfba2ebade, type: 3}
     answers:
     - answerId: Keharmonisan rakyat menjadi fokus utama walaupun ada beberapa masalah
         yang harus ditunda untuk diselesaikan

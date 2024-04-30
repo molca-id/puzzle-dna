@@ -1792,66 +1792,66 @@ MonoBehaviour:
     - expressionType: 0
       sprite: {fileID: 21300000, guid: af60f89ce32178c47b09edb234f14dc5, type: 3}
     - expressionType: 1
-      sprite: {fileID: 0}
+      sprite: {fileID: 21300000, guid: 1b5076a8a06d4434faa324866fd7e6dd, type: 3}
     - expressionType: 2
-      sprite: {fileID: 0}
+      sprite: {fileID: 21300000, guid: f8a15d6be3515c44a9f2b55f518055e6, type: 3}
     - expressionType: 3
-      sprite: {fileID: 0}
+      sprite: {fileID: 21300000, guid: c4e0355d0b4b2074789359409db4fedc, type: 3}
   - name: Rei
     character: 1
     expressionDatas:
     - expressionType: 0
       sprite: {fileID: 21300000, guid: 041fc78ead0b422489d0cca9ae25b60b, type: 3}
     - expressionType: 1
-      sprite: {fileID: 0}
+      sprite: {fileID: 21300000, guid: eea7e9b767bc9364da7d1f25ba549093, type: 3}
     - expressionType: 2
-      sprite: {fileID: 0}
+      sprite: {fileID: 21300000, guid: d3d63ee1499df8c46952b3b6bbf0a89e, type: 3}
     - expressionType: 3
-      sprite: {fileID: 0}
+      sprite: {fileID: 21300000, guid: 696e8ca87921d7140aceb45eef064e4e, type: 3}
   - name: Budi
     character: 2
     expressionDatas:
     - expressionType: 0
       sprite: {fileID: 21300000, guid: d22d1ecfaad86624e84ef3aebca91901, type: 3}
     - expressionType: 1
-      sprite: {fileID: 0}
+      sprite: {fileID: 21300000, guid: 6c371f07658c8aa418df5a4188859ac2, type: 3}
     - expressionType: 2
-      sprite: {fileID: 0}
+      sprite: {fileID: 21300000, guid: 1d92f14f1ee73244492b94d84d0b6133, type: 3}
     - expressionType: 3
-      sprite: {fileID: 0}
+      sprite: {fileID: 21300000, guid: d9f09175092f136429a0fcdfbaa3eb86, type: 3}
   - name: Bunga
     character: 3
     expressionDatas:
     - expressionType: 0
       sprite: {fileID: 21300000, guid: d71936a6ec6bbf64899b5fb702ac3f53, type: 3}
     - expressionType: 1
-      sprite: {fileID: 0}
+      sprite: {fileID: 21300000, guid: 8c5249caaa5235f46a0183aa49c38c18, type: 3}
     - expressionType: 2
-      sprite: {fileID: 0}
+      sprite: {fileID: 21300000, guid: ed0b0cfae60057144ab87ae24ea537ff, type: 3}
     - expressionType: 3
-      sprite: {fileID: 0}
+      sprite: {fileID: 21300000, guid: 50d96efe3bc570943a3731891eb09e57, type: 3}
   - name: Fatimah
     character: 4
     expressionDatas:
     - expressionType: 0
       sprite: {fileID: 21300000, guid: f2f5b3dd821e58247868c107ea4e1484, type: 3}
     - expressionType: 1
-      sprite: {fileID: 0}
+      sprite: {fileID: 21300000, guid: 8ebd29726985b7140a7a7d8a0615e146, type: 3}
     - expressionType: 2
-      sprite: {fileID: 0}
+      sprite: {fileID: 21300000, guid: 2ee93a49321c9d646b6be65f291c56f4, type: 3}
     - expressionType: 3
-      sprite: {fileID: 0}
+      sprite: {fileID: 21300000, guid: 15a16e6fecc636749a5b60eea9317b92, type: 3}
   - name: Mentari
     character: 5
     expressionDatas:
     - expressionType: 0
       sprite: {fileID: 21300000, guid: 2fbcdc0c8c33c9b4097923d71b6b0aa2, type: 3}
     - expressionType: 1
-      sprite: {fileID: 0}
+      sprite: {fileID: 21300000, guid: 5a63e7579658fe6408b542111b22e9cd, type: 3}
     - expressionType: 2
-      sprite: {fileID: 0}
+      sprite: {fileID: 21300000, guid: 0c8960b6aa58adf49b35ac215ffb8452, type: 3}
     - expressionType: 3
-      sprite: {fileID: 0}
+      sprite: {fileID: 21300000, guid: 94396eea71009004382cd3a1c8b96ee8, type: 3}
   currentUserData:
     success: 0
     message: 

@@ -22,13 +22,25 @@ MonoBehaviour:
   narrationStories:
   - playerExpression: 0
     interlocutorSprite: {fileID: 0}
+    bgmClip: {fileID: 0}
     clipId: {fileID: 0}
     clipEn: {fileID: 0}
     clipMy: {fileID: 0}
-    contentId: Beberapa atom terdeteksi di area Taman Mini Indonesia Indah di tahun
-      1975 dan Tembok Besar Cina di Tahun 600 sebelum masehi.
+    animPrefab: {fileID: 0}
+    contentEn: '"Titut titut" (Voice Message sounds)'
+    contentId: '"Titut titut" (Pesan Suara berbunyi) '
+    contentMy: '"Titut titut" (Pesan Suara berbunyi) '
+  - playerExpression: 0
+    interlocutorSprite: {fileID: 0}
+    bgmClip: {fileID: 0}
+    clipId: {fileID: 0}
+    clipEn: {fileID: 0}
+    clipMy: {fileID: 0}
+    animPrefab: {fileID: 0}
     contentEn: Several atoms were detected in the Taman Mini Indonesia Indah area
       in 1975 and the Great Wall of China in 600 BC.
+    contentId: Beberapa atom terdeteksi di area Taman Mini Indonesia Indah di tahun
+      1975 dan Tembok Besar Cina di Tahun 600 sebelum masehi.
     contentMy: Beberapa atom terdeteksi di area Taman Mini Indonesia Indah di tahun
       1975 dan Tembok Besar Cina di Tahun 600 sebelum masehi.
   popUpStories: []

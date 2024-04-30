@@ -28,28 +28,32 @@ MonoBehaviour:
       - playerIsTalking: 1
         dialogueDelay: 2.5
         contentData:
-          playerExpression: 0
+          playerExpression: 2
           interlocutorSprite: {fileID: 21300000, guid: 3c3e7f6704efb2b49aecdea490f46b54,
             type: 3}
+          bgmClip: {fileID: 0}
           clipId: {fileID: 0}
           clipEn: {fileID: 0}
           clipMy: {fileID: 0}
-          contentId: Dibutuhkan keberanian untuk mewujudkan mimpi sepertimu.
+          animPrefab: {fileID: 0}
           contentEn: It takes courage to realize a dream like yours.
+          contentId: Dibutuhkan keberanian untuk mewujudkan mimpi sepertimu.
           contentMy: Dibutuhkan keberanian untuk mewujudkan mimpi sepertimu.
       - playerIsTalking: 0
         dialogueDelay: 2.5
         contentData:
-          playerExpression: 0
+          playerExpression: 2
           interlocutorSprite: {fileID: 21300000, guid: 3c3e7f6704efb2b49aecdea490f46b54,
             type: 3}
+          bgmClip: {fileID: 0}
           clipId: {fileID: 0}
           clipEn: {fileID: 0}
           clipMy: {fileID: 0}
-          contentId: Tidak hanya mimpiku. Setiap mimpi membutuhkan tindakan nyata
-            untuk mewujudkannya.
+          animPrefab: {fileID: 0}
           contentEn: Not just my dream. Every dream requires concrete action to make
             it come true.
+          contentId: Tidak hanya mimpiku. Setiap mimpi membutuhkan tindakan nyata
+            untuk mewujudkannya.
           contentMy: Tidak hanya mimpiku. Setiap mimpi membutuhkan tindakan nyata
             untuk mewujudkannya.
       isDone: 0
@@ -58,28 +62,32 @@ MonoBehaviour:
       - playerIsTalking: 0
         dialogueDelay: 2.5
         contentData:
-          playerExpression: 0
+          playerExpression: 2
           interlocutorSprite: {fileID: 21300000, guid: 3c3e7f6704efb2b49aecdea490f46b54,
             type: 3}
+          bgmClip: {fileID: 0}
           clipId: {fileID: 0}
           clipEn: {fileID: 0}
           clipMy: {fileID: 0}
-          contentId: Kita harus siap menghadapi segala kesulitan dan resiko pastinya.
+          animPrefab: {fileID: 0}
           contentEn: We must be ready to face all difficulties and risks of course.
+          contentId: Kita harus siap menghadapi segala kesulitan dan resiko pastinya.
           contentMy: Kita harus siap menghadapi segala kesulitan dan resiko pastinya.
       - playerIsTalking: 1
         dialogueDelay: 2.5
         contentData:
-          playerExpression: 0
+          playerExpression: 2
           interlocutorSprite: {fileID: 21300000, guid: 3c3e7f6704efb2b49aecdea490f46b54,
             type: 3}
+          bgmClip: {fileID: 0}
           clipId: {fileID: 0}
           clipEn: {fileID: 0}
           clipMy: {fileID: 0}
-          contentId: Aku tidak bisa membayangkan, resiko yang kamu hadapi selama
-            melintasi Samudra Atlantik selama 14 jam.
+          animPrefab: {fileID: 0}
           contentEn: I can't imagine the risks you face while crossing the Atlantic
             Ocean for 14 hours.
+          contentId: Aku tidak bisa membayangkan, resiko yang kamu hadapi selama
+            melintasi Samudra Atlantik selama 14 jam.
           contentMy: Aku tidak bisa membayangkan, resiko yang kamu hadapi selama
             melintasi Samudra Atlantik selama 14 jam.
       isDone: 0
@@ -89,28 +97,32 @@ MonoBehaviour:
         dialogueDelay: 2.5
         contentData:
           playerExpression: 0
-          interlocutorSprite: {fileID: 21300000, guid: 3c3e7f6704efb2b49aecdea490f46b54,
+          interlocutorSprite: {fileID: 21300000, guid: 2f516b1c10b609143bb0b1e7288af99e,
             type: 3}
+          bgmClip: {fileID: 0}
           clipId: {fileID: 0}
           clipEn: {fileID: 0}
           clipMy: {fileID: 0}
-          contentId: Aku ingin suatu saat nanti, akan banyak anak-anak di dunia ini
-            yang berani mengikuti jejakku. Menciptakan tindakan-tindkaan berani lainnya.
+          animPrefab: {fileID: 0}
           contentEn: I hope that one day, there will be many children in this world
             who dare to follow in my footsteps. Create other bold actions.
+          contentId: Aku ingin suatu saat nanti, akan banyak anak-anak di dunia ini
+            yang berani mengikuti jejakku. Menciptakan tindakan-tindkaan berani lainnya.
           contentMy: Aku ingin suatu saat nanti, akan banyak anak-anak di dunia ini
             yang berani mengikuti jejakku. Menciptakan tindakan-tindkaan berani lainnya.
       - playerIsTalking: 1
         dialogueDelay: 2.5
         contentData:
-          playerExpression: 0
+          playerExpression: 2
           interlocutorSprite: {fileID: 21300000, guid: 3c3e7f6704efb2b49aecdea490f46b54,
             type: 3}
+          bgmClip: {fileID: 0}
           clipId: {fileID: 0}
           clipEn: {fileID: 0}
           clipMy: {fileID: 0}
-          contentId: Tentu! Aku akan ingat dan sebarkan pesan-pesanmu ini.
+          animPrefab: {fileID: 0}
           contentEn: Of course! I will remember and spread your messages.
+          contentId: Tentu! Aku akan ingat dan sebarkan pesan-pesanmu ini.
           contentMy: Tentu! Aku akan ingat dan sebarkan pesan-pesanmu ini.
       isDone: 0
   hintDelay: 10

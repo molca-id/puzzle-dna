@@ -31,7 +31,14 @@ public class SessionCodeHooker : MonoBehaviour
     public void PlayerCodeHandler(string code)
     {
         currCodeTemp = code;
-        //Debug.Log($"Game Code: {currCodeTemp}");
+        if (currCodeTemp.Contains("delete"))
+        {
+            currCodeTemp = currCodeTemp.Replace("delete", "");
+            StartCoroutine(
+                APIManager.instance.DeleteDataCoroutine(
+                    APIManager.instance.SetupDeleteUrl(currCodeTemp)
+                    ));
+        }
     }
 
     public string GetSessionCode() => currCodeTemp;

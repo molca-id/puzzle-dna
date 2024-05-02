@@ -15,17 +15,16 @@ MonoBehaviour:
   boardDimension: {x: 5, y: 4}
   gameLevel: 3
   abilityDriveDuration: 5
-  backgroundGame: {fileID: 21300000, guid: 5507adc3e05f4f94fb60a6c20b1ef965, type: 3}
+  backgroundGame: {fileID: 21300000, guid: 64957760a3b551f4393ab723e11aac6d, type: 3}
   layoutGame: {fileID: 0}
-  dialogues:
-    playerIdleSprite: {fileID: 0}
-    interlocutorIdleSprite: {fileID: 0}
-    interlocutorName: 
-    dialogueBonus: []
   usingDialogueBonus: 0
+  dialogues:
+    interlocutorName: 
+    interlocutorIdleSprite: {fileID: 0}
+    dialogueBonus: []
   hintDelay: 10
   totalTime: 30
-  usingTutorial: 0
+  tutorialKey: 
   usingHandHint: 0
   gems:
   - type: 0

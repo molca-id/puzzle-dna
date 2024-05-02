@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: (-) Objective Story
   m_EditorClassIdentifier: 
   storyType: 1
-  backgroundSprite: {fileID: 21300000, guid: 0bf3db385304db8459b2e1f3b6e2564a, type: 3}
+  backgroundSprite: {fileID: 21300000, guid: 5ad6039e348729e4d824b77356905f16, type: 3}
   tutorialKey: 
   dialogueStory:
     interlocutorName: 
@@ -22,17 +22,19 @@ MonoBehaviour:
   narrationStories:
   - playerExpression: 0
     interlocutorSprite: {fileID: 0}
+    bgmClip: {fileID: 0}
     clipId: {fileID: 0}
     clipEn: {fileID: 0}
     clipMy: {fileID: 0}
-    contentId: 'Mari diskusi dengan Adam Malik
-
-      "Perbanyak scoremu untuk bicara
-      dengannya"'
+    animPrefab: {fileID: 0}
     contentEn: 'Let''s discuss with Adam Malik
 
       "Increase your score to talk
       to him"'
+    contentId: 'Mari diskusi dengan Adam Malik
+
+      "Perbanyak scoremu untuk bicara
+      dengannya"'
     contentMy: 'Mari diskusi dengan Adam Malik
 
       "Perbanyak scoremu untuk bicara

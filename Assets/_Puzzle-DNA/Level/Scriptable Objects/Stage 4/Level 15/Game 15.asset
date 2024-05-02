@@ -15,7 +15,7 @@ MonoBehaviour:
   boardDimension: {x: 6, y: 6}
   gameLevel: 15
   abilityDriveDuration: 5
-  backgroundGame: {fileID: 21300000, guid: 5ad6039e348729e4d824b77356905f16, type: 3}
+  backgroundGame: {fileID: 21300000, guid: 76cdae37a09f03143b626ecbeb54c070, type: 3}
   layoutGame: {fileID: 21300000, guid: 5917939e2fa7ab8418017c96a7a2a7cb, type: 3}
   usingDialogueBonus: 1
   dialogues:

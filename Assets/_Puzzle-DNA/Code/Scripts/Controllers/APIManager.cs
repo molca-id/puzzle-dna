@@ -24,6 +24,7 @@ public class APIManager : MonoBehaviour
     [SerializeField] string sendResult = "get_result";
 
     [Header("Error Handler")]
+    public GameObject deletePanel;
     public GameObject errorPanel;
 
     private void Awake()
@@ -133,5 +134,29 @@ public class APIManager : MonoBehaviour
             errorPanel.SetActive(true);
         else
             SetDataEvent(request.downloadHandler.text);
+    }
+
+    public IEnumerator DeleteDataCoroutine(string url)
+    {
+        deletePanel.SetActive(true);
+        Time.timeScale = 0f;
+
+        using (UnityWebRequest request = UnityWebRequest.Delete(url))
+        {
+            yield return request.SendWebRequest();
+            Time.timeScale = 1f;
+
+            if (request.result != UnityWebRequest.Result.Success)
+            {
+                Debug.LogError("Failed to delete data: " + request.error);
+            }
+            else
+            {
+                Debug.Log("Data deleted successfully.");
+                string currentUrl = Application.absoluteURL.Replace("delete", "");
+                Debug.Log($"{currentUrl}");
+                Application.ExternalEval("window.open('" + currentUrl + "', '_self')");
+            }
+        }
     }
 }

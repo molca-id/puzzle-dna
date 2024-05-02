@@ -30,6 +30,7 @@ public class PerksHandler : MonoBehaviour
     public class PerksValueData
     {
         public string perks_name;
+        public string deskripsi_singkat_game;
         public int perks_point;
         [HideInInspector] public string perks_id;
         [HideInInspector] public string perks_deskripsi_singkat;
@@ -271,6 +272,7 @@ public class PerksHandler : MonoBehaviour
                         perkTemp.perks_id = talent.id;
                         perkTemp.perks_deskripsi_panjang = talent.deskripsi.deskripsi.Replace("\n", "");
                         perkTemp.perks_deskripsi_singkat = talent.deskripsi.deskripsi_singkat;
+                        perkTemp.deskripsi_singkat_game = talent.deskripsi.deskripsi_singkat_game;
                         perkTemp.perks_point = perk.perks_point;
 
                         if (perkTemp.perks_background.Count == 0)
@@ -375,7 +377,7 @@ public class PerksHandler : MonoBehaviour
     {
         pivotPoint = currentPerk.perks_point;
         perkName.text = currentPerk.perks_name;
-        perkTagline.text = currentPerk.perks_deskripsi_singkat;
+        perkTagline.text = currentPerk.deskripsi_singkat_game;
         perkDescription.text = currentPerk.perks_deskripsi_panjang;
         
         perksDetailPanel.SetActive(true);

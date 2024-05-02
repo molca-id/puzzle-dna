@@ -18,6 +18,7 @@ namespace TalentDataSpace
     [Serializable]
     public class TalentDescriptionData
     {
+        public string deskripsi_singkat_game;
         public string deskripsi_singkat;
         public string deskripsi;
         [HideInInspector] public string deskripsi_paragraf;

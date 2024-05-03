@@ -20,12 +20,13 @@ MonoBehaviour:
     dialogueStories: []
   narrationType: 2
   narrationStories:
-  - playerExpression: 0
+  - playerExpression: 4
     interlocutorSprite: {fileID: 0}
     bgmClip: {fileID: 0}
     clipId: {fileID: 0}
     clipEn: {fileID: 0}
     clipMy: {fileID: 0}
+    animPrefab: {fileID: 0}
     contentEn: Come on! Meet a health volunteer who is helping the local community.
       Help Him complete his task and He will take you to your destination!
     contentId: Ayo! Temui seorang relawan kesehatan yang sedang membantu masyarakat

@@ -20,7 +20,7 @@ MonoBehaviour:
     dialogueStories: []
   narrationType: 2
   narrationStories:
-  - playerExpression: 0
+  - playerExpression: 4
     interlocutorSprite: {fileID: 0}
     bgmClip: {fileID: 0}
     clipId: {fileID: 0}
@@ -34,7 +34,7 @@ MonoBehaviour:
       bersemangat menghadapi tantangan dan pengalaman seru di depan mata.
     contentMy: Berhasil! Kamu bersiap melanjutkan ke tempat berikutnya. Kamu sangat
       bersemangat menghadapi tantangan dan pengalaman seru di depan mata.
-  - playerExpression: 0
+  - playerExpression: 4
     interlocutorSprite: {fileID: 0}
     bgmClip: {fileID: 0}
     clipId: {fileID: 0}
@@ -44,7 +44,7 @@ MonoBehaviour:
     contentEn: '"Titut titut" (Voice Message sounds)'
     contentId: '"Titut titut" (Pesan Suara berbunyi) '
     contentMy: '"Titut titut" (Pesan Suara berbunyi) '
-  - playerExpression: 0
+  - playerExpression: 4
     interlocutorSprite: {fileID: 0}
     bgmClip: {fileID: 0}
     clipId: {fileID: 0}
@@ -56,7 +56,7 @@ MonoBehaviour:
       3008.
     contentMy: Kamu mendapatkan notifikasi bahwa ada atom yang terdeteksi di tahun
       3008.
-  - playerExpression: 0
+  - playerExpression: 4
     interlocutorSprite: {fileID: 0}
     bgmClip: {fileID: 0}
     clipId: {fileID: 0}

@@ -16,24 +16,23 @@ MonoBehaviour:
   backgroundSprite: {fileID: 21300000, guid: 272e9353bb92f5448b14827f1366c923, type: 3}
   tutorialKey: 
   dialogueStory:
-    playerIdleSprite: {fileID: 0}
-    interlocutorIdleSprite: {fileID: 0}
     interlocutorName: 
     dialogueStories: []
   narrationType: 2
   narrationStories:
-  - usingCharacterSprite: 0
-    playerSprite: {fileID: 0}
+  - playerExpression: 4
     interlocutorSprite: {fileID: 0}
+    bgmClip: {fileID: 0}
     clipId: {fileID: 0}
     clipEn: {fileID: 0}
     clipMy: {fileID: 0}
-    contentId: Saat kamu tiba, ada seorang perempuan sedang duduk di ruang kerjanya.
-      Saat kamu menghampirinya, kamu melihat banyak buku terbuka di atas mejanya.
-      Tiba tiba ada yang memanggilmu...
+    animPrefab: {fileID: 0}
     contentEn: When you arrive, there is a woman sitting in her office. When you
       approached him, you saw a lot of open books on his table. Suddenly someone
       calls you...
+    contentId: Saat kamu tiba, ada seorang perempuan sedang duduk di ruang kerjanya.
+      Saat kamu menghampirinya, kamu melihat banyak buku terbuka di atas mejanya.
+      Tiba tiba ada yang memanggilmu...
     contentMy: Saat kamu tiba, ada seorang perempuan sedang duduk di ruang kerjanya.
       Saat kamu menghampirinya, kamu melihat banyak buku terbuka di atas mejanya.
       Tiba tiba ada yang memanggilmu...
@@ -44,5 +43,6 @@ MonoBehaviour:
     questionId: 
     questionEn: 
     questionMy: 
+    playerExpression: 0
     characterSprite: {fileID: 0}
     answers: []

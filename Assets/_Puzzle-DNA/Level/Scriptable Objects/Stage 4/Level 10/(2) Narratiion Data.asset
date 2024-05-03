@@ -16,34 +16,34 @@ MonoBehaviour:
   backgroundSprite: {fileID: 21300000, guid: 272e9353bb92f5448b14827f1366c923, type: 3}
   tutorialKey: 
   dialogueStory:
-    playerIdleSprite: {fileID: 0}
-    interlocutorIdleSprite: {fileID: 0}
     interlocutorName: 
     dialogueStories: []
   narrationType: 2
   narrationStories:
-  - usingCharacterSprite: 0
-    playerSprite: {fileID: 0}
+  - playerExpression: 4
     interlocutorSprite: {fileID: 0}
+    bgmClip: {fileID: 0}
     clipId: {fileID: 0}
     clipEn: {fileID: 0}
     clipMy: {fileID: 0}
+    animPrefab: {fileID: 0}
+    contentEn: You see a teenage girl sitting in a park. She is Malala Yousafzai.
     contentId: Kamu melihat remaja perempuan sedang duduk di sebuah taman. Dia adalah
       Malala Yousafzai.
-    contentEn: You see a teenage girl sitting in a park. She is Malala Yousafzai.
     contentMy: Kamu melihat remaja perempuan sedang duduk di sebuah taman. Dia adalah
       Malala Yousafzai.
-  - usingCharacterSprite: 0
-    playerSprite: {fileID: 0}
+  - playerExpression: 4
     interlocutorSprite: {fileID: 0}
+    bgmClip: {fileID: 0}
     clipId: {fileID: 0}
     clipEn: {fileID: 0}
     clipMy: {fileID: 0}
+    animPrefab: {fileID: 0}
+    contentEn: He is a very famous human rights fighter and won the Nobel Peace Prize
+      at the age of 17. Let's talk to him.
     contentId: Dia adalah salah satu pejuang Hak Asasi Manusia yang sangat terkenal
       dan berhasil mendapatkan Nobel Perdamaian pada usia 17 tahun. Mari berbincang
       dengannya.
-    contentEn: He is a very famous human rights fighter and won the Nobel Peace Prize
-      at the age of 17. Let's talk to him.
     contentMy: Dia adalah salah satu pejuang Hak Asasi Manusia yang sangat terkenal
       dan berhasil mendapatkan Nobel Perdamaian pada usia 17 tahun. Mari berbincang
       dengannya.
@@ -54,5 +54,6 @@ MonoBehaviour:
     questionId: 
     questionEn: 
     questionMy: 
+    playerExpression: 0
     characterSprite: {fileID: 0}
     answers: []

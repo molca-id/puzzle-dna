@@ -20,22 +20,26 @@ MonoBehaviour:
     dialogueStories: []
   narrationType: 2
   narrationStories:
-  - playerExpression: 0
+  - playerExpression: 4
     interlocutorSprite: {fileID: 0}
+    bgmClip: {fileID: 0}
     clipId: {fileID: 0}
     clipEn: {fileID: 0}
     clipMy: {fileID: 0}
+    animPrefab: {fileID: 0}
     contentEn: The world was hit by the Corona Virus pandemic which resulted in the
       world being paralyzed and human activities being restricted.
     contentId: Dunia dilanda pandemi virus corona yang mengakibatkan dunia lumpuh
       dan aktivitas manusia dibatasi.
     contentMy: Dunia dilanda pandemi virus corona yang mengakibatkan dunia lumpuh
       dan aktivitas manusia dibatasi.
-  - playerExpression: 0
+  - playerExpression: 4
     interlocutorSprite: {fileID: 0}
+    bgmClip: {fileID: 0}
     clipId: {fileID: 0}
     clipEn: {fileID: 0}
     clipMy: {fileID: 0}
+    animPrefab: {fileID: 0}
     contentEn: Atomic DNA was detected in a hospital in an isolated area
     contentId: DNA Atom terdeteksi berada di sebuah Rumah Sakit di daerah terisolasi
     contentMy: DNA Atom terdeteksi berada di sebuah Rumah Sakit di daerah terisolasi

@@ -52,7 +52,8 @@ public class LevelDataHandler : MonoBehaviour
     [Header("Narration Attributes")]
     public GameObject narrationPanel;
     public GameObject narrationPanelWithBG;
-    public Image narrationCharImage;
+    public Image narrationPlayerCharImage;
+    public Image narrationInterlocutorCharImage;
     public TextMeshProUGUI narrationText;
     public TextMeshProUGUI narrationTextAbove;
     public TextMeshProUGUI narrationTextMiddle;
@@ -335,15 +336,27 @@ public class LevelDataHandler : MonoBehaviour
                 break;
         }
 
-        if (currentStoryData.narrationStories[narrationIndex].interlocutorSprite != null)
+        if (currentStoryData.narrationStories[narrationIndex].playerExpression != ExpressionType.Unknown)
         {
-            narrationCharImage.sprite = currentStoryData.narrationStories[narrationIndex].interlocutorSprite;
-            narrationCharImage.transform.parent.gameObject.SetActive(true);
+            ExpressionType exp = currentStoryData.narrationStories[narrationIndex].playerExpression;
+            narrationPlayerCharImage.sprite = DataHandler.instance.GetPlayerSprite(exp);
+            narrationPlayerCharImage.transform.parent.gameObject.SetActive(true);
         }
         else
         {
-            narrationCharImage.sprite = null;
-            narrationCharImage.transform.parent.gameObject.SetActive(false);
+            narrationPlayerCharImage.sprite = null;
+            narrationPlayerCharImage.transform.parent.gameObject.SetActive(false);
+        }
+
+        if (currentStoryData.narrationStories[narrationIndex].interlocutorSprite != null)
+        {
+            narrationInterlocutorCharImage.sprite = currentStoryData.narrationStories[narrationIndex].interlocutorSprite;
+            narrationInterlocutorCharImage.transform.parent.gameObject.SetActive(true);
+        }
+        else
+        {
+            narrationInterlocutorCharImage.sprite = null;
+            narrationInterlocutorCharImage.transform.parent.gameObject.SetActive(false);
         }
 
         #region Setting Content

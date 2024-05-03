@@ -20,7 +20,7 @@ MonoBehaviour:
     dialogueStories: []
   narrationType: 2
   narrationStories:
-  - playerExpression: 0
+  - playerExpression: 4
     interlocutorSprite: {fileID: 0}
     bgmClip: {fileID: 0}
     clipId: {fileID: 0}
@@ -32,7 +32,7 @@ MonoBehaviour:
       bertembok putih.
     contentMy: Perjalanan berlanjut, saat ini kamu berada di sebuah ruangan besar
       bertembok putih.
-  - playerExpression: 0
+  - playerExpression: 4
     interlocutorSprite: {fileID: 0}
     bgmClip: {fileID: 0}
     clipId: {fileID: 0}
@@ -48,7 +48,7 @@ MonoBehaviour:
     contentMy: "Ada sosok yang sedang serius di meja, dengan kharisma yang begitu
       kuat. \LKamu seperti telah lama mengenalnya. Setelah kamu mendekat kamu mengetahui
       bahwa dia ..."
-  - playerExpression: 0
+  - playerExpression: 4
     interlocutorSprite: {fileID: 0}
     bgmClip: {fileID: 0}
     clipId: {fileID: 0}

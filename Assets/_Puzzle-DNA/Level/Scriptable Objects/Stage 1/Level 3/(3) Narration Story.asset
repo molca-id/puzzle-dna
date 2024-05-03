@@ -20,12 +20,13 @@ MonoBehaviour:
     dialogueStories: []
   narrationType: 1
   narrationStories:
-  - playerExpression: 0
+  - playerExpression: 4
     interlocutorSprite: {fileID: 0}
     bgmClip: {fileID: 0}
     clipId: {fileID: 0}
     clipEn: {fileID: 0}
     clipMy: {fileID: 0}
+    animPrefab: {fileID: 0}
     contentEn: Yippie! You succeeded in saving the world in 2020 from the Corona
       Virus and you also succeeded in getting to know the 15 DNA Atom talents.
     contentId: Yippie! kamu berhasil menyelamatkan dunia di tahun 2020 dari Virus

@@ -20,18 +20,19 @@ MonoBehaviour:
     dialogueStories: []
   narrationType: 2
   narrationStories:
-  - usingCharacterSprite: 0
-    playerExpression: 0
+  - playerExpression: 4
     interlocutorSprite: {fileID: 0}
+    bgmClip: {fileID: 0}
     clipId: {fileID: 0}
     clipEn: {fileID: 0}
     clipMy: {fileID: 0}
-    contentId: 'Seseorang telah menunggumu. Dia adalah orang hebat yang menjadi tokoh
-      perubahan sejarah Afrika Selatan yang berhasil menghapuskan deskriminasi perbedaan
-      warna kulit. '
+    animPrefab: {fileID: 0}
     contentEn: Someone has been waiting for you. He was a great person who became
       a figure of change in South African history who succeeded in eliminating discrimination
       based on skin color.
+    contentId: 'Seseorang telah menunggumu. Dia adalah orang hebat yang menjadi tokoh
+      perubahan sejarah Afrika Selatan yang berhasil menghapuskan deskriminasi perbedaan
+      warna kulit. '
     contentMy: 'Seseorang telah menunggumu. Dia adalah orang hebat yang menjadi tokoh
       perubahan sejarah Afrika Selatan yang berhasil menghapuskan deskriminasi perbedaan
       warna kulit. '

@@ -20,16 +20,18 @@ MonoBehaviour:
     dialogueStories: []
   narrationType: 2
   narrationStories:
-  - playerExpression: 0
+  - playerExpression: 4
     interlocutorSprite: {fileID: 0}
+    bgmClip: {fileID: 0}
     clipId: {fileID: 0}
     clipEn: {fileID: 0}
     clipMy: {fileID: 0}
+    animPrefab: {fileID: 0}
+    contentEn: You arrive at a wide field. Suddenly a plane landed. You are surprised
+      that the pilot driving is a woman. You ran away smiling at him...
     contentId: Kamu tiba di lapangan luas. Tiba tiba ada pesawat mendarat. Kamu terkejut
       ternyata pilot yang mengemudikan adalah seorang perempuan. Kamu lari sambil
       tersenyum ke arahnya...
-    contentEn: You arrive at a wide field. Suddenly a plane landed. You are surprised
-      that the pilot driving is a woman. You ran away smiling at him...
     contentMy: Kamu tiba di lapangan luas. Tiba tiba ada pesawat mendarat. Kamu terkejut
       ternyata pilot yang mengemudikan adalah seorang perempuan. Kamu lari sambil
       tersenyum ke arahnya...

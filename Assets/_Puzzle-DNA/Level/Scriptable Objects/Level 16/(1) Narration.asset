@@ -20,29 +20,33 @@ MonoBehaviour:
     dialogueStories: []
   narrationType: 2
   narrationStories:
-  - playerExpression: 0
+  - playerExpression: 4
     interlocutorSprite: {fileID: 21300000, guid: 5b9cc1bd4df0fbb49b2e14ab21dd616c,
       type: 3}
+    bgmClip: {fileID: 0}
     clipId: {fileID: 0}
     clipEn: {fileID: 0}
     clipMy: {fileID: 0}
-    contentId: "Aiden kembali tenang...\LKamu berhasil membangkitkan talenta Aiden
-      kembali.\LAiden kini sudah dapat kembali membantu manusia untuk dunia."
+    animPrefab: {fileID: 0}
     contentEn: 'Aiden calmed down again...
 
       You succeeded in awakening Aiden''s
       talents again.
 
       Aiden can now return to helping humans in the world.'
+    contentId: "Aiden kembali tenang...\LKamu berhasil membangkitkan talenta Aiden
+      kembali.\LAiden kini sudah dapat kembali membantu manusia untuk dunia."
     contentMy: "Aiden kembali tenang...\LKamu berhasil membangkitkan talenta Aiden
       kembali.\LAiden kini sudah dapat kembali membantu manusia untuk dunia."
-  - playerExpression: 0
+  - playerExpression: 1
     interlocutorSprite: {fileID: 0}
+    bgmClip: {fileID: 0}
     clipId: {fileID: 0}
     clipEn: {fileID: 0}
     clipMy: {fileID: 0}
-    contentId: Terima Kasih Talent Voyager..
+    animPrefab: {fileID: 0}
     contentEn: Thank you Talent Voyager..
+    contentId: Terima Kasih Talent Voyager..
     contentMy: Terima Kasih Talent Voyager..
   popUpStories: []
   titleStories: []

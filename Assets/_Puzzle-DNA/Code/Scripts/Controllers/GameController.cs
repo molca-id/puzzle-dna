@@ -26,6 +26,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
     [ShowIf("openGameSettings")] public bool preventInitialMatches;
     [ShowIf("openGameSettings")] public float swapSpeed;
     [ShowIf("openGameSettings")] public float fallSpeed;
+    [ShowIf("openGameSettings")] public float _timeLeft = 120;
 
     [HideInInspector] public Sprite characterPlayerSprite;
     [HideInInspector] public bool gemIsInteractable;
@@ -35,7 +36,6 @@ public class GameController : SingletonMonoBehaviour<GameController>
     int _scoreTotal = 0;
     int _scoreTemp = 0;
     int _scoreMultiplier = 1;
-    public float _timeLeft = 120;
 
     public static int scoreTemp
     {
@@ -81,8 +81,11 @@ public class GameController : SingletonMonoBehaviour<GameController>
     {
         gameData = data;
         Instantiate(boardController.gameObject).GetComponent<BoardController>();
-        BoardController.instance.gameData = gameData;
-        SoundController.PlayMusic(BoardController.instance.gameData.GetAudioClip("bgm"), 1);
+        BoardController.instance._gameData = gameData;
+        SoundController.PlayMusic(
+            BoardController.instance._gameData.GetAudioClip("bgm"), 
+            MainMenuHandler.instance.GetBGMSource().volume
+            );
         StartGame();
     }
 

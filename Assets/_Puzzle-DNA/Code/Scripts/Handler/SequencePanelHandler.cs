@@ -12,14 +12,17 @@ using UnityEngine.UI;
 public class SequenceEventsData
 {
     public bool willOpenGame;
-    [ShowIf("willOpenGame")] public LevelData levelData;
+    public LevelData levelData;
+    [Space]
     public bool willPlayVO;
-    [ShowIf("willPlayVO")] public AudioClip voClipEn;
-    [ShowIf("willPlayVO")] public AudioClip voClipId;
-    [ShowIf("willPlayVO")] public AudioClip voClipMy;
+    public AudioClip voClipEn;
+    public AudioClip voClipId;
+    public AudioClip voClipMy;
+    [Space]
     public bool willGetPlayerSprite;
-    [ShowIf("willGetPlayerSprite")] public ExpressionType playerExpressionType;
-    [ShowIf("willGetPlayerSprite")] public Image playerCharImage;
+    public ExpressionType playerExpressionType;
+    public Image playerCharImage;
+    [Space]
     public bool skippableWithoutDelay;
     public AudioClip bgmClip;
     public UnityEvent whenGameLoaded;
@@ -84,13 +87,15 @@ public class SequencePanelHandler : MonoBehaviour
 
         if (data.willPlayVO)
         {
-            AudioClip clip;
-            if (DataHandler.instance.GetLanguage() == "id") clip = data.voClipId;
-            else if (DataHandler.instance.GetLanguage() == "en") clip = data.voClipEn;
-            else clip = data.voClipMy;
+            if (DataHandler.instance.GetLanguage() == "id" && data.voClipId != null)
+                voAudioSource.clip = data.voClipId;
+            else if (DataHandler.instance.GetLanguage() == "en" && data.voClipEn != null)
+                voAudioSource.clip = data.voClipEn;
+            else if (DataHandler.instance.GetLanguage() == "my" && data.voClipMy != null)
+                voAudioSource.clip = data.voClipMy;
 
-            voAudioSource.clip = clip;
-            voAudioSource.Play();
+            if (voAudioSource.clip != null)
+                voAudioSource.Play();
         }
 
         if (data.willOpenGame)

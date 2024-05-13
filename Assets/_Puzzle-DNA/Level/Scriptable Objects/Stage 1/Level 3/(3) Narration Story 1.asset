@@ -18,24 +18,30 @@ MonoBehaviour:
   dialogueStory:
     interlocutorName: 
     dialogueStories: []
-  narrationType: 1
+  narrationType: 2
   narrationStories:
-  - playerExpression: 4
+  - playerExpression: 2
     interlocutorSprite: {fileID: 0}
-    bgmClip: {fileID: 0}
-    clipId: {fileID: 0}
+    clipCodeEn: 
+    clipCodeId: 
+    clipCodeMy: 
     clipEn: {fileID: 0}
+    clipId: {fileID: 0}
     clipMy: {fileID: 0}
+    bgmClip: {fileID: 8300000, guid: 124e8177c9f4a304f8877190b83f82fe, type: 3}
     animPrefab: {fileID: 0}
     contentEn: '"Titut titut" (Voice Message sounds)'
     contentId: '"Titut titut" (Pesan Suara berbunyi) '
     contentMy: '"Titut titut" (Pesan Suara berbunyi) '
-  - playerExpression: 4
+  - playerExpression: 2
     interlocutorSprite: {fileID: 0}
-    bgmClip: {fileID: 0}
-    clipId: {fileID: 0}
-    clipEn: {fileID: 0}
+    clipCodeEn: 
+    clipCodeId: 
+    clipCodeMy: 
+    clipEn: {fileID: 8300000, guid: 2a29c39456dad5742a8c24b450d80ccc, type: 3}
+    clipId: {fileID: 8300000, guid: 3b09ee9347310ca44829e5a435858562, type: 3}
     clipMy: {fileID: 0}
+    bgmClip: {fileID: 0}
     animPrefab: {fileID: 0}
     contentEn: Several atoms were detected in the Taman Mini Indonesia Indah area
       in 1975 and the Great Wall of China in 600 BC.

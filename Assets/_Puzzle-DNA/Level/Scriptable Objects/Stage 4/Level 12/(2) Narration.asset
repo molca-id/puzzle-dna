@@ -20,13 +20,15 @@ MonoBehaviour:
     dialogueStories: []
   narrationType: 2
   narrationStories:
-  - playerExpression: 4
+  - animPrefab: {fileID: 0}
+    playerExpression: 4
     interlocutorSprite: {fileID: 0}
-    bgmClip: {fileID: 0}
-    clipId: {fileID: 0}
+    usingCharClip: 0
+    storyCode: 
     clipEn: {fileID: 0}
+    clipId: {fileID: 8300000, guid: 0f6a5f503cbedfb41bd7247ecadd10f1, type: 3}
     clipMy: {fileID: 0}
-    animPrefab: {fileID: 0}
+    bgmClip: {fileID: 0}
     contentEn: Someone has been waiting for you. He was a great person who became
       a figure of change in South African history who succeeded in eliminating discrimination
       based on skin color.

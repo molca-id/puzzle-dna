@@ -2077,9 +2077,15 @@ MonoBehaviour:
   talentData:
     status: success
     data: []
-  playerSpriteDatas:
+  playerAssetDatas:
   - name: Alfa
     character: 0
+    playerClips:
+    - {fileID: 8300000, guid: 9d0db9c769625094baacc46fbfeb3de2, type: 3}
+    - {fileID: 8300000, guid: 8f4140c132378504fadef72bfe2ab6a0, type: 3}
+    - {fileID: 8300000, guid: 299c8377938797f478aeb3f7c9a20254, type: 3}
+    - {fileID: 8300000, guid: 45c5db51449caf44c862c5d0da603c2e, type: 3}
+    - {fileID: 8300000, guid: a94f3590057ae4442bf2d2611f0f55f9, type: 3}
     expressionDatas:
     - expressionType: 0
       sprite: {fileID: 21300000, guid: af60f89ce32178c47b09edb234f14dc5, type: 3}
@@ -2091,6 +2097,12 @@ MonoBehaviour:
       sprite: {fileID: 21300000, guid: c4e0355d0b4b2074789359409db4fedc, type: 3}
   - name: Rei
     character: 1
+    playerClips:
+    - {fileID: 8300000, guid: 69f4c2817f447e64cb672f9e2c75c47d, type: 3}
+    - {fileID: 8300000, guid: 6f947bf5e43b5034095ffc9fc0b0e741, type: 3}
+    - {fileID: 8300000, guid: 2e21ea934cd02fb4ead4443794c5659e, type: 3}
+    - {fileID: 8300000, guid: 471ee23efddbf6f4ba85680d725f63c9, type: 3}
+    - {fileID: 8300000, guid: 374f7aaeb037585499bc2a4f7d524081, type: 3}
     expressionDatas:
     - expressionType: 0
       sprite: {fileID: 21300000, guid: 041fc78ead0b422489d0cca9ae25b60b, type: 3}
@@ -2102,6 +2114,12 @@ MonoBehaviour:
       sprite: {fileID: 21300000, guid: 696e8ca87921d7140aceb45eef064e4e, type: 3}
   - name: Budi
     character: 2
+    playerClips:
+    - {fileID: 8300000, guid: 6d3975785675a1a48834905a180c32fa, type: 3}
+    - {fileID: 8300000, guid: 1d323d5145a27ed4a91e8e085f7e73e5, type: 3}
+    - {fileID: 8300000, guid: 6f9e15b500d69254b8e0297de303ce9b, type: 3}
+    - {fileID: 8300000, guid: 97e729bd1f608d34bad98ded1898b0a2, type: 3}
+    - {fileID: 8300000, guid: b47d170d6ed30714694d7fb626b7b3b9, type: 3}
     expressionDatas:
     - expressionType: 0
       sprite: {fileID: 21300000, guid: d22d1ecfaad86624e84ef3aebca91901, type: 3}
@@ -2113,6 +2131,12 @@ MonoBehaviour:
       sprite: {fileID: 21300000, guid: d9f09175092f136429a0fcdfbaa3eb86, type: 3}
   - name: Bunga
     character: 3
+    playerClips:
+    - {fileID: 8300000, guid: ce5b04e6792099747b0a96a1ebef731d, type: 3}
+    - {fileID: 8300000, guid: 2f17748405776a44cb1c85a341bb22f6, type: 3}
+    - {fileID: 8300000, guid: 40c66b0b38944fe41aa3d490f9359c6b, type: 3}
+    - {fileID: 8300000, guid: f9041983fad43254da3c4129a31d2d8e, type: 3}
+    - {fileID: 8300000, guid: 2376b9e5dd41cf94badb216a58c28ee8, type: 3}
     expressionDatas:
     - expressionType: 0
       sprite: {fileID: 21300000, guid: d71936a6ec6bbf64899b5fb702ac3f53, type: 3}
@@ -2124,6 +2148,12 @@ MonoBehaviour:
       sprite: {fileID: 21300000, guid: 50d96efe3bc570943a3731891eb09e57, type: 3}
   - name: Fatimah
     character: 4
+    playerClips:
+    - {fileID: 8300000, guid: 6a06957768192244086c937f391efe97, type: 3}
+    - {fileID: 8300000, guid: 24f39875e78fd1841a187c3bf1352c58, type: 3}
+    - {fileID: 8300000, guid: 9af8d2c065931be4b828e0ed5756feb2, type: 3}
+    - {fileID: 8300000, guid: 5f12b63a68bf0ec4f985fc1768e6aa98, type: 3}
+    - {fileID: 8300000, guid: fdb31fb04c8ccba48998df2988fe248c, type: 3}
     expressionDatas:
     - expressionType: 0
       sprite: {fileID: 21300000, guid: f2f5b3dd821e58247868c107ea4e1484, type: 3}
@@ -2135,6 +2165,12 @@ MonoBehaviour:
       sprite: {fileID: 21300000, guid: 15a16e6fecc636749a5b60eea9317b92, type: 3}
   - name: Mentari
     character: 5
+    playerClips:
+    - {fileID: 8300000, guid: 8f9d1ca22ef5c984583971cc31ac6e72, type: 3}
+    - {fileID: 8300000, guid: 84d5ca2d7d5c6ae4b90e7d5c3e6741ac, type: 3}
+    - {fileID: 8300000, guid: 4d2c18cf69851e8418ba15382137eb3b, type: 3}
+    - {fileID: 8300000, guid: a0140ea601f868d43990d0764c180db7, type: 3}
+    - {fileID: 8300000, guid: 2f0b72fb2fd46ab46b48bb10a10e4e4b, type: 3}
     expressionDatas:
     - expressionType: 0
       sprite: {fileID: 21300000, guid: 2fbcdc0c8c33c9b4097923d71b6b0aa2, type: 3}
@@ -2188,9 +2224,10 @@ MonoBehaviour:
       checkpoint_data:
         tutorial_is_done: 0
         checkpoint_value: []
-  currPlayerSpriteData:
+  currPlayerAssetData:
     name: 
     character: 0
+    playerClips: []
     expressionDatas: []
   protonMax: 66
   electronMax: 18
@@ -3688,7 +3725,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4454780b506f074886272324dc5b6bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dummyCodeTemp: N0hKUWYyTkVjRkZrTzcyUllPS1ZpdXY2M0RLQ1ZRbEZRSHpyZVR3UzkwN3FYNFlvWHNRc2RkNWFyMGFEK0lsNw==
+  dummyCodeTemp: Ukl1TUdscWFDQmF5TWxKUGZtQ0kvZDdkdkMrbmZTampoeW1mcEEweFgza0Q2MGdoMjMycSt5U3Z0ZmgxbnIycw==
   currCodeTemp: 
 --- !u!1 &1528748836
 GameObject:

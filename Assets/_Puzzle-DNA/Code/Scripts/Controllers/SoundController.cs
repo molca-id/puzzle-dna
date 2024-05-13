@@ -16,18 +16,15 @@ public class SoundController : SingletonMonoBehaviour<SoundController>
         get { return instance.sfxPrefab; }
     }
 
-    AudioSource musicSource, sfxSource;
+    public AudioSource musicSource, sfxSource;
 
     public override void Awake()
     {
         base.Awake();
 
-        musicSource = gameObject.AddComponent<AudioSource>();
-        sfxSource = gameObject.AddComponent<AudioSource>();
-        musicSource.loop = true;
-
         musicSource.outputAudioMixerGroup = bgmMixer;
         sfxSource.outputAudioMixerGroup = sfxMixer;
+        musicSource.loop = true;
     }
 
     public static void PlayMusic(AudioClip clip, float volume)
@@ -40,7 +37,7 @@ public class SoundController : SingletonMonoBehaviour<SoundController>
 
     IEnumerator PlayMusicFade(AudioClip clip, float volume)
     {
-        float t = 1, lastVolume = musicSource.volume;
+        float t = musicSource.volume, lastVolume = musicSource.volume;
 
         if (musicSource.isPlaying)
         {
@@ -107,7 +104,7 @@ public class SoundController : SingletonMonoBehaviour<SoundController>
 
     IEnumerator FadeOutEnum(AudioSource asrc)
     {
-        float t = 1, lastVolume = asrc.volume;
+        float t = asrc.volume, lastVolume = asrc.volume;
         if (asrc.isPlaying)
         {
             while (t > 0)

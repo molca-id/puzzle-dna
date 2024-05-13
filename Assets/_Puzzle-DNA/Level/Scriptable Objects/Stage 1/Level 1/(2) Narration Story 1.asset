@@ -22,11 +22,15 @@ MonoBehaviour:
   narrationStories:
   - playerExpression: 4
     interlocutorSprite: {fileID: 0}
-    bgmClip: {fileID: 0}
-    clipId: {fileID: 0}
-    clipEn: {fileID: 0}
+    clipCodeEn: 
+    clipCodeId: 
+    clipCodeMy: 
+    clipEn: {fileID: 8300000, guid: 7a51c43490c5d934aa576233a428600d, type: 3}
+    clipId: {fileID: 8300000, guid: ef713abfefcb4ce4a96b0615bd2ae4f1, type: 3}
     clipMy: {fileID: 0}
-    animPrefab: {fileID: 0}
+    bgmClip: {fileID: 0}
+    animPrefab: {fileID: 4640163331175246652, guid: 63ced348a2654804ebb704956fc3b9a6,
+      type: 3}
     contentEn: Come on! Meet a health volunteer who is helping the local community.
       Help Him complete his task and He will take you to your destination!
     contentId: Ayo! Temui seorang relawan kesehatan yang sedang membantu masyarakat

@@ -20,16 +20,27 @@ MonoBehaviour:
     dialogueStories: []
   narrationType: 2
   narrationStories:
-  - playerExpression: 4
-    interlocutorSprite: {fileID: 0}
-    bgmClip: {fileID: 0}
-    clipId: {fileID: 0}
-    clipEn: {fileID: 0}
+  - playerExpression: 3
+    interlocutorSprite: {fileID: 21300000, guid: d61b4f95d1003394ebb66774ca0f23c6,
+      type: 3}
+    clipCodeEn: 
+    clipCodeId: 
+    clipCodeMy: 
+    clipEn: {fileID: 8300000, guid: a5efc53e0c843d346abb5540c39418af, type: 3}
+    clipId: {fileID: 8300000, guid: 88e37a4c52c059d48a2fbfaa4ecb2c81, type: 3}
     clipMy: {fileID: 0}
-    animPrefab: {fileID: 0}
-    contentEn: The DNA atom splits into D, N, and A.
-    contentId: DNA atom terpecah menjadi D, N, dan A.
-    contentMy: DNA atom terpecah menjadi D, N, dan A.
+    bgmClip: {fileID: 0}
+    animPrefab: {fileID: 808094560347074199, guid: 0f5e950c1595fa14d81a432f9f29e247,
+      type: 3}
+    contentEn: The DNA atom is split into D, N, and A. Each part has 15 atomic talents.
+      Prof. Woo wants to invite you to find and collect the 45 best combinations
+      of Atom Talents to repair Aiden's robot.
+    contentId: DNA atom terpecah menjadi D, N, dan A. Setiap bagian memiliki 15 talent
+      atom. Prof. Woo ingin mengajak kamu untuk menemukan dan mengumpulkan 45 kombinasi
+      terbaik Talent Atom untuk memperbaiki robot Aiden.
+    contentMy: DNA atom terpecah menjadi D, N, dan A. Setiap bagian memiliki 15 talent
+      atom. Prof. Woo ingin mengajak kamu untuk menemukan dan mengumpulkan 45 kombinasi
+      terbaik Talent Atom untuk memperbaiki robot Aiden.
   popUpStories: []
   titleStories: []
   eventDataStory:

@@ -20,6 +20,12 @@ public class GameTutorialHandler : MonoBehaviour
 
     public void InitTutorial(bool use)
     {
+        if (GameController.instance.standalone) 
+        {
+            GameController.instance.StartTimer();
+            return;
+        }
+
         if (!DataHandler.instance.GetUserCheckpointData().
             checkpoint_value[LevelDataHandler.instance.currentGameData.gameLevel].
             game_is_done && use)

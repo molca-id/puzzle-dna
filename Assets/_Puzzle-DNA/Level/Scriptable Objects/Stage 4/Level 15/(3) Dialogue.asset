@@ -20,40 +20,49 @@ MonoBehaviour:
     dialogueStories:
     - playerIsTalking: 1
       contentData:
+        animPrefab: {fileID: 0}
         playerExpression: 0
         interlocutorSprite: {fileID: 21300000, guid: 3c3e7f6704efb2b49aecdea490f46b54,
           type: 3}
-        bgmClip: {fileID: 0}
-        clipId: {fileID: 0}
+        clipCodeEn: 14.2-en
+        clipCodeId: 14.2-id
+        clipCodeMy: 14.2-my
         clipEn: {fileID: 0}
+        clipId: {fileID: 0}
         clipMy: {fileID: 0}
-        animPrefab: {fileID: 0}
+        bgmClip: {fileID: 0}
         contentEn: Are you Amelia Earhart?
         contentId: Apakah kamu Amelia Earhart?
         contentMy: Apakah kamu Amelia Earhart?
     - playerIsTalking: 0
       contentData:
+        animPrefab: {fileID: 0}
         playerExpression: 0
         interlocutorSprite: {fileID: 21300000, guid: 65fefd7f592a37e4994e549aafb43f0b,
           type: 3}
-        bgmClip: {fileID: 0}
-        clipId: {fileID: 0}
+        clipCodeEn: 
+        clipCodeId: 
+        clipCodeMy: 
         clipEn: {fileID: 0}
+        clipId: {fileID: 8300000, guid: cc46bfc808465954e8d18ee0c892559c, type: 3}
         clipMy: {fileID: 0}
-        animPrefab: {fileID: 0}
+        bgmClip: {fileID: 0}
         contentEn: Wow, do you know me?
         contentId: Wah kamu mengenalku?
         contentMy: Wah kamu mengenalku?
     - playerIsTalking: 1
       contentData:
+        animPrefab: {fileID: 0}
         playerExpression: 1
         interlocutorSprite: {fileID: 21300000, guid: 2f516b1c10b609143bb0b1e7288af99e,
           type: 3}
-        bgmClip: {fileID: 0}
-        clipId: {fileID: 0}
+        clipCodeEn: 14.4-en
+        clipCodeId: 14.4-id
+        clipCodeMy: 14.4-my
         clipEn: {fileID: 0}
+        clipId: {fileID: 0}
         clipMy: {fileID: 0}
-        animPrefab: {fileID: 0}
+        bgmClip: {fileID: 0}
         contentEn: There is no one who doesn't know you in this world. You are very
           famous. You were the first woman to fly. Your Trans-Atlantic flight was
           daring and inspiring.

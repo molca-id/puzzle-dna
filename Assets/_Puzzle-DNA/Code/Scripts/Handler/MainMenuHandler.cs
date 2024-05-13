@@ -44,10 +44,14 @@ public class MainMenuHandler : MonoBehaviour
     [Header("Welcome Attributes")]
     [SerializeField] TextMeshProUGUI playerNameWelcome;
 
-    [Header("Character Selection Attributes")]
-    [SerializeField] Character character;
+    [Header("Audio Attributes")]
+    [SerializeField] AudioClip bgmMenuClip;
+    [SerializeField] AudioSource bgmAudioSource;
     [SerializeField] AudioSource storyAudioSource;
     [SerializeField] AudioSource voAudioSource;
+
+    [Header("Character Selection Attributes")]
+    [SerializeField] Character character;
     [SerializeField] List<CharacterSelectionUI> characterSelections;
 
     [Header("Glossarium & HowTo Attributes")]
@@ -202,7 +206,7 @@ public class MainMenuHandler : MonoBehaviour
 
     public void SubmitCharacter()
     {
-        DataHandler.instance.currPlayerSpriteData = DataHandler.instance.playerSpriteDatas.Find(data => data.character == character);
+        DataHandler.instance.currPlayerAssetData = DataHandler.instance.playerAssetDatas.Find(data => data.character == character);
         DataHandler.instance.GetUserDataValue().character = (int)character;
         StartCoroutine(IEOpenScreen(smallLoadingPanel, delegate
         {
@@ -450,6 +454,13 @@ public class MainMenuHandler : MonoBehaviour
         }));
     }
 
+    public void ResetBGMMenu()
+    {
+        bgmAudioSource.clip = bgmMenuClip;
+        bgmAudioSource.Play();
+    }
+
+    public AudioSource GetBGMSource() => bgmAudioSource;
     public AudioSource GetVOSource() => voAudioSource;
     public AudioSource GetStorySource() => storyAudioSource;
     #endregion

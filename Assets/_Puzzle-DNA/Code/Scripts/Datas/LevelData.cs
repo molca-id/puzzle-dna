@@ -26,6 +26,7 @@ public class LevelData : SingletonScriptableObject<LevelData>
     public List<PerksStage> perkStageForUnlocking;
 
     [Header("Story")]
+    public AudioClip bgmAudioClip;
     public List<StoryData> prologueStoryData;
     public List<StoryData> epilogueStoryData;
 }

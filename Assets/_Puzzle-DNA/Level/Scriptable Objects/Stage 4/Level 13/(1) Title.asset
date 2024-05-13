@@ -22,13 +22,16 @@ MonoBehaviour:
   narrationStories: []
   popUpStories: []
   titleStories:
-  - playerExpression: 0
+  - animPrefab: {fileID: 0}
+    playerExpression: 0
     interlocutorSprite: {fileID: 0}
-    clipId: {fileID: 0}
-    clipEn: {fileID: 0}
+    clipCode: 
+    clipEn: {fileID: 8300000, guid: 6fbfac825224fc045b3e228389953d0b, type: 3}
+    clipId: {fileID: 8300000, guid: f2e827e93ce96c34794ee38b69f1913f, type: 3}
     clipMy: {fileID: 0}
-    contentId: Romawi, 162.
+    bgmClip: {fileID: 0}
     contentEn: Roman, 162.
+    contentId: Romawi, 162.
     contentMy: Romawi, 162.
   eventDataStory:
     autoOpenPerks: 0

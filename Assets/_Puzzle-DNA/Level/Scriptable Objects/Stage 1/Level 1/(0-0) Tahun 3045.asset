@@ -24,12 +24,15 @@ MonoBehaviour:
   titleStories:
   - playerExpression: 0
     interlocutorSprite: {fileID: 0}
-    bgmClip: {fileID: 0}
-    clipId: {fileID: 0}
-    clipEn: {fileID: 0}
+    clipCodeEn: 
+    clipCodeId: 
+    clipCodeMy: 
+    clipEn: {fileID: 8300000, guid: f3da58532d823884b9efb80b1ca45a3a, type: 3}
+    clipId: {fileID: 8300000, guid: 668d2ef8c1eb8ba4d8637a543e1fbdd6, type: 3}
     clipMy: {fileID: 0}
+    bgmClip: {fileID: 0}
     animPrefab: {fileID: 0}
-    contentEn: In 2020...
+    contentEn: In 3045...
     contentId: Tahun 3045...
     contentMy: Tahun 3045...
   eventDataStory:

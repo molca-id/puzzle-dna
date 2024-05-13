@@ -173,13 +173,19 @@ MonoBehaviour:
     - {x: 5, y: 4}
   audioClipInfos:
   - name: bgm
-    clip: {fileID: 8300000, guid: 8657fe31eee02d544acb798fdfdbcbae, type: 3}
+    clip: {fileID: 8300000, guid: cb12544fdf5dc2c4494b0b7a277289cf, type: 3}
   - name: click
-    clip: {fileID: 8300000, guid: 5db760126814a344da074153bc99dbf3, type: 3}
+    clip: {fileID: 8300000, guid: 04dee4ef652bb7e4f9f7a710627ec15d, type: 3}
   - name: swap
-    clip: {fileID: 8300000, guid: 2d829c1174379ab48a80f4d313ea7b00, type: 3}
+    clip: {fileID: 8300000, guid: 2e7f97a319b006244b51bf6762952be2, type: 3}
   - name: match
-    clip: {fileID: 8300000, guid: fd86baf1f32a4b6479125a722484681a, type: 3}
+    clip: {fileID: 8300000, guid: 2f9557f054139154f9d768b8e16f49b5, type: 3}
+  - name: ability-d
+    clip: {fileID: 8300000, guid: 5e8598a339107274f9be8c401c55956a, type: 3}
+  - name: ability-n
+    clip: {fileID: 8300000, guid: d75e597e1012cf44abf49a3fae2aa15e, type: 3}
+  - name: ability-a
+    clip: {fileID: 8300000, guid: cc4ad1eb3a6b0e5489b96d5053294c7e, type: 3}
   comboMessages:
   - Cool!
   - Great!!

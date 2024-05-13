@@ -18,14 +18,17 @@ MonoBehaviour:
   dialogueStory:
     interlocutorName: 
     dialogueStories: []
-  narrationType: 1
+  narrationType: 2
   narrationStories:
-  - playerExpression: 4
+  - playerExpression: 1
     interlocutorSprite: {fileID: 0}
-    bgmClip: {fileID: 0}
-    clipId: {fileID: 0}
-    clipEn: {fileID: 0}
+    clipCodeEn: 
+    clipCodeId: 
+    clipCodeMy: 
+    clipEn: {fileID: 8300000, guid: c3b33dbcd5d1bf544b4de44669844bdf, type: 3}
+    clipId: {fileID: 8300000, guid: 072163ca70e4c3a4b9a70209aa9eef70, type: 3}
     clipMy: {fileID: 0}
+    bgmClip: {fileID: 8300000, guid: fc2bd298055415c4b85feeb88828afda, type: 3}
     animPrefab: {fileID: 0}
     contentEn: Yippie! You succeeded in saving the world in 2020 from the Corona
       Virus and you also succeeded in getting to know the 15 DNA Atom talents.

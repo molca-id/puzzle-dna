@@ -169,7 +169,7 @@ public class BaseGem : MonoBehaviour, ITouchable
             if (otherGem && !otherGem.isEmpty)
             {
                 BoardController.TryMatch(this, otherGem);
-                SoundController.PlaySfx(BoardController.instance.gameData.GetAudioClip("swap"));
+                SoundController.PlaySfx(BoardController.instance._gameData.GetAudioClip("swap"));
             }
 
             TouchUp();

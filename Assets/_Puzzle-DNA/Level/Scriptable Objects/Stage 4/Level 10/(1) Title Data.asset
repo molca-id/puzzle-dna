@@ -16,27 +16,27 @@ MonoBehaviour:
   backgroundSprite: {fileID: 21300000, guid: 272e9353bb92f5448b14827f1366c923, type: 3}
   tutorialKey: 
   dialogueStory:
-    playerIdleSprite: {fileID: 0}
-    interlocutorIdleSprite: {fileID: 0}
     interlocutorName: 
     dialogueStories: []
   narrationType: 2
   narrationStories: []
   popUpStories: []
   titleStories:
-  - usingCharacterSprite: 0
-    playerSprite: {fileID: 0}
+  - playerExpression: 0
     interlocutorSprite: {fileID: 0}
-    clipId: {fileID: 0}
-    clipEn: {fileID: 0}
+    bgmClip: {fileID: 0}
+    clipEn: {fileID: 8300000, guid: 08670b86232cfc342a0bf50bd050c037, type: 3}
+    clipId: {fileID: 8300000, guid: 657bbfc48ff8ed74185a9b4eedd9cf34, type: 3}
     clipMy: {fileID: 0}
-    contentId: Pakistan, 2015
+    animPrefab: {fileID: 0}
     contentEn: Pakistan, 2015
+    contentId: Pakistan, 2015
     contentMy: Pakistan, 2015
   eventDataStory:
     autoOpenPerks: 1
     questionId: 
     questionEn: 
     questionMy: 
+    playerExpression: 0
     characterSprite: {fileID: 0}
     answers: []

@@ -21,13 +21,16 @@ MonoBehaviour:
   narrationType: 2
   narrationStories:
   - playerExpression: 4
-    interlocutorSprite: {fileID: 21300000, guid: 5b9cc1bd4df0fbb49b2e14ab21dd616c,
-      type: 3}
-    bgmClip: {fileID: 0}
-    clipId: {fileID: 0}
-    clipEn: {fileID: 0}
+    interlocutorSprite: {fileID: 0}
+    clipCodeEn: 
+    clipCodeId: 
+    clipCodeMy: 
+    clipEn: {fileID: 8300000, guid: f8a3a7c5545ac544b842fe3e0370921f, type: 3}
+    clipId: {fileID: 8300000, guid: 4eb53c15666a27e4f94d7c5b8e7e4ec3, type: 3}
     clipMy: {fileID: 0}
-    animPrefab: {fileID: 0}
+    bgmClip: {fileID: 0}
+    animPrefab: {fileID: 7545775991170432341, guid: 1d995c985c6016841a15ab845fa8a2ec,
+      type: 3}
     contentEn: Aiden was created by Prof. Woo by combining atomic DNA.
     contentId: Aiden dibuat oleh Prof. Woo dengan mengombinasikan DNA atom.
     contentMy: Aiden dibuat oleh Prof. Woo dengan mengombinasikan DNA atom.

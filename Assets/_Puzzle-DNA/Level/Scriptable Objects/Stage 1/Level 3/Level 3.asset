@@ -19,6 +19,7 @@ MonoBehaviour:
   showResultPanel: 0
   usingPerkUnlocking: 0
   perkStageForUnlocking: []
+  bgmAudioClip: {fileID: 8300000, guid: 08b5bb4ff8ecf0c43a6bd8ec7850abbb, type: 3}
   prologueStoryData:
   - {fileID: 11400000, guid: 04db94757c79a4040acff15f38955bd1, type: 2}
   epilogueStoryData:

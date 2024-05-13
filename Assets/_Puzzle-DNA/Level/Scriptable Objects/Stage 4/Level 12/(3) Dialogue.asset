@@ -20,40 +20,49 @@ MonoBehaviour:
     dialogueStories:
     - playerIsTalking: 1
       contentData:
+        animPrefab: {fileID: 0}
         playerExpression: 0
         interlocutorSprite: {fileID: 21300000, guid: 2fa1030855e59f143b164bd163581d6a,
           type: 3}
-        bgmClip: {fileID: 0}
-        clipId: {fileID: 0}
+        clipCodeEn: 11.2
+        clipCodeId: 11.2
+        clipCodeMy: 11.2
         clipEn: {fileID: 0}
+        clipId: {fileID: 0}
         clipMy: {fileID: 0}
-        animPrefab: {fileID: 0}
+        bgmClip: {fileID: 0}
         contentEn: Nelson Mandela?
         contentId: Nelson Mandela?
         contentMy: Nelson Mandela?
     - playerIsTalking: 0
       contentData:
+        animPrefab: {fileID: 0}
         playerExpression: 1
         interlocutorSprite: {fileID: 21300000, guid: a597a4c0dc3dab847abf768be845df13,
           type: 3}
-        bgmClip: {fileID: 0}
-        clipId: {fileID: 0}
+        clipCodeEn: 
+        clipCodeId: 
+        clipCodeMy: 
         clipEn: {fileID: 0}
+        clipId: {fileID: 8300000, guid: b4480c6c56d9cae408f26d51549e2a71, type: 3}
         clipMy: {fileID: 0}
-        animPrefab: {fileID: 0}
+        bgmClip: {fileID: 0}
         contentEn: That's right, who are you? where do you know me?
         contentId: Betul, Siapa kamu? dari mana kamu mengenalku?
         contentMy: Betul, Siapa kamu? dari mana kamu mengenalku?
     - playerIsTalking: 1
       contentData:
+        animPrefab: {fileID: 0}
         playerExpression: 2
         interlocutorSprite: {fileID: 21300000, guid: 5a24df4841c57fe45a6ca02a86d07948,
           type: 3}
-        bgmClip: {fileID: 0}
-        clipId: {fileID: 0}
+        clipCodeEn: 11.4-en
+        clipCodeId: 11.4-id
+        clipCodeMy: 11.4-my
         clipEn: {fileID: 0}
+        clipId: {fileID: 0}
         clipMy: {fileID: 0}
-        animPrefab: {fileID: 0}
+        bgmClip: {fileID: 0}
         contentEn: I am (playerName). I know you from my history books. I admire
           you, hehe.
         contentId: Aku (playerName). Aku mengenalmu dari buku sejarahku. Aku mengagumimu,

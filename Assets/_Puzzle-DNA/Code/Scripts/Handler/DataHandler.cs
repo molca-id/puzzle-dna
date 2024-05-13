@@ -18,6 +18,7 @@ public class PlayerSpriteData
 {
     public string name;
     public UserDataSpace.Character character;
+    public List<AudioClip> playerClips;
     public List<PlayerSpriteExpressionData> expressionDatas;
 }
 
@@ -29,11 +30,11 @@ public class DataHandler : MonoBehaviour
     [Header("Default Datas")]
     public UserDataSpace.UserData defaultUserData;
     public TalentDataSpace.TalentData talentData;
-    public List<PlayerSpriteData> playerSpriteDatas;
+    public List<PlayerSpriteData> playerAssetDatas;
 
     [Header("Current Datas")]
     public UserDataSpace.UserData currentUserData;
-    public PlayerSpriteData currPlayerSpriteData;
+    public PlayerSpriteData currPlayerAssetData;
 
     [Header("Another Attributes")]
     public int protonMax;
@@ -56,8 +57,14 @@ public class DataHandler : MonoBehaviour
 
     public Sprite GetPlayerSprite(ExpressionType expressionType)
     {
-        return currPlayerSpriteData.expressionDatas.
+        return currPlayerAssetData.expressionDatas.
             Find(exp => exp.expressionType == expressionType).sprite;
+    }
+
+    public AudioClip GetPlayerClip(string clipCode)
+    {
+        return currPlayerAssetData.playerClips.
+            Find(exp => exp.name.Contains(clipCode));
     }
 
     public AudioHandler GetAudioHandler(string key)
@@ -197,7 +204,7 @@ public class DataHandler : MonoBehaviour
                         IECreateUserData();
                     else
                     {
-                        currPlayerSpriteData = playerSpriteDatas.Find(data => (int)data.character == GetUserDataValue().character);
+                        currPlayerAssetData = playerAssetDatas.Find(data => (int)data.character == GetUserDataValue().character);
                         //SetupPlayerSprites();
                     }
                 }));

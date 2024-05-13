@@ -20,14 +20,16 @@ MonoBehaviour:
     dialogueStories:
     - playerIsTalking: 0
       contentData:
+        animPrefab: {fileID: 0}
         playerExpression: 0
         interlocutorSprite: {fileID: 21300000, guid: 809e52fa9b6c91c4d9a0a42421c55fae,
           type: 3}
-        bgmClip: {fileID: 0}
-        clipId: {fileID: 0}
+        usingCharClip: 0
+        storyCode: 
         clipEn: {fileID: 0}
+        clipId: {fileID: 8300000, guid: 97b9747e454051043933365c8c9554c2, type: 3}
         clipMy: {fileID: 0}
-        animPrefab: {fileID: 0}
+        bgmClip: {fileID: 0}
         contentEn: Hi, I have received a message from Prof. Woo. Let me introduce
           myself, Ada Lovelace. Maybe you don't know me. But people call him the
           First Computer Programmer in the World
@@ -37,25 +39,6 @@ MonoBehaviour:
         contentMy: Hai, aku sudah mendapatkan pesan dari Prof. Woo. Perkenalkan aku
           Ada Lovelace. Mungkin kamu tidak mengenalku. Tapi orang menjuluki sebagai
           Programer Komputer Pertama di Dunia
-    - playerIsTalking: 1
-      contentData:
-        playerExpression: 2
-        interlocutorSprite: {fileID: 21300000, guid: 809e52fa9b6c91c4d9a0a42421c55fae,
-          type: 3}
-        bgmClip: {fileID: 0}
-        clipId: {fileID: 0}
-        clipEn: {fileID: 0}
-        clipMy: {fileID: 0}
-        animPrefab: {fileID: 0}
-        contentEn: Hello Ada Lovelace! Of course I recognize you! You are a very
-          influential figure in the history of the computer world. Nice to meet you
-          and meet you!
-        contentId: Halo Ada Lovelace! Tentu saja aku mengenalimu! Kamu adalah sosok
-          yang sangat berpengaruh dalam sejarah dunia komputer. Senang berkenalan
-          dan bertemu denganmu!
-        contentMy: Halo Ada Lovelace! Tentu saja aku mengenalimu! Kamu adalah sosok
-          yang sangat berpengaruh dalam sejarah dunia komputer. Senang berkenalan
-          dan bertemu denganmu!
   narrationType: 2
   narrationStories: []
   popUpStories: []

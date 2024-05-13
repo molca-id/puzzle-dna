@@ -7,7 +7,13 @@ using Utilities;
 public class BoardController : SingletonMonoBehaviour<BoardController>
 {
     public GameObject gemPrefab;
-    public GameData gameData;
+    public GameData _gameData;
+    public static GameData gameData
+    {
+        get { return instance._gameData; }
+        set { instance._gameData = value; }
+    }
+
     Coroutine updateBoard = null;
 
     [Header("Board Attributes")]
@@ -87,14 +93,35 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
         get { return instance._fallPositions; }
         set { instance._fallPositions = value; }
     }
-    
+
+    [SerializeField] bool _useAbilityD;
+    public static bool useAbilityD
+    {
+        get { return instance._useAbilityD; }
+        set { instance._useAbilityD = value; }
+    }
+
+    [SerializeField] bool _useAbilityN;
+    public static bool useAbilityN
+    {
+        get { return instance._useAbilityN; }
+        set { instance._useAbilityN = value; }
+    }
+
+    [SerializeField] bool _useAbilityA;
+    public static bool useAbilityA
+    {
+        get { return instance._useAbilityA; }
+        set { instance._useAbilityA = value; }
+    }
+
     int _matchCounter;
     public static int matchCounter
     {
         get { return instance._matchCounter; }
         set
         {
-            instance._matchCounter = Mathf.Min(value, instance.gameData.maxCombo);
+            instance._matchCounter = Mathf.Min(value, gameData.maxCombo);
         }
     }
 
@@ -140,7 +167,7 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
                 {
                     while (gem.GetMatch().isValid)
                     {
-                        gem.SetType(instance.gameData.RandomGem());
+                        gem.SetType(gameData.RandomGem());
                     }
                 }
 
@@ -501,11 +528,15 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
     {
         if (isRocketGem)
         {
+            useAbilityN = true;
+            SoundController.PlaySfx(gameData.GetAudioClip("ability-n"));
             if (usingUpgradedPowerUpsN) return GetCrossMatch(gem, isSpecialGem, validateGem);
             else return GetHorizontalMatch(gem, isSpecialGem, validateGem);
         }
         else
         {
+            useAbilityA = true;
+            SoundController.PlaySfx(gameData.GetAudioClip("ability-a"));
             if (usingUpgradedPowerUpsA) return GetBomb5x5Match(gem, validateGem);
             else return GetBomb3x3Match(gem, validateGem);
         }
@@ -720,9 +751,9 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
                 {
                     GameObject specialGem = null;
 
-                    if (matchInfo.GetMatchType() == GemType.Action) 
+                    if (matchInfo.GetMatchType() == GemType.Action)
                         specialGem = gameData.GetSpecialGem("Bomb");
-                    else if (matchInfo.GetMatchType() == GemType.Network) 
+                    else if (matchInfo.GetMatchType() == GemType.Network)
                         specialGem = gameData.GetSpecialGem("Rocket");
 
                     float newGemDuration = 0.0f;
@@ -756,9 +787,14 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
 
         GameController.scoreTemp = score + matchTemp;
         UIController.ShowMsg($"{gameData.GetComboMessage(matchCounter - 1)}");
-        SoundController.PlaySfx(gameData.GetAudioClip("match"));
 
-        if (!GameController.instance.tutorial_is_done &&
+        if (!useAbilityD && !useAbilityN && !useAbilityA)
+            SoundController.PlaySfx(gameData.GetAudioClip("match"));
+        else
+            useAbilityD = useAbilityN = useAbilityA = false;
+
+        if (!GameController.instance.standalone && 
+            !GameController.instance.tutorial_is_done &&
             GameController.instance.gemIsInteractable)
             GameController.instance.gameTutorialHandler.FinishTutorial();
 

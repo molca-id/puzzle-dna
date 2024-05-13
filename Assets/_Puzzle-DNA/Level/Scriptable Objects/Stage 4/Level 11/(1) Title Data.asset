@@ -24,11 +24,13 @@ MonoBehaviour:
   titleStories:
   - playerExpression: 0
     interlocutorSprite: {fileID: 0}
-    clipId: {fileID: 0}
-    clipEn: {fileID: 0}
+    bgmClip: {fileID: 0}
+    clipEn: {fileID: 8300000, guid: e9e2a34fcb11b1f4d9dcdeca0b77bc3d, type: 3}
+    clipId: {fileID: 8300000, guid: 84593039e8aae994d9d27a4fa40ae561, type: 3}
     clipMy: {fileID: 0}
-    contentId: 'Inggris, 1845. '
+    animPrefab: {fileID: 0}
     contentEn: UK, 1845.
+    contentId: 'Inggris, 1845. '
     contentMy: 'Inggris, 1845. '
   eventDataStory:
     autoOpenPerks: 1

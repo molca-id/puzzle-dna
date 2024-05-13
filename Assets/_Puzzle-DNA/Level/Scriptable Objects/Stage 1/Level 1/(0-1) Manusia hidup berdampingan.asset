@@ -23,10 +23,13 @@ MonoBehaviour:
   - playerExpression: 4
     interlocutorSprite: {fileID: 21300000, guid: 306ce90c4f0a68f4aa960102c0392694,
       type: 3}
-    bgmClip: {fileID: 0}
-    clipId: {fileID: 0}
-    clipEn: {fileID: 0}
+    clipCodeEn: 
+    clipCodeId: 
+    clipCodeMy: 
+    clipEn: {fileID: 8300000, guid: 2b00b1e476f24f74698f1917cd099b00, type: 3}
+    clipId: {fileID: 8300000, guid: 3e2251882d527f046a5c39ae57217a6b, type: 3}
     clipMy: {fileID: 0}
+    bgmClip: {fileID: 0}
     animPrefab: {fileID: 0}
     contentEn: Humans live side by side with the robot Aiden, a robot created by
       Prof. Woo to make human work easier.

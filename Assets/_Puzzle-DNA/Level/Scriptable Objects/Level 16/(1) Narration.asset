@@ -20,14 +20,17 @@ MonoBehaviour:
     dialogueStories: []
   narrationType: 2
   narrationStories:
-  - playerExpression: 4
+  - animPrefab: {fileID: 0}
+    playerExpression: 4
     interlocutorSprite: {fileID: 21300000, guid: 5b9cc1bd4df0fbb49b2e14ab21dd616c,
       type: 3}
-    bgmClip: {fileID: 0}
-    clipId: {fileID: 0}
-    clipEn: {fileID: 0}
+    clipCodeEn: 
+    clipCodeId: 
+    clipCodeMy: 
+    clipEn: {fileID: 8300000, guid: ccee18b40b9b9264aaefbec0ad297b2d, type: 3}
+    clipId: {fileID: 8300000, guid: 98d58a7e27850754caed3c8de8fabb7e, type: 3}
     clipMy: {fileID: 0}
-    animPrefab: {fileID: 0}
+    bgmClip: {fileID: 0}
     contentEn: 'Aiden calmed down again...
 
       You succeeded in awakening Aiden''s
@@ -38,13 +41,16 @@ MonoBehaviour:
       kembali.\LAiden kini sudah dapat kembali membantu manusia untuk dunia."
     contentMy: "Aiden kembali tenang...\LKamu berhasil membangkitkan talenta Aiden
       kembali.\LAiden kini sudah dapat kembali membantu manusia untuk dunia."
-  - playerExpression: 1
+  - animPrefab: {fileID: 0}
+    playerExpression: 1
     interlocutorSprite: {fileID: 0}
-    bgmClip: {fileID: 0}
-    clipId: {fileID: 0}
+    clipCodeEn: 
+    clipCodeId: 
+    clipCodeMy: 
     clipEn: {fileID: 0}
+    clipId: {fileID: 8300000, guid: edb02ed5143b43c48aeef9b27aa4d2f7, type: 3}
     clipMy: {fileID: 0}
-    animPrefab: {fileID: 0}
+    bgmClip: {fileID: 0}
     contentEn: Thank you Talent Voyager..
     contentId: Terima Kasih Talent Voyager..
     contentMy: Terima Kasih Talent Voyager..

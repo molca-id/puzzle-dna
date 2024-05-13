@@ -22,10 +22,13 @@ MonoBehaviour:
   narrationStories:
   - playerExpression: 4
     interlocutorSprite: {fileID: 0}
-    bgmClip: {fileID: 0}
-    clipId: {fileID: 0}
-    clipEn: {fileID: 0}
+    clipCodeEn: 
+    clipCodeId: 
+    clipCodeMy: 
+    clipEn: {fileID: 8300000, guid: e71c0becc8cea5a42bd4a9e5cf0da684, type: 3}
+    clipId: {fileID: 8300000, guid: ad9b8901546bcd14983295891b58f5b9, type: 3}
     clipMy: {fileID: 0}
+    bgmClip: {fileID: 8300000, guid: 7b29bfca81324ee4e941e5d2d741cafc, type: 3}
     animPrefab: {fileID: 0}
     contentEn: Let's prepare the time machine plane!
     contentId: Mari kita siapkan pesawat mesin waktunya!

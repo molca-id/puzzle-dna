@@ -22,13 +22,17 @@ MonoBehaviour:
   narrationStories: []
   popUpStories: []
   titleStories:
-  - playerExpression: 0
+  - animPrefab: {fileID: 0}
+    playerExpression: 0
     interlocutorSprite: {fileID: 0}
-    clipId: {fileID: 0}
-    clipEn: {fileID: 0}
+    usingCharClip: 0
+    storyCode: 
+    clipEn: {fileID: 8300000, guid: 7218865a097797041afca3055c18b086, type: 3}
+    clipId: {fileID: 8300000, guid: 4eae458a7d614f042ba32924d4486cdc, type: 3}
     clipMy: {fileID: 0}
-    contentId: Afrika Selatan, 1995
+    bgmClip: {fileID: 0}
     contentEn: South Africa, 1995
+    contentId: Afrika Selatan, 1995
     contentMy: Afrika Selatan, 1995
   eventDataStory:
     autoOpenPerks: 0

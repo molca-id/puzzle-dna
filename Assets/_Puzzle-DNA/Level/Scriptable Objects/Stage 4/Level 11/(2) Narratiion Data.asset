@@ -23,8 +23,8 @@ MonoBehaviour:
   - playerExpression: 4
     interlocutorSprite: {fileID: 0}
     bgmClip: {fileID: 0}
-    clipId: {fileID: 0}
-    clipEn: {fileID: 0}
+    clipEn: {fileID: 8300000, guid: 23b3fc08f9ae51a47bad761a71620170, type: 3}
+    clipId: {fileID: 8300000, guid: d18aa9fbdaa434342a6759a7a95bb556, type: 3}
     clipMy: {fileID: 0}
     animPrefab: {fileID: 0}
     contentEn: When you arrive, there is a woman sitting in her office. When you

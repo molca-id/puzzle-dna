@@ -18,6 +18,7 @@ public class NarrationStoryHandler : MonoBehaviour
 
     [Header("Current Index Attributes")]
     public StoryData currentStoryData;
+    public GameObject currAnimation;
     public int lastCheckpoint;
     public int nextLevelIndex;
     public bool isLastStory;
@@ -281,19 +282,28 @@ public class NarrationStoryHandler : MonoBehaviour
         if (DataHandler.instance.GetLanguage() == "id")
             SetStory(
                 currContent,
+                DataHandler.instance.GetPlayerClip(dialogue.contentData.clipCodeId),
+                dialogue.contentData.bgmClip,
                 dialogue.contentData.clipId,
+                dialogue.contentData.animPrefab,
                 dialogue.contentData.contentId
                 );
         else if (DataHandler.instance.GetLanguage() == "en")
             SetStory(
                 currContent,
+                DataHandler.instance.GetPlayerClip(dialogue.contentData.clipCodeEn),
+                dialogue.contentData.bgmClip,
                 dialogue.contentData.clipEn,
+                dialogue.contentData.animPrefab,
                 dialogue.contentData.contentEn
                 );
         else
             SetStory(
                 currContent,
+                DataHandler.instance.GetPlayerClip(dialogue.contentData.clipCodeMy),
+                dialogue.contentData.bgmClip,
                 dialogue.contentData.clipMy,
+                dialogue.contentData.animPrefab,
                 dialogue.contentData.contentMy
                 );
 
@@ -324,18 +334,25 @@ public class NarrationStoryHandler : MonoBehaviour
 
         #region Setting Content
         narrationText = null;
+        narrationTextAbove.transform.parent.gameObject.SetActive(false);
+        narrationTextMiddle.transform.parent.gameObject.SetActive(false);
+        narrationTextUnder.transform.parent.gameObject.SetActive(false);
         narrationPanelWithBG.SetActive(false);
+
         narrationTextAbove.text = narrationTextMiddle.text = narrationTextUnder.text = "";
         switch (currentStoryData.narrationType)
         {
             case StoryData.NarrationType.Above:
                 narrationText = narrationTextAbove;
+                narrationText.transform.parent.gameObject.SetActive(true);
                 break;
             case StoryData.NarrationType.Middle:
                 narrationText = narrationTextMiddle;
+                narrationText.transform.parent.gameObject.SetActive(true);
                 break;
             case StoryData.NarrationType.Under:
                 narrationText = narrationTextUnder;
+                narrationText.transform.parent.gameObject.SetActive(true);
                 break;
             case StoryData.NarrationType.WithBG:
                 narrationText = narrationTextWithBG;
@@ -357,19 +374,28 @@ public class NarrationStoryHandler : MonoBehaviour
         if (DataHandler.instance.GetLanguage() == "id")
             SetStory(
                 narrationText,
+                DataHandler.instance.GetPlayerClip(currentStoryData.narrationStories[narrationIndex].clipCodeId),
+                currentStoryData.narrationStories[narrationIndex].bgmClip,
                 currentStoryData.narrationStories[narrationIndex].clipId,
+                currentStoryData.narrationStories[narrationIndex].animPrefab,
                 currentStoryData.narrationStories[narrationIndex].contentId
                 );
         else if (DataHandler.instance.GetLanguage() == "en")
             SetStory(
                 narrationText,
+                DataHandler.instance.GetPlayerClip(currentStoryData.narrationStories[narrationIndex].clipCodeEn),
+                currentStoryData.narrationStories[narrationIndex].bgmClip,
                 currentStoryData.narrationStories[narrationIndex].clipEn,
+                currentStoryData.narrationStories[narrationIndex].animPrefab,
                 currentStoryData.narrationStories[narrationIndex].contentEn
                 );
         else
             SetStory(
                 narrationText,
+                DataHandler.instance.GetPlayerClip(currentStoryData.narrationStories[narrationIndex].clipCodeMy),
+                currentStoryData.narrationStories[narrationIndex].bgmClip,
                 currentStoryData.narrationStories[narrationIndex].clipMy,
+                currentStoryData.narrationStories[narrationIndex].animPrefab,
                 currentStoryData.narrationStories[narrationIndex].contentMy
                 );
         #endregion
@@ -399,20 +425,29 @@ public class NarrationStoryHandler : MonoBehaviour
         if (DataHandler.instance.GetLanguage() == "id")
             SetStory(
                 popUpText,
-                currentStoryData.popUpStories[narrationIndex].clipId,
-                currentStoryData.popUpStories[narrationIndex].contentId
+                DataHandler.instance.GetPlayerClip(currentStoryData.popUpStories[popUpIndex].clipCodeId),
+                currentStoryData.popUpStories[popUpIndex].bgmClip,
+                currentStoryData.popUpStories[popUpIndex].clipId,
+                currentStoryData.popUpStories[popUpIndex].animPrefab,
+                currentStoryData.popUpStories[popUpIndex].contentId
                 );
         else if (DataHandler.instance.GetLanguage() == "en")
             SetStory(
                 popUpText,
-                currentStoryData.popUpStories[narrationIndex].clipEn,
-                currentStoryData.popUpStories[narrationIndex].contentEn
+                DataHandler.instance.GetPlayerClip(currentStoryData.popUpStories[popUpIndex].clipCodeEn),
+                currentStoryData.popUpStories[popUpIndex].bgmClip,
+                currentStoryData.popUpStories[popUpIndex].clipEn,
+                currentStoryData.popUpStories[popUpIndex].animPrefab,
+                currentStoryData.popUpStories[popUpIndex].contentEn
                 );
         else
             SetStory(
                 popUpText,
-                currentStoryData.popUpStories[narrationIndex].clipMy,
-                currentStoryData.popUpStories[narrationIndex].contentMy
+                DataHandler.instance.GetPlayerClip(currentStoryData.popUpStories[popUpIndex].clipCodeMy),
+                currentStoryData.popUpStories[popUpIndex].bgmClip,
+                currentStoryData.popUpStories[popUpIndex].clipMy,
+                currentStoryData.popUpStories[popUpIndex].animPrefab,
+                currentStoryData.popUpStories[popUpIndex].contentMy
                 );
         #endregion
     }
@@ -441,32 +476,78 @@ public class NarrationStoryHandler : MonoBehaviour
         if (DataHandler.instance.GetLanguage() == "id")
             SetStory(
                 titleText,
-                currentStoryData.titleStories[narrationIndex].clipId,
-                currentStoryData.titleStories[narrationIndex].contentId
+                DataHandler.instance.GetPlayerClip(currentStoryData.titleStories[titleIndex].clipCodeId),
+                currentStoryData.titleStories[titleIndex].bgmClip,
+                currentStoryData.titleStories[titleIndex].clipId,
+                currentStoryData.titleStories[titleIndex].animPrefab,
+                currentStoryData.titleStories[titleIndex].contentId
                 );
         else if (DataHandler.instance.GetLanguage() == "en")
             SetStory(
                 titleText,
-                currentStoryData.titleStories[narrationIndex].clipEn,
-                currentStoryData.titleStories[narrationIndex].contentEn
+                DataHandler.instance.GetPlayerClip(currentStoryData.titleStories[titleIndex].clipCodeEn),
+                currentStoryData.titleStories[titleIndex].bgmClip,
+                currentStoryData.titleStories[titleIndex].clipEn,
+                currentStoryData.titleStories[titleIndex].animPrefab,
+                currentStoryData.titleStories[titleIndex].contentEn
                 );
         else
             SetStory(
                 titleText,
-                currentStoryData.titleStories[narrationIndex].clipMy,
-                currentStoryData.titleStories[narrationIndex].contentMy
+                DataHandler.instance.GetPlayerClip(currentStoryData.titleStories[titleIndex].clipCodeMy),
+                currentStoryData.titleStories[titleIndex].bgmClip,
+                currentStoryData.titleStories[titleIndex].clipMy,
+                currentStoryData.titleStories[titleIndex].animPrefab,
+                currentStoryData.titleStories[titleIndex].contentMy
                 );
         #endregion
     }
 
-    public void SetStory(TextMeshProUGUI text, AudioClip clip, string textValue)
+    public void SetStory(TextMeshProUGUI text, AudioClip playerClip, AudioClip storyClip, AudioClip clip, GameObject animPrefab, string textValue)
     {
         AudioSource voAudioSource = MainMenuHandler.instance.GetVOSource();
+        AudioSource storyAudioSource = MainMenuHandler.instance.GetStorySource();
+
+        if (currAnimation != null)
+            Destroy(currAnimation);
+
+        if (animPrefab != null)
+        {
+            currAnimation = Instantiate(animPrefab);
+            RectTransform rectTransform = currAnimation.GetComponent<RectTransform>();
+
+            currAnimation.transform.SetParent(storyPanel.transform.GetChild(0));
+            currAnimation.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+            currAnimation.transform.localScale = Vector3.one;
+            currAnimation.transform.SetSiblingIndex(2);
+
+            rectTransform.offsetMin = Vector2.zero;
+            rectTransform.offsetMax = Vector2.zero;
+            rectTransform.anchorMin = new Vector2(0f, 0f);
+            rectTransform.anchorMax = new Vector2(1f, 1f);
+            rectTransform.pivot = Vector2.one * 0.5f;
+        }
+
         voAudioSource.Stop();
+        storyAudioSource.Stop();
         text.text = textValue;
 
-        if (clip == null) return;
-        voAudioSource.clip = clip;
-        voAudioSource.Play();
+        if (storyClip != null)
+        {
+            storyAudioSource.clip = storyClip;
+            storyAudioSource.Play();
+        }
+
+        if (playerClip != null)
+        {
+            voAudioSource.clip = clip;
+            voAudioSource.Play();
+        }
+
+        if (clip != null)
+        {
+            voAudioSource.clip = clip;
+            voAudioSource.Play();
+        }
     }
 }

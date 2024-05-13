@@ -23,8 +23,8 @@ MonoBehaviour:
   - playerExpression: 4
     interlocutorSprite: {fileID: 0}
     bgmClip: {fileID: 0}
-    clipId: {fileID: 0}
-    clipEn: {fileID: 0}
+    clipEn: {fileID: 8300000, guid: c0ab2257c923f6443b0b17ee5d17823f, type: 3}
+    clipId: {fileID: 8300000, guid: 026ef28280cdabb4bb548aa99a1dac51, type: 3}
     clipMy: {fileID: 0}
     animPrefab: {fileID: 0}
     contentEn: You see a teenage girl sitting in a park. She is Malala Yousafzai.
@@ -35,8 +35,8 @@ MonoBehaviour:
   - playerExpression: 4
     interlocutorSprite: {fileID: 0}
     bgmClip: {fileID: 0}
-    clipId: {fileID: 0}
-    clipEn: {fileID: 0}
+    clipEn: {fileID: 8300000, guid: c1dd58d8e003ef04e89cedfef0d48a10, type: 3}
+    clipId: {fileID: 8300000, guid: ba3976529b0434741a4f8410d1a8dafe, type: 3}
     clipMy: {fileID: 0}
     animPrefab: {fileID: 0}
     contentEn: He is a very famous human rights fighter and won the Nobel Peace Prize

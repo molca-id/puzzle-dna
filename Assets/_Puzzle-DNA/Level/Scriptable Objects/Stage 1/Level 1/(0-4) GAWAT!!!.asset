@@ -22,11 +22,15 @@ MonoBehaviour:
   narrationStories:
   - playerExpression: 4
     interlocutorSprite: {fileID: 0}
-    bgmClip: {fileID: 0}
-    clipId: {fileID: 0}
-    clipEn: {fileID: 0}
+    clipCodeEn: 
+    clipCodeId: 
+    clipCodeMy: 
+    clipEn: {fileID: 8300000, guid: cc47940ea5b70f64798522b2b1b320b4, type: 3}
+    clipId: {fileID: 8300000, guid: 026fc910abd3ccc43948bd65a7f570a9, type: 3}
     clipMy: {fileID: 0}
-    animPrefab: {fileID: 0}
+    bgmClip: {fileID: 0}
+    animPrefab: {fileID: 6617120770565417329, guid: b7a93d734d491a9439f16c7bedadd196,
+      type: 3}
     contentEn: WARNING!!!! Aiden exploded and caused his atomic DNA to break into
       3 parts and scatter.
     contentId: GAWAT!!!! Aiden meledak dan menyebabkan DNA Atomnya pecah menjadi

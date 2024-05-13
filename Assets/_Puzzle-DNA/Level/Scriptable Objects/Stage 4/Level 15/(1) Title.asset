@@ -22,13 +22,18 @@ MonoBehaviour:
   narrationStories: []
   popUpStories: []
   titleStories:
-  - playerExpression: 0
+  - animPrefab: {fileID: 0}
+    playerExpression: 0
     interlocutorSprite: {fileID: 0}
-    clipId: {fileID: 0}
-    clipEn: {fileID: 0}
+    clipCodeEn: 
+    clipCodeId: 
+    clipCodeMy: 
+    clipEn: {fileID: 8300000, guid: 2ab109fcaa0a0ee46b38f24800e8ffed, type: 3}
+    clipId: {fileID: 8300000, guid: b008870424db52a48b0de64f12914e0d, type: 3}
     clipMy: {fileID: 0}
-    contentId: Inggris, 1929
+    bgmClip: {fileID: 0}
     contentEn: UK, 1929
+    contentId: Inggris, 1929
     contentMy: Inggris, 1929
   eventDataStory:
     autoOpenPerks: 0

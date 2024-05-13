@@ -23,8 +23,8 @@ MonoBehaviour:
   - playerExpression: 4
     interlocutorSprite: {fileID: 0}
     bgmClip: {fileID: 0}
-    clipId: {fileID: 0}
-    clipEn: {fileID: 0}
+    clipEn: {fileID: 8300000, guid: b62f78808da33d04c824fdf3a5ee7749, type: 3}
+    clipId: {fileID: 8300000, guid: bf272bec9ffbfdf40b4442a635afefb0, type: 3}
     clipMy: {fileID: 0}
     animPrefab: {fileID: 0}
     contentEn: Succeed! You are ready to move on to the next place. You are very
@@ -36,9 +36,9 @@ MonoBehaviour:
       bersemangat menghadapi tantangan dan pengalaman seru di depan mata.
   - playerExpression: 4
     interlocutorSprite: {fileID: 0}
-    bgmClip: {fileID: 0}
-    clipId: {fileID: 0}
+    bgmClip: {fileID: 8300000, guid: 124e8177c9f4a304f8877190b83f82fe, type: 3}
     clipEn: {fileID: 0}
+    clipId: {fileID: 0}
     clipMy: {fileID: 0}
     animPrefab: {fileID: 0}
     contentEn: '"Titut titut" (Voice Message sounds)'
@@ -47,8 +47,8 @@ MonoBehaviour:
   - playerExpression: 4
     interlocutorSprite: {fileID: 0}
     bgmClip: {fileID: 0}
-    clipId: {fileID: 0}
-    clipEn: {fileID: 0}
+    clipEn: {fileID: 8300000, guid: c36e2d6f24c0ab04a82e0dc5e8e6e3ca, type: 3}
+    clipId: {fileID: 8300000, guid: 6aa63ed35395ca0408dedc692a8a97e7, type: 3}
     clipMy: {fileID: 0}
     animPrefab: {fileID: 0}
     contentEn: You get a notification that an atom was detected in the year 3008.
@@ -58,9 +58,9 @@ MonoBehaviour:
       3008.
   - playerExpression: 4
     interlocutorSprite: {fileID: 0}
-    bgmClip: {fileID: 0}
-    clipId: {fileID: 0}
+    bgmClip: {fileID: 8300000, guid: 7b29bfca81324ee4e941e5d2d741cafc, type: 3}
     clipEn: {fileID: 0}
+    clipId: {fileID: 0}
     clipMy: {fileID: 0}
     animPrefab: {fileID: 0}
     contentEn: '(Airplane Sound)

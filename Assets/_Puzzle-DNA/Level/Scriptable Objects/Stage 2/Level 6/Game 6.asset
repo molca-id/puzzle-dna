@@ -58,7 +58,7 @@ MonoBehaviour:
     - {x: 2, y: 0}
   audioClipInfos:
   - name: bgm
-    clip: {fileID: 8300000, guid: 85061caf3b3c42d478641c95959737da, type: 3}
+    clip: {fileID: 8300000, guid: 1b653e02ba1165a4fa94acef31a86661, type: 3}
   - name: click
     clip: {fileID: 8300000, guid: 04dee4ef652bb7e4f9f7a710627ec15d, type: 3}
   - name: swap

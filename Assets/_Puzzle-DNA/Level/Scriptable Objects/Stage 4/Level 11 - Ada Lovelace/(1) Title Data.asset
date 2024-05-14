@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0d3ec688709c214a8c7fe11dd2475cf, type: 3}
+  m_Name: (1) Title Data
+  m_EditorClassIdentifier: 
+  storyType: 4
+  backgroundSprite: {fileID: 21300000, guid: 56e2dce38aaa16041b9286fdc78f3626, type: 3}
+  tutorialKey: 
+  dialogueStory:
+    interlocutorName: 
+    dialogueStories: []
+  narrationType: 2
+  narrationStories: []
+  popUpStories: []
+  titleStories:
+  - playerExpression: 0
+    interlocutorSprite: {fileID: 0}
+    clipCodeEn: 
+    clipCodeId: 
+    clipCodeMy: 
+    clipEn: {fileID: 8300000, guid: e9e2a34fcb11b1f4d9dcdeca0b77bc3d, type: 3}
+    clipId: {fileID: 8300000, guid: 84593039e8aae994d9d27a4fa40ae561, type: 3}
+    clipMy: {fileID: 0}
+    bgmClip: {fileID: 0}
+    animPrefab: {fileID: 0}
+    contentEn: UK, 1845.
+    contentId: 'Inggris, 1845. '
+    contentMy: 'Inggris, 1845. '
+  eventDataStory:
+    autoOpenPerks: 1
+    questionId: 
+    questionEn: 
+    questionMy: 
+    playerExpression: 0
+    characterSprite: {fileID: 0}
+    answers: []

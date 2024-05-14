@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 // Special Gem (Blender) Match all Gems in same Row and Column
 // Future improvement create generic class for Special Gems

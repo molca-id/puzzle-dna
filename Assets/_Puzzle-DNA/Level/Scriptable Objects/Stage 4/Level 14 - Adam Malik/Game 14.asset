@@ -1,0 +1,170 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e63af0a87d5c2f45a27c8615bc44409, type: 3}
+  m_Name: Game 14
+  m_EditorClassIdentifier: 
+  boardDimension: {x: 6, y: 6}
+  gameLevel: 14
+  abilityDriveDuration: 5
+  backgroundGame: {fileID: 21300000, guid: 5ad6039e348729e4d824b77356905f16, type: 3}
+  layoutGame: {fileID: 21300000, guid: 5917939e2fa7ab8418017c96a7a2a7cb, type: 3}
+  usingDialogueBonus: 1
+  dialogues:
+    interlocutorName: Adam
+    interlocutorIdleSprite: {fileID: 21300000, guid: d2de0823e0e6a914199b5f1df57357a0,
+      type: 3}
+    dialogueBonus:
+    - scoreTrigger: 1000
+      dialogueBonusDatas:
+      - playerIsTalking: 1
+        dialogueDelay: 2.5
+        contentData:
+          playerExpression: 0
+          interlocutorSprite: {fileID: 21300000, guid: cac255dc7704a8a4285c6bd430f2a527,
+            type: 3}
+          clipCodeEn: 
+          clipCodeId: 
+          clipCodeMy: 
+          clipEn: {fileID: 0}
+          clipId: {fileID: 0}
+          clipMy: {fileID: 0}
+          bgmClip: {fileID: 0}
+          animPrefab: {fileID: 0}
+          contentEn: What experience will you never forget?
+          contentId: Pengalaman apa yang tidak akan pernah Bapak lupakan?
+          contentMy: Pengalaman apa yang tidak akan pernah Bapak lupakan?
+      - playerIsTalking: 0
+        dialogueDelay: 2.5
+        contentData:
+          playerExpression: 0
+          interlocutorSprite: {fileID: 21300000, guid: cac255dc7704a8a4285c6bd430f2a527,
+            type: 3}
+          clipCodeEn: 
+          clipCodeId: 
+          clipCodeMy: 
+          clipEn: {fileID: 0}
+          clipId: {fileID: 0}
+          clipMy: {fileID: 0}
+          bgmClip: {fileID: 0}
+          animPrefab: {fileID: 0}
+          contentEn: I will always remember the Japanese colonial era and the moments
+            of the proclamation. Seeing all levels of society fighting together makes
+            me more enthusiastic.
+          contentId: Zaman penjajahan Jepang dan detik-detik proklamasi akan selalu
+            saya ingat. Melihat semua lapisan masyarakat berjuang bersama membuat
+            saya lebih bersemangat.
+          contentMy: Zaman penjajahan Jepang dan detik-detik proklamasi akan selalu
+            saya ingat. Melihat semua lapisan masyarakat berjuang bersama membuat
+            saya lebih bersemangat.
+      isDone: 0
+    - scoreTrigger: 1500
+      dialogueBonusDatas:
+      - playerIsTalking: 1
+        dialogueDelay: 2.5
+        contentData:
+          playerExpression: 0
+          interlocutorSprite: {fileID: 21300000, guid: d2de0823e0e6a914199b5f1df57357a0,
+            type: 3}
+          clipCodeEn: 
+          clipCodeId: 
+          clipCodeMy: 
+          clipEn: {fileID: 0}
+          clipId: {fileID: 0}
+          clipMy: {fileID: 0}
+          bgmClip: {fileID: 0}
+          animPrefab: {fileID: 0}
+          contentEn: What does it take to become a great person like you?
+          contentId: Apa yang diperlukan untuk menjadi orang hebat seperti Bapak?
+          contentMy: Apa yang diperlukan untuk menjadi orang hebat seperti Bapak?
+      - playerIsTalking: 0
+        dialogueDelay: 2.5
+        contentData:
+          playerExpression: 2
+          interlocutorSprite: {fileID: 21300000, guid: cac255dc7704a8a4285c6bd430f2a527,
+            type: 3}
+          clipCodeEn: 
+          clipCodeId: 
+          clipCodeMy: 
+          clipEn: {fileID: 0}
+          clipId: {fileID: 0}
+          clipMy: {fileID: 0}
+          bgmClip: {fileID: 0}
+          animPrefab: {fileID: 0}
+          contentEn: Not just intelligence. You need persistence and consistency
+            in acting to achieve your goals.
+          contentId: Tidak hanya kepintaran. Kamu memerlukan kegigihan dan konsistensi
+            dalam bertindak mencapai tujuan.
+          contentMy: Tidak hanya kepintaran. Kamu memerlukan kegigihan dan konsistensi
+            dalam bertindak mencapai tujuan.
+      isDone: 0
+  hintDelay: 10
+  totalTime: 90
+  tutorialKey: 
+  usingHandHint: 0
+  gems:
+  - type: 0
+    sprite: {fileID: 21300000, guid: c9b44319f4c3ad9419feaf96b4139599, type: 3}
+    minMatch: 3
+  - type: 1
+    sprite: {fileID: 21300000, guid: d2a0f96c0da635a4284645a5a51b0998, type: 3}
+    minMatch: 3
+  - type: 2
+    sprite: {fileID: 21300000, guid: 9dc0c5cefa0835c40a394e5321deb541, type: 3}
+    minMatch: 3
+  - type: 3
+    sprite: {fileID: 21300000, guid: 39f65d9f2d5abd349b5a5bcdcc6977ca, type: 3}
+    minMatch: 3
+  - type: 4
+    sprite: {fileID: 21300000, guid: de9186cb0effb064080b603159f66360, type: 3}
+    minMatch: 3
+  - type: 5
+    sprite: {fileID: 21300000, guid: a6c5c839abfe8f24197e73df13444920, type: 3}
+    minMatch: 3
+  specialGems:
+  - name: Rocket
+    prefab: {fileID: 6539906006310958499, guid: e61eea144c3cdb646a313258d3e2629f,
+      type: 3}
+  - name: Bomb
+    prefab: {fileID: 6539906006310958499, guid: c0d3ca31d71aa5f4eb54daa97b20bb40,
+      type: 3}
+  emptyGems:
+  - emptySprite: {fileID: 0}
+    positions:
+    - {x: 0, y: 0}
+    - {x: 0, y: 5}
+    - {x: 5, y: 0}
+    - {x: 5, y: 5}
+  - emptySprite: {fileID: 21300000, guid: feb9bf1df852c134a8a4a0dfb295e30c, type: 3}
+    positions:
+    - {x: 0, y: 1}
+    - {x: 5, y: 1}
+  audioClipInfos:
+  - name: bgm
+    clip: {fileID: 8300000, guid: 7f97ce1f8e6f97b408c86f57e5492d43, type: 3}
+  - name: click
+    clip: {fileID: 8300000, guid: 04dee4ef652bb7e4f9f7a710627ec15d, type: 3}
+  - name: swap
+    clip: {fileID: 8300000, guid: 2e7f97a319b006244b51bf6762952be2, type: 3}
+  - name: match
+    clip: {fileID: 8300000, guid: 2f9557f054139154f9d768b8e16f49b5, type: 3}
+  - name: ability-d
+    clip: {fileID: 8300000, guid: 5e8598a339107274f9be8c401c55956a, type: 3}
+  - name: ability-n
+    clip: {fileID: 8300000, guid: d75e597e1012cf44abf49a3fae2aa15e, type: 3}
+  - name: ability-a
+    clip: {fileID: 8300000, guid: cc4ad1eb3a6b0e5489b96d5053294c7e, type: 3}
+  comboMessages:
+  - Cool!
+  - Great!!
+  - Perfect!!!
+  - Glorious!!!!
+  - Wonderful!!!!!

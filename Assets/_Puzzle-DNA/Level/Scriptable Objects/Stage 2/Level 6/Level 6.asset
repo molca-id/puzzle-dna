@@ -25,7 +25,7 @@ MonoBehaviour:
     perks_stage_locks: 000000
   - perks_types: 2
     perks_stage_locks: 000000
-  bgmAudioClip: {fileID: 8300000, guid: d2943dea90cc71e4ca6b56045b127c78, type: 3}
+  bgmAudioClip: {fileID: 8300000, guid: 03c5c5f26f2479f43849181b03115b07, type: 3}
   prologueStoryData:
   - {fileID: 11400000, guid: 9634ab251d161034aa6539cf283e5f97, type: 2}
   epilogueStoryData:

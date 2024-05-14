@@ -129,20 +129,15 @@ public class LevelDataHandler : MonoBehaviour
     {
         isPrologue = true;
         prologueIndex += factor;
-        storyPanel.SetActive(false);
         StartCoroutine(IECloseScreen(tutorialParentPanel.GetComponent<CanvasGroup>(), () => tutorialParentPanel.SetActive(false)));
         if (prologueIndex == prologueStoryData.Count)
         {
             prologueIndex = 0;
             isPrologue = false;
 
-            if (epilogueStoryData.Count != 0)
-            {
-                UnityEvent whenGameUnloaded = new();
-                whenGameUnloaded.AddListener(() => SetEpilogueStory(0));
-                CommonHandler.instance.whenSceneUnloadedCustom = whenGameUnloaded;
-            }
-
+            UnityEvent whenGameUnloaded = new();
+            whenGameUnloaded.AddListener(() => SetEpilogueStory(0));
+            CommonHandler.instance.whenSceneUnloadedCustom = whenGameUnloaded;
             GameGenerator.instance.GenerateLevel(currentGameData);
             SetPrologueStory(true);
             return;
@@ -156,12 +151,12 @@ public class LevelDataHandler : MonoBehaviour
     {
         isEpilogue = true;
         epilogueIndex += factor;
-        storyPanel.SetActive(false);
         StartCoroutine(IECloseScreen(tutorialParentPanel.GetComponent<CanvasGroup>(), () => tutorialParentPanel.SetActive(false)));
         if (epilogueIndex == epilogueStoryData.Count)
         {
             epilogueIndex = 0;
             isEpilogue = false;
+            storyPanel.SetActive(false);
             SetEpilogueStory(true);
 
             MainMenuHandler.instance.ResetBGMMenu();
@@ -256,7 +251,7 @@ public class LevelDataHandler : MonoBehaviour
             {
                 dialoguePanel.SetActive(false);
             }));
-            
+
             if (isPrologue) SetPrologueStory(1);
             else if (isEpilogue) SetEpilogueStory(1);
             return;
@@ -285,7 +280,7 @@ public class LevelDataHandler : MonoBehaviour
         if (DataHandler.instance.GetLanguage() == "id")
             SetStory(
                 currContent,
-                DataHandler.instance.GetPlayerClip(dialogue.contentData.clipCodeId),
+                dialogue.contentData.clipCodeId,
                 dialogue.contentData.bgmClip,
                 dialogue.contentData.clipId,
                 dialogue.contentData.animPrefab,
@@ -294,7 +289,7 @@ public class LevelDataHandler : MonoBehaviour
         else if (DataHandler.instance.GetLanguage() == "en")
             SetStory(
                 currContent,
-                DataHandler.instance.GetPlayerClip(dialogue.contentData.clipCodeEn),
+                dialogue.contentData.clipCodeEn,
                 dialogue.contentData.bgmClip,
                 dialogue.contentData.clipEn,
                 dialogue.contentData.animPrefab,
@@ -303,7 +298,7 @@ public class LevelDataHandler : MonoBehaviour
         else
             SetStory(
                 currContent,
-                DataHandler.instance.GetPlayerClip(dialogue.contentData.clipCodeMy),
+                dialogue.contentData.clipCodeMy,
                 dialogue.contentData.bgmClip,
                 dialogue.contentData.clipMy,
                 dialogue.contentData.animPrefab,
@@ -386,7 +381,7 @@ public class LevelDataHandler : MonoBehaviour
         if (DataHandler.instance.GetLanguage() == "id")
             SetStory(
                 narrationText,
-                DataHandler.instance.GetPlayerClip(currentStoryData.narrationStories[narrationIndex].clipCodeId),
+                currentStoryData.narrationStories[narrationIndex].clipCodeId,
                 currentStoryData.narrationStories[narrationIndex].bgmClip,
                 currentStoryData.narrationStories[narrationIndex].clipId,
                 currentStoryData.narrationStories[narrationIndex].animPrefab,
@@ -395,7 +390,7 @@ public class LevelDataHandler : MonoBehaviour
         else if (DataHandler.instance.GetLanguage() == "en")
             SetStory(
                 narrationText,
-                DataHandler.instance.GetPlayerClip(currentStoryData.narrationStories[narrationIndex].clipCodeEn),
+                currentStoryData.narrationStories[narrationIndex].clipCodeEn,
                 currentStoryData.narrationStories[narrationIndex].bgmClip,
                 currentStoryData.narrationStories[narrationIndex].clipEn,
                 currentStoryData.narrationStories[narrationIndex].animPrefab,
@@ -404,7 +399,7 @@ public class LevelDataHandler : MonoBehaviour
         else
             SetStory(
                 narrationText,
-                DataHandler.instance.GetPlayerClip(currentStoryData.narrationStories[narrationIndex].clipCodeMy),
+                currentStoryData.narrationStories[narrationIndex].clipCodeMy,
                 currentStoryData.narrationStories[narrationIndex].bgmClip,
                 currentStoryData.narrationStories[narrationIndex].clipMy,
                 currentStoryData.narrationStories[narrationIndex].animPrefab,
@@ -434,7 +429,7 @@ public class LevelDataHandler : MonoBehaviour
         if (DataHandler.instance.GetLanguage() == "id")
             SetStory(
                 popUpText,
-                DataHandler.instance.GetPlayerClip(currentStoryData.popUpStories[popUpIndex].clipCodeId),
+                currentStoryData.popUpStories[popUpIndex].clipCodeId,
                 currentStoryData.popUpStories[popUpIndex].bgmClip,
                 currentStoryData.popUpStories[popUpIndex].clipId,
                 currentStoryData.popUpStories[popUpIndex].animPrefab,
@@ -443,7 +438,7 @@ public class LevelDataHandler : MonoBehaviour
         else if (DataHandler.instance.GetLanguage() == "en")
             SetStory(
                 popUpText,
-                DataHandler.instance.GetPlayerClip(currentStoryData.popUpStories[popUpIndex].clipCodeEn),
+                currentStoryData.popUpStories[popUpIndex].clipCodeEn,
                 currentStoryData.popUpStories[popUpIndex].bgmClip,
                 currentStoryData.popUpStories[popUpIndex].clipEn,
                 currentStoryData.popUpStories[popUpIndex].animPrefab,
@@ -452,7 +447,7 @@ public class LevelDataHandler : MonoBehaviour
         else
             SetStory(
                 popUpText,
-                DataHandler.instance.GetPlayerClip(currentStoryData.popUpStories[popUpIndex].clipCodeMy),
+                currentStoryData.popUpStories[popUpIndex].clipCodeMy,
                 currentStoryData.popUpStories[popUpIndex].bgmClip,
                 currentStoryData.popUpStories[popUpIndex].clipMy,
                 currentStoryData.popUpStories[popUpIndex].animPrefab,
@@ -482,7 +477,7 @@ public class LevelDataHandler : MonoBehaviour
         if (DataHandler.instance.GetLanguage() == "id")
             SetStory(
                 titleText,
-                DataHandler.instance.GetPlayerClip(currentStoryData.titleStories[titleIndex].clipCodeId),
+                currentStoryData.titleStories[titleIndex].clipCodeId,
                 currentStoryData.titleStories[titleIndex].bgmClip,
                 currentStoryData.titleStories[titleIndex].clipId,
                 currentStoryData.titleStories[titleIndex].animPrefab,
@@ -491,7 +486,7 @@ public class LevelDataHandler : MonoBehaviour
         else if (DataHandler.instance.GetLanguage() == "en")
             SetStory(
                 titleText,
-                DataHandler.instance.GetPlayerClip(currentStoryData.titleStories[titleIndex].clipCodeEn),
+                currentStoryData.titleStories[titleIndex].clipCodeEn,
                 currentStoryData.titleStories[titleIndex].bgmClip,
                 currentStoryData.titleStories[titleIndex].clipEn,
                 currentStoryData.titleStories[titleIndex].animPrefab,
@@ -500,7 +495,7 @@ public class LevelDataHandler : MonoBehaviour
         else
             SetStory(
                 titleText,
-                DataHandler.instance.GetPlayerClip(currentStoryData.titleStories[titleIndex].clipCodeMy),
+                currentStoryData.titleStories[titleIndex].clipCodeMy,
                 currentStoryData.titleStories[titleIndex].bgmClip,
                 currentStoryData.titleStories[titleIndex].clipMy,
                 currentStoryData.titleStories[titleIndex].animPrefab,
@@ -516,7 +511,7 @@ public class LevelDataHandler : MonoBehaviour
             Find(seq => seq.key == key).Init();
     }
 
-    public void SetStory(TextMeshProUGUI text, AudioClip playerClip, AudioClip storyClip, AudioClip clip, GameObject animPrefab, string textValue)
+    public void SetStory(TextMeshProUGUI text, string playerAudioClipCode, AudioClip storyClip, AudioClip clip, GameObject animPrefab, string textValue)
     {
         AudioSource voAudioSource = MainMenuHandler.instance.GetVOSource();
         AudioSource storyAudioSource = MainMenuHandler.instance.GetStorySource();
@@ -551,13 +546,12 @@ public class LevelDataHandler : MonoBehaviour
             storyAudioSource.Play();
         }
 
-        if (playerClip != null)
+        if (!string.IsNullOrEmpty(playerAudioClipCode))
         {
-            voAudioSource.clip = clip;
+            voAudioSource.clip = DataHandler.instance.GetPlayerClip(playerAudioClipCode);
             voAudioSource.Play();
         }
-
-        if (clip != null)
+        else if (clip != null)
         {
             voAudioSource.clip = clip;
             voAudioSource.Play();

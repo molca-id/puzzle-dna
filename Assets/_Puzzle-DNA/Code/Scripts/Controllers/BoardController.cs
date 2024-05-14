@@ -94,25 +94,11 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
         set { instance._fallPositions = value; }
     }
 
-    [SerializeField] bool _useAbilityD;
-    public static bool useAbilityD
+    [SerializeField] bool _usingSpecialRecently;
+    public static bool usingSpecialRecently
     {
-        get { return instance._useAbilityD; }
-        set { instance._useAbilityD = value; }
-    }
-
-    [SerializeField] bool _useAbilityN;
-    public static bool useAbilityN
-    {
-        get { return instance._useAbilityN; }
-        set { instance._useAbilityN = value; }
-    }
-
-    [SerializeField] bool _useAbilityA;
-    public static bool useAbilityA
-    {
-        get { return instance._useAbilityA; }
-        set { instance._useAbilityA = value; }
+        get { return instance._usingSpecialRecently; }
+        set { instance._usingSpecialRecently = value; }
     }
 
     int _matchCounter;
@@ -528,15 +514,11 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
     {
         if (isRocketGem)
         {
-            useAbilityN = true;
-            SoundController.PlaySfx(gameData.GetAudioClip("ability-n"));
             if (usingUpgradedPowerUpsN) return GetCrossMatch(gem, isSpecialGem, validateGem);
             else return GetHorizontalMatch(gem, isSpecialGem, validateGem);
         }
         else
         {
-            useAbilityA = true;
-            SoundController.PlaySfx(gameData.GetAudioClip("ability-a"));
             if (usingUpgradedPowerUpsA) return GetBomb5x5Match(gem, validateGem);
             else return GetBomb3x3Match(gem, validateGem);
         }
@@ -788,10 +770,8 @@ public class BoardController : SingletonMonoBehaviour<BoardController>
         GameController.scoreTemp = score + matchTemp;
         UIController.ShowMsg($"{gameData.GetComboMessage(matchCounter - 1)}");
 
-        if (!useAbilityD && !useAbilityN && !useAbilityA)
-            SoundController.PlaySfx(gameData.GetAudioClip("match"));
-        else
-            useAbilityD = useAbilityN = useAbilityA = false;
+        if (!usingSpecialRecently) SoundController.PlaySfx(gameData.GetAudioClip("match"));
+        else usingSpecialRecently = false;
 
         if (!GameController.instance.standalone && 
             !GameController.instance.tutorial_is_done &&

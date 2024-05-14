@@ -26,6 +26,9 @@ public class GameGenerator : MonoBehaviour
         yield return new WaitUntil(() => FindObjectOfType<GameController>() != null);
 
         GameController controller = FindObjectOfType<GameController>();
-        controller.Init(data);
+        controller.Init(
+            MainMenuHandler.instance.GetBGMSource().volume, 
+            data
+            );
     }
 }

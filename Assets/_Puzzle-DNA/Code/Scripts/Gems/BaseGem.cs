@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Utilities;
 
+public enum SpecialGemType { Drive, Network, Action, Unknown }
+
 [RequireComponent(typeof(SpriteRenderer))]
 public class BaseGem : MonoBehaviour, ITouchable
 {
@@ -21,6 +23,13 @@ public class BaseGem : MonoBehaviour, ITouchable
     {
         get { return _type; }
         set { _type = value; }
+    }
+
+    [SerializeField] SpecialGemType _specialType;
+    public virtual SpecialGemType specialType
+    {
+        get { return _specialType; }
+        set { _specialType = value; }
     }
 
     [SerializeField] int _minMatch = 3;
@@ -178,6 +187,13 @@ public class BaseGem : MonoBehaviour, ITouchable
 
     public void TouchUp()
     {
+        if (specialType != SpecialGemType.Unknown)
+            BoardController.usingSpecialRecently = true;
+        if (specialType == SpecialGemType.Network)
+            SoundController.PlaySfx(GameController.instance.gameData.GetAudioClip("ability-n"));
+        if (specialType == SpecialGemType.Action)
+            SoundController.PlaySfx(GameController.instance.gameData.GetAudioClip("ability-a"));
+
         TouchController.ClearElementClicked();
     }
 

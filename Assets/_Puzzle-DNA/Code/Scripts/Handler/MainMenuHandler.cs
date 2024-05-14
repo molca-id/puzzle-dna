@@ -31,6 +31,7 @@ public class LevelButtonData
     public bool isFinalLevel;
     public GameObject stageObject;
     public Button currentButton;
+    public List<GameObject> backgroundLineMaps;
     public List<Button> beforeButtons;
 }
 
@@ -77,6 +78,7 @@ public class MainMenuHandler : MonoBehaviour
     [Header("Level Attributes")]
     [SerializeField] List<Button> levelButton;
     [SerializeField] List<LevelButtonData> levelButtons;
+    [SerializeField] List<GameObject> backgroundLineMaps;
 
     [Header("ScrollView Attributes")]
     [HideInInspector] public LevelButtonData levelButtonTemp;
@@ -332,6 +334,7 @@ public class MainMenuHandler : MonoBehaviour
         }
 
         bool isDone = true;
+        backgroundLineMaps.ForEach(line => line.SetActive(false));
         foreach (var data in levelButtons)
         {
             if (!data.isFinalLevel)
@@ -340,6 +343,7 @@ public class MainMenuHandler : MonoBehaviour
                 {
                     if (data.stageObject != null) data.stageObject.transform.Find("Disable").gameObject.SetActive(false);
                     data.currentButton.transform.Find("Disable").gameObject.SetActive(false);
+                    data.backgroundLineMaps.ForEach(line => line.SetActive(true));
                     data.currentButton.interactable = true;
 
                     if (data.currentButton.GetComponent<Transform>().Find("ScoreText").
@@ -360,6 +364,7 @@ public class MainMenuHandler : MonoBehaviour
                 {
                     if (data.stageObject != null) data.stageObject.transform.Find("Disable").gameObject.SetActive(false);
                     data.currentButton.transform.Find("Disable").gameObject.SetActive(false);
+                    data.backgroundLineMaps.ForEach(line => line.SetActive(true));
                     data.currentButton.interactable = true;
                 }
             }

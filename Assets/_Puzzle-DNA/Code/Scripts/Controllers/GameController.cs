@@ -10,7 +10,7 @@ using Utilities;
 public class GameController : SingletonMonoBehaviour<GameController>
 {
     [Header("Game Data")]
-    [SerializeField] GameData gameData;
+    public GameData gameData;
     [SerializeField] BoardController boardController;
     public GameTutorialHandler gameTutorialHandler;
     [SerializeField] List<Sprite> layoutBackgrounds;
@@ -73,18 +73,21 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
     void Start()
     {
-        if (standalone) 
-            Init(gameData);    
+        if (standalone)
+        {
+            FindObjectOfType<AudioListener>().enabled = true;
+            Init(0.25f, gameData);
+        } 
     }
 
-    public void Init(GameData data)
+    public void Init(float BGMVolume, GameData data)
     {
         gameData = data;
         Instantiate(boardController.gameObject).GetComponent<BoardController>();
         BoardController.instance._gameData = gameData;
         SoundController.PlayMusic(
-            BoardController.instance._gameData.GetAudioClip("bgm"), 
-            MainMenuHandler.instance.GetBGMSource().volume
+            BoardController.instance._gameData.GetAudioClip("bgm"),
+            BGMVolume
             );
         StartGame();
     }

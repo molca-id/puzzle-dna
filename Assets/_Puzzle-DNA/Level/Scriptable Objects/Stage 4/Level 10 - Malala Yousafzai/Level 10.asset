@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9b7fad1ffcf1e948bb956499f1099e4, type: 3}
+  m_Name: Level 10
+  m_EditorClassIdentifier: 
+  gameData: {fileID: 11400000, guid: 4e52232cf42944e48a3edd4c7ea9c9e7, type: 2}
+  perksPoinPlus: 3
+  perksPoinMinus: 0
+  openPerksPanelAfterEpilogue: 0
+  showResultPanel: 0
+  usingPerkUnlocking: 0
+  perkStageForUnlocking: []
+  bgmAudioClip: {fileID: 8300000, guid: ef13648d806505848b4605adcd84bc67, type: 3}
+  prologueStoryData:
+  - {fileID: 11400000, guid: d75195e3536b7e748b4880e5fbdd50ad, type: 2}
+  - {fileID: 11400000, guid: 932b0db9b9a639b4e9f2c77f35450777, type: 2}
+  - {fileID: 11400000, guid: 056dde62b3a43ea40b690c280f2b1dad, type: 2}
+  epilogueStoryData:
+  - {fileID: 11400000, guid: 80262aa0bc293c64aacc28e2cd65bbeb, type: 2}

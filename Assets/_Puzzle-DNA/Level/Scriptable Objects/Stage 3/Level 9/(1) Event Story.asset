@@ -35,8 +35,8 @@ MonoBehaviour:
       Kevin berpendapat kamu adalah teman yang baik dan cocok untuk menemaninya berlatih.
       Kevin ingin kamu tetap berada disini dan melarangmu untuk pergi. Apa yang kamu
       katakan?
-    playerExpression: 2
-    characterSprite: {fileID: 0}
+    playerExpression: 4
+    characterSprite: {fileID: 21300000, guid: 735bf6c70f9cef04a87aa023ca42f4c9, type: 3}
     answers:
     - answerId: '"Aku ingin berteman lama denganmu Kevin, tapi sepertinya olahraga
         badminton tidak cocok denganku."'

@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0d3ec688709c214a8c7fe11dd2475cf, type: 3}
+  m_Name: (2) Dialogue
+  m_EditorClassIdentifier: 
+  storyType: 0
+  backgroundSprite: {fileID: 21300000, guid: eb85b6572c28d30469da9c40e653a927, type: 3}
+  tutorialKey: 
+  dialogueStory:
+    interlocutorName: Marcus
+    dialogueStories:
+    - playerIsTalking: 0
+      contentData:
+        playerExpression: 2
+        interlocutorSprite: {fileID: 21300000, guid: 9eec07e68cd27bf45b3cf5dfba2ebade,
+          type: 3}
+        clipCodeEn: 
+        clipCodeId: 
+        clipCodeMy: 
+        clipEn: {fileID: 0}
+        clipId: {fileID: 8300000, guid: 06fde274efb374847b4a8b86fe5cec54, type: 3}
+        clipMy: {fileID: 0}
+        bgmClip: {fileID: 0}
+        animPrefab: {fileID: 0}
+        contentEn: Hello, welcome. You came all the way from the future. Do you know
+          me?
+        contentId: Halo selamat datang. Kamu datang jauh-jauh dari masa depan. Apakah
+          kamu mengenalku?
+        contentMy: Halo selamat datang. Kamu datang jauh-jauh dari masa depan. Apakah
+          kamu mengenalku?
+    - playerIsTalking: 1
+      contentData:
+        playerExpression: 3
+        interlocutorSprite: {fileID: 21300000, guid: 96482bb989ea1c146bbf0f2ca31d263e,
+          type: 3}
+        clipCodeEn: 12.2-en
+        clipCodeId: 12.2-id
+        clipCodeMy: 12.2-my
+        clipEn: {fileID: 0}
+        clipId: {fileID: 0}
+        clipMy: {fileID: 0}
+        bgmClip: {fileID: 0}
+        animPrefab: {fileID: 0}
+        contentEn: I'm sorry I don't know you.
+        contentId: Maafkan saya tidak mengenalmu.
+        contentMy: Maafkan saya tidak mengenalmu.
+    - playerIsTalking: 0
+      contentData:
+        playerExpression: 1
+        interlocutorSprite: {fileID: 21300000, guid: 6a5dce08e0d594c478ef3346a6d37cd4,
+          type: 3}
+        clipCodeEn: 
+        clipCodeId: 
+        clipCodeMy: 
+        clipEn: {fileID: 0}
+        clipId: {fileID: 8300000, guid: 562dad8929ca55f4a9ce7925e795a2d3, type: 3}
+        clipMy: {fileID: 0}
+        bgmClip: {fileID: 0}
+        animPrefab: {fileID: 0}
+        contentEn: Hahahaha it's okay. Let me introduce myself, Marcus Aurelius.
+          I am the 16th Roman Emperor. Come with me around.
+        contentId: Hahahaha tidak apa-apa. Perkenalkan saya Marcus Aeurelius. Aku
+          adalah  Kaisar Romawi ke-16. Ayo ikut aku berkeliling.
+        contentMy: Hahahaha tidak apa-apa. Perkenalkan saya Marcus Aeurelius. Aku
+          adalah  Kaisar Romawi ke-16. Ayo ikut aku berkeliling.
+  narrationType: 0
+  narrationStories: []
+  popUpStories: []
+  titleStories: []
+  eventDataStory:
+    autoOpenPerks: 0
+    questionId: 
+    questionEn: 
+    questionMy: 
+    playerExpression: 0
+    characterSprite: {fileID: 0}
+    answers: []

@@ -337,5 +337,6 @@ MonoBehaviour:
   animator: {fileID: 2100746632092338692}
   position: {x: 0, y: 0}
   _type: 0
+  _specialType: 3
   _minMatch: 3
   isEmpty: 0

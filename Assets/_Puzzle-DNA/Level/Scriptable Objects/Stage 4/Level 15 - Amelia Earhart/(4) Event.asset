@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0d3ec688709c214a8c7fe11dd2475cf, type: 3}
+  m_Name: (4) Event
+  m_EditorClassIdentifier: 
+  storyType: 5
+  backgroundSprite: {fileID: 21300000, guid: 76cdae37a09f03143b626ecbeb54c070, type: 3}
+  tutorialKey: 
+  dialogueStory:
+    interlocutorName: 
+    dialogueStories: []
+  narrationType: 0
+  narrationStories: []
+  popUpStories: []
+  titleStories: []
+  eventDataStory:
+    autoOpenPerks: 1
+    questionId: Setelah bercerita bahwa tidak mudah untuk melakukan penerbangan pertamnya,
+      Kamu semakin kagum dengan sosok Amelia. Sosok perempuan yang menginspirasi
+      dan mampu membuktikan bahwa tidak ada hal yang tidak mungkin di dunia ini.
+      Kamu meminta tanda tangan dan pesan personal untukmu dari Amelia. Pesan apa
+      yang kamu inginkan untuk ditulis oleh Amelia.
+    questionEn: After telling you that it wasn't easy to make your first flight,
+      you are even more amazed by Amelia's figure. An inspiring female figure who
+      is able to prove that nothing is impossible in this world. You asked for an
+      autograph and a personal message for you from Amelia. What message would you
+      like Amelia to write.
+    questionMy: Setelah bercerita bahwa tidak mudah untuk melakukan penerbangan pertamnya,
+      Kamu semakin kagum dengan sosok Amelia. Sosok perempuan yang menginspirasi
+      dan mampu membuktikan bahwa tidak ada hal yang tidak mungkin di dunia ini.
+      Kamu meminta tanda tangan dan pesan personal untukmu dari Amelia. Pesan apa
+      yang kamu inginkan untuk ditulis oleh Amelia.
+    playerExpression: 4
+    characterSprite: {fileID: 21300000, guid: 2f516b1c10b609143bb0b1e7288af99e, type: 3}
+    answers:
+    - answerId: Fokuslah dengan tujuanmu walaupun seisi dunia tidak bersamamu
+      answerEn: Focus on your goals even if the whole world is not with you
+      answerMy: Fokuslah dengan tujuanmu walaupun seisi dunia tidak bersamamu
+      eventPointDatas:
+      - point: 2
+        perkType: 2
+      - point: 2
+        perkType: 1
+    - answerId: Jalankan mimpi-mimpi di depanmu walaupun risiko besar di depan mata
+      answerEn: Carry out the dreams in front of you even though there are big risks
+        in front of your eyes
+      answerMy: Jalankan mimpi-mimpi di depanmu walaupun risiko besar di depan mata
+      eventPointDatas:
+      - point: 2
+        perkType: 2
+      - point: 2
+        perkType: 0

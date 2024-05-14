@@ -55,7 +55,7 @@ MonoBehaviour:
   emptyGems: []
   audioClipInfos:
   - name: bgm
-    clip: {fileID: 8300000, guid: ebfcd220fefb8c94bb9dde66b63af2aa, type: 3}
+    clip: {fileID: 8300000, guid: 9fca395a8deb3bf4987e9838386dee7e, type: 3}
   - name: click
     clip: {fileID: 8300000, guid: 04dee4ef652bb7e4f9f7a710627ec15d, type: 3}
   - name: swap

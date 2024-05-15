@@ -23,9 +23,9 @@ MonoBehaviour:
         playerExpression: 0
         interlocutorSprite: {fileID: 21300000, guid: 2fa1030855e59f143b164bd163581d6a,
           type: 3}
-        clipCodeEn: 11.2
-        clipCodeId: 11.2
-        clipCodeMy: 11.2
+        clipCodeEn: 11.2-en
+        clipCodeId: 11.2-id
+        clipCodeMy: 11.2-my
         clipEn: {fileID: 0}
         clipId: {fileID: 0}
         clipMy: {fileID: 0}
@@ -42,7 +42,7 @@ MonoBehaviour:
         clipCodeEn: 
         clipCodeId: 
         clipCodeMy: 
-        clipEn: {fileID: 0}
+        clipEn: {fileID: 8300000, guid: 76d806fe13286b74a9dd2b1a1f54198d, type: 3}
         clipId: {fileID: 8300000, guid: b4480c6c56d9cae408f26d51549e2a71, type: 3}
         clipMy: {fileID: 0}
         bgmClip: {fileID: 0}

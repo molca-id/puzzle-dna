@@ -28,7 +28,7 @@ MonoBehaviour:
     clipEn: {fileID: 8300000, guid: cc47940ea5b70f64798522b2b1b320b4, type: 3}
     clipId: {fileID: 8300000, guid: 026fc910abd3ccc43948bd65a7f570a9, type: 3}
     clipMy: {fileID: 0}
-    bgmClip: {fileID: 0}
+    bgmClip: {fileID: 8300000, guid: bf42f9506feafa04ba2839236af960e0, type: 3}
     animPrefab: {fileID: 6617120770565417329, guid: b7a93d734d491a9439f16c7bedadd196,
       type: 3}
     contentEn: WARNING!!!! Aiden exploded and caused his atomic DNA to break into

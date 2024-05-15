@@ -160,6 +160,9 @@ public class LevelDataHandler : MonoBehaviour
             SetEpilogueStory(true);
 
             MainMenuHandler.instance.ResetBGMMenu();
+            MainMenuHandler.instance.GetStorySource().Stop();
+            MainMenuHandler.instance.GetVOSource().Stop();
+
             if (currentLevelData.showResultPanel)
                 FinishHandler.instance.CalculateFinalResult();
             if (currentLevelData.openPerksPanelAfterEpilogue &&

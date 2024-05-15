@@ -20,8 +20,7 @@ MonoBehaviour:
     dialogueStories: []
   narrationType: 2
   narrationStories:
-  - animPrefab: {fileID: 0}
-    playerExpression: 4
+  - playerExpression: 4
     interlocutorSprite: {fileID: 0}
     clipCodeEn: 
     clipCodeId: 
@@ -30,21 +29,22 @@ MonoBehaviour:
     clipId: {fileID: 8300000, guid: 966d25b90e9a927499a569ebf23c1a06, type: 3}
     clipMy: {fileID: 0}
     bgmClip: {fileID: 0}
+    animPrefab: {fileID: 0}
     contentEn: The journey continues, now you are in a large room with white walls.
     contentId: Perjalanan berlanjut, saat ini kamu berada di sebuah ruangan besar
       bertembok putih.
     contentMy: Perjalanan berlanjut, saat ini kamu berada di sebuah ruangan besar
       bertembok putih.
-  - animPrefab: {fileID: 0}
-    playerExpression: 4
+  - playerExpression: 4
     interlocutorSprite: {fileID: 0}
     clipCodeEn: 
     clipCodeId: 
     clipCodeMy: 
-    clipEn: {fileID: 0}
+    clipEn: {fileID: 8300000, guid: 8d03655ebd247ef43a52491862230135, type: 3}
     clipId: {fileID: 0}
     clipMy: {fileID: 0}
     bgmClip: {fileID: 0}
+    animPrefab: {fileID: 0}
     contentEn: There was a serious figure at the table, with a very strong charisma.
       It's like you've known him for a long time. Once you get closer you find out
       that he...
@@ -54,8 +54,23 @@ MonoBehaviour:
     contentMy: "Ada sosok yang sedang serius di meja, dengan kharisma yang begitu
       kuat. \LKamu seperti telah lama mengenalnya. Setelah kamu mendekat kamu mengetahui
       bahwa dia ..."
-  - animPrefab: {fileID: 0}
-    playerExpression: 4
+  - playerExpression: 4
+    interlocutorSprite: {fileID: 0}
+    clipCodeEn: 
+    clipCodeId: 
+    clipCodeMy: 
+    clipEn: {fileID: 8300000, guid: c65f42029c9ab3c499c6990ea4b7c1d3, type: 3}
+    clipId: {fileID: 0}
+    clipMy: {fileID: 0}
+    bgmClip: {fileID: 0}
+    animPrefab: {fileID: 0}
+    contentEn: It's like you've known him for a long time. Once you get closer you
+      find out that he...
+    contentId: Kamu seperti telah lama mengenalnya. Setelah kamu mendekat kamu mengetahui
+      bahwa dia ...
+    contentMy: Kamu seperti telah lama mengenalnya. Setelah kamu mendekat kamu mengetahui
+      bahwa dia ...
+  - playerExpression: 4
     interlocutorSprite: {fileID: 0}
     clipCodeEn: 
     clipCodeId: 
@@ -64,6 +79,7 @@ MonoBehaviour:
     clipId: {fileID: 8300000, guid: 4335e70ad5b33de408afbbb0f9b87746, type: 3}
     clipMy: {fileID: 0}
     bgmClip: {fileID: 0}
+    animPrefab: {fileID: 0}
     contentEn: Adam Malik, a diplomat, journalist and bureaucrat. "Some of his important
       roles in Indonesia include being the third Vice President, Indonesia's first
       Minister of Foreign Affairs, the UN General Assembly, and others."

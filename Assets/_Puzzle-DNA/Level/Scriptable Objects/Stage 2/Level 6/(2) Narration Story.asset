@@ -22,11 +22,15 @@ MonoBehaviour:
   narrationStories:
   - playerExpression: 4
     interlocutorSprite: {fileID: 0}
-    bgmClip: {fileID: 0}
+    clipCodeEn: 
+    clipCodeId: 
+    clipCodeMy: 
     clipEn: {fileID: 8300000, guid: b62f78808da33d04c824fdf3a5ee7749, type: 3}
     clipId: {fileID: 8300000, guid: bf272bec9ffbfdf40b4442a635afefb0, type: 3}
     clipMy: {fileID: 0}
-    animPrefab: {fileID: 0}
+    bgmClip: {fileID: 0}
+    animPrefab: {fileID: 3535291424368511978, guid: 32625b61dc45c46438c632f241a4aca6,
+      type: 3}
     contentEn: Succeed! You are ready to move on to the next place. You are very
       enthusiastic about facing the challenges and exciting experiences that lie
       ahead.
@@ -36,21 +40,29 @@ MonoBehaviour:
       bersemangat menghadapi tantangan dan pengalaman seru di depan mata.
   - playerExpression: 4
     interlocutorSprite: {fileID: 0}
-    bgmClip: {fileID: 8300000, guid: 124e8177c9f4a304f8877190b83f82fe, type: 3}
+    clipCodeEn: 
+    clipCodeId: 
+    clipCodeMy: 
     clipEn: {fileID: 0}
     clipId: {fileID: 0}
     clipMy: {fileID: 0}
-    animPrefab: {fileID: 0}
+    bgmClip: {fileID: 8300000, guid: 124e8177c9f4a304f8877190b83f82fe, type: 3}
+    animPrefab: {fileID: 6791784270713041531, guid: de3d5b3077f343f47b7fb7b8ff642684,
+      type: 3}
     contentEn: '"Titut titut" (Voice Message sounds)'
     contentId: '"Titut titut" (Pesan Suara berbunyi) '
     contentMy: '"Titut titut" (Pesan Suara berbunyi) '
   - playerExpression: 4
     interlocutorSprite: {fileID: 0}
-    bgmClip: {fileID: 0}
+    clipCodeEn: 
+    clipCodeId: 
+    clipCodeMy: 
     clipEn: {fileID: 8300000, guid: c36e2d6f24c0ab04a82e0dc5e8e6e3ca, type: 3}
     clipId: {fileID: 8300000, guid: 6aa63ed35395ca0408dedc692a8a97e7, type: 3}
     clipMy: {fileID: 0}
-    animPrefab: {fileID: 0}
+    bgmClip: {fileID: 0}
+    animPrefab: {fileID: 6791784270713041531, guid: de3d5b3077f343f47b7fb7b8ff642684,
+      type: 3}
     contentEn: You get a notification that an atom was detected in the year 3008.
     contentId: Kamu mendapatkan notifikasi bahwa ada atom yang terdeteksi di tahun
       3008.
@@ -58,11 +70,15 @@ MonoBehaviour:
       3008.
   - playerExpression: 4
     interlocutorSprite: {fileID: 0}
-    bgmClip: {fileID: 8300000, guid: 7b29bfca81324ee4e941e5d2d741cafc, type: 3}
+    clipCodeEn: 
+    clipCodeId: 
+    clipCodeMy: 
     clipEn: {fileID: 0}
     clipId: {fileID: 0}
     clipMy: {fileID: 0}
-    animPrefab: {fileID: 0}
+    bgmClip: {fileID: 8300000, guid: 7b29bfca81324ee4e941e5d2d741cafc, type: 3}
+    animPrefab: {fileID: 8111502742992687704, guid: 1ce9e596c26801c49b096c0055498b04,
+      type: 3}
     contentEn: '(Airplane Sound)
 
       Towards 3008'

@@ -26,7 +26,7 @@ MonoBehaviour:
         clipCodeEn: 
         clipCodeId: 
         clipCodeMy: 
-        clipEn: {fileID: 0}
+        clipEn: {fileID: 8300000, guid: beb8b00fe4ab2cc43a7dce5e45d6cb46, type: 3}
         clipId: {fileID: 8300000, guid: 97b9747e454051043933365c8c9554c2, type: 3}
         clipMy: {fileID: 0}
         bgmClip: {fileID: 0}

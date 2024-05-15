@@ -22,11 +22,15 @@ MonoBehaviour:
   narrationStories:
   - playerExpression: 4
     interlocutorSprite: {fileID: 0}
-    bgmClip: {fileID: 0}
+    clipCodeEn: 
+    clipCodeId: 
+    clipCodeMy: 
     clipEn: {fileID: 8300000, guid: 9cf4e5cb9b9519047be6a2b1e1bc2428, type: 3}
     clipId: {fileID: 8300000, guid: c86a8d2e293c4094093d9f78bae33e47, type: 3}
     clipMy: {fileID: 0}
-    animPrefab: {fileID: 0}
+    bgmClip: {fileID: 0}
+    animPrefab: {fileID: 1710489351155054068, guid: 973dc8ec7d09d764f93170b78a71a368,
+      type: 3}
     contentEn: The atom was discovered by Kevin Santaya, a young badminton athlete
       who was training for his first tournament.
     contentId: Atom itu ditemukan oleh Kevin Santaya, seorang atlet muda badminton

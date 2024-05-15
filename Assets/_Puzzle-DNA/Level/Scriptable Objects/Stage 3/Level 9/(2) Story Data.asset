@@ -20,22 +20,30 @@ MonoBehaviour:
     dialogueStories: []
   narrationType: 2
   narrationStories:
-  - playerExpression: 0
+  - playerExpression: 4
     interlocutorSprite: {fileID: 0}
-    bgmClip: {fileID: 8300000, guid: 124e8177c9f4a304f8877190b83f82fe, type: 3}
+    clipCodeEn: 
+    clipCodeId: 
+    clipCodeMy: 
     clipEn: {fileID: 0}
     clipId: {fileID: 0}
     clipMy: {fileID: 0}
-    animPrefab: {fileID: 0}
+    bgmClip: {fileID: 8300000, guid: 124e8177c9f4a304f8877190b83f82fe, type: 3}
+    animPrefab: {fileID: 6791784270713041531, guid: de3d5b3077f343f47b7fb7b8ff642684,
+      type: 3}
     contentEn: '"Titut titut" (Voice Message sounds)'
     contentId: '"Titut titut" (Pesan Suara berbunyi) '
     contentMy: '"Titut titut" (Pesan Suara berbunyi) '
   - playerExpression: 0
-    interlocutorSprite: {fileID: 0}
-    bgmClip: {fileID: 0}
+    interlocutorSprite: {fileID: 21300000, guid: 788f488fcfe5b814facbc7a46bbeca7c,
+      type: 3}
+    clipCodeEn: 
+    clipCodeId: 
+    clipCodeMy: 
     clipEn: {fileID: 8300000, guid: 360177d5ccaf713419869b655572f937, type: 3}
     clipId: {fileID: 8300000, guid: 93e14a3dff742d4458434e517cce595f, type: 3}
     clipMy: {fileID: 0}
+    bgmClip: {fileID: 0}
     animPrefab: {fileID: 0}
     contentEn: Prof. Woo said that there were many new atoms detected in various
       parts of the world, the atoms of which were in great people of all time.
@@ -43,13 +51,18 @@ MonoBehaviour:
       belahan dunia, atomnya berada di orang orang hebat sepanjang masa.
     contentMy: Prof Woo menyampaikan adanya banyak atom baru yang terdeteksi di berbagai
       belahan dunia, atomnya berada di orang orang hebat sepanjang masa.
-  - playerExpression: 0
-    interlocutorSprite: {fileID: 0}
-    bgmClip: {fileID: 0}
-    clipEn: {fileID: 8300000, guid: 279c84f5417a81a4dbbe8615308a7350, type: 3}
-    clipId: {fileID: 8300000, guid: 972a085205c75044ea98ace5e0ea648e, type: 3}
+  - playerExpression: 2
+    interlocutorSprite: {fileID: 21300000, guid: 788f488fcfe5b814facbc7a46bbeca7c,
+      type: 3}
+    clipCodeEn: 
+    clipCodeId: 
+    clipCodeMy: 
+    clipEn: {fileID: 8300000, guid: e38a81deaa1ee77478b468d6cd4f9057, type: 3}
+    clipId: {fileID: 8300000, guid: 522b8f08f8d41ec4788593ee15d212c3, type: 3}
     clipMy: {fileID: 0}
-    animPrefab: {fileID: 0}
+    bgmClip: {fileID: 0}
+    animPrefab: {fileID: 63342182489968780, guid: db2b43deb2840614aa9d987a31a6a3a9,
+      type: 3}
     contentEn: This is a good opportunity for you to get to know the great characters
       of all time and create the best version of the Aiden robot.
     contentId: Ini kesempatan baik untukmu, untuk mengenal tokoh tokoh hebat sepanjang
@@ -58,11 +71,15 @@ MonoBehaviour:
       masa dan menciptakan robot Aiden versi terbaik.
   - playerExpression: 0
     interlocutorSprite: {fileID: 0}
-    bgmClip: {fileID: 0}
-    clipEn: {fileID: 8300000, guid: 343bfc08acf741e4c91cb0d59225b49f, type: 3}
-    clipId: {fileID: 8300000, guid: eaf827599dfd4fd4b8ec8c5da7e2ee8a, type: 3}
+    clipCodeEn: 
+    clipCodeId: 
+    clipCodeMy: 
+    clipEn: {fileID: 8300000, guid: 0671129d3e460234f8744f9241185596, type: 3}
+    clipId: {fileID: 8300000, guid: f5468e29260f15c40bf461045a1faaaa, type: 3}
     clipMy: {fileID: 0}
-    animPrefab: {fileID: 0}
+    bgmClip: {fileID: 0}
+    animPrefab: {fileID: 8111502742992687704, guid: 1ce9e596c26801c49b096c0055498b04,
+      type: 3}
     contentEn: Let's go!!
     contentId: Mari kita berangkat!!
     contentMy: Mari kita berangkat!!

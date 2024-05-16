@@ -20,7 +20,7 @@ MonoBehaviour:
     dialogueStories: []
   narrationType: 2
   narrationStories:
-  - playerExpression: 4
+  - playerExpression: 0
     interlocutorSprite: {fileID: 0}
     clipCodeEn: 
     clipCodeId: 

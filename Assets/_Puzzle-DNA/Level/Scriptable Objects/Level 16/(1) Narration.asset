@@ -20,8 +20,7 @@ MonoBehaviour:
     dialogueStories: []
   narrationType: 2
   narrationStories:
-  - animPrefab: {fileID: 0}
-    playerExpression: 4
+  - playerExpression: 4
     interlocutorSprite: {fileID: 21300000, guid: 5b9cc1bd4df0fbb49b2e14ab21dd616c,
       type: 3}
     clipCodeEn: 
@@ -31,6 +30,8 @@ MonoBehaviour:
     clipId: {fileID: 8300000, guid: 98d58a7e27850754caed3c8de8fabb7e, type: 3}
     clipMy: {fileID: 0}
     bgmClip: {fileID: 0}
+    animPrefab: {fileID: 4537795868660398507, guid: 0f53a2126b9fa7142bb4e0fae661f365,
+      type: 3}
     contentEn: 'Aiden calmed down again...
 
       You succeeded in awakening Aiden''s
@@ -41,8 +42,21 @@ MonoBehaviour:
       kembali.\LAiden kini sudah dapat kembali membantu manusia untuk dunia."
     contentMy: "Aiden kembali tenang...\LKamu berhasil membangkitkan talenta Aiden
       kembali.\LAiden kini sudah dapat kembali membantu manusia untuk dunia."
-  - animPrefab: {fileID: 0}
-    playerExpression: 1
+  - playerExpression: 1
+    interlocutorSprite: {fileID: 0}
+    clipCodeEn: 
+    clipCodeId: 
+    clipCodeMy: 
+    clipEn: {fileID: 8300000, guid: 8b364d98693bec4449048ffaf78000bb, type: 3}
+    clipId: {fileID: 8300000, guid: 2e1775ac8fc8a7e48a935b91ee5c4866, type: 3}
+    clipMy: {fileID: 0}
+    bgmClip: {fileID: 0}
+    animPrefab: {fileID: 6791784270713041531, guid: de3d5b3077f343f47b7fb7b8ff642684,
+      type: 3}
+    contentEn: Prof. Woo and Aiden have a special message for you
+    contentId: Prof. Woo ingin menyampaikan sesuatu padamu
+    contentMy: Prof. Woo ingin menyampaikan sesuatu padamu
+  - playerExpression: 1
     interlocutorSprite: {fileID: 0}
     clipCodeEn: 
     clipCodeId: 
@@ -51,6 +65,8 @@ MonoBehaviour:
     clipId: {fileID: 8300000, guid: edb02ed5143b43c48aeef9b27aa4d2f7, type: 3}
     clipMy: {fileID: 0}
     bgmClip: {fileID: 0}
+    animPrefab: {fileID: 5974242310831098115, guid: 17587df2b7d99064d8438dee0fb13f49,
+      type: 3}
     contentEn: Thank you Talent Voyager..
     contentId: Terima Kasih Talent Voyager..
     contentMy: Terima Kasih Talent Voyager..

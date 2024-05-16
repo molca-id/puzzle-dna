@@ -22,11 +22,15 @@ MonoBehaviour:
   narrationStories:
   - playerExpression: 4
     interlocutorSprite: {fileID: 0}
-    bgmClip: {fileID: 0}
+    clipCodeEn: 
+    clipCodeId: 
+    clipCodeMy: 
     clipEn: {fileID: 8300000, guid: c0ab2257c923f6443b0b17ee5d17823f, type: 3}
     clipId: {fileID: 8300000, guid: 026ef28280cdabb4bb548aa99a1dac51, type: 3}
     clipMy: {fileID: 0}
-    animPrefab: {fileID: 0}
+    bgmClip: {fileID: 0}
+    animPrefab: {fileID: 4461003449795200454, guid: bc5fb8845a7859f45b280ca21cc207be,
+      type: 3}
     contentEn: You see a teenage girl sitting in a park. She is Malala Yousafzai.
     contentId: Kamu melihat remaja perempuan sedang duduk di sebuah taman. Dia adalah
       Malala Yousafzai.
@@ -34,11 +38,15 @@ MonoBehaviour:
       Malala Yousafzai.
   - playerExpression: 4
     interlocutorSprite: {fileID: 0}
-    bgmClip: {fileID: 0}
+    clipCodeEn: 
+    clipCodeId: 
+    clipCodeMy: 
     clipEn: {fileID: 8300000, guid: c1dd58d8e003ef04e89cedfef0d48a10, type: 3}
     clipId: {fileID: 8300000, guid: ba3976529b0434741a4f8410d1a8dafe, type: 3}
     clipMy: {fileID: 0}
-    animPrefab: {fileID: 0}
+    bgmClip: {fileID: 0}
+    animPrefab: {fileID: 6751770908132803609, guid: 8cc8305025748d14f861bc05c371a696,
+      type: 3}
     contentEn: He is a very famous human rights fighter and won the Nobel Peace Prize
       at the age of 17. Let's talk to him.
     contentId: Dia adalah salah satu pejuang Hak Asasi Manusia yang sangat terkenal

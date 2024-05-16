@@ -17,29 +17,20 @@ MonoBehaviour:
   tutorialKey: 
   dialogueStory:
     interlocutorName: 
-    dialogueStories:
-    - playerIsTalking: 0
-      contentData:
-        playerExpression: 0
-        interlocutorSprite: {fileID: 0}
-        bgmClip: {fileID: 0}
-        clipEn: {fileID: 0}
-        clipId: {fileID: 0}
-        clipMy: {fileID: 0}
-        animPrefab: {fileID: 0}
-        contentEn: 
-        contentId: 
-        contentMy: 
+    dialogueStories: []
   narrationType: 0
   narrationStories: []
   popUpStories: []
   titleStories:
   - playerExpression: 0
     interlocutorSprite: {fileID: 0}
-    bgmClip: {fileID: 0}
+    clipCodeEn: 
+    clipCodeId: 
+    clipCodeMy: 
     clipEn: {fileID: 8300000, guid: 762726923b1e4bd47b6e687819712dc5, type: 3}
     clipId: {fileID: 8300000, guid: 2d95320e1a591b1488b425e671ec702a, type: 3}
     clipMy: {fileID: 0}
+    bgmClip: {fileID: 0}
     animPrefab: {fileID: 0}
     contentEn: In 2020...
     contentId: Tahun 2020...

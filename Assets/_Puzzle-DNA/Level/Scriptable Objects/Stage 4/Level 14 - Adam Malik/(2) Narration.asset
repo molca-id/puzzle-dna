@@ -29,7 +29,8 @@ MonoBehaviour:
     clipId: {fileID: 8300000, guid: 966d25b90e9a927499a569ebf23c1a06, type: 3}
     clipMy: {fileID: 0}
     bgmClip: {fileID: 0}
-    animPrefab: {fileID: 0}
+    animPrefab: {fileID: 1270898015303546487, guid: b7f65965caad87b43956bcfa5d564bbd,
+      type: 3}
     contentEn: The journey continues, now you are in a large room with white walls.
     contentId: Perjalanan berlanjut, saat ini kamu berada di sebuah ruangan besar
       bertembok putih.
@@ -44,7 +45,8 @@ MonoBehaviour:
     clipId: {fileID: 0}
     clipMy: {fileID: 0}
     bgmClip: {fileID: 0}
-    animPrefab: {fileID: 0}
+    animPrefab: {fileID: 1270898015303546487, guid: 47eeacad55f752d4a9b4b6dee384cdb5,
+      type: 3}
     contentEn: There was a serious figure at the table, with a very strong charisma.
       It's like you've known him for a long time. Once you get closer you find out
       that he...
@@ -63,7 +65,8 @@ MonoBehaviour:
     clipId: {fileID: 0}
     clipMy: {fileID: 0}
     bgmClip: {fileID: 0}
-    animPrefab: {fileID: 0}
+    animPrefab: {fileID: 1270898015303546487, guid: 7974a211b4901bd49b23ac88c00141e9,
+      type: 3}
     contentEn: It's like you've known him for a long time. Once you get closer you
       find out that he...
     contentId: Kamu seperti telah lama mengenalnya. Setelah kamu mendekat kamu mengetahui
@@ -79,7 +82,8 @@ MonoBehaviour:
     clipId: {fileID: 8300000, guid: 4335e70ad5b33de408afbbb0f9b87746, type: 3}
     clipMy: {fileID: 0}
     bgmClip: {fileID: 0}
-    animPrefab: {fileID: 0}
+    animPrefab: {fileID: 8015968835981508986, guid: 8b3a83cbf32b50a42b48d2831bc3fbed,
+      type: 3}
     contentEn: Adam Malik, a diplomat, journalist and bureaucrat. "Some of his important
       roles in Indonesia include being the third Vice President, Indonesia's first
       Minister of Foreign Affairs, the UN General Assembly, and others."

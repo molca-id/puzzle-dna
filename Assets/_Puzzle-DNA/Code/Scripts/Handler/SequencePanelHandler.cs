@@ -47,8 +47,8 @@ public class SequencePanelHandler : MonoBehaviour
     public float delaySkippable;
     public bool isSkippable;
 
-    AudioSource storyAudioSource;
-    AudioSource voAudioSource;
+    public AudioSource storyAudioSource;
+    public AudioSource voAudioSource;
 
     void Start()
     {
@@ -59,10 +59,10 @@ public class SequencePanelHandler : MonoBehaviour
     public void Init()
     {
         index = 0;
-        SetPanel();
-
         voAudioSource = MainMenuHandler.instance.GetVOSource();
         storyAudioSource = MainMenuHandler.instance.GetStorySource();
+
+        SetPanel();
         if (parentPanel.Count == 0) return; 
         parentPanel.ForEach(panel =>
         {

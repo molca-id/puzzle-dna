@@ -29,7 +29,8 @@ MonoBehaviour:
     clipId: {fileID: 8300000, guid: d18aa9fbdaa434342a6759a7a95bb556, type: 3}
     clipMy: {fileID: 0}
     bgmClip: {fileID: 0}
-    animPrefab: {fileID: 0}
+    animPrefab: {fileID: 8399440330565603992, guid: 9e258c05ea7f5c246bb85602202efb9c,
+      type: 3}
     contentEn: When you arrive, there is a woman sitting in her office. When you
       approached him, you saw a lot of open books on his table. Suddenly someone
       calls you...

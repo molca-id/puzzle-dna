@@ -267,18 +267,18 @@ public class LevelDataHandler : MonoBehaviour
         playerDialogue.charImage.sprite = DataHandler.instance.GetPlayerSprite(dialogue.contentData.playerExpression);
         interlocutorDialogue.charImage.sprite = dialogue.contentData.interlocutorSprite;
 
-        playerDialogue.nameText.text = DataHandler.instance.GetUserDataValue().username;
+        playerDialogue.nameText.text = DataHandler.instance.GetCharacterName();
         interlocutorDialogue.nameText.text = currentStoryData.dialogueStory.interlocutorName;
 
         if (dialogue.playerIsTalking) currContent = playerDialogue.dialogueText;
         else currContent = interlocutorDialogue.dialogueText;
 
         dialogue.contentData.contentId = dialogue.contentData.contentId.
-            Replace("(playerName)", DataHandler.instance.GetUserDataValue().username);
+            Replace("(playerName)", DataHandler.instance.GetCharacterName());
         dialogue.contentData.contentMy = dialogue.contentData.contentMy.
-            Replace("(playerName)", DataHandler.instance.GetUserDataValue().username);
+            Replace("(playerName)", DataHandler.instance.GetCharacterName());
         dialogue.contentData.contentEn = dialogue.contentData.contentEn.
-            Replace("(playerName)", DataHandler.instance.GetUserDataValue().username);
+            Replace("(playerName)", DataHandler.instance.GetCharacterName());
 
         if (DataHandler.instance.GetLanguage() == "id")
             SetStory(

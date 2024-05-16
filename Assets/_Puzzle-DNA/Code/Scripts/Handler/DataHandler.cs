@@ -61,6 +61,8 @@ public class DataHandler : MonoBehaviour
             Find(exp => exp.expressionType == expressionType).sprite;
     }
 
+    public string GetCharacterName() => currPlayerAssetData.name;
+
     public AudioClip GetPlayerClip(string clipCode)
     {
         return currPlayerAssetData.playerClips.

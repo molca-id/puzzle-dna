@@ -26,7 +26,7 @@ MonoBehaviour:
         clipCodeEn: 
         clipCodeId: 
         clipCodeMy: 
-        clipEn: {fileID: 0}
+        clipEn: {fileID: 8300000, guid: 47694ecefa996574ab737668010d5e94, type: 3}
         clipId: {fileID: 8300000, guid: 06fde274efb374847b4a8b86fe5cec54, type: 3}
         clipMy: {fileID: 0}
         bgmClip: {fileID: 0}
@@ -61,7 +61,7 @@ MonoBehaviour:
         clipCodeEn: 
         clipCodeId: 
         clipCodeMy: 
-        clipEn: {fileID: 0}
+        clipEn: {fileID: 8300000, guid: 484d56d7c57ac02429c3585a1066482b, type: 3}
         clipId: {fileID: 8300000, guid: 562dad8929ca55f4a9ce7925e795a2d3, type: 3}
         clipMy: {fileID: 0}
         bgmClip: {fileID: 0}

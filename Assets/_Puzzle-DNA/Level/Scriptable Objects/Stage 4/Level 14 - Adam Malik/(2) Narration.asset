@@ -42,7 +42,7 @@ MonoBehaviour:
     clipCodeId: 
     clipCodeMy: 
     clipEn: {fileID: 8300000, guid: 8d03655ebd247ef43a52491862230135, type: 3}
-    clipId: {fileID: 0}
+    clipId: {fileID: 8300000, guid: 20383f5e9f854c34b9d5d3cb844d662e, type: 3}
     clipMy: {fileID: 0}
     bgmClip: {fileID: 0}
     animPrefab: {fileID: 1270898015303546487, guid: 47eeacad55f752d4a9b4b6dee384cdb5,
@@ -62,7 +62,7 @@ MonoBehaviour:
     clipCodeId: 
     clipCodeMy: 
     clipEn: {fileID: 8300000, guid: c65f42029c9ab3c499c6990ea4b7c1d3, type: 3}
-    clipId: {fileID: 0}
+    clipId: {fileID: 8300000, guid: c8050f0fab075ae47bba1b4741df9ad4, type: 3}
     clipMy: {fileID: 0}
     bgmClip: {fileID: 0}
     animPrefab: {fileID: 1270898015303546487, guid: 7974a211b4901bd49b23ac88c00141e9,

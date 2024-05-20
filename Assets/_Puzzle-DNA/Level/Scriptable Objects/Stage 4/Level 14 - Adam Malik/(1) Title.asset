@@ -27,8 +27,8 @@ MonoBehaviour:
     clipCodeEn: 
     clipCodeId: 
     clipCodeMy: 
-    clipEn: {fileID: 8300000, guid: 2183c9663c84bd7409082866d418cad3, type: 3}
-    clipId: {fileID: 8300000, guid: a1a96028e9e0c0147b168ee338902088, type: 3}
+    clipEn: {fileID: 8300000, guid: 62b8f639e8c674b49a5af46aaa7bb728, type: 3}
+    clipId: {fileID: 8300000, guid: dd3db3d317f30fb4c8e8f1d3c28756ee, type: 3}
     clipMy: {fileID: 0}
     bgmClip: {fileID: 0}
     animPrefab: {fileID: 0}

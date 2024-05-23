@@ -491,8 +491,8 @@ public class MainMenuHandler : MonoBehaviour
             yield return null;
         }
 
-        executeAfter?.Invoke();
         screen.gameObject.SetActive(false);
+        executeAfter?.Invoke();
     }
     #endregion
 }

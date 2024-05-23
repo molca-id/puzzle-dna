@@ -129,7 +129,10 @@ public class LevelDataHandler : MonoBehaviour
     {
         isPrologue = true;
         prologueIndex += factor;
-        StartCoroutine(IECloseScreen(tutorialParentPanel.GetComponent<CanvasGroup>(), () => tutorialParentPanel.SetActive(false)));
+
+        if (tutorialParentPanel.activeSelf)
+            StartCoroutine(IECloseScreen(tutorialParentPanel.GetComponent<CanvasGroup>(), () => tutorialParentPanel.SetActive(false)));
+        
         if (prologueIndex == prologueStoryData.Count)
         {
             prologueIndex = 0;
@@ -151,7 +154,10 @@ public class LevelDataHandler : MonoBehaviour
     {
         isEpilogue = true;
         epilogueIndex += factor;
-        StartCoroutine(IECloseScreen(tutorialParentPanel.GetComponent<CanvasGroup>(), () => tutorialParentPanel.SetActive(false)));
+
+        if (tutorialParentPanel.activeSelf)
+            StartCoroutine(IECloseScreen(tutorialParentPanel.GetComponent<CanvasGroup>(), () => tutorialParentPanel.SetActive(false)));
+        
         if (epilogueIndex == epilogueStoryData.Count)
         {
             epilogueIndex = 0;
@@ -185,6 +191,9 @@ public class LevelDataHandler : MonoBehaviour
         if (currentStoryData.backgroundSprite == null) backgroundImage.gameObject.SetActive(false);
         else backgroundImage.gameObject.SetActive(true);
         storyPanel.SetActive(true);
+
+        if (currAnimation != null)
+            Destroy(currAnimation);
 
         switch (currentStoryData.storyType)
         {
@@ -230,8 +239,6 @@ public class LevelDataHandler : MonoBehaviour
                     (isEpilogue && !DataHandler.instance.GetUserCheckpointData().
                     checkpoint_value[currentGameData.gameLevel].epilogue_is_done))
                 {
-                    tutorialParentPanel.SetActive(true);
-                    StartCoroutine(IEOpenScreen(tutorialParentPanel.GetComponent<CanvasGroup>()));
                     SetTutorialStory(currentStoryData.tutorialKey);
                 }
                 else
@@ -250,10 +257,9 @@ public class LevelDataHandler : MonoBehaviour
         if (dialogueIndex == currentStoryData.dialogueStory.dialogueStories.Count)
         {
             dialogueIndex = 0;
-            StartCoroutine(IECloseScreen(dialoguePanel.GetComponent<CanvasGroup>(), () =>
-            {
-                dialoguePanel.SetActive(false);
-            }));
+
+            if (dialoguePanel.activeSelf)
+                StartCoroutine(IECloseScreen(dialoguePanel.GetComponent<CanvasGroup>(), () => dialoguePanel.SetActive(false)));
 
             if (isPrologue) SetPrologueStory(1);
             else if (isEpilogue) SetEpilogueStory(1);
@@ -320,10 +326,9 @@ public class LevelDataHandler : MonoBehaviour
         if (narrationIndex == currentStoryData.narrationStories.Count)
         {
             narrationIndex = 0;
-            StartCoroutine(IECloseScreen(narrationPanel.GetComponent<CanvasGroup>(), () =>
-            {
-                narrationPanel.SetActive(false);
-            }));
+
+            if (narrationPanel.activeSelf)
+                StartCoroutine(IECloseScreen(narrationPanel.GetComponent<CanvasGroup>(), () => narrationPanel.SetActive(false)));
 
             if (isPrologue) SetPrologueStory(1);
             else if (isEpilogue) SetEpilogueStory(1);
@@ -418,10 +423,9 @@ public class LevelDataHandler : MonoBehaviour
         if (popUpIndex == currentStoryData.popUpStories.Count)
         {
             popUpIndex = 0;
-            StartCoroutine(IECloseScreen(popUpPanel.GetComponent<CanvasGroup>(), () =>
-            {
-                popUpPanel.SetActive(false);
-            }));
+
+            if (popUpPanel.activeSelf)
+                StartCoroutine(IECloseScreen(popUpPanel.GetComponent<CanvasGroup>(), () => popUpPanel.SetActive(false)));
 
             if (isPrologue) SetPrologueStory(1);
             else if (isEpilogue) SetEpilogueStory(1);
@@ -466,10 +470,9 @@ public class LevelDataHandler : MonoBehaviour
         if (titleIndex == currentStoryData.titleStories.Count)
         {
             titleIndex = 0;
-            StartCoroutine(IECloseScreen(titlePanel.GetComponent<CanvasGroup>(), () =>
-            {
-                titlePanel.SetActive(false);
-            }));
+
+            if (titlePanel.activeSelf)
+                StartCoroutine(IECloseScreen(titlePanel.GetComponent<CanvasGroup>(), () => titlePanel.SetActive(false)));
 
             if (isPrologue) SetPrologueStory(1);
             else if (isEpilogue) SetEpilogueStory(1);
@@ -509,7 +512,15 @@ public class LevelDataHandler : MonoBehaviour
 
     public void SetTutorialStory(string key)
     {
-        if (!isSkippable) return;
+        StartCoroutine(IESetTutorialStory(key));
+    }
+
+    IEnumerator IESetTutorialStory(string key)
+    {
+        yield return new WaitUntil(() => isSkippable);
+
+        tutorialParentPanel.SetActive(true);
+        StartCoroutine(IEOpenScreen(tutorialParentPanel.GetComponent<CanvasGroup>()));
         FindObjectsOfType<SequencePanelHandler>().ToList().
             Find(seq => seq.key == key).Init();
     }

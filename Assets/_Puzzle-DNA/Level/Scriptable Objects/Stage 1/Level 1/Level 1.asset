@@ -27,14 +27,6 @@ MonoBehaviour:
     perks_stage_locks: 010101
   bgmAudioClip: {fileID: 8300000, guid: 08b5bb4ff8ecf0c43a6bd8ec7850abbb, type: 3}
   prologueStoryData:
-  - {fileID: 11400000, guid: cd880f544bc3c5a4ab7acfd20a15dbe5, type: 2}
-  - {fileID: 11400000, guid: a555b332b30f0754698c18759bb005ea, type: 2}
-  - {fileID: 11400000, guid: f8cf5760b7b74f54fb937be09776be51, type: 2}
-  - {fileID: 11400000, guid: d237d74d8a5e0c64d95c4b578d0d302b, type: 2}
-  - {fileID: 11400000, guid: b50168a1a3721cd4aa66f2bac761f1c3, type: 2}
-  - {fileID: 11400000, guid: 77d6f05f950e6994bb073e69f22602fe, type: 2}
-  - {fileID: 11400000, guid: d689722cb4422f94fbfc27e604c82554, type: 2}
-  - {fileID: 11400000, guid: 6b4d810a145276045b0d400c36a041df, type: 2}
   - {fileID: 11400000, guid: b8ed470d001d0834c9073e9e2f6e6e3c, type: 2}
   - {fileID: 11400000, guid: e1aed95876c3cb54d8b38642ead317b5, type: 2}
   - {fileID: 11400000, guid: 7350a7a0c8f79de4e881ace59450e9a3, type: 2}

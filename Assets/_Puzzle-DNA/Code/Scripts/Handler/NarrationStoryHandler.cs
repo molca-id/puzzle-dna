@@ -19,9 +19,12 @@ public class NarrationStoryHandler : MonoBehaviour
     [Header("Current Index Attributes")]
     public StoryData currentStoryData;
     public GameObject currAnimation;
+    public int currentStoryLevel;
     public int lastCheckpoint;
     public int nextLevelIndex;
+    public bool canNextStory;
     public bool isLastStory;
+    public bool isLastIndex;
     [HideInInspector] public int storyIndex;
     [HideInInspector] public int subStoryIndex;
     [HideInInspector] public int dialogueIndex;
@@ -68,6 +71,13 @@ public class NarrationStoryHandler : MonoBehaviour
         storyIndex = subStoryIndex = 0;
         dialogueIndex = narrationIndex = popUpIndex = titleIndex = 0;
         InitCurrentStory();
+    }
+
+    public void CloseNarration()
+    {
+        MainMenuHandler.instance.GetVOSource().Stop();
+        MainMenuHandler.instance.GetStorySource().Stop();
+        storyPanel.SetActive(false);
     }
 
     public void InitCurrentStory()
@@ -120,6 +130,7 @@ public class NarrationStoryHandler : MonoBehaviour
         isLastStory = false;
         prevButton.interactable = true;
         nextButton.interactable = true;
+
         switch (currentStoryData.storyType)
         {
             case StoryData.StoryType.Dialogue:
@@ -127,7 +138,8 @@ public class NarrationStoryHandler : MonoBehaviour
                     isLastStory = true;
                 break;
             case StoryData.StoryType.Narration:
-                if (narrationIndex == currentStoryData.narrationStories.Count - 1) isLastStory = true;
+                if (narrationIndex == currentStoryData.narrationStories.Count - 1)
+                    isLastStory = true;
                 break;
             case StoryData.StoryType.PopUp:
                 if (popUpIndex == currentStoryData.popUpStories.Count - 1) 
@@ -152,9 +164,26 @@ public class NarrationStoryHandler : MonoBehaviour
                 break;
             }
         }
-        if ((storyIndex == lastCheckpoint ||
-            nextLevelIndex > lastCheckpoint) && 
-            isLastStory) 
+
+        for (int i = 0; i < storyDatas.Count; i++)
+        {
+            for (int j = 0; j < storyDatas[i].narrationStoryDatas.Count; j++)
+            {
+                if (storyDatas[i].narrationStoryDatas[j] == currentStoryData)
+                {
+                    currentStoryLevel = Convert.ToInt32(storyDatas[i].levelIndex);
+
+                    if (j == storyDatas[i].narrationStoryDatas.Count - 1) isLastIndex = true;
+                    else isLastIndex = false;
+
+                    if (Convert.ToInt32(storyDatas[i + 1].levelIndex) > lastCheckpoint) canNextStory = false;
+                    else canNextStory = true;
+                    break;
+                }
+            }
+        }
+
+        if (!canNextStory && isLastStory && isLastIndex) 
             nextButton.interactable = false;
     }
 
@@ -516,7 +545,7 @@ public class NarrationStoryHandler : MonoBehaviour
             currAnimation = Instantiate(animPrefab);
             RectTransform rectTransform = currAnimation.GetComponent<RectTransform>();
 
-            currAnimation.transform.SetParent(storyPanel.transform);
+            currAnimation.transform.SetParent(storyPanel.transform.GetChild(0));
             currAnimation.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
             currAnimation.transform.localScale = Vector3.one;
             currAnimation.transform.SetSiblingIndex(2);

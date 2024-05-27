@@ -41,6 +41,7 @@ public class DataHandler : MonoBehaviour
     public int electronMax;
     public AudioMixer bgmAudioMixer;
     public AudioMixer sfxAudioMixer;
+    public AudioMixer voAudioMixer;
     public List<LanguageHandler> languageHandlers;
     public List<LevelData> levelDatas;
 
@@ -105,7 +106,8 @@ public class DataHandler : MonoBehaviour
     {
         bgmAudioMixer.GetFloat("MasterVolume", out float bgm);
         sfxAudioMixer.GetFloat("MasterVolume", out float sfx);
-        string json = "{ \"bgm_value\":" + bgm + ", \"sfx_value\":" + sfx + " }";
+        voAudioMixer.GetFloat("MasterVolume", out float vo);
+        string json = "{ \"bgm_value\":" + bgm + ", \"sfx_value\":" + sfx + ", \"vo_value\":" + vo + " }";
 
         //hitting api
         StartCoroutine(
@@ -201,6 +203,7 @@ public class DataHandler : MonoBehaviour
                     currentUserData = JsonUtility.FromJson<UserDataSpace.UserData>(res);
                     bgmAudioMixer.SetFloat("MasterVolume", GetUserDataValue().bgm_value);
                     sfxAudioMixer.SetFloat("MasterVolume", GetUserDataValue().sfx_value);
+                    voAudioMixer.SetFloat("MasterVolume", GetUserDataValue().vo_value);
 
                     if (!currentUserData.success) 
                         IECreateUserData();

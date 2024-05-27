@@ -44,6 +44,10 @@ public class MainMenuHandler : MonoBehaviour
 
     [Header("Welcome Attributes")]
     [SerializeField] TextMeshProUGUI playerNameWelcome;
+    [SerializeField] Button enButton;
+    [SerializeField] Button idButton;
+    [SerializeField] Button myButton;
+
 
     [Header("Audio Attributes")]
     [SerializeField] AudioClip bgmMenuClip;
@@ -165,6 +169,13 @@ public class MainMenuHandler : MonoBehaviour
     #endregion
 
     #region Tutorial
+    public void InitLanguage()
+    {
+        if (DataHandler.instance.GetLanguage() == "id") idButton.onClick.Invoke();
+        else if (DataHandler.instance.GetLanguage() == "en") enButton.onClick.Invoke();
+        else myButton.onClick.Invoke();
+    }
+
     public void SelectLanguage(string lang)
     {
         DataHandler.instance.GetUserDataValue().language = lang;

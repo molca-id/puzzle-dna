@@ -5,6 +5,8 @@ using UnityEngine;
 using TMPro;
 using UserDataSpace;
 using UnityEngine.Events;
+using UnityEngine.Windows;
+using UnityEngine.Experimental.AI;
 
 public enum PerksType { Drive, Network, Action }
 public enum PerksStage { Stage1, Stage2, Stage3 }
@@ -50,7 +52,11 @@ public class PerksHandler : MonoBehaviour
     [HideInInspector] public int pivotPoint;
     [HideInInspector] public int plusPointUsed;
     [HideInInspector] public int minusPointUsed;
-    [HideInInspector] public PerksValueData currentPerk;
+
+    [Header("Current Perk")]
+    public PerksValueData currentPerk;
+    public Image currentPerkIcon;
+    public List<GameObject> currentPerkBackground;
 
     [Header("All Perks")]
     public int protonPoint;
@@ -379,7 +385,17 @@ public class PerksHandler : MonoBehaviour
         perkName.text = currentPerk.perks_name;
         perkTagline.text = currentPerk.deskripsi_singkat_game;
         perkDescription.text = currentPerk.perks_deskripsi_panjang;
-        
+
+        currentPerkBackground.ForEach(p => p.SetActive(false));
+        currentPerkBackground[currentPerk.perks_point + 1].SetActive(true);
+        FinishHandler.instance.perkIcons.ForEach(icon =>
+        {
+            if (icon.name.ToLower().Contains(currentPerk.perks_name.ToLower()))
+            {
+                currentPerkIcon.sprite = icon;
+            }
+        });
+
         perksDetailPanel.SetActive(true);
         submitButton.interactable = false;
         SetPerksDetailUI();
@@ -668,6 +684,9 @@ public class PerksHandler : MonoBehaviour
         {
             currentPerk.perks_background.ForEach(p => p.SetActive(false));
             currentPerk.perks_background[currentPerk.perks_point + 1].SetActive(true);
+
+            currentPerkBackground.ForEach(p => p.SetActive(false));
+            currentPerkBackground[currentPerk.perks_point + 1].SetActive(true);
         }
         else
         {
@@ -739,16 +758,16 @@ public class PerksHandler : MonoBehaviour
         if (electronPoint < 0) minus = "0";
         else minus = electronPoint.ToString();
 
-        if (asEvent)
-        {
-            if (DataHandler.instance.GetUserSpecificPerksPoint().perks_plus_type == PerksType.Drive) plus += "D";
-            if (DataHandler.instance.GetUserSpecificPerksPoint().perks_plus_type == PerksType.Network) plus += "N";
-            if (DataHandler.instance.GetUserSpecificPerksPoint().perks_plus_type == PerksType.Action) plus += "A";
+        //if (asEvent)
+        //{
+        //    if (DataHandler.instance.GetUserSpecificPerksPoint().perks_plus_type == PerksType.Drive) plus += "D";
+        //    if (DataHandler.instance.GetUserSpecificPerksPoint().perks_plus_type == PerksType.Network) plus += "N";
+        //    if (DataHandler.instance.GetUserSpecificPerksPoint().perks_plus_type == PerksType.Action) plus += "A";
 
-            if (DataHandler.instance.GetUserSpecificPerksPoint().perks_minus_type == PerksType.Drive) minus += "D";
-            if (DataHandler.instance.GetUserSpecificPerksPoint().perks_minus_type == PerksType.Network) minus += "N";
-            if (DataHandler.instance.GetUserSpecificPerksPoint().perks_minus_type == PerksType.Action) minus += "A";
-        }
+        //    if (DataHandler.instance.GetUserSpecificPerksPoint().perks_minus_type == PerksType.Drive) minus += "D";
+        //    if (DataHandler.instance.GetUserSpecificPerksPoint().perks_minus_type == PerksType.Network) minus += "N";
+        //    if (DataHandler.instance.GetUserSpecificPerksPoint().perks_minus_type == PerksType.Action) minus += "A";
+        //}
 
         perkPointPlus.ForEach(text => text.text = plus);
         perkPointMinus.ForEach(text => text.text = minus);

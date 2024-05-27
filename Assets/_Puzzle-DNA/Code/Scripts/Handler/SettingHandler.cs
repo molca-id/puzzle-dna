@@ -17,14 +17,17 @@ public class SettingHandler : MonoBehaviour
     [Header("Audio Attributes")]
     [SerializeField] Slider bgmSlider;
     [SerializeField] Slider sfxSlider;
+    [SerializeField] Slider voSlider;
     
     AudioMixer bgmAudioMixer;
     AudioMixer sfxAudioMixer;
+    AudioMixer voAudioMixer;
 
     private void Awake()
     {
         bgmAudioMixer = DataHandler.instance.bgmAudioMixer;
         sfxAudioMixer = DataHandler.instance.sfxAudioMixer;
+        voAudioMixer = DataHandler.instance.voAudioMixer;
     }
 
     public void OpenSettingPanel()
@@ -68,6 +71,7 @@ public class SettingHandler : MonoBehaviour
     {
         bgmSlider.value = GetMasterLevel(bgmAudioMixer);
         sfxSlider.value = GetMasterLevel(sfxAudioMixer);
+        voSlider.value = GetMasterLevel(voAudioMixer);
     }
 
     public void SelectLanguage(string lang)
@@ -86,6 +90,11 @@ public class SettingHandler : MonoBehaviour
     public void SetSFXVolume(float value)
     {
         sfxAudioMixer.SetFloat("MasterVolume", Mathf.RoundToInt(value));
+    }
+
+    public void SetVOVolume(float value)
+    {
+        voAudioMixer.SetFloat("MasterVolume", Mathf.RoundToInt(value));
     }
 
     int GetMasterLevel(AudioMixer mixer)

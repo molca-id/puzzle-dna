@@ -32,6 +32,7 @@ namespace UserDataSpace
         public int character;
         public int bgm_value;
         public int sfx_value;
+        public int vo_value;
         public int narration_story;
 
         public DateTime createdAt;

@@ -1368,6 +1368,15 @@ MonoBehaviour:
     akan berakhir
   my: Berikut adalah batas yang kamu miliki waktu, ketika waktu habis, maka permainan
     akan berakhir
+  enEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  idEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  myEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &501209974
 GameObject:
   m_ObjectHideFlags: 0
@@ -1523,6 +1532,15 @@ MonoBehaviour:
     bertambah banyak score mu
   my: Berikut adalah jumlah score mu, semakin banyak puzzle yang digabungkan, semakin
     bertambah banyak score mu
+  enEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  idEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  myEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2599,7 +2617,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -250.00197, y: 101}
+  m_AnchoredPosition: {x: -250.00209, y: 101}
   m_SizeDelta: {x: -745.6, y: -238.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &920450452
@@ -4495,6 +4513,15 @@ MonoBehaviour:
     hingga 3 atau lebih bentuk yang sama bergabung
   my: Berikut adalah papan pada minigame, kamu bisa menggerakkan potongan puzzle
     hingga 3 atau lebih bentuk yang sama bergabung
+  enEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  idEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  myEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1601851625
 GameObject:
   m_ObjectHideFlags: 0
@@ -5428,6 +5455,15 @@ MonoBehaviour:
     menggerakkan selain obstacle ya!
   my: Obstacle, merupakan gambar yang tidak bisa digerakkan, jadi kamu hanya bisa
     menggerakkan selain obstacle ya!
+  enEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  idEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  myEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1977120212
 MonoBehaviour:
   m_ObjectHideFlags: 0

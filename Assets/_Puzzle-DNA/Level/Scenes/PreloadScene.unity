@@ -560,6 +560,15 @@ MonoBehaviour:
 
     <size=40>Silakan hubungi
     admin untuk memainkan game</size>'
+  enEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  idEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  myEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &297145898
 GameObject:
   m_ObjectHideFlags: 0
@@ -712,6 +721,15 @@ MonoBehaviour:
 
     <size=25>Silahkan tunggu,
     dan jangan berpindah ke aplikasi lain atau menutup tab ini</size>'
+  enEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  idEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  myEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &314623615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1349,6 +1367,15 @@ MonoBehaviour:
 
     <size=25>Silakan
     coba lagi nanti atau hubungi tim dukungan kami untuk bantuan lebih lanjut.</size>'
+  enEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  idEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  myEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &516952412
 GameObject:
   m_ObjectHideFlags: 0
@@ -1781,6 +1808,7 @@ MonoBehaviour:
       character: 0
       bgm_value: 0
       sfx_value: 0
+      vo_value: 0
       narration_story: 0
       perks_value:
         perks_ability_data:
@@ -1813,7 +1841,7 @@ MonoBehaviour:
         - perks_types: 0
           perks_point_plus: 0
           perks_point_minus: 0
-          perks_stage_locks: 000101
+          perks_stage_locks: 010101
         - perks_types: 1
           perks_point_plus: 0
           perks_point_minus: 0
@@ -2230,6 +2258,7 @@ MonoBehaviour:
       character: 0
       bgm_value: 0
       sfx_value: 0
+      vo_value: 0
       narration_story: 0
       perks_value:
         perks_ability_data:
@@ -2263,6 +2292,7 @@ MonoBehaviour:
   electronMax: 18
   bgmAudioMixer: {fileID: 24100000, guid: e924da3ea1125eb4a997dba622a13f0e, type: 2}
   sfxAudioMixer: {fileID: 24100000, guid: c3c0b1f744bce6241ac6565d6feaafa3, type: 2}
+  voAudioMixer: {fileID: 24100000, guid: b37b4d2506b415e429821ed1d8d55b2c, type: 2}
   languageHandlers: []
   levelDatas:
   - {fileID: 11400000, guid: a076cd24d5dbcf24998790fbb7f4b49d, type: 2}

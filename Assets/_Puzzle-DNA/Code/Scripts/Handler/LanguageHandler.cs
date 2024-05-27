@@ -2,13 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
-[RequireComponent(typeof(TextMeshProUGUI))]
 public class LanguageHandler : MonoBehaviour
 {
     [TextArea(10, 10)] [SerializeField] string en;
     [TextArea(10, 10)] [SerializeField] string id;
     [TextArea(10, 10)] [SerializeField] string my;
+
+    [SerializeField] UnityEvent enEvent;
+    [SerializeField] UnityEvent idEvent;
+    [SerializeField] UnityEvent myEvent;
 
     TextMeshProUGUI m_TextMeshProUGUI;
 
@@ -20,18 +24,25 @@ public class LanguageHandler : MonoBehaviour
     public void SetContentByLanguage()
     {
         string currLang = DataHandler.instance.GetLanguage();
-        m_TextMeshProUGUI = GetComponent<TextMeshProUGUI>();
+        if (GetComponent<TextMeshProUGUI>() != null) 
+            m_TextMeshProUGUI = GetComponent<TextMeshProUGUI>();
 
         switch (currLang)
         {
             case "id":
-                m_TextMeshProUGUI.text = id;
+                idEvent.Invoke();
+                if (GetComponent<TextMeshProUGUI>() != null)
+                    m_TextMeshProUGUI.text = id;
                 break;
             case "en":
-                m_TextMeshProUGUI.text = en;
+                enEvent.Invoke();
+                if (GetComponent<TextMeshProUGUI>() != null)
+                    m_TextMeshProUGUI.text = en;
                 break;
             case "my":
-                m_TextMeshProUGUI.text = my;
+                myEvent.Invoke();
+                if (GetComponent<TextMeshProUGUI>() != null)
+                    m_TextMeshProUGUI.text = my;
                 break;
         }
     }

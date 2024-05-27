@@ -17,14 +17,8 @@ MonoBehaviour:
   perksPoinMinus: 0
   openPerksPanelAfterEpilogue: 0
   showResultPanel: 0
-  usingPerkUnlocking: 1
-  perkStageForUnlocking:
-  - perks_types: 0
-    perks_stage_locks: 000000
-  - perks_types: 1
-    perks_stage_locks: 000000
-  - perks_types: 2
-    perks_stage_locks: 000000
+  usingPerkUnlocking: 0
+  perkStageForUnlocking: []
   bgmAudioClip: {fileID: 8300000, guid: 390a9577c65a2e14ca4d5d7062f15ad3, type: 3}
   prologueStoryData:
   - {fileID: 11400000, guid: 6f55d5cf97804f345baad2d48180ddaf, type: 2}

@@ -125,6 +125,7 @@ namespace UserDataSpace
         public string perks_id;
         public int perks_point;
         public string perks_submit_time;
+        public bool perks_has_read;
     }
 
     [Serializable]

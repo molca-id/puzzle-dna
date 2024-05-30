@@ -2617,7 +2617,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -250.00209, y: 101}
+  m_AnchoredPosition: {x: -250.00215, y: 101}
   m_SizeDelta: {x: -745.6, y: -238.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &920450452
@@ -3924,6 +3924,7 @@ MonoBehaviour:
   openGameSettings: 1
   standalone: 0
   preventInitialMatches: 1
+  maxScore: 5000
   swapSpeed: 6
   fallSpeed: 10
   _timeLeft: 120
@@ -5896,7 +5897,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 02:00
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 079e3753c8afa8949a18d4cb8621e3af, type: 2}
   m_sharedMaterial: {fileID: -27755241277491264, guid: 079e3753c8afa8949a18d4cb8621e3af,

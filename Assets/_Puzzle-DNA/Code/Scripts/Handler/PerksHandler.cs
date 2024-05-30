@@ -5,8 +5,6 @@ using UnityEngine;
 using TMPro;
 using UserDataSpace;
 using UnityEngine.Events;
-using UnityEngine.Windows;
-using UnityEngine.Experimental.AI;
 
 public enum PerksType { Drive, Network, Action }
 public enum PerksStage { Stage1, Stage2, Stage3 }
@@ -33,7 +31,9 @@ public class PerksHandler : MonoBehaviour
     {
         public string perks_name;
         public string deskripsi_singkat_game;
+        public GameObject unread_notif;
         public int perks_point;
+        public bool has_read;
         [HideInInspector] public string perks_id;
         [HideInInspector] public string perks_deskripsi_singkat;
         [HideInInspector] public string perks_deskripsi_panjang;
@@ -61,18 +61,22 @@ public class PerksHandler : MonoBehaviour
     [Header("All Perks")]
     public int protonPoint;
     public int electronPoint;
+    public GameObject unreadNotif;
     public List<PerksTypeGroupData> perksTypeDatas;
     public List<Image> perksTypeBorder;
     public List<Image> perksTypeFade;
 
     [Header("UI Attributes")]
-    public Color protonColor;
-    public Color electronColor;
-    [Space]
     public GameObject perksPanel;
     public GameObject perksDetailPanel;
+    [Space]
+    public Button electronButton;
+    public Button protonButton;
+    [Space]
     public Button submitButton;
     public Button resetButton;
+    [Space]
+    public Button exitAnywhereButton;
     public Button exitButton;
     [Space]
     public GameObject driveDescPanel;
@@ -95,6 +99,10 @@ public class PerksHandler : MonoBehaviour
     [Header("Addon For Perks Panel After Event Panel")]
     public bool asEvent;
     public PerksType currentPerksType;
+    public Color protonColor;
+    public Color electronColor;
+    public Transform backgroundPanel;
+    public Transform pointsPanel;
 
     [Header("Addon For Perks Panel As Tutorial")]
     public bool asTutorial;
@@ -280,11 +288,13 @@ public class PerksHandler : MonoBehaviour
                         perkTemp.perks_deskripsi_singkat = talent.deskripsi.deskripsi_singkat;
                         perkTemp.deskripsi_singkat_game = talent.deskripsi.deskripsi_singkat_game;
                         perkTemp.perks_point = perk.perks_point;
+                        perkTemp.has_read = perk.perks_has_read;
 
+                        SettingUnreadNotif(perkTemp);
                         if (perkTemp.perks_background.Count == 0)
                         {
                             Transform currButton = perkTemp.perks_button.transform;
-                            for (int x = 0; x < currButton.childCount - 1; x++)
+                            for (int x = 0; x < currButton.childCount - 2; x++)
                             {
                                 perkTemp.perks_background.Add(currButton.GetChild(x).gameObject);
                             }
@@ -361,17 +371,24 @@ public class PerksHandler : MonoBehaviour
         });
 
         // if as tutorial
-        if (asTutorial && exitButton != null)
-            exitButton.interactable = false;
+        if (asTutorial)
+        {
+            if (exitAnywhereButton != null) exitAnywhereButton.interactable = false;
+            if (exitButton != null) exitButton.interactable = false;
+        }
 
         // if after game
-        if (isAfterGame && exitButton != null)
+        if (isAfterGame)
         {
             if (protonPoint != 0 || electronPoint != 0)
-                exitButton.interactable = false;
+            {
+                if (exitAnywhereButton != null) exitAnywhereButton.interactable = false;
+                if (exitButton != null) exitButton.interactable = false;
+            }
             else
             {
-                exitButton.interactable = true;
+                if (exitAnywhereButton != null) exitAnywhereButton.interactable = true;
+                if (exitButton != null) exitButton.interactable = true;
                 SetAfterGame(false);
             }
         }
@@ -386,9 +403,54 @@ public class PerksHandler : MonoBehaviour
         perkTagline.text = currentPerk.deskripsi_singkat_game;
         perkDescription.text = currentPerk.perks_deskripsi_panjang;
 
+        DataHandler.instance.GetPerksData().perks_value_datas.
+            Find(perk => perk.perks_id == currentPerk.perks_id).
+            perks_has_read = currentPerk.has_read = true;
+
+        if (asEvent)
+        {
+            backgroundPanel.GetChild(0).gameObject.SetActive(false);
+            backgroundPanel.GetChild(1).gameObject.SetActive(false);
+
+            pointsPanel.GetChild(0).gameObject.SetActive(false);
+            pointsPanel.GetChild(1).gameObject.SetActive(false);
+            
+            electronButton.transform.GetChild(0).gameObject.SetActive(false);
+            protonButton.transform.GetChild(0).gameObject.SetActive(false);
+
+            Color colorPerk = new();
+            switch (currentPerksType)
+            {
+                case PerksType.Drive:
+                    colorPerk = perksTypeBorder[0].color;
+                    break;
+                case PerksType.Network:
+                    colorPerk = perksTypeBorder[1].color;
+                    break;
+                case PerksType.Action:
+                    colorPerk = perksTypeBorder[2].color;
+                    break;
+            }
+
+            if (colorPerk == protonColor)
+            {
+                pointsPanel.GetChild(1).gameObject.SetActive(true);
+                backgroundPanel.GetChild(1).gameObject.SetActive(true);
+                protonButton.transform.GetChild(0).gameObject.SetActive(true);
+                //electronButton.interactable = false;
+            }
+            else if (colorPerk == electronColor)
+            {
+                pointsPanel.GetChild(0).gameObject.SetActive(true);
+                backgroundPanel.GetChild(0).gameObject.SetActive(true);
+                electronButton.transform.GetChild(0).gameObject.SetActive(true);
+                //protonButton.interactable = false;
+            }
+        }
+
         currentPerkBackground.ForEach(p => p.SetActive(false));
         currentPerkBackground[currentPerk.perks_point + 1].SetActive(true);
-        FinishHandler.instance.perkIcons.ForEach(icon =>
+        FinishHandler.instance.perkIconsWhite.ForEach(icon =>
         {
             if (icon.name.ToLower().Contains(currentPerk.perks_name.ToLower()))
             {
@@ -398,6 +460,7 @@ public class PerksHandler : MonoBehaviour
 
         perksDetailPanel.SetActive(true);
         submitButton.interactable = false;
+        SettingUnreadNotif(currentPerk);
         SetPerksDetailUI();
     }
 
@@ -412,6 +475,7 @@ public class PerksHandler : MonoBehaviour
         plusPointUsed = minusPointUsed = 0;
         perksDetailPanel.SetActive(false);
 
+        MainMenuHandler.instance.PatchPerksFromMenu(() => { });
         SetPerksItemUI(currentPerk);
         SetPerksDetailUI();
         SetPointText();
@@ -451,6 +515,18 @@ public class PerksHandler : MonoBehaviour
         DataHandler.instance.GetPerksData().perks_stage_datas[0].perks_stage_locks = driveStage;
         DataHandler.instance.GetPerksData().perks_stage_datas[1].perks_stage_locks = networkStage;
         DataHandler.instance.GetPerksData().perks_stage_datas[2].perks_stage_locks = actionStage;
+
+        for (int i = 0; i < perksTypeDatas.Count; i++)
+        {
+            for (int j = 0; j < perksTypeDatas[i].perks_stage_datas.Count; j++)
+            {
+                for (int k = 0; k < perksTypeDatas[i].perks_stage_datas[j].perks_value_datas.Count; k++)
+                {
+                    perksTypeDatas[i].perks_stage_datas[j].perks_value_datas[k].has_read = false;
+                    SettingUnreadNotif(perksTypeDatas[i].perks_stage_datas[j].perks_value_datas[k]);
+                }
+            }
+        }
 
         MainMenuHandler.instance.PatchPerksFromMenu(delegate
         {
@@ -551,20 +627,24 @@ public class PerksHandler : MonoBehaviour
         // if as tutorial
         if (asTutorial)
         {
-            if (exitButton != null) 
-                exitButton.interactable = true;
+            if (exitAnywhereButton != null) exitAnywhereButton.interactable = true;
+            if (exitButton != null) exitButton.interactable = true;
             if (protonPoint == 0 && electronPoint == 0)
                 whenProtonElectronEmpty.Invoke();
         }
 
         // if after game
-        if (isAfterGame && exitButton != null)
+        if (isAfterGame)
         {
             if (protonPoint != 0 || electronPoint != 0)
-                exitButton.interactable = false;
+            {
+                if (exitAnywhereButton != null) exitAnywhereButton.interactable = false;
+                if (exitButton != null) exitButton.interactable = false;
+            }
             else
             {
-                exitButton.interactable = true;
+                if (exitAnywhereButton != null) exitAnywhereButton.interactable = true;
+                if (exitButton != null) exitButton.interactable = true;
                 SetAfterGame(false);
             }
         }
@@ -807,5 +887,28 @@ public class PerksHandler : MonoBehaviour
                     DataHandler.instance.GetPerksData().perks_ability_data.actionUpgraded = false;
             }
         }
+    }
+
+    public void SettingUnreadNotif(PerksValueData perkTemp)
+    {
+        if (perkTemp.unread_notif == null)
+        {
+            if (perkTemp.perks_button.transform.Find("Unread") == null)
+            {
+                perkTemp.unread_notif = Instantiate(unreadNotif);
+                perkTemp.unread_notif.transform.parent = perkTemp.perks_button.transform;
+                perkTemp.unread_notif.transform.localScale = Vector3.one;
+                perkTemp.unread_notif.transform.SetLocalPositionAndRotation(
+                    unreadNotif.transform.localPosition,
+                    unreadNotif.transform.localRotation
+                    );
+            }
+            else
+            {
+                perkTemp.unread_notif = perkTemp.perks_button.transform.Find("Unread").gameObject;
+            }
+        }
+
+        perkTemp.unread_notif.SetActive(!perkTemp.has_read);
     }
 }

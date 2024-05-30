@@ -1855,182 +1855,227 @@ MonoBehaviour:
           perks_id: 
           perks_point: 0
           perks_submit_time: 
+          perks_has_read: 0
         - perks_name: DIRECTIVE
           perks_id: 
           perks_point: 0
           perks_submit_time: 
+          perks_has_read: 0
         - perks_name: GOAL-GETTER
           perks_id: 
           perks_point: 0
           perks_submit_time: 
+          perks_has_read: 0
         - perks_name: OPTIMIZER
           perks_id: 
           perks_point: 0
           perks_submit_time: 
+          perks_has_read: 0
         - perks_name: PERFECTIONIST
           perks_id: 
           perks_point: 0
           perks_submit_time: 
+          perks_has_read: 0
         - perks_name: SELF-CONFIDENT
           perks_id: 
           perks_point: 0
           perks_submit_time: 
+          perks_has_read: 0
         - perks_name: SIGNIFICANT
           perks_id: 
           perks_point: 0
           perks_submit_time: 
+          perks_has_read: 0
         - perks_name: AVERSIVE
           perks_id: 
           perks_point: 0
           perks_submit_time: 
+          perks_has_read: 0
         - perks_name: COLLECTOR
           perks_id: 
           perks_point: 0
           perks_submit_time: 
+          perks_has_read: 0
         - perks_name: CONTEMPLATIVE
           perks_id: 
           perks_point: 0
           perks_submit_time: 
+          perks_has_read: 0
         - perks_name: EQUITABLE
           perks_id: 
           perks_point: 0
           perks_submit_time: 
+          perks_has_read: 0
         - perks_name: EXPLORER
           perks_id: 
           perks_point: 0
           perks_submit_time: 
+          perks_has_read: 0
         - perks_name: NOBLE
           perks_id: 
           perks_point: 0
           perks_submit_time: 
+          perks_has_read: 0
         - perks_name: VIGOROUS
           perks_id: 
           perks_point: 0
           perks_submit_time: 
+          perks_has_read: 0
         - perks_name: VISIONARY
           perks_id: 
           perks_point: 0
           perks_submit_time: 
+          perks_has_read: 0
         - perks_name: ADVISOR
           perks_id: 
           perks_point: 0
           perks_submit_time: 
+          perks_has_read: 0
         - perks_name: ARTICULATIVE
           perks_id: 
           perks_point: 0
           perks_submit_time: 
+          perks_has_read: 0
         - perks_name: COLLABORATOR
           perks_id: 
           perks_point: 0
           perks_submit_time: 
+          perks_has_read: 0
         - perks_name: COURAGEOUS
           perks_id: 
           perks_point: 0
           perks_submit_time: 
+          perks_has_read: 0
         - perks_name: CONVINCING
           perks_id: 
           perks_point: 0
           perks_submit_time: 
+          perks_has_read: 0
         - perks_name: DEVELOPER
           perks_id: 
           perks_point: 0
           perks_submit_time: 
+          perks_has_read: 0
         - perks_name: ENERGIZER
           perks_id: 
           perks_point: 0
           perks_submit_time: 
+          perks_has_read: 0
         - perks_name: AFFECTIONATE
           perks_id: 
           perks_point: 0
           perks_submit_time: 
+          perks_has_read: 0
         - perks_name: CARING
           perks_id: 
           perks_point: 0
           perks_submit_time: 
+          perks_has_read: 0
         - perks_name: FORGIVING
           perks_id: 
           perks_point: 0
           perks_submit_time: 
+          perks_has_read: 0
         - perks_name: GENEROUS
           perks_id: 
           perks_point: 0
           perks_submit_time: 
+          perks_has_read: 0
         - perks_name: GENUINE
           perks_id: 
           perks_point: 0
           perks_submit_time: 
+          perks_has_read: 0
         - perks_name: HARMONY
           perks_id: 
           perks_point: 0
           perks_submit_time: 
+          perks_has_read: 0
         - perks_name: PERSONALIZER
           perks_id: 
           perks_point: 0
           perks_submit_time: 
+          perks_has_read: 0
         - perks_name: SOCIABLE
           perks_id: 
           perks_point: 0
           perks_submit_time: 
+          perks_has_read: 0
         - perks_name: CONTEXTUAL
           perks_id: 
           perks_point: 0
           perks_submit_time: 
+          perks_has_read: 0
         - perks_name: FOCUSED
           perks_id: 
           perks_point: 0
           perks_submit_time: 
+          perks_has_read: 0
         - perks_name: INTUITIVE
           perks_id: 
           perks_point: 0
           perks_submit_time: 
+          perks_has_read: 0
         - perks_name: INNOVATIVE
           perks_id: 
           perks_point: 0
           perks_submit_time: 
+          perks_has_read: 0
         - perks_name: LOGICAL
           perks_id: 
           perks_point: 0
           perks_submit_time: 
+          perks_has_read: 0
         - perks_name: STRATEGIZER
           perks_id: 
           perks_point: 0
           perks_submit_time: 
+          perks_has_read: 0
         - perks_name: TROUBLESHOOTER
           perks_id: 
           perks_point: 0
           perks_submit_time: 
+          perks_has_read: 0
         - perks_name: ACCOUNTABLE
           perks_id: 
           perks_point: 0
           perks_submit_time: 
+          perks_has_read: 0
         - perks_name: AUTHORITATIVE
           perks_id: 
           perks_point: 0
           perks_submit_time: 
+          perks_has_read: 0
         - perks_name: DECISIVE
           perks_id: 
           perks_point: 0
           perks_submit_time: 
+          perks_has_read: 0
         - perks_name: FIXER
           perks_id: 
           perks_point: 0
           perks_submit_time: 
+          perks_has_read: 0
         - perks_name: FLEXIBLE
           perks_id: 
           perks_point: 0
           perks_submit_time: 
+          perks_has_read: 0
         - perks_name: INITIATOR
           perks_id: 
           perks_point: 0
           perks_submit_time: 
+          perks_has_read: 0
         - perks_name: RESOURCEFUL
           perks_id: 
           perks_point: 0
           perks_submit_time: 
+          perks_has_read: 0
         - perks_name: STRUCTURED
           perks_id: 
           perks_point: 0
           perks_submit_time: 
+          perks_has_read: 0
       checkpoint_data:
         tutorial_is_done: 0
         checkpoint_value:

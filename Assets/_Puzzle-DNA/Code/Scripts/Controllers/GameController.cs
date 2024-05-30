@@ -24,6 +24,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
     [SerializeField] bool openGameSettings;
     [ShowIf("openGameSettings")] public bool standalone;
     [ShowIf("openGameSettings")] public bool preventInitialMatches;
+    [ShowIf("openGameSettings")] public int maxScore;
     [ShowIf("openGameSettings")] public float swapSpeed;
     [ShowIf("openGameSettings")] public float fallSpeed;
     [ShowIf("openGameSettings")] public float _timeLeft = 120;
@@ -47,10 +48,11 @@ public class GameController : SingletonMonoBehaviour<GameController>
             instance._scoreTotal += instance._scoreTemp;
 
             DialogueBonusHandler.instance.StartDialogue(instance._scoreTotal);
+            UIController.UpdateComboScore(instance._scoreTemp, BoardController.matchCounter);
             UIController.UpdateScore(instance._scoreTotal);
-            UIController.UpdateComboScore(
-               instance._scoreTemp, BoardController.matchCounter
-            );
+
+            if (instance._scoreTotal > instance.maxScore)
+                instance._timeLeft = 1;
         }
     }
     public static int multiplierScore

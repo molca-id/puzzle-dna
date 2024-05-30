@@ -28,7 +28,8 @@ public class FinishHandler : MonoBehaviour
     public GameObject parentPanel;
     public GameObject finalSubmitPanel;
     public GameObject finalResultPanel;
-    public List<Sprite> perkIcons;
+    public List<Sprite> perkIconsColorful;
+    public List<Sprite> perkIconsWhite;
 
     [Header("Character UI")]
     public Image charReplaceSprite;
@@ -90,7 +91,7 @@ public class FinishHandler : MonoBehaviour
                 for (int i = 0; i < top5PerksObject.Count; i++)
                 {
                     top5PerksObject[i].transform.GetComponentInChildren<Image>().sprite =
-                        perkIcons.Find(res => res.name.ToLower().Contains(top10Perks[i].perks_name.ToLower()));
+                        perkIconsColorful.Find(res => res.name.ToLower().Contains(top10Perks[i].perks_name.ToLower()));
                     top5PerksObject[i].transform.GetComponentInChildren<TextMeshProUGUI>().text =
                         $"{i + 1}. " + top10Perks[i].perks_name;
                 }
@@ -100,7 +101,7 @@ public class FinishHandler : MonoBehaviour
                 for (int i = 0; i < topJust10PerksObject.Count; i++)
                 {
                     topJust10PerksObject[i].transform.GetComponentInChildren<Image>().sprite =
-                        perkIcons.Find(res => res.name.ToLower().Contains(top10Perks[i].perks_name.ToLower()));
+                        perkIconsColorful.Find(res => res.name.ToLower().Contains(top10Perks[i].perks_name.ToLower()));
                     topJust10PerksObject[i].transform.GetComponentInChildren<TextMeshProUGUI>().text =
                         $"{i + 1}. " + top10Perks[i].perks_name;
                 }
@@ -110,7 +111,7 @@ public class FinishHandler : MonoBehaviour
                 for (int i = 0; i < top10PerksObject.Count; i++)
                 {
                     top10PerksObject[i].transform.GetComponentInChildren<Image>().sprite =
-                        perkIcons.Find(res => res.name.ToLower().Contains(top10Perks[i].perks_name.ToLower()));
+                        perkIconsColorful.Find(res => res.name.ToLower().Contains(top10Perks[i].perks_name.ToLower()));
                     top10PerksObject[i].transform.GetComponentInChildren<TextMeshProUGUI>().text =
                         $"{i + 1}. " + top10Perks[i].perks_name;
                 }
@@ -118,7 +119,7 @@ public class FinishHandler : MonoBehaviour
                 for (int i = 0; i < bottom5PerksObject.Count; i++)
                 {
                     bottom5PerksObject[i].transform.GetComponentInChildren<Image>().sprite =
-                        perkIcons.Find(res => res.name.ToLower().Contains(bottom5Perks[i].perks_name.ToLower()));
+                        perkIconsColorful.Find(res => res.name.ToLower().Contains(bottom5Perks[i].perks_name.ToLower()));
                     bottom5PerksObject[i].transform.GetComponentInChildren<TextMeshProUGUI>().text =
                         $"{i + 1}. " + bottom5Perks[i].perks_name;
                 }
@@ -128,7 +129,7 @@ public class FinishHandler : MonoBehaviour
                 for (int i = 0; i < top10PerksObject.Count; i++)
                 {
                     top10PerksObject[i].transform.GetComponentInChildren<Image>().sprite =
-                        perkIcons.Find(res => res.name.ToLower().Contains(top10Perks[i].perks_name.ToLower()));
+                        perkIconsColorful.Find(res => res.name.ToLower().Contains(top10Perks[i].perks_name.ToLower()));
                     top10PerksObject[i].transform.GetComponentInChildren<TextMeshProUGUI>().text =
                         $"{i + 1}. " + top10Perks[i].perks_name;
                 }
@@ -136,7 +137,7 @@ public class FinishHandler : MonoBehaviour
                 for (int i = 0; i < bottom5PerksObject.Count; i++)
                 {
                     bottom5PerksObject[i].transform.GetComponentInChildren<Image>().sprite =
-                        perkIcons.Find(res => res.name.ToLower().Contains(bottom5Perks[i].perks_name.ToLower()));
+                        perkIconsColorful.Find(res => res.name.ToLower().Contains(bottom5Perks[i].perks_name.ToLower()));
                     bottom5PerksObject[i].transform.GetComponentInChildren<TextMeshProUGUI>().text =
                         $"{i + 1}. " + bottom5Perks[i].perks_name;
                 }
@@ -163,6 +164,6 @@ public class FinishHandler : MonoBehaviour
         StartCoroutine(
                 APIManager.instance.PostDataWithTokenCoroutine(
                     APIManager.instance.SetupSendResultUrl(), json,
-                    res => { Debug.Log("Posted Game Result!"); }));
+                    res => { }));
     }
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Level 10
   m_EditorClassIdentifier: 
   gameData: {fileID: 11400000, guid: 4e52232cf42944e48a3edd4c7ea9c9e7, type: 2}
-  perksPoinPlus: 3
+  perksPoinPlus: 2
   perksPoinMinus: 0
   openPerksPanelAfterEpilogue: 0
   showResultPanel: 0

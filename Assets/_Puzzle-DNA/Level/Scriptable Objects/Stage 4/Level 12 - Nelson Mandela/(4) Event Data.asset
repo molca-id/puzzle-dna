@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0d3ec688709c214a8c7fe11dd2475cf, type: 3}
+  m_Name: (4) Event Data
+  m_EditorClassIdentifier: 
+  storyType: 0
+  backgroundSprite: {fileID: 21300000, guid: 230892926c7fc78409ca426fde355314, type: 3}
+  tutorialKey: 
+  dialogueStory:
+    interlocutorName: 
+    dialogueStories: []
+  narrationType: 0
+  narrationStories: []
+  popUpStories: []
+  titleStories: []
+  eventDataStory:
+    autoOpenPerks: 1
+    questionId: Sebelum berpamitan, kamu ingin memberikan kenang-kenangan kepada
+      Nelson Mandela. Ada beberapa barang dari masa depan yang kamu bawa di dalam
+      mesin waktu. Barang apa yang menurutmu sesuai untuk beliau?
+    questionEn: Before saying goodbye, you want to give a memento to Nelson Mandela.
+      There are several items from the future that you carry in the time machine.
+      What items do you think are suitable for him?
+    questionMy: Sebelum berpamitan, kamu ingin memberikan kenang-kenangan kepada
+      Nelson Mandela. Ada beberapa barang dari masa depan yang kamu bawa di dalam
+      mesin waktu. Barang apa yang menurutmu sesuai untuk beliau?
+    playerExpression: 0
+    characterSprite: {fileID: 21300000, guid: 0b6fecf8cbf4d93449962ed9c70dcb6c, type: 3}
+    answers:
+    - answerId: Sebuah jaket rajut berwarna coklat muda yang walaupun rajutannya
+        tidak rapi tetapi nampak cocok di pakai Nelson Mandela
+      answerEn: A light brown knit jacket which, even though the knitting is not
+        neat, looks suitable for Nelson Mandela to wear
+      answerMy: Sebuah jaket rajut berwarna coklat muda yang walaupun rajutannya
+        tidak rapi tetapi nampak cocok di pakai Nelson Mandela
+      eventPointDatas:
+      - point: 2
+        perkType: 1
+      - point: 2
+        perkType: 0
+    - answerId: Sebuah digital tablet yang dapat digunakan untuk mencatat di saat-saat
+        sedang banyak pikiran menggangu
+      answerEn: A digital tablet that can be used to take notes when you have a lot
+        of distracting thoughts
+      answerMy: Sebuah digital tablet yang dapat digunakan untuk mencatat di saat-saat
+        sedang banyak pikiran menggangu
+      eventPointDatas:
+      - point: 2
+        perkType: 1
+      - point: 2
+        perkType: 2

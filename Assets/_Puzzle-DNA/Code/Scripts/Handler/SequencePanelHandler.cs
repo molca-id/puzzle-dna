@@ -43,12 +43,17 @@ public class SequencePanelHandler : MonoBehaviour
     public List<GameObject> panels;
     public List<SequenceEventsData> sequenceEvents;
 
-    [Header("Add On For Game")]
+    [Header("AudioSource Attributes")]
+    public AudioSource storyAudioSource;
+    public AudioSource voAudioSource;
+
+    [Header("Skip Attributes")]
+    public GameObject handClick;
+    public float delayHandClick = 10;
     public float delaySkippable;
     public bool isSkippable;
 
-    public AudioSource storyAudioSource;
-    public AudioSource voAudioSource;
+    IEnumerator handClickCoroutine;
 
     void Start()
     {
@@ -61,6 +66,7 @@ public class SequencePanelHandler : MonoBehaviour
         index = 0;
         voAudioSource = MainMenuHandler.instance.GetVOSource();
         storyAudioSource = MainMenuHandler.instance.GetStorySource();
+        handClickCoroutine = DelayingIconHand();
 
         SetPanel();
         if (parentPanel.Count == 0) return; 
@@ -72,6 +78,9 @@ public class SequencePanelHandler : MonoBehaviour
 
     public void SetPanel()
     {
+        //StopCoroutine(handClickCoroutine);
+        if (handClick != null) handClick.SetActive(false);
+
         SequenceEventsData data = sequenceEvents[index];
         if (data.willGetPlayerSprite)
         {
@@ -114,6 +123,7 @@ public class SequencePanelHandler : MonoBehaviour
 
         data.sequenceEvent.Invoke();
         StartCoroutine(DelayingSkippable());
+        //StartCoroutine(handClickCoroutine);
     }
 
     public void NextPanel()
@@ -174,6 +184,16 @@ public class SequencePanelHandler : MonoBehaviour
             if (!data.skippableWithoutDelay) yield return new WaitForSeconds(delaySkippable);
             else yield return new WaitForSeconds(0f);
             isSkippable = true;
+        }
+    }
+
+    IEnumerator DelayingIconHand()
+    {
+        if (handClick != null) 
+        {
+            handClick.SetActive(false);
+            yield return new WaitForSeconds(delayHandClick);
+            handClick.SetActive(true);
         }
     }
 }

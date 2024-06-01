@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0d3ec688709c214a8c7fe11dd2475cf, type: 3}
   m_Name: (4) Event Data
   m_EditorClassIdentifier: 
-  storyType: 5
+  storyType: 0
   backgroundSprite: {fileID: 21300000, guid: 56e2dce38aaa16041b9286fdc78f3626, type: 3}
   tutorialKey: 
   dialogueStory:
@@ -33,7 +33,7 @@ MonoBehaviour:
     questionMy: Ada Lovelace sangat senang melihat antusiasmu. Dia ingin kamu bermain
       teka-teki sebelum dia memberikan atom. Teka-teki itu nampaknya tidak terlalu
       susah tapi memerlukan waktu untuk menyelesaikannya. Apa yang akan kamu lakukan?
-    playerExpression: 4
+    playerExpression: 0
     characterSprite: {fileID: 21300000, guid: 34f421e42f8d7534ca223f3efdb317a4, type: 3}
     answers:
     - answerId: Dengan percaya diri menyelesaikan teka-teki itu tanpa meminta bantuan

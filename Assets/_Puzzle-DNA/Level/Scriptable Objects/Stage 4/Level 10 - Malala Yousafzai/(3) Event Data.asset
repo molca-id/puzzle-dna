@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0d3ec688709c214a8c7fe11dd2475cf, type: 3}
   m_Name: (3) Event Data
   m_EditorClassIdentifier: 
-  storyType: 5
+  storyType: 0
   backgroundSprite: {fileID: 21300000, guid: 272e9353bb92f5448b14827f1366c923, type: 3}
   tutorialKey: 
   dialogueStory:
@@ -33,7 +33,7 @@ MonoBehaviour:
     questionMy: "Saat akan berpisah dengan Malala, dia bertanya padamu. \u201CBagaimana
       perjalanan waktumu sejauh ini? apakah menyenangkan? Apa kesanmu ketika bertemu
       denganku?\u201D Jawaban apa yang kamu berikan?"
-    playerExpression: 4
+    playerExpression: 0
     characterSprite: {fileID: 21300000, guid: 49f72ddc2d4a21343bb4665c02eab6a0, type: 3}
     answers:
     - answerId: Aku sangat kagum dengan prinsip yang kamu perjuangkan walaupun banyak

@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0d3ec688709c214a8c7fe11dd2475cf, type: 3}
+  m_Name: (3) Event Data
+  m_EditorClassIdentifier: 
+  storyType: 0
+  backgroundSprite: {fileID: 21300000, guid: eb85b6572c28d30469da9c40e653a927, type: 3}
+  tutorialKey: 
+  dialogueStory:
+    interlocutorName: 
+    dialogueStories: []
+  narrationType: 0
+  narrationStories: []
+  popUpStories: []
+  titleStories: []
+  eventDataStory:
+    autoOpenPerks: 1
+    questionId: 'Saat berkeliling kerajaan, kamu melihat bahwa Marcus Aurelius mempin
+      romawi dengan sangat baik. Kamu sempat berbicara dengan beberapa warga dan
+      pegawai kerajaan. Banyak hal positif yang mereka sampaikan mengenai kepemimpinan
+      Marcus Aurelius. Tapi ada satu hal yang menurutmu sangat menarik, yaitu:'
+    questionEn: 'While traveling around the kingdom, you see that Marcus Aurelius
+      ruled Rome very well. You had time to talk with several citizens and royal
+      employees. They said many positive things about Marcus Aurelius'' leadership.
+      But there is one thing that you think is very interesting, namely:'
+    questionMy: 'Saat berkeliling kerajaan, kamu melihat bahwa Marcus Aurelius mempin
+      romawi dengan sangat baik. Kamu sempat berbicara dengan beberapa warga dan
+      pegawai kerajaan. Banyak hal positif yang mereka sampaikan mengenai kepemimpinan
+      Marcus Aurelius. Tapi ada satu hal yang menurutmu sangat menarik, yaitu:'
+    playerExpression: 0
+    characterSprite: {fileID: 21300000, guid: 9eec07e68cd27bf45b3cf5dfba2ebade, type: 3}
+    answers:
+    - answerId: Keharmonisan rakyat menjadi fokus utama walaupun ada beberapa masalah
+        yang harus ditunda untuk diselesaikan
+      answerEn: People's harmony is the main focus even though there are several
+        problems that must be postponed to be resolved
+      answerMy: Keharmonisan rakyat menjadi fokus utama walaupun ada beberapa masalah
+        yang harus ditunda untuk diselesaikan
+      eventPointDatas:
+      - point: 2
+        perkType: 1
+      - point: 2
+        perkType: 2
+    - answerId: Berkolaborasi dengan berbagai macam pihak untuk mencapai tujuan walaupun
+        belum tentu pihak tersebut menguntungkan bagi kerajaan
+      answerEn: Collaborate with various parties to achieve goals, even though these
+        parties may not necessarily be profitable for the kingdom
+      answerMy: Berkolaborasi dengan berbagai macam pihak untuk mencapai tujuan walaupun
+        belum tentu pihak tersebut menguntungkan bagi kerajaan
+      eventPointDatas:
+      - point: 2
+        perkType: 1
+      - point: 2
+        perkType: 0

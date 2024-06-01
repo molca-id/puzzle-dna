@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -158,12 +159,18 @@ public class FinishHandler : MonoBehaviour
             datas.Add(data);
         }
         resultData.survey_code = DataHandler.instance.GetUserDataValue().game_url;
-        resultData.hasil_isi = datas.OrderBy(x => x.id_talent).ToList();
+        resultData.hasil_isi = datas.OrderBy(x => x.ranking_talent).ToList();
 
         string json = JsonUtility.ToJson(resultData);
         StartCoroutine(
                 APIManager.instance.PostDataWithTokenCoroutine(
                     APIManager.instance.SetupSendResultUrl(), json,
-                    res => { }));
+                    res => 
+                    {
+                        string path = Path.Combine(Application.persistentDataPath, "TalentRanking.json");
+                        File.WriteAllText(path, json);
+                        Debug.Log($"JSON saved to: {path}");
+
+                    }));
     }
 }

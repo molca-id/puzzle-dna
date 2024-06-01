@@ -22,10 +22,12 @@ public class LevelDataHandler : MonoBehaviour
 
     [Header("General Story Attributes")]
     public bool isSkippable;
+    public float delayHandClick = 10;
     public int delayTime;
     public int splashSpeed;
     public GameObject storyPanel;
     public GameObject currAnimation;
+    public GameObject handClick;
     public Image backgroundImage;
 
     [Header("Current Story Attributes")]
@@ -74,6 +76,8 @@ public class LevelDataHandler : MonoBehaviour
 
     [Header("Tutorial Attributes")]
     public GameObject tutorialParentPanel;
+    
+    IEnumerator handClickCoroutine;
 
     private void Awake()
     {
@@ -92,6 +96,8 @@ public class LevelDataHandler : MonoBehaviour
             currentStoryData = levelData.prologueStoryData[0];
         else if (levelData.epilogueStoryData.Count != 0)
             currentStoryData = levelData.epilogueStoryData[0];
+
+        handClickCoroutine = DelayingIconHand();
     }
 
     public void InitPrologue(LevelData levelData)
@@ -187,6 +193,9 @@ public class LevelDataHandler : MonoBehaviour
 
     public void SetStoryData()
     {
+        //StopCoroutine(handClickCoroutine);
+        handClick.SetActive(false);
+
         backgroundImage.sprite = currentStoryData.backgroundSprite;
         if (currentStoryData.backgroundSprite == null) backgroundImage.gameObject.SetActive(false);
         else backgroundImage.gameObject.SetActive(true);
@@ -248,6 +257,8 @@ public class LevelDataHandler : MonoBehaviour
                 }
                 break;
         }
+
+        //StartCoroutine(handClickCoroutine);
     }
 
     public void SetDialogueStory(int factor)
@@ -619,5 +630,15 @@ public class LevelDataHandler : MonoBehaviour
         isSkippable = false;
         yield return new WaitForSeconds(delayTime);
         isSkippable = true;
+    }
+
+    IEnumerator DelayingIconHand()
+    {
+        if (handClick != null)
+        {
+            handClick.SetActive(false);
+            yield return new WaitForSeconds(delayHandClick);
+            handClick.SetActive(true);
+        }
     }
 }

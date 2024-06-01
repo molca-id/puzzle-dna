@@ -5,6 +5,7 @@ using UnityEngine;
 using TMPro;
 using UserDataSpace;
 using UnityEngine.Events;
+using System.Security.Cryptography;
 
 public enum PerksType { Drive, Network, Action }
 public enum PerksStage { Stage1, Stage2, Stage3 }
@@ -69,6 +70,7 @@ public class PerksHandler : MonoBehaviour
     [Header("UI Attributes")]
     public GameObject perksPanel;
     public GameObject perksDetailPanel;
+    public GameObject perksHoldingDetailPanel;
     [Space]
     public Button electronButton;
     public Button protonButton;
@@ -90,6 +92,7 @@ public class PerksHandler : MonoBehaviour
     public TextMeshProUGUI perkName;
     public TextMeshProUGUI perkTagline;
     public TextMeshProUGUI perkDescription;
+    public TextMeshProUGUI perkHoldingDescription;
     public List<GameObject> perkPointObject;
     [Space]
     public List<TextMeshProUGUI> perkPointPlus;
@@ -301,12 +304,29 @@ public class PerksHandler : MonoBehaviour
                         }
 
                         SetPerksItemUI(perkTemp);
-                        perkTemp.perks_button.onClick.RemoveAllListeners();
-                        perkTemp.perks_button.onClick.AddListener(delegate
+                        GameObject perksButtonObject = perkTemp.perks_button.gameObject;
+                        if (!perksButtonObject.TryGetComponent<HoldClickReleaseButton>(out var btn))
                         {
-                            currentPerk = perkTemp;
-                            OpenPerksDescription();
-                        });
+                            btn = perksButtonObject.AddComponent<HoldClickReleaseButton>();
+                        }
+
+                        perkTemp.perks_button.onClick.RemoveAllListeners();
+                        btn.SetEvent(
+                            delegate
+                            {
+                                currentPerk = perkTemp;
+                                OpenPerkPopUpHold(true);
+                            },
+                            delegate
+                            {
+                                currentPerk = perkTemp;
+                                OpenPerkPopUpHold(false);
+                            },
+                            delegate
+                            {
+                                currentPerk = perkTemp;
+                                OpenPerksDescription();
+                            });
                     }
                 }
             }
@@ -396,6 +416,12 @@ public class PerksHandler : MonoBehaviour
 
     public bool GetPanelState() => isOpened;
 
+    public void OpenPerkPopUpHold(bool cond)
+    {
+        perkHoldingDescription.text = currentPerk.deskripsi_singkat_game;
+        perksHoldingDetailPanel.SetActive(cond);
+    }
+
     public void OpenPerksDescription()
     {
         pivotPoint = currentPerk.perks_point;
@@ -449,7 +475,7 @@ public class PerksHandler : MonoBehaviour
         }
 
         currentPerkBackground.ForEach(p => p.SetActive(false));
-        currentPerkBackground[currentPerk.perks_point + 1].SetActive(true);
+        currentPerkBackground[currentPerk.perks_point + 2].SetActive(true);
         FinishHandler.instance.perkIconsWhite.ForEach(icon =>
         {
             if (icon.name.ToLower().Contains(currentPerk.perks_name.ToLower()))
@@ -652,7 +678,7 @@ public class PerksHandler : MonoBehaviour
 
     public void AddTalentPoint()
     {
-        if (currentPerk.perks_point == 3) return;
+        if (currentPerk.perks_point == 2) return;
 
         if (asEvent)
         {
@@ -706,7 +732,7 @@ public class PerksHandler : MonoBehaviour
 
     public void SubtractTalentPoint()
     {
-        if (currentPerk.perks_point == -1) return;
+        if (currentPerk.perks_point == -2) return;
 
         if (asEvent)
         {
@@ -825,7 +851,7 @@ public class PerksHandler : MonoBehaviour
     public void SetPerksDetailUI()
     {
         perkPointObject.ForEach(perk => perk.SetActive(false));
-        perkPointObject[currentPerk.perks_point + 1].SetActive(true);
+        perkPointObject[currentPerk.perks_point + 2].SetActive(true);
     }
 
     public void SetPointText()

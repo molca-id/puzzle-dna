@@ -27,8 +27,10 @@ public class FinishHandler : MonoBehaviour
 {
     public static FinishHandler instance;
     public GameObject parentPanel;
-    public GameObject finalSubmitPanel;
+    public GameObject finalFadePanel;
     public GameObject finalResultPanel;
+    public GameObject finalSubmitPanel;
+    public GameObject finalResultParentPanel;
     public List<Sprite> perkIconsColorful;
     public List<Sprite> perkIconsWhite;
 
@@ -67,6 +69,9 @@ public class FinishHandler : MonoBehaviour
 
     public void CalculateFinalResult()
     {
+        StartCoroutine(IEOpenScreen(finalFadePanel.GetComponent<CanvasGroup>(), () => { }));
+        StartCoroutine(IECloseScreen(finalResultPanel.GetComponent<CanvasGroup>(), () => { }));
+
         //top 10 perks
         var perksData = DataHandler.instance.GetPerksData().perks_value_datas;
         rankingPerks = perksData.OrderByDescending(x => x.perks_point)
@@ -83,7 +88,7 @@ public class FinishHandler : MonoBehaviour
         }
 
         parentPanel.SetActive(true);
-        finalResultPanel.SetActive(true);
+        finalResultParentPanel.SetActive(true);
         charReplaceSprite.sprite = DataHandler.instance.GetPlayerSprite(expressionType);
         switch (DataHandler.instance.GetUserDataValue().f_report_type)
         {
@@ -167,10 +172,39 @@ public class FinishHandler : MonoBehaviour
                     APIManager.instance.SetupSendResultUrl(), json,
                     res => 
                     {
-                        string path = Path.Combine(Application.persistentDataPath, "TalentRanking.json");
-                        File.WriteAllText(path, json);
-                        Debug.Log($"JSON saved to: {path}");
+                        //string path = Path.Combine(Application.persistentDataPath, "TalentRanking.json");
+                        //File.WriteAllText(path, json);
+                        //Debug.Log($"JSON saved to: {path}");
 
+                        StartCoroutine(IEOpenScreen(finalResultPanel.GetComponent<CanvasGroup>(), () => { }));
+                        StartCoroutine(IECloseScreen(finalFadePanel.GetComponent<CanvasGroup>(), () => { }));
+                        Debug.Log(res);
                     }));
     }
+
+    #region OpenClosePanel
+    IEnumerator IEOpenScreen(CanvasGroup screen, Action executeAfter = null)
+    {
+        screen.gameObject.SetActive(true);
+        while (screen.alpha < 1)
+        {
+            screen.alpha += Time.deltaTime * 2;
+            yield return null;
+        }
+
+        executeAfter?.Invoke();
+    }
+
+    IEnumerator IECloseScreen(CanvasGroup screen, Action executeAfter = null)
+    {
+        while (screen.alpha > 0)
+        {
+            screen.alpha -= Time.deltaTime * 2;
+            yield return null;
+        }
+
+        screen.gameObject.SetActive(false);
+        executeAfter?.Invoke();
+    }
+    #endregion
 }

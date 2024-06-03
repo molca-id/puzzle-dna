@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0d3ec688709c214a8c7fe11dd2475cf, type: 3}
   m_Name: (4) Event Data
   m_EditorClassIdentifier: 
-  storyType: 0
+  storyType: 5
   backgroundSprite: {fileID: 21300000, guid: 56e2dce38aaa16041b9286fdc78f3626, type: 3}
   tutorialKey: 
   dialogueStory:

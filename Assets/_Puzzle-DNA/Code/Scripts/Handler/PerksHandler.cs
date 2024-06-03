@@ -418,7 +418,7 @@ public class PerksHandler : MonoBehaviour
 
     public void OpenPerkPopUpHold(bool cond)
     {
-        perkHoldingDescription.text = currentPerk.deskripsi_singkat_game;
+        perkHoldingDescription.text = $"\"{currentPerk.deskripsi_singkat_game}\"";
         perksHoldingDetailPanel.SetActive(cond);
     }
 

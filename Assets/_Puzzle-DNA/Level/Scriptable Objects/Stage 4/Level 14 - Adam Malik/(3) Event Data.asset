@@ -41,14 +41,14 @@ MonoBehaviour:
       answerMy: Inovasi Teknologi untuk Melawan Musuh di Masa Lalu
       eventPointDatas:
       - point: 2
-        perkType: 2
+        perkType: 0
       - point: 2
-        perkType: 1
+        perkType: 0
     - answerId: Catatan Sejarah dalam Perbedaan Budaya Manusia
       answerEn: Historical Notes in Human Cultural Differences
       answerMy: Catatan Sejarah dalam Perbedaan Budaya Manusia
       eventPointDatas:
       - point: 2
-        perkType: 2
+        perkType: 0
       - point: 2
         perkType: 0

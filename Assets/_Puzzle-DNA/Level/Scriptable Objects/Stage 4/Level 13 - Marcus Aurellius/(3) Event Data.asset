@@ -47,9 +47,9 @@ MonoBehaviour:
         yang harus ditunda untuk diselesaikan
       eventPointDatas:
       - point: 2
-        perkType: 1
+        perkType: 0
       - point: 2
-        perkType: 2
+        perkType: 0
     - answerId: Berkolaborasi dengan berbagai macam pihak untuk mencapai tujuan walaupun
         belum tentu pihak tersebut menguntungkan bagi kerajaan
       answerEn: Collaborate with various parties to achieve goals, even though these
@@ -58,6 +58,6 @@ MonoBehaviour:
         belum tentu pihak tersebut menguntungkan bagi kerajaan
       eventPointDatas:
       - point: 2
-        perkType: 1
+        perkType: 0
       - point: 2
         perkType: 0

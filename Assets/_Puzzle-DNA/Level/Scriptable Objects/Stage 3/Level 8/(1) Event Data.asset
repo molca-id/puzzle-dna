@@ -43,9 +43,9 @@ MonoBehaviour:
       answerMy: Bersama dengan Kevin mencari masalah yang menyebabkan kelelahan dan
         menyelesaikannya satu per satu
       eventPointDatas:
-      - point: 2
+      - point: 1
         perkType: 2
-      - point: 2
+      - point: 1
         perkType: 0
     - answerId: Menyampaikan simpulan penyebab masalah berdasarkan cerita Kevin dan
         tidak ikut campur dengan keputusan yang diambil Kevin
@@ -54,7 +54,7 @@ MonoBehaviour:
       answerMy: Menyampaikan simpulan penyebab masalah berdasarkan cerita Kevin dan
         tidak ikut campur dengan keputusan yang diambil Kevin
       eventPointDatas:
-      - point: 2
+      - point: 1
         perkType: 2
-      - point: 2
+      - point: 1
         perkType: 1

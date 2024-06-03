@@ -46,7 +46,7 @@ MonoBehaviour:
       - point: 2
         perkType: 0
       - point: 2
-        perkType: 1
+        perkType: 0
     - answerId: Aku ingin sekali memiliki kegigihan sepertimu, di tengah ketidakpastian
         yang kamu hadapi
       answerEn: I would love to have tenacity like you, amidst the uncertainty you

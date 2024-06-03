@@ -52,9 +52,9 @@ MonoBehaviour:
       answerMy: Mengarahkan Kevin untuk terus berlatih tanpa memberi tau fakta di
         masa depan
       eventPointDatas:
-      - point: 2
+      - point: 1
         perkType: 0
-      - point: 2
+      - point: 1
         perkType: 2
     - answerId: Menggambarkan kesuksesan di masa depan jika terus berlatih tanpa
         mempengaruhi pendapat pribadi Kevin
@@ -63,7 +63,7 @@ MonoBehaviour:
       answerMy: Menggambarkan kesuksesan di masa depan jika terus berlatih tanpa
         mempengaruhi pendapat pribadi Kevin
       eventPointDatas:
-      - point: 2
+      - point: 1
         perkType: 0
-      - point: 2
+      - point: 1
         perkType: 1

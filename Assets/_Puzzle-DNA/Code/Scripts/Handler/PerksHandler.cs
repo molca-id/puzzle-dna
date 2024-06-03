@@ -894,7 +894,7 @@ public class PerksHandler : MonoBehaviour
                 }
             }
 
-            if (totalPoint >= 25)
+            if (totalPoint >= 10)
             {
                 if (perksType == PerksType.Drive) 
                     DataHandler.instance.GetPerksData().perks_ability_data.driveUpgraded = true;

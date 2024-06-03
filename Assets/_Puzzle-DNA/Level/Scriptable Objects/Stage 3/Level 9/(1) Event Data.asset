@@ -45,9 +45,9 @@ MonoBehaviour:
       answerMy: '"Aku ingin berteman lama denganmu Kevin, tapi sepertinya olahraga
         badminton tidak cocok denganku."'
       eventPointDatas:
-      - point: 2
+      - point: 1
         perkType: 1
-      - point: 2
+      - point: 1
         perkType: 0
     - answerId: '"Aku sangat senang berada di sini membantumu tapi aku tidak nyaman
         jika harus meninggalkan kehidupanku."'
@@ -56,7 +56,7 @@ MonoBehaviour:
       answerMy: '"Aku sangat senang berada di sini membantumu tapi aku tidak nyaman
         jika harus meninggalkan kehidupanku."'
       eventPointDatas:
-      - point: 2
+      - point: 1
         perkType: 1
-      - point: 2
+      - point: 1
         perkType: 2

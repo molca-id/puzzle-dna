@@ -44,7 +44,7 @@ MonoBehaviour:
         tidak rapi tetapi nampak cocok di pakai Nelson Mandela
       eventPointDatas:
       - point: 2
-        perkType: 1
+        perkType: 0
       - point: 2
         perkType: 0
     - answerId: Sebuah digital tablet yang dapat digunakan untuk mencatat di saat-saat
@@ -55,6 +55,6 @@ MonoBehaviour:
         sedang banyak pikiran menggangu
       eventPointDatas:
       - point: 2
-        perkType: 1
+        perkType: 0
       - point: 2
         perkType: 2

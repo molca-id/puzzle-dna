@@ -2333,8 +2333,8 @@ MonoBehaviour:
     character: 0
     playerClips: []
     expressionDatas: []
-  protonMax: 48
-  electronMax: 16
+  protonMax: 35
+  electronMax: 13
   bgmAudioMixer: {fileID: 24100000, guid: e924da3ea1125eb4a997dba622a13f0e, type: 2}
   sfxAudioMixer: {fileID: 24100000, guid: c3c0b1f744bce6241ac6565d6feaafa3, type: 2}
   voAudioMixer: {fileID: 24100000, guid: b37b4d2506b415e429821ed1d8d55b2c, type: 2}

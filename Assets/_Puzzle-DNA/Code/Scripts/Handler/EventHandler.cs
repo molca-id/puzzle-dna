@@ -143,7 +143,7 @@ public class EventHandler : MonoBehaviour
         {
             if (DataHandler.instance.GetSpecificPerksPoint(currentEventData.answers[0].eventPointDatas[0].perkType).perks_point_plus == 0)
             {
-                DataHandler.instance.GetSpecificPerksPoint(currentEventData.answers[0].eventPointDatas[0].perkType).perks_point_plus += 2;
+                DataHandler.instance.GetSpecificPerksPoint(currentEventData.answers[0].eventPointDatas[0].perkType).perks_point_plus += currentEventData.answers[0].eventPointDatas[0].point;
                 DataHandler.instance.GetPerksData().perks_point_data.total_perks_point_plus +=
                     DataHandler.instance.GetSpecificPerksPoint(currentEventData.answers[0].eventPointDatas[0].perkType).perks_point_plus;
 
@@ -152,7 +152,7 @@ public class EventHandler : MonoBehaviour
             }
             if (DataHandler.instance.GetSpecificPerksPoint(currentEventData.answers[0].eventPointDatas[1].perkType).perks_point_minus == 0)
             {
-                DataHandler.instance.GetSpecificPerksPoint(currentEventData.answers[0].eventPointDatas[1].perkType).perks_point_minus += 2;
+                DataHandler.instance.GetSpecificPerksPoint(currentEventData.answers[0].eventPointDatas[1].perkType).perks_point_minus += currentEventData.answers[0].eventPointDatas[1].point;
                 DataHandler.instance.GetPerksData().perks_point_data.total_perks_point_minus +=
                     DataHandler.instance.GetSpecificPerksPoint(currentEventData.answers[0].eventPointDatas[1].perkType).perks_point_minus;
 
@@ -164,7 +164,7 @@ public class EventHandler : MonoBehaviour
         {
             if (DataHandler.instance.GetSpecificPerksPoint(currentEventData.answers[1].eventPointDatas[0].perkType).perks_point_plus == 0)
             {
-                DataHandler.instance.GetSpecificPerksPoint(currentEventData.answers[1].eventPointDatas[0].perkType).perks_point_plus += 2;
+                DataHandler.instance.GetSpecificPerksPoint(currentEventData.answers[1].eventPointDatas[0].perkType).perks_point_plus += currentEventData.answers[0].eventPointDatas[0].point;
                 DataHandler.instance.GetPerksData().perks_point_data.total_perks_point_plus +=
                     DataHandler.instance.GetSpecificPerksPoint(currentEventData.answers[1].eventPointDatas[0].perkType).perks_point_plus;
 
@@ -173,7 +173,7 @@ public class EventHandler : MonoBehaviour
             }
             if (DataHandler.instance.GetSpecificPerksPoint(currentEventData.answers[1].eventPointDatas[1].perkType).perks_point_minus == 0)
             {
-                DataHandler.instance.GetSpecificPerksPoint(currentEventData.answers[1].eventPointDatas[1].perkType).perks_point_minus += 2;
+                DataHandler.instance.GetSpecificPerksPoint(currentEventData.answers[1].eventPointDatas[1].perkType).perks_point_minus += currentEventData.answers[0].eventPointDatas[1].point;
                 DataHandler.instance.GetPerksData().perks_point_data.total_perks_point_minus +=
                     DataHandler.instance.GetSpecificPerksPoint(currentEventData.answers[1].eventPointDatas[1].perkType).perks_point_minus;
 

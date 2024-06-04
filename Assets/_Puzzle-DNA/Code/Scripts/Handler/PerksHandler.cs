@@ -122,54 +122,54 @@ public class PerksHandler : MonoBehaviour
 
     public void SetDNADescriptionState(int index)
     {
-        driveAbilityDescPanel.SetActive(false);
-        networkAbilityDescPanel.SetActive(false);
-        actionAbilityDescPanel.SetActive(false);
+        //driveAbilityDescPanel.SetActive(false);
+        //networkAbilityDescPanel.SetActive(false);
+        //actionAbilityDescPanel.SetActive(false);
 
-        if (index == 0)
-        {
-            driveDescPanel.SetActive(!driveDescPanel.activeSelf);
-            networkDescPanel.SetActive(false);
-            actionDescPanel.SetActive(false);
-        }
-        else if (index == 1)
-        {
-            driveDescPanel.SetActive(false);
-            networkDescPanel.SetActive(!networkDescPanel.activeSelf);
-            actionDescPanel.SetActive(false);
-        }
-        else if (index == 2)
-        {
-            driveDescPanel.SetActive(false);
-            networkDescPanel.SetActive(false);
-            actionDescPanel.SetActive(!actionDescPanel.activeSelf);
-        }
+        //if (index == 0)
+        //{
+        //    driveDescPanel.SetActive(!driveDescPanel.activeSelf);
+        //    networkDescPanel.SetActive(false);
+        //    actionDescPanel.SetActive(false);
+        //}
+        //else if (index == 1)
+        //{
+        //    driveDescPanel.SetActive(false);
+        //    networkDescPanel.SetActive(!networkDescPanel.activeSelf);
+        //    actionDescPanel.SetActive(false);
+        //}
+        //else if (index == 2)
+        //{
+        //    driveDescPanel.SetActive(false);
+        //    networkDescPanel.SetActive(false);
+        //    actionDescPanel.SetActive(!actionDescPanel.activeSelf);
+        //}
     }
 
     public void SetDNAAbilityDescriptionState(int index)
     {
-        driveDescPanel.SetActive(false);
-        networkDescPanel.SetActive(false);
-        actionDescPanel.SetActive(false);
+        //driveDescPanel.SetActive(false);
+        //networkDescPanel.SetActive(false);
+        //actionDescPanel.SetActive(false);
 
-        if (index == 0)
-        {
-            driveAbilityDescPanel.SetActive(!driveAbilityDescPanel.activeSelf);
-            networkAbilityDescPanel.SetActive(false);
-            actionAbilityDescPanel.SetActive(false);
-        }
-        else if (index == 1)
-        {
-            driveAbilityDescPanel.SetActive(false);
-            networkAbilityDescPanel.SetActive(!networkAbilityDescPanel.activeSelf);
-            actionAbilityDescPanel.SetActive(false);
-        }
-        else if (index == 2)
-        {
-            driveAbilityDescPanel.SetActive(false);
-            networkAbilityDescPanel.SetActive(false);
-            actionAbilityDescPanel.SetActive(!actionAbilityDescPanel.activeSelf);
-        }
+        //if (index == 0)
+        //{
+        //    driveAbilityDescPanel.SetActive(!driveAbilityDescPanel.activeSelf);
+        //    networkAbilityDescPanel.SetActive(false);
+        //    actionAbilityDescPanel.SetActive(false);
+        //}
+        //else if (index == 1)
+        //{
+        //    driveAbilityDescPanel.SetActive(false);
+        //    networkAbilityDescPanel.SetActive(!networkAbilityDescPanel.activeSelf);
+        //    actionAbilityDescPanel.SetActive(false);
+        //}
+        //else if (index == 2)
+        //{
+        //    driveAbilityDescPanel.SetActive(false);
+        //    networkAbilityDescPanel.SetActive(false);
+        //    actionAbilityDescPanel.SetActive(!actionAbilityDescPanel.activeSelf);
+        //}
     }
 
     public void SetAfterGame(bool cond)
@@ -310,20 +310,23 @@ public class PerksHandler : MonoBehaviour
                             btn = perksButtonObject.AddComponent<HoldClickReleaseButton>();
                         }
 
-                        perkTemp.perks_button.onClick.RemoveAllListeners();
+                        //perkTemp.perks_button.onClick.RemoveAllListeners();
                         btn.SetEvent(
                             delegate
                             {
+                                perkTemp.perks_button.onClick.Invoke();
                                 currentPerk = perkTemp;
                                 OpenPerkPopUpHold(true);
                             },
                             delegate
                             {
+                                perkTemp.perks_button.onClick.Invoke();
                                 currentPerk = perkTemp;
                                 OpenPerkPopUpHold(false);
                             },
                             delegate
                             {
+                                perkTemp.perks_button.onClick.Invoke();
                                 currentPerk = perkTemp;
                                 OpenPerksDescription();
                             });

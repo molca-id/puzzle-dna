@@ -45,7 +45,7 @@ MonoBehaviour:
       - point: 2
         perkType: 0
       - point: 2
-        perkType: 0
+        perkType: 1
     - answerId: Menjelaskan bahwa situasi saat ini tidak memungkinkan untuk bermain
         teka-teki dan tidak menjamin teka-teki tersebut akan selesai dengan cepat
       answerEn: Explains that the current situation does not allow for playing puzzles

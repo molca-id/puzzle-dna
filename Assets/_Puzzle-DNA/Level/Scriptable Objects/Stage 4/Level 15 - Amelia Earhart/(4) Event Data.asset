@@ -47,15 +47,15 @@ MonoBehaviour:
       answerMy: Fokuslah dengan tujuanmu walaupun seisi dunia tidak bersamamu
       eventPointDatas:
       - point: 2
-        perkType: 0
+        perkType: 2
       - point: 2
-        perkType: 0
+        perkType: 1
     - answerId: Jalankan mimpi-mimpi di depanmu walaupun risiko besar di depan mata
       answerEn: Carry out the dreams in front of you even though there are big risks
         in front of your eyes
       answerMy: Jalankan mimpi-mimpi di depanmu walaupun risiko besar di depan mata
       eventPointDatas:
       - point: 2
-        perkType: 0
+        perkType: 2
       - point: 2
         perkType: 0

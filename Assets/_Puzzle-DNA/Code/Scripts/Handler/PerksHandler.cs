@@ -575,6 +575,16 @@ public class PerksHandler : MonoBehaviour
             return;
         }
 
+        if (((DataHandler.instance.GetPerksData().perks_point_data.total_perks_point_plus >= DataHandler.instance.protonMax &&
+            DataHandler.instance.GetPerksData().perks_point_data.total_perks_point_minus >= DataHandler.instance.electronMax) &&
+            (DataHandler.instance.GetPerksData().perks_point_data.perks_point_plus <= 0 &&
+            DataHandler.instance.GetPerksData().perks_point_data.perks_point_minus <= 0) && 
+            asEvent))
+        {
+            FinishHandler.instance.InitFinalSubmitPanel();
+            return;
+        }
+
         FinalSubmitTalentPoint();
     }
 

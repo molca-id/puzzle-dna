@@ -3087,7 +3087,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -250.00221, y: 101}
+  m_AnchoredPosition: {x: -250.00235, y: 101}
   m_SizeDelta: {x: -745.6, y: -238.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &920450452
@@ -4356,6 +4356,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1282053297}
+  - component: {fileID: 1282053298}
   - component: {fileID: 1282053296}
   m_Layer: 0
   m_Name: Game Controller
@@ -4376,7 +4377,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25a613a1c35d4354bb7f368b676d0725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 11400000, guid: 5198ef349977d874f92e389044dc6c7e, type: 2}
+  gameData: {fileID: 11400000, guid: 7b8ed63159ffe7840b2210a720eaa54b, type: 2}
   boardController: {fileID: 524894936068949708, guid: 11bf636dff762504387df3b2170baaaf,
     type: 3}
   gameTutorialHandler: {fileID: 0}
@@ -4399,6 +4400,7 @@ MonoBehaviour:
   swapSpeed: 6
   fallSpeed: 10
   _timeLeft: 0
+  eventSystem: {fileID: 643838633}
   characterPlayerSprite: {fileID: 21300000, guid: 6b32bc13d3e280948ad22943b30ccc2e,
     type: 3}
   gemIsInteractable: 0
@@ -4418,6 +4420,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1433317095}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1282053298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282053295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81b7c4847cd4de44b9dde409a685cd1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1317068445
 GameObject:
   m_ObjectHideFlags: 0

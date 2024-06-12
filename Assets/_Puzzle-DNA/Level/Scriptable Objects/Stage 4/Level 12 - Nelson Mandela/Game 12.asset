@@ -26,15 +26,18 @@ MonoBehaviour:
     - scoreTrigger: 1000
       dialogueBonusDatas:
       - playerIsTalking: 1
-        dialogueDelay: 2.5
+        dialogueDelay: 4
         contentData:
           playerExpression: 0
           interlocutorSprite: {fileID: 21300000, guid: 2fa1030855e59f143b164bd163581d6a,
             type: 3}
-          bgmClip: {fileID: 0}
-          clipId: {fileID: 0}
+          clipCodeEn: 
+          clipCodeId: 
+          clipCodeMy: 
           clipEn: {fileID: 0}
+          clipId: {fileID: 0}
           clipMy: {fileID: 0}
+          bgmClip: {fileID: 0}
           animPrefab: {fileID: 0}
           contentEn: How can you realize your dreams even though you were imprisoned
             for 27 years?
@@ -43,15 +46,18 @@ MonoBehaviour:
           contentMy: Bagaimana anda bisa mewujudkan cita cita anda walaupun sempat
             dipenjara selama 27 tahun?
       - playerIsTalking: 0
-        dialogueDelay: 2.5
+        dialogueDelay: 8
         contentData:
           playerExpression: 2
           interlocutorSprite: {fileID: 21300000, guid: 5a24df4841c57fe45a6ca02a86d07948,
             type: 3}
-          bgmClip: {fileID: 0}
-          clipId: {fileID: 0}
+          clipCodeEn: 
+          clipCodeId: 
+          clipCodeMy: 
           clipEn: {fileID: 0}
+          clipId: {fileID: 0}
           clipMy: {fileID: 0}
+          bgmClip: {fileID: 0}
           animPrefab: {fileID: 0}
           contentEn: I'm not alone. Building relationships with people who have the
             same dreams is one of the keys.
@@ -63,15 +69,18 @@ MonoBehaviour:
     - scoreTrigger: 1500
       dialogueBonusDatas:
       - playerIsTalking: 1
-        dialogueDelay: 2.5
+        dialogueDelay: 4
         contentData:
           playerExpression: 0
           interlocutorSprite: {fileID: 21300000, guid: d217e4dddec738d408efba89e711093f,
             type: 3}
-          bgmClip: {fileID: 0}
-          clipId: {fileID: 0}
+          clipCodeEn: 
+          clipCodeId: 
+          clipCodeMy: 
           clipEn: {fileID: 0}
+          clipId: {fileID: 0}
           clipMy: {fileID: 0}
+          bgmClip: {fileID: 0}
           animPrefab: {fileID: 0}
           contentEn: Your actions were very brave and sincere. What message do you
             want to convey to the world?
@@ -80,15 +89,18 @@ MonoBehaviour:
           contentMy: Tindakan Bapak sangat berani dan tulus. Pesan apa yang ingin
             Bapak sampaikan pada dunia?
       - playerIsTalking: 0
-        dialogueDelay: 2.5
+        dialogueDelay: 8
         contentData:
           playerExpression: 2
           interlocutorSprite: {fileID: 21300000, guid: 0b6fecf8cbf4d93449962ed9c70dcb6c,
             type: 3}
-          bgmClip: {fileID: 0}
-          clipId: {fileID: 0}
+          clipCodeEn: 
+          clipCodeId: 
+          clipCodeMy: 
           clipEn: {fileID: 0}
+          clipId: {fileID: 0}
           clipMy: {fileID: 0}
+          bgmClip: {fileID: 0}
           animPrefab: {fileID: 0}
           contentEn: I cherish the ideal of a democratic and free society in which
             all people live together in harmony and with equal opportunities. I hope

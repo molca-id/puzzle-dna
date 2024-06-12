@@ -24,7 +24,7 @@ MonoBehaviour:
   titleStories: []
   eventDataStory:
     autoOpenPerks: 1
-    questionId: 'Saat berkeliling kerajaan, kamu melihat bahwa Marcus Aurelius mempin
+    questionId: 'Saat berkeliling kerajaan, kamu melihat bahwa Marcus Aurelius memimpin
       romawi dengan sangat baik. Kamu sempat berbicara dengan beberapa warga dan
       pegawai kerajaan. Banyak hal positif yang mereka sampaikan mengenai kepemimpinan
       Marcus Aurelius. Tapi ada satu hal yang menurutmu sangat menarik, yaitu:'
@@ -32,7 +32,7 @@ MonoBehaviour:
       ruled Rome very well. You had time to talk with several citizens and royal
       employees. They said many positive things about Marcus Aurelius'' leadership.
       But there is one thing that you think is very interesting, namely:'
-    questionMy: 'Saat berkeliling kerajaan, kamu melihat bahwa Marcus Aurelius mempin
+    questionMy: 'Saat berkeliling kerajaan, kamu melihat bahwa Marcus Aurelius memimpin
       romawi dengan sangat baik. Kamu sempat berbicara dengan beberapa warga dan
       pegawai kerajaan. Banyak hal positif yang mereka sampaikan mengenai kepemimpinan
       Marcus Aurelius. Tapi ada satu hal yang menurutmu sangat menarik, yaitu:'

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UserDataSpace;
 using Utilities;
 
@@ -28,6 +29,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
     [ShowIf("openGameSettings")] public float swapSpeed;
     [ShowIf("openGameSettings")] public float fallSpeed;
     [ShowIf("openGameSettings")] public float _timeLeft = 120;
+    [ShowIf("openGameSettings")] public GameObject eventSystem;
 
     [HideInInspector] public Sprite characterPlayerSprite;
     [HideInInspector] public bool gemIsInteractable;
@@ -77,6 +79,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
     {
         if (standalone)
         {
+            eventSystem.SetActive(true);
             FindObjectOfType<AudioListener>().enabled = true;
             Init(0.25f, gameData);
         } 

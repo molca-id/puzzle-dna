@@ -26,50 +26,7 @@ MonoBehaviour:
     - scoreTrigger: 1000
       dialogueBonusDatas:
       - playerIsTalking: 1
-        dialogueDelay: 2.5
-        contentData:
-          playerExpression: 0
-          interlocutorSprite: {fileID: 21300000, guid: cac255dc7704a8a4285c6bd430f2a527,
-            type: 3}
-          clipCodeEn: 
-          clipCodeId: 
-          clipCodeMy: 
-          clipEn: {fileID: 0}
-          clipId: {fileID: 0}
-          clipMy: {fileID: 0}
-          bgmClip: {fileID: 0}
-          animPrefab: {fileID: 0}
-          contentEn: What experience will you never forget?
-          contentId: Pengalaman apa yang tidak akan pernah Bapak lupakan?
-          contentMy: Pengalaman apa yang tidak akan pernah Bapak lupakan?
-      - playerIsTalking: 0
-        dialogueDelay: 2.5
-        contentData:
-          playerExpression: 0
-          interlocutorSprite: {fileID: 21300000, guid: cac255dc7704a8a4285c6bd430f2a527,
-            type: 3}
-          clipCodeEn: 
-          clipCodeId: 
-          clipCodeMy: 
-          clipEn: {fileID: 0}
-          clipId: {fileID: 0}
-          clipMy: {fileID: 0}
-          bgmClip: {fileID: 0}
-          animPrefab: {fileID: 0}
-          contentEn: I will always remember the Japanese colonial era and the moments
-            of the proclamation. Seeing all levels of society fighting together makes
-            me more enthusiastic.
-          contentId: Zaman penjajahan Jepang dan detik-detik proklamasi akan selalu
-            saya ingat. Melihat semua lapisan masyarakat berjuang bersama membuat
-            saya lebih bersemangat.
-          contentMy: Zaman penjajahan Jepang dan detik-detik proklamasi akan selalu
-            saya ingat. Melihat semua lapisan masyarakat berjuang bersama membuat
-            saya lebih bersemangat.
-      isDone: 0
-    - scoreTrigger: 1500
-      dialogueBonusDatas:
-      - playerIsTalking: 1
-        dialogueDelay: 2.5
+        dialogueDelay: 4
         contentData:
           playerExpression: 0
           interlocutorSprite: {fileID: 21300000, guid: d2de0823e0e6a914199b5f1df57357a0,
@@ -86,7 +43,7 @@ MonoBehaviour:
           contentId: Apa yang diperlukan untuk menjadi orang hebat seperti Bapak?
           contentMy: Apa yang diperlukan untuk menjadi orang hebat seperti Bapak?
       - playerIsTalking: 0
-        dialogueDelay: 2.5
+        dialogueDelay: 6
         contentData:
           playerExpression: 2
           interlocutorSprite: {fileID: 21300000, guid: cac255dc7704a8a4285c6bd430f2a527,
@@ -105,6 +62,51 @@ MonoBehaviour:
             dalam bertindak mencapai tujuan.
           contentMy: Tidak hanya kepintaran. Kamu memerlukan kegigihan dan konsistensi
             dalam bertindak mencapai tujuan.
+      isDone: 0
+    - scoreTrigger: 1500
+      dialogueBonusDatas:
+      - playerIsTalking: 1
+        dialogueDelay: 4
+        contentData:
+          playerExpression: 0
+          interlocutorSprite: {fileID: 21300000, guid: cac255dc7704a8a4285c6bd430f2a527,
+            type: 3}
+          clipCodeEn: 
+          clipCodeId: 
+          clipCodeMy: 
+          clipEn: {fileID: 0}
+          clipId: {fileID: 0}
+          clipMy: {fileID: 0}
+          bgmClip: {fileID: 0}
+          animPrefab: {fileID: 0}
+          contentEn: Ohh I see, and what experience will you never forget?
+          contentId: Ohh begitu, lalu pengalaman apa yang tidak akan pernah Bapak
+            lupakan?
+          contentMy: Ohh begitu, lalu pengalaman apa yang tidak akan pernah Bapak
+            lupakan?
+      - playerIsTalking: 0
+        dialogueDelay: 6
+        contentData:
+          playerExpression: 0
+          interlocutorSprite: {fileID: 21300000, guid: cac255dc7704a8a4285c6bd430f2a527,
+            type: 3}
+          clipCodeEn: 
+          clipCodeId: 
+          clipCodeMy: 
+          clipEn: {fileID: 0}
+          clipId: {fileID: 0}
+          clipMy: {fileID: 0}
+          bgmClip: {fileID: 0}
+          animPrefab: {fileID: 0}
+          contentEn: I always remember the moments of the proclamation where all
+            levels of society fought together for independence, which means I will
+            never forget that.
+          contentId: Saya selalu ingat saat detik-detik proklamasi di mana seluruh
+            lapisan masyarakat berjuang bersama untuk kemerdekaan yang membuat saya
+            tidak akan pernah lupa dengan itu.
+          contentMy: Saya selalu ingat saat detik-detik proklamasi di mana seluruh
+            lapisan masyarakat berjuang bersama untuk kemerdekaan yang membuat saya
+            tidak akan pernah lupa dengan itu.
       isDone: 0
   hintDelay: 10
   totalTime: 90

@@ -26,7 +26,7 @@ MonoBehaviour:
     - scoreTrigger: 1000
       dialogueBonusDatas:
       - playerIsTalking: 1
-        dialogueDelay: 2.5
+        dialogueDelay: 4
         contentData:
           playerExpression: 2
           interlocutorSprite: {fileID: 21300000, guid: 543e6feca00a0f04299844172c7cc76d,
@@ -46,7 +46,7 @@ MonoBehaviour:
           contentMy: Nobel Perdamaian yang kamu dapatkan sangat menginspirasi banyak
             anak-anak di dunia. Apakah tujuanmu sudah tercapai?
       - playerIsTalking: 0
-        dialogueDelay: 2.5
+        dialogueDelay: 6
         contentData:
           playerExpression: 2
           interlocutorSprite: {fileID: 21300000, guid: 49f72ddc2d4a21343bb4665c02eab6a0,
@@ -69,7 +69,7 @@ MonoBehaviour:
     - scoreTrigger: 1500
       dialogueBonusDatas:
       - playerIsTalking: 1
-        dialogueDelay: 2.5
+        dialogueDelay: 3
         contentData:
           playerExpression: 0
           interlocutorSprite: {fileID: 21300000, guid: 543e6feca00a0f04299844172c7cc76d,
@@ -86,7 +86,7 @@ MonoBehaviour:
           contentId: Mengapa kamu sangat berani melawan?
           contentMy: Mengapa kamu sangat berani melawan?
       - playerIsTalking: 0
-        dialogueDelay: 2.5
+        dialogueDelay: 7
         contentData:
           playerExpression: 2
           interlocutorSprite: {fileID: 21300000, guid: 49f72ddc2d4a21343bb4665c02eab6a0,
@@ -109,7 +109,7 @@ MonoBehaviour:
     - scoreTrigger: 2000
       dialogueBonusDatas:
       - playerIsTalking: 1
-        dialogueDelay: 2.5
+        dialogueDelay: 3
         contentData:
           playerExpression: 0
           interlocutorSprite: {fileID: 21300000, guid: 543e6feca00a0f04299844172c7cc76d,
@@ -126,7 +126,7 @@ MonoBehaviour:
           contentId: Kamu tidak takut?
           contentMy: Kamu tidak takut?
       - playerIsTalking: 0
-        dialogueDelay: 2.5
+        dialogueDelay: 4
         contentData:
           playerExpression: 0
           interlocutorSprite: {fileID: 21300000, guid: 49f72ddc2d4a21343bb4665c02eab6a0,
@@ -141,10 +141,10 @@ MonoBehaviour:
           animPrefab: {fileID: 0}
           contentEn: No! Even though I am a woman, we have the same rights in this
             world.
-          contentId: Tidak! Walaupun saya perempuan, kami memliki hak yang sama di
-            dunia ini.
-          contentMy: Tidak! Walaupun saya perempuan, kami memliki hak yang sama di
-            dunia ini.
+          contentId: Tidak! Walaupun saya perempuan, kami memiliki hak yang sama
+            di dunia ini.
+          contentMy: Tidak! Walaupun saya perempuan, kami memiliki hak yang sama
+            di dunia ini.
       isDone: 0
   hintDelay: 10
   totalTime: 90

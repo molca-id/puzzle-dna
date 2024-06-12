@@ -567,6 +567,8 @@ public class PerksHandler : MonoBehaviour
 
     public void SubmitTalentPoint()
     {
+        MainMenuHandler.instance.SetupHandHintTalent();
+
         if (!asEvent && !asTutorial && 
             MainMenuHandler.instance.UpTo15LevelsChecker() && 
             protonPoint == 0 && electronPoint == 0)

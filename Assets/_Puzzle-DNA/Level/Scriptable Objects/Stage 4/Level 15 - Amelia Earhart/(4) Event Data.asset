@@ -24,7 +24,7 @@ MonoBehaviour:
   titleStories: []
   eventDataStory:
     autoOpenPerks: 1
-    questionId: Setelah bercerita bahwa tidak mudah untuk melakukan penerbangan pertamnya,
+    questionId: Setelah bercerita bahwa tidak mudah untuk melakukan penerbangan pertamanya,
       Kamu semakin kagum dengan sosok Amelia. Sosok perempuan yang menginspirasi
       dan mampu membuktikan bahwa tidak ada hal yang tidak mungkin di dunia ini.
       Kamu meminta tanda tangan dan pesan personal untukmu dari Amelia. Pesan apa
@@ -34,7 +34,7 @@ MonoBehaviour:
       is able to prove that nothing is impossible in this world. You asked for an
       autograph and a personal message for you from Amelia. What message would you
       like Amelia to write.
-    questionMy: Setelah bercerita bahwa tidak mudah untuk melakukan penerbangan pertamnya,
+    questionMy: Setelah bercerita bahwa tidak mudah untuk melakukan penerbangan pertamanya,
       Kamu semakin kagum dengan sosok Amelia. Sosok perempuan yang menginspirasi
       dan mampu membuktikan bahwa tidak ada hal yang tidak mungkin di dunia ini.
       Kamu meminta tanda tangan dan pesan personal untukmu dari Amelia. Pesan apa

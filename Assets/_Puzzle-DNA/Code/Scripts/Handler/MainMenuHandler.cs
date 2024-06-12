@@ -41,6 +41,7 @@ public class MainMenuHandler : MonoBehaviour
     public PerksHandler commonPerksHandler;
     public PerksHandler afterEventPerksHandler;
     public Button playButton;
+    public GameObject handHintTalent;
 
     [Header("Welcome Attributes")]
     [SerializeField] TextMeshProUGUI playerNameWelcome;
@@ -391,6 +392,17 @@ public class MainMenuHandler : MonoBehaviour
             FinishHandler.instance.CalculateFinalResult();
         else if (UpTo15LevelsChecker())
             LevelDataHandler.instance.SetTutorialStory("Story15Levels");
+
+        SetupHandHintTalent();
+    }
+
+    public void SetupHandHintTalent()
+    {
+        if ((DataHandler.instance.GetPerksData().perks_point_data.perks_point_plus > 0 ||
+            DataHandler.instance.GetPerksData().perks_point_data.perks_point_minus > 0))
+            handHintTalent.SetActive(true);
+        else
+            handHintTalent.SetActive(false);
     }
 
     public bool ScoreChecker(List<Button> buttons)

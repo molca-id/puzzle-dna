@@ -172,9 +172,11 @@ public class FinishHandler : MonoBehaviour
                     APIManager.instance.SetupSendResultUrl(), json,
                     res => 
                     {
-                        //string path = Path.Combine(Application.persistentDataPath, "TalentRanking.json");
-                        //File.WriteAllText(path, json);
-                        //Debug.Log($"JSON saved to: {path}");
+#if UNITY_EDITOR
+                        string path = Path.Combine(Application.persistentDataPath, "TalentRanking.json");
+                        File.WriteAllText(path, json);
+                        Debug.Log($"JSON saved to: {path}");
+#endif
 
                         StartCoroutine(IEOpenScreen(finalResultPanel.GetComponent<CanvasGroup>(), () => { }));
                         StartCoroutine(IECloseScreen(finalFadePanel.GetComponent<CanvasGroup>(), () => { }));

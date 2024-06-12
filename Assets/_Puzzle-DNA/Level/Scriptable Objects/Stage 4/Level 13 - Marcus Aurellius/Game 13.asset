@@ -26,29 +26,38 @@ MonoBehaviour:
     - scoreTrigger: 1000
       dialogueBonusDatas:
       - playerIsTalking: 1
-        dialogueDelay: 2.5
+        dialogueDelay: 5
         contentData:
           playerExpression: 0
           interlocutorSprite: {fileID: 21300000, guid: 9eec07e68cd27bf45b3cf5dfba2ebade,
             type: 3}
-          bgmClip: {fileID: 0}
-          clipId: {fileID: 0}
+          clipCodeEn: 
+          clipCodeId: 
+          clipCodeMy: 
           clipEn: {fileID: 0}
+          clipId: {fileID: 0}
           clipMy: {fileID: 0}
+          bgmClip: {fileID: 0}
           animPrefab: {fileID: 0}
-          contentEn: How do you maintain the stability of the Roman empire?
-          contentId: Bagaimana kamu tetap menjaga stabilitas kekaisaran Romawi ini?
-          contentMy: Bagaimana kamu tetap menjaga stabilitas kekaisaran Romawi ini?
+          contentEn: I am curious, how do you maintain the stability of the Roman
+            empire?
+          contentId: Aku pensaran, bagaimana kamu tetap menjaga stabilitas kekaisaran
+            Romawi ini?
+          contentMy: Aku pensaran, bagaimana kamu tetap menjaga stabilitas kekaisaran
+            Romawi ini?
       - playerIsTalking: 0
-        dialogueDelay: 2.5
+        dialogueDelay: 6
         contentData:
           playerExpression: 2
           interlocutorSprite: {fileID: 21300000, guid: 9eec07e68cd27bf45b3cf5dfba2ebade,
             type: 3}
-          bgmClip: {fileID: 0}
-          clipId: {fileID: 0}
+          clipCodeEn: 
+          clipCodeId: 
+          clipCodeMy: 
           clipEn: {fileID: 0}
+          clipId: {fileID: 0}
           clipMy: {fileID: 0}
+          bgmClip: {fileID: 0}
           animPrefab: {fileID: 0}
           contentEn: Rome was a very large empire. Fostering interaction & communication
             with other parties is one of the keys.
@@ -60,32 +69,38 @@ MonoBehaviour:
     - scoreTrigger: 1500
       dialogueBonusDatas:
       - playerIsTalking: 1
-        dialogueDelay: 2.5
+        dialogueDelay: 5
         contentData:
           playerExpression: 0
           interlocutorSprite: {fileID: 21300000, guid: f52db5f70ec28c94b9493bf921a4959d,
             type: 3}
-          bgmClip: {fileID: 0}
-          clipId: {fileID: 0}
+          clipCodeEn: 
+          clipCodeId: 
+          clipCodeMy: 
           clipEn: {fileID: 0}
+          clipId: {fileID: 0}
           clipMy: {fileID: 0}
+          bgmClip: {fileID: 0}
           animPrefab: {fileID: 0}
           contentEn: I just found out, even though it is a strong empire, Rome still
             needs other parties.
-          contentId: Aku baru tau, walaupun termasuk kekaisaran yang kuat, Romawi
-            tetap membutuhkan pihak lain.
-          contentMy: Aku baru tau, walaupun termasuk kekaisaran yang kuat, Romawi
-            tetap membutuhkan pihak lain.
+          contentId: Aku baru tahu walaupun Romawi sangat besar tetapi masih perlu
+            kerjasama dengan pihak lain
+          contentMy: Aku baru tahu walaupun Romawi sangat besar tetapi masih perlu
+            kerjasama dengan pihak lain
       - playerIsTalking: 0
-        dialogueDelay: 2.5
+        dialogueDelay: 5
         contentData:
           playerExpression: 0
           interlocutorSprite: {fileID: 21300000, guid: 6a5dce08e0d594c478ef3346a6d37cd4,
             type: 3}
-          bgmClip: {fileID: 0}
-          clipId: {fileID: 0}
+          clipCodeEn: 
+          clipCodeId: 
+          clipCodeMy: 
           clipEn: {fileID: 0}
+          clipId: {fileID: 0}
           clipMy: {fileID: 0}
+          bgmClip: {fileID: 0}
           animPrefab: {fileID: 0}
           contentEn: Of course! There has never been a strong nation in history that
             has stood alone without the help of others.
@@ -96,16 +111,19 @@ MonoBehaviour:
       isDone: 0
     - scoreTrigger: 2000
       dialogueBonusDatas:
-      - playerIsTalking: 1
-        dialogueDelay: 2.5
+      - playerIsTalking: 0
+        dialogueDelay: 6
         contentData:
           playerExpression: 0
           interlocutorSprite: {fileID: 21300000, guid: 9eec07e68cd27bf45b3cf5dfba2ebade,
             type: 3}
-          bgmClip: {fileID: 0}
-          clipId: {fileID: 0}
+          clipCodeEn: 
+          clipCodeId: 
+          clipCodeMy: 
           clipEn: {fileID: 0}
+          clipId: {fileID: 0}
           clipMy: {fileID: 0}
+          bgmClip: {fileID: 0}
           animPrefab: {fileID: 0}
           contentEn: Do not forget. In establishing a relationship, trust and integrity
             must also be maintained.
@@ -113,16 +131,19 @@ MonoBehaviour:
             juga harus dijaga.
           contentMy: Jangan lupa. Dalam menjalin hubungan, kepercayaan dan integritas
             juga harus dijaga.
-      - playerIsTalking: 0
-        dialogueDelay: 2.5
+      - playerIsTalking: 1
+        dialogueDelay: 5
         contentData:
           playerExpression: 2
           interlocutorSprite: {fileID: 21300000, guid: 6a5dce08e0d594c478ef3346a6d37cd4,
             type: 3}
-          bgmClip: {fileID: 0}
-          clipId: {fileID: 0}
+          clipCodeEn: 
+          clipCodeId: 
+          clipCodeMy: 
           clipEn: {fileID: 0}
+          clipId: {fileID: 0}
           clipMy: {fileID: 0}
+          bgmClip: {fileID: 0}
           animPrefab: {fileID: 0}
           contentEn: Oh right! So that the relationship lasts a long time.
           contentId: Oh betul! Agar hubungan berjalan lama ya.

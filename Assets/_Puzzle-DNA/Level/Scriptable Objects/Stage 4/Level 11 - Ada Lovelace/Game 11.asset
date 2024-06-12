@@ -26,7 +26,7 @@ MonoBehaviour:
     - scoreTrigger: 1000
       dialogueBonusDatas:
       - playerIsTalking: 1
-        dialogueDelay: 2.5
+        dialogueDelay: 5
         contentData:
           playerExpression: 0
           interlocutorSprite: {fileID: 21300000, guid: aca4036633c3f1948b9e65af93a7c729,
@@ -43,7 +43,7 @@ MonoBehaviour:
           contentId: Kalau boleh tau, apa cita-citamu saat kamu kecil?
           contentMy: Kalau boleh tau, apa cita-citamu saat kamu kecil?
       - playerIsTalking: 0
-        dialogueDelay: 2.5
+        dialogueDelay: 6
         contentData:
           playerExpression: 0
           interlocutorSprite: {fileID: 21300000, guid: aca4036633c3f1948b9e65af93a7c729,
@@ -66,7 +66,7 @@ MonoBehaviour:
     - scoreTrigger: 1500
       dialogueBonusDatas:
       - playerIsTalking: 1
-        dialogueDelay: 2.5
+        dialogueDelay: 5
         contentData:
           playerExpression: 3
           interlocutorSprite: {fileID: 21300000, guid: aca4036633c3f1948b9e65af93a7c729,
@@ -83,7 +83,7 @@ MonoBehaviour:
           contentId: Aku selalu mengalami kesusahan dalam mengerjakan matematika
           contentMy: Aku selalu mengalami kesusahan dalam mengerjakan matematika
       - playerIsTalking: 0
-        dialogueDelay: 2.5
+        dialogueDelay: 6
         contentData:
           playerExpression: 2
           interlocutorSprite: {fileID: 21300000, guid: 809e52fa9b6c91c4d9a0a42421c55fae,
@@ -106,7 +106,7 @@ MonoBehaviour:
     - scoreTrigger: 2000
       dialogueBonusDatas:
       - playerIsTalking: 0
-        dialogueDelay: 2.5
+        dialogueDelay: 7
         contentData:
           playerExpression: 0
           interlocutorSprite: {fileID: 21300000, guid: 809e52fa9b6c91c4d9a0a42421c55fae,
@@ -128,7 +128,7 @@ MonoBehaviour:
             yang aku miliki. Mereka mendorongku untuk terus berkarya melalui hal
             yang aku gemari.
       - playerIsTalking: 1
-        dialogueDelay: 2.5
+        dialogueDelay: 5
         contentData:
           playerExpression: 2
           interlocutorSprite: {fileID: 21300000, guid: aca4036633c3f1948b9e65af93a7c729,

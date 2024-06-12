@@ -22,7 +22,12 @@ public class GameTutorialHandler : MonoBehaviour
     {
         if (GameController.instance.standalone) 
         {
-            GameController.instance.StartTimer();
+            if (!use) GameController.instance.StartTimer();
+            else
+            {
+                tutorialPanel.gameObject.SetActive(true);
+                NextTutorial();
+            }
             return;
         }
 

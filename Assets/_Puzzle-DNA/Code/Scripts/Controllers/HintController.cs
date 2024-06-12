@@ -127,6 +127,13 @@ public class HintController : SingletonMonoBehaviour<HintController>
 
             if (needHandAnim) SetupHandHint();
         }
+
+        if (!hasHints)
+        {
+            Debug.Log("Re-shuffle again...");
+            CoroutineHelper.instance.StartCoroutineFromStatic(FindObjectOfType<BoardController>().ShuffleBoard());
+            BoardController.UpdateBoard();
+        }
     }
 
     public static void StopCurrentHint()

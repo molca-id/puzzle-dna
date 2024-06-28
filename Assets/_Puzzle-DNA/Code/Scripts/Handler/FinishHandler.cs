@@ -99,7 +99,7 @@ public class FinishHandler : MonoBehaviour
                     top5PerksObject[i].transform.GetComponentInChildren<Image>().sprite =
                         perkIconsColorful.Find(res => res.name.ToLower().Contains(top10Perks[i].perks_name.ToLower()));
                     top5PerksObject[i].transform.GetComponentInChildren<TextMeshProUGUI>().text =
-                        $"{i + 1}. " + top10Perks[i].perks_name;
+                        top10Perks[i].perks_name;
                 }
                 break;
             case "10":
@@ -109,7 +109,7 @@ public class FinishHandler : MonoBehaviour
                     topJust10PerksObject[i].transform.GetComponentInChildren<Image>().sprite =
                         perkIconsColorful.Find(res => res.name.ToLower().Contains(top10Perks[i].perks_name.ToLower()));
                     topJust10PerksObject[i].transform.GetComponentInChildren<TextMeshProUGUI>().text =
-                        $"{i + 1}. " + top10Perks[i].perks_name;
+                        top10Perks[i].perks_name;
                 }
                 break;
             case "45":
@@ -119,7 +119,7 @@ public class FinishHandler : MonoBehaviour
                     top10PerksObject[i].transform.GetComponentInChildren<Image>().sprite =
                         perkIconsColorful.Find(res => res.name.ToLower().Contains(top10Perks[i].perks_name.ToLower()));
                     top10PerksObject[i].transform.GetComponentInChildren<TextMeshProUGUI>().text =
-                        $"{i + 1}. " + top10Perks[i].perks_name;
+                        top10Perks[i].perks_name;
                 }
 
                 for (int i = 0; i < bottom5PerksObject.Count; i++)
@@ -127,7 +127,7 @@ public class FinishHandler : MonoBehaviour
                     bottom5PerksObject[i].transform.GetComponentInChildren<Image>().sprite =
                         perkIconsColorful.Find(res => res.name.ToLower().Contains(bottom5Perks[i].perks_name.ToLower()));
                     bottom5PerksObject[i].transform.GetComponentInChildren<TextMeshProUGUI>().text =
-                        $"{i + 1}. " + bottom5Perks[i].perks_name;
+                        bottom5Perks[i].perks_name;
                 }
                 break;
             case "65":
@@ -137,7 +137,7 @@ public class FinishHandler : MonoBehaviour
                     top10PerksObject[i].transform.GetComponentInChildren<Image>().sprite =
                         perkIconsColorful.Find(res => res.name.ToLower().Contains(top10Perks[i].perks_name.ToLower()));
                     top10PerksObject[i].transform.GetComponentInChildren<TextMeshProUGUI>().text =
-                        $"{i + 1}. " + top10Perks[i].perks_name;
+                        top10Perks[i].perks_name;
                 }
 
                 for (int i = 0; i < bottom5PerksObject.Count; i++)
@@ -145,7 +145,7 @@ public class FinishHandler : MonoBehaviour
                     bottom5PerksObject[i].transform.GetComponentInChildren<Image>().sprite =
                         perkIconsColorful.Find(res => res.name.ToLower().Contains(bottom5Perks[i].perks_name.ToLower()));
                     bottom5PerksObject[i].transform.GetComponentInChildren<TextMeshProUGUI>().text =
-                        $"{i + 1}. " + bottom5Perks[i].perks_name;
+                        bottom5Perks[i].perks_name;
                 }
                 break;
         }
@@ -187,13 +187,12 @@ public class FinishHandler : MonoBehaviour
     #region OpenClosePanel
     IEnumerator IEOpenScreen(CanvasGroup screen, Action executeAfter = null)
     {
-        screen.gameObject.SetActive(true);
         while (screen.alpha < 1)
         {
             screen.alpha += Time.deltaTime * 2;
-            yield return null;
         }
 
+        yield return null;
         executeAfter?.Invoke();
     }
 
@@ -202,10 +201,9 @@ public class FinishHandler : MonoBehaviour
         while (screen.alpha > 0)
         {
             screen.alpha -= Time.deltaTime * 2;
-            yield return null;
         }
 
-        screen.gameObject.SetActive(false);
+        yield return null;
         executeAfter?.Invoke();
     }
     #endregion

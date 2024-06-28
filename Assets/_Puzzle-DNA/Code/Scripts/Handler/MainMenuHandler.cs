@@ -38,6 +38,7 @@ public class LevelButtonData
 public class MainMenuHandler : MonoBehaviour
 {
     public static MainMenuHandler instance;
+    public string resultUrl;
     public PerksHandler commonPerksHandler;
     public PerksHandler afterEventPerksHandler;
     public Button playButton;
@@ -48,7 +49,6 @@ public class MainMenuHandler : MonoBehaviour
     [SerializeField] Button enButton;
     [SerializeField] Button idButton;
     [SerializeField] Button myButton;
-
 
     [Header("Audio Attributes")]
     [SerializeField] AudioClip bgmMenuClip;
@@ -112,7 +112,12 @@ public class MainMenuHandler : MonoBehaviour
         if (scrollRect.horizontalNormalizedPosition > 1)
             scrollAutomatically = false;
     }
-    
+
+    public void BackToHome()
+    {
+        Application.ExternalEval("window.open('" + resultUrl + "', '_self')");
+    }
+
     #region Function Checker
     void EpilogueChecker()
     {

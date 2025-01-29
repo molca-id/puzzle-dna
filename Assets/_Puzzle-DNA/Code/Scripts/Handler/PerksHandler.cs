@@ -803,11 +803,24 @@ public class PerksHandler : MonoBehaviour
     {
         if (currentPerk != null)
         {
-            currentPerk.perks_background.ForEach(p => p.SetActive(false));
-            currentPerk.perks_background[currentPerk.perks_point + 2].SetActive(true);
+            if (currentPerk.perks_point + 2 > currentPerk.perks_background.Count - 1)
+                currentPerk.perks_point = 2;
 
+            if (currentPerk.perks_point + 2 < currentPerk.perks_background.Count - 1)
+                currentPerk.perks_point = -2;
+
+            currentPerk.perks_background.ForEach(p => p.SetActive(false));
             currentPerkBackground.ForEach(p => p.SetActive(false));
-            currentPerkBackground[currentPerk.perks_point + 2].SetActive(true);
+
+            try
+            {
+                currentPerk.perks_background[currentPerk.perks_point + 2].SetActive(true);
+                currentPerkBackground[currentPerk.perks_point + 2].SetActive(true);
+            }
+            catch
+            {
+
+            }
         }
         else
         {

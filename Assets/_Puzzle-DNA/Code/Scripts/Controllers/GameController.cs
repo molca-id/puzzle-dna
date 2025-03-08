@@ -142,9 +142,9 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
         if (!standalone)
         {
-            BoardController.usingUpgradedPowerUpsD = DataHandler.instance.GetPerksData().perks_ability_data.driveUpgraded;
-            BoardController.usingUpgradedPowerUpsN = DataHandler.instance.GetPerksData().perks_ability_data.networkUpgraded;
-            BoardController.usingUpgradedPowerUpsA = DataHandler.instance.GetPerksData().perks_ability_data.actionUpgraded;
+            BoardController.usingUpgradedPowerUpsD = true;
+            BoardController.usingUpgradedPowerUpsN = true;
+            BoardController.usingUpgradedPowerUpsA = true;
         }
 
         BoardController.abilityDriveDuration = gameData.abilityDriveDuration;
@@ -259,38 +259,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
             checkpoint_value[LevelDataHandler.instance.currentGameData.gameLevel].
             game_is_done)
         {
-            int protonTemp = 0, electronTemp = 0;
-            PerksValue perks = DataHandler.instance.GetPerksData();
             LevelData level = LevelDataHandler.instance.currentLevelData;
-
-            perks.perks_point_data.perks_point_plus += level.perksPoinPlus;
-            perks.perks_point_data.perks_point_minus += level.perksPoinMinus;
-            perks.perks_point_data.total_perks_point_plus += level.perksPoinPlus;
-            perks.perks_point_data.total_perks_point_minus += level.perksPoinMinus;
-
-            if (perks.perks_point_data.total_perks_point_plus > DataHandler.instance.protonMax)
-                protonTemp = perks.perks_point_data.total_perks_point_plus - DataHandler.instance.protonMax;
-            if (perks.perks_point_data.total_perks_point_minus > DataHandler.instance.electronMax)
-                electronTemp = perks.perks_point_data.total_perks_point_minus - DataHandler.instance.electronMax;
-
-            perks.perks_point_data.perks_point_plus -= protonTemp;
-            perks.perks_point_data.perks_point_minus -= electronTemp;
-            perks.perks_point_data.total_perks_point_plus -= protonTemp;
-            perks.perks_point_data.total_perks_point_minus -= electronTemp;
-
-            if (level.usingPerkUnlocking)
-            {
-                foreach (UserDataSpace.PerksStage data in perks.perks_stage_datas)
-                {
-                    foreach (LevelData.PerksStage stage in level.perkStageForUnlocking)
-                    {
-                        if (data.perks_types != stage.perks_types) continue;
-                        data.perks_stage_locks = stage.perks_stage_locks;
-                    }
-                }
-            }
-
-            MainMenuHandler.instance.PatchPerksFromMenu(() => { });
             DataHandler.instance.GetUserCheckpointData().
                 checkpoint_value[LevelDataHandler.instance.currentGameData.gameLevel].
                 game_is_done = true;

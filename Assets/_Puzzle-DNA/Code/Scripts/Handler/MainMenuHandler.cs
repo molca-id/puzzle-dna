@@ -39,8 +39,6 @@ public class MainMenuHandler : MonoBehaviour
 {
     public static MainMenuHandler instance;
     public string resultUrl;
-    public PerksHandler commonPerksHandler;
-    public PerksHandler afterEventPerksHandler;
     public Button playButton;
     public GameObject handHintTalent;
 
@@ -101,7 +99,6 @@ public class MainMenuHandler : MonoBehaviour
     {
         InitMenu();
         EpilogueChecker();
-        EventChecker();
     }
 
     private void Update()
@@ -128,17 +125,6 @@ public class MainMenuHandler : MonoBehaviour
             {
                 LevelDataHandler.instance.InitEpilogue(DataHandler.instance.levelDatas[i]);
             }
-        }
-    }
-
-    void EventChecker()
-    {
-        if (DataHandler.instance.GetUserSpecificPerksPoint().perks_point_plus != 0 ||
-            DataHandler.instance.GetUserSpecificPerksPoint().perks_point_minus != 0)
-        {
-            LevelDataHandler.instance.InitAllData(DataHandler.instance.levelDatas[
-                DataHandler.instance.GetUserSpecificPerksPoint().current_game_level]);
-            afterEventPerksHandler.OpenPerksPanel(false);
         }
     }
 
@@ -374,16 +360,7 @@ public class MainMenuHandler : MonoBehaviour
             }
             else
             {
-                if ((DataHandler.instance.GetPerksData().perks_point_data.total_perks_point_plus >= DataHandler.instance.protonMax &&
-                    DataHandler.instance.GetPerksData().perks_point_data.total_perks_point_minus >= DataHandler.instance.electronMax) &&
-                    (DataHandler.instance.GetPerksData().perks_point_data.perks_point_plus <= 0 &&
-                    DataHandler.instance.GetPerksData().perks_point_data.perks_point_minus <= 0))
-                {
-                    if (data.stageObject != null) data.stageObject.transform.Find("Disable").gameObject.SetActive(false);
-                    data.currentButton.transform.Find("Disable").gameObject.SetActive(false);
-                    data.backgroundLineMaps.ForEach(line => line.SetActive(true));
-                    data.currentButton.interactable = true;
-                }
+
             }
         }
 
@@ -397,17 +374,6 @@ public class MainMenuHandler : MonoBehaviour
             FinishHandler.instance.CalculateFinalResult();
         else if (UpTo15LevelsChecker())
             LevelDataHandler.instance.SetTutorialStory("Story15Levels");
-
-        SetupHandHintTalent();
-    }
-
-    public void SetupHandHintTalent()
-    {
-        if ((DataHandler.instance.GetPerksData().perks_point_data.perks_point_plus > 0 ||
-            DataHandler.instance.GetPerksData().perks_point_data.perks_point_minus > 0))
-            handHintTalent.SetActive(true);
-        else
-            handHintTalent.SetActive(false);
     }
 
     public bool ScoreChecker(List<Button> buttons)
@@ -458,31 +424,6 @@ public class MainMenuHandler : MonoBehaviour
             {
                 executeAfter.Invoke();
                 StartCoroutine(IECloseScreen(smallLoadingPanel));
-            });
-        }));
-    }
-
-    public void PatchPerksFromMenu(Action executeAfter = null)
-    {
-        StartCoroutine(IEOpenScreen(smallLoadingPanel, delegate
-        {
-            DataHandler.instance.IEPatchPerksData(delegate
-            {
-                executeAfter.Invoke();
-                StartCoroutine(IECloseScreen(smallLoadingPanel));
-            });
-        }));
-    }
-
-    public void GetTalentPerksFromMenu(bool isSmall, Action executeAfter = null)
-    {
-        CanvasGroup canvas = isSmall ? smallLoadingPanel : bigLoadingPanel;
-        StartCoroutine(IEOpenScreen(canvas, delegate
-        {
-            DataHandler.instance.IEGetTalentData(delegate
-            {
-                executeAfter.Invoke();
-                StartCoroutine(IECloseScreen(canvas));
             });
         }));
     }

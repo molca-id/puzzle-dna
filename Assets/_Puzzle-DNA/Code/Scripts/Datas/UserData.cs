@@ -38,8 +38,8 @@ namespace UserDataSpace
         public DateTime createdAt;
         public DateTime updatedAt;
 
-        public PerksValue perks_value;
         public CheckpointData checkpoint_data;
+        public List<bool> perks_value;
     }
 
     [Serializable]
@@ -56,76 +56,6 @@ namespace UserDataSpace
         public bool game_is_done;
         public bool prologue_is_done;
         public bool epilogue_is_done;
-    }
-
-    [Serializable]
-    public class PerksValue
-    {
-        public PerksAbilityData perks_ability_data;
-        public PerksPointData perks_point_data;
-        public List<PerksStage> perks_stage_datas;
-        public List<PerksValueData> perks_value_datas;
-    }
-
-    [Serializable]
-    public class PerksStage
-    {
-        public PerksType perks_types;
-        public int perks_point_plus;
-        public int perks_point_minus;
-        public List<bool> perks_stage_locks;
-    }
-
-    [Serializable]
-    public class PerksPointData
-    {
-        public int total_perks_point_plus;
-        public int total_perks_point_minus;
-        [Space]
-        public int perks_point_plus;
-        public int perks_point_minus;
-        [Space]
-        public SpecificPerksPoint specific_perks_point;
-    }
-
-    [Serializable]
-    public class SpecificPerksPoint
-    {
-        public int current_game_level;
-        public StoryType perks_story_type;
-        [Space]
-        public PerksType perks_plus_type;
-        public PerksType perks_minus_type;
-        public int perks_point_plus;
-        public int perks_point_minus;
-        [Space]
-        public List<SpecificPerksPointData> specific_perks_point_datas;
-    }
-
-    [Serializable]
-    public class SpecificPerksPointData
-    {
-        public PerksType perks_type;
-        public int perks_point_plus;
-        public int perks_point_minus;
-    }
-
-    [Serializable]
-    public class PerksAbilityData
-    {
-        public bool driveUpgraded;
-        public bool networkUpgraded;
-        public bool actionUpgraded;
-    }
-
-    [Serializable]
-    public class PerksValueData
-    {
-        public string perks_name;
-        public string perks_id;
-        public int perks_point;
-        public string perks_submit_time;
-        public bool perks_has_read;
     }
 
     [Serializable]

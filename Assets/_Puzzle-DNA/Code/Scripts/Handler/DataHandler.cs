@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Audio;
 
+#region Player Sprite
 public enum ExpressionType { Netral, Senang, Optimis, Sedih, Unknown }
 
 [Serializable]
@@ -21,6 +22,104 @@ public class PlayerSpriteData
     public List<AudioClip> playerClips;
     public List<PlayerSpriteExpressionData> expressionDatas;
 }
+#endregion
+
+#region Talent Data
+[Serializable]
+public class TalentData
+{
+    public string talent_name;
+    public List<AssessmentValue> assessment_values;
+}
+
+[Serializable]
+public class AssessmentValue
+{
+    public long assessment_id;
+    public string assessment_description;
+    public string assessment_vo;
+}
+
+[System.Serializable]
+public class TalentGroupData
+{
+    public bool isDone;
+    public List<long> assessment_ids;
+}
+
+[System.Serializable]
+public class TalentGroupDataWrapper
+{
+    public List<TalentGroupData> talentGroupDatas;
+}
+#endregion
+
+#region Talent Raw Data
+[Serializable]
+public class ItemData
+{
+    public long id;
+    public string item;
+    public string vo;
+}
+
+[Serializable]
+public class CategoryData
+{
+    public List<ItemData> COMPETITIVE;
+    public List<ItemData> DIRECTIVE;
+    public List<ItemData> GOAL_GETTER;
+    public List<ItemData> OPTIMIZER;
+    public List<ItemData> PERFECTIONIST;
+    public List<ItemData> SELF_CONFIDENT;
+    public List<ItemData> SIGNIFICANT;
+    public List<ItemData> AVERSIVE;
+    public List<ItemData> COLLECTOR;
+    public List<ItemData> CONTEMPLATIVE;
+    public List<ItemData> EQUITABLE;
+    public List<ItemData> EXPLORER;
+    public List<ItemData> NOBLE;
+    public List<ItemData> VIGOROUS;
+    public List<ItemData> VISIONARY;
+    public List<ItemData> ADVISOR;
+    public List<ItemData> ARTICULATIVE;
+    public List<ItemData> COLLABORATOR;
+    public List<ItemData> COURAGEOUS;
+    public List<ItemData> CONVINCING;
+    public List<ItemData> DEVELOPER;
+    public List<ItemData> ENERGIZER;
+    public List<ItemData> AFFECTIONATE;
+    public List<ItemData> CARING;
+    public List<ItemData> FORGIVING;
+    public List<ItemData> GENEROUS;
+    public List<ItemData> GENUINE;
+    public List<ItemData> HARMONY;
+    public List<ItemData> PERSONALIZER;
+    public List<ItemData> SOICABLE;
+    public List<ItemData> CONTEXTUAL;
+    public List<ItemData> FOCUSED;
+    public List<ItemData> INTUITIVE;
+    public List<ItemData> INNOVATIVE;
+    public List<ItemData> LOGICAL;
+    public List<ItemData> STRATEGIZER;
+    public List<ItemData> TROUBLESHOOTER;
+    public List<ItemData> ACCOUNTABLE;
+    public List<ItemData> AUTHORITATIVE;
+    public List<ItemData> DECISIVE;
+    public List<ItemData> FIXER;
+    public List<ItemData> FLEXIBLE;
+    public List<ItemData> INITIATOR;
+    public List<ItemData> RESOURCEFUL;
+    public List<ItemData> STRUCTURED;
+}
+
+[Serializable]
+public class RawData
+{
+    public int status;
+    public CategoryData data;
+}
+#endregion
 
 public class DataHandler : MonoBehaviour
 {
@@ -36,9 +135,11 @@ public class DataHandler : MonoBehaviour
     public UserDataSpace.UserData currentUserData;
     public PlayerSpriteData currPlayerAssetData;
 
+    [Header("Talent Data")]
+    public List<TalentData> talentDatas;
+    public List<TalentGroupData> talentGroupDatas;
+
     [Header("Another Attributes")]
-    public int protonMax;
-    public int electronMax;
     public AudioMixer bgmAudioMixer;
     public AudioMixer sfxAudioMixer;
     public AudioMixer voAudioMixer;
@@ -55,6 +156,106 @@ public class DataHandler : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
     }
+
+#region Talent Raw Data Processing
+    public void InitializeTalentList()
+    {
+        string[] allTalents = new string[]
+        {
+            "Competitive", "Directive", "Goal-Getter", "Optimizer", "Perfectionist", "Self-Confident", "Significant", "Aversive",
+            "Collector", "Contemplative", "Equitable", "Explorer", "Noble", "Vigorous", "Visionary", "Advisor", "Articulative",
+            "Collaborator", "Courageous", "Convincing", "Developer", "Energizer", "Affectionate", "Caring", "Forgiving", "Generous",
+            "Genuine", "Harmony", "Personalizer", "Soicable", "Contextual", "Focused", "Intuitive", "Innovative", "Logical",
+            "Strategizer", "Troubleshooter", "Accountable", "Authoritative", "Decisive", "Fixer", "Flexible", "Initiator",
+            "Resourceful", "Structured"
+        };
+
+        talentDatas = new List<TalentData>();
+
+        foreach (var talentName in allTalents)
+        {
+            talentDatas.Add(new TalentData
+            {
+                talent_name = talentName,
+                assessment_values = new List<AssessmentValue>()
+            });
+        }
+    }
+
+    public void UpdateTalentDataFromJson(RawData rawData)
+    {
+        foreach (var talent in talentDatas)
+        {
+            talent.assessment_values.Clear();
+        }
+
+        var categoryData = rawData.data;
+
+        MapTalent("Competitive", categoryData.COMPETITIVE);
+        MapTalent("Directive", categoryData.DIRECTIVE);
+        MapTalent("Goal-Getter", categoryData.GOAL_GETTER);
+        MapTalent("Optimizer", categoryData.OPTIMIZER);
+        MapTalent("Perfectionist", categoryData.PERFECTIONIST);
+        MapTalent("Self-Confident", categoryData.SELF_CONFIDENT);
+        MapTalent("Significant", categoryData.SIGNIFICANT);
+        MapTalent("Aversive", categoryData.AVERSIVE);
+        MapTalent("Collector", categoryData.COLLECTOR);
+        MapTalent("Contemplative", categoryData.CONTEMPLATIVE);
+        MapTalent("Equitable", categoryData.EQUITABLE);
+        MapTalent("Explorer", categoryData.EXPLORER);
+        MapTalent("Noble", categoryData.NOBLE);
+        MapTalent("Vigorous", categoryData.VIGOROUS);
+        MapTalent("Visionary", categoryData.VISIONARY);
+        MapTalent("Advisor", categoryData.ADVISOR);
+        MapTalent("Articulative", categoryData.ARTICULATIVE);
+        MapTalent("Collaborator", categoryData.COLLABORATOR);
+        MapTalent("Courageous", categoryData.COURAGEOUS);
+        MapTalent("Convincing", categoryData.CONVINCING);
+        MapTalent("Developer", categoryData.DEVELOPER);
+        MapTalent("Energizer", categoryData.ENERGIZER);
+        MapTalent("Affectionate", categoryData.AFFECTIONATE);
+        MapTalent("Caring", categoryData.CARING);
+        MapTalent("Forgiving", categoryData.FORGIVING);
+        MapTalent("Generous", categoryData.GENEROUS);
+        MapTalent("Genuine", categoryData.GENUINE);
+        MapTalent("Harmony", categoryData.HARMONY);
+        MapTalent("Personalizer", categoryData.PERSONALIZER);
+        MapTalent("Soicable", categoryData.SOICABLE);
+        MapTalent("Contextual", categoryData.CONTEXTUAL);
+        MapTalent("Focused", categoryData.FOCUSED);
+        MapTalent("Intuitive", categoryData.INTUITIVE);
+        MapTalent("Innovative", categoryData.INNOVATIVE);
+        MapTalent("Logical", categoryData.LOGICAL);
+        MapTalent("Strategizer", categoryData.STRATEGIZER);
+        MapTalent("Troubleshooter", categoryData.TROUBLESHOOTER);
+        MapTalent("Accountable", categoryData.ACCOUNTABLE);
+        MapTalent("Authoritative", categoryData.AUTHORITATIVE);
+        MapTalent("Decisive", categoryData.DECISIVE);
+        MapTalent("Fixer", categoryData.FIXER);
+        MapTalent("Flexible", categoryData.FLEXIBLE);
+        MapTalent("Initiator", categoryData.INITIATOR);
+        MapTalent("Resourceful", categoryData.RESOURCEFUL);
+        MapTalent("Structured", categoryData.STRUCTURED);
+    }
+
+    void MapTalent(string talentName, List<ItemData> items)
+    {
+        TalentData talent = talentDatas.Find(t => t.talent_name == talentName);
+    
+        if (talent != null && items != null)
+        {
+            foreach (var item in items)
+            {
+                talent.assessment_values.Add(new AssessmentValue
+                {
+                    assessment_id = item.id,
+                    assessment_description = item.item,
+                    assessment_vo = item.vo
+                });
+            }
+        }
+    }
+#endregion
 
     public Sprite GetPlayerSprite(ExpressionType expressionType)
     {
@@ -149,17 +350,6 @@ public class DataHandler : MonoBehaviour
                 json, res => executeAfter.Invoke()));
     }
 
-    public void IEPatchPerksData(Action executeAfter = null)
-    {
-        string json = "{ \"perks_value\" : " + JsonUtility.ToJson(GetUserDataValue().perks_value) + "}";
-
-        //hitting api
-        StartCoroutine(
-            APIManager.instance.PatchDataCoroutine(
-                APIManager.instance.SetupGameUrl(GetUniqueCode()),
-                json, res => executeAfter.Invoke()));
-    }
-
     public void IEValidateGameSession()
     {
         PreloadManager.instance.SetLoadingText("Validating Player Data");
@@ -173,6 +363,20 @@ public class DataHandler : MonoBehaviour
                 {
                     validateData = JsonUtility.FromJson<ValidateData>(res);
                     PreloadManager.instance.SetValidState(validateData.success);
+                }));
+    }
+
+    public void IEGetItemData()
+    {
+        //hitting api
+        StartCoroutine(
+            APIManager.instance.GetDataWithTokenCoroutine(
+                APIManager.instance.SetupGetItemUrl(),
+                res=>
+                {
+                    RawData rawData = JsonUtility.FromJson<RawData>(res);
+                    InitializeTalentList();
+                    UpdateTalentDataFromJson(rawData);
                 }));
     }
 
@@ -216,21 +420,12 @@ public class DataHandler : MonoBehaviour
     }
 
     public List<TalentDataSpace.TalentValueData> GetTalentDatas() => talentData.data;
-
-    public UserDataSpace.PerksValue GetPerksData() => currentUserData.data.perks_value;
-
-    public void ResetAllPerks() => currentUserData.data.perks_value = defaultUserData.data.perks_value;
     
     public UserDataSpace.UserDataValue GetUserDataValue() => currentUserData.data;
 
     public UserDataSpace.CheckpointData GetUserCheckpointData() => currentUserData.data.checkpoint_data;
 
-    public UserDataSpace.SpecificPerksPoint GetUserSpecificPerksPoint() => GetPerksData().perks_point_data.specific_perks_point;
-
     public string GetUniqueCode() => GetUserDataValue().game_url;
 
     public string GetLanguage() => GetUserDataValue().language;
-
-    public UserDataSpace.SpecificPerksPointData GetSpecificPerksPoint(PerksType type) =>
-        GetPerksData().perks_point_data.specific_perks_point.specific_perks_point_datas.Find(res => res.perks_type == type);
 }

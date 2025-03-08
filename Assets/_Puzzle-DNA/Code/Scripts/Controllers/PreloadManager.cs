@@ -54,11 +54,13 @@ public class PreloadManager : MonoBehaviour
         !string.IsNullOrEmpty(SessionCodeHooker.instance.GetSessionCode()));
 
         DataHandler.instance.IEValidateGameSession();
+        DataHandler.instance.IEGetItemData();
         StartCoroutine(IEOpenScreen(screens[^1]));
 
         yield return new WaitUntil(() => 
         DataHandler.instance.currentUserData.success && 
-        DataHandler.instance.validateData.success
+        DataHandler.instance.validateData.success &&
+        DataHandler.instance.talentDatas.Count > 0
         );
 
         StartCoroutine(IECloseScreen(screens[^1], true));

@@ -22,6 +22,7 @@ public class APIManager : MonoBehaviour
     [SerializeField] string talentPerksIdDomain = "get_dna/id-ID";
     [SerializeField] string talentPerksMyDomain = "get_dna/ms-My";
     [SerializeField] string sendResult = "get_result";
+    [SerializeField] string getItem = "get_item";
 
     [Header("Error Handler")]
     public GameObject deletePanel;
@@ -47,6 +48,11 @@ public class APIManager : MonoBehaviour
         return string.Format("{0}/{1}", rootActUrl, sendResult);
     }
 
+    public string SetupGetItemUrl(string sessionCode = "")
+    {
+        return string.Format("{0}/{1}", rootActUrl, getItem);
+    }
+
     public string SetupDeleteUrl(string sessionCode = "")
     {
         return string.Format("{0}/{1}/{2}", rootUrl, deleteDomain, sessionCode);
@@ -70,9 +76,14 @@ public class APIManager : MonoBehaviour
 
         yield return request.SendWebRequest();
         if (request.result != UnityWebRequest.Result.Success)
+        {
+            Debug.LogError($"API Error: {request.error} at URL: {url}");
             errorPanel.SetActive(true);
+        }
         else
+        {
             SetDataEvent?.Invoke(request.downloadHandler.text);
+        }
     }
 
     public IEnumerator PostDataWithTokenCoroutine(string url, string jsonData, Action<string> SetDataEvent = null)
@@ -89,7 +100,8 @@ public class APIManager : MonoBehaviour
 
         if (request.result != UnityWebRequest.Result.Success)
         {
-            Debug.LogError($"Error: {request.error}");
+            Debug.LogError($"API Error: {request.error} at URL: {url}");
+            errorPanel.SetActive(true);
         }
         else
         {
@@ -108,9 +120,14 @@ public class APIManager : MonoBehaviour
 
         yield return request.SendWebRequest();
         if (request.result != UnityWebRequest.Result.Success)
+        {
+            Debug.LogError($"API Error: {request.error} at URL: {url}");
             errorPanel.SetActive(true);
+        }
         else
-            SetDataEvent(request.downloadHandler.text);
+        {
+            SetDataEvent?.Invoke(request.downloadHandler.text);
+        }
     }
 
     public IEnumerator GetDataCoroutine(string url, Action<string> SetDataEvent = null)
@@ -119,9 +136,35 @@ public class APIManager : MonoBehaviour
 
         yield return request.SendWebRequest();
         if (request.result != UnityWebRequest.Result.Success)
+        {
+            Debug.LogError($"API Error: {request.error} at URL: {url}");
             errorPanel.SetActive(true);
+        }
         else
-            SetDataEvent(request.downloadHandler.text);
+        {
+            SetDataEvent?.Invoke(request.downloadHandler.text);
+        }
+    }
+
+    public IEnumerator GetDataWithTokenCoroutine(string url, Action<string> SetDataEvent = null)
+    {
+        var request = new UnityWebRequest(url, "GET");
+
+        request.SetRequestHeader("token", "Basic dGRuYXhtb2xjYQ==");
+        request.SetRequestHeader("content-type", "application/json");
+
+        request.downloadHandler = new DownloadHandlerBuffer();
+        yield return request.SendWebRequest();
+
+        if (request.result != UnityWebRequest.Result.Success)
+        {
+            Debug.LogError($"API Error: {request.error} at URL: {url}");
+            errorPanel.SetActive(true);
+        }
+        else
+        {
+            SetDataEvent?.Invoke(request.downloadHandler.text);
+        }
     }
 
     public IEnumerator DeleteDataCoroutine(string url)

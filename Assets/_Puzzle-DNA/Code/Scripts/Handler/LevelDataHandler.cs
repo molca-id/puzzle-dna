@@ -177,13 +177,6 @@ public class LevelDataHandler : MonoBehaviour
 
             if (currentLevelData.showResultPanel)
                 FinishHandler.instance.CalculateFinalResult();
-            if (currentLevelData.openPerksPanelAfterEpilogue &&
-                (DataHandler.instance.GetPerksData().perks_point_data.perks_point_plus > 0 ||
-                DataHandler.instance.GetPerksData().perks_point_data.perks_point_minus > 0))
-            {
-                MainMenuHandler.instance.commonPerksHandler.SetAfterGame(true);
-                MainMenuHandler.instance.commonPerksHandler.OpenPerksPanel(true);
-            }
             return;
         }
 
@@ -227,20 +220,6 @@ public class LevelDataHandler : MonoBehaviour
                 SetTitleStory(0);
                 break;
             case StoryData.StoryType.Event:
-                if (((isPrologue && !DataHandler.instance.GetUserCheckpointData().
-                    checkpoint_value[currentGameData.gameLevel].prologue_is_done) ||
-                    (isEpilogue && !DataHandler.instance.GetUserCheckpointData().
-                    checkpoint_value[currentGameData.gameLevel].epilogue_is_done)) &&
-                    DataHandler.instance.GetUserSpecificPerksPoint().perks_point_plus == 0 &&
-                    DataHandler.instance.GetUserSpecificPerksPoint().perks_point_minus == 0)
-                {
-                    eventHandler.Init(currentStoryData.eventDataStory);
-                }
-                else
-                {
-                    if (isPrologue) SetPrologueStory(1);
-                    else if (isEpilogue) SetEpilogueStory(1);
-                }
                 break;
             case StoryData.StoryType.Tutorial:
                 if ((isPrologue && !DataHandler.instance.GetUserCheckpointData().

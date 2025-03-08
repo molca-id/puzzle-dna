@@ -1771,6 +1771,7 @@ MonoBehaviour:
   talentPerksIdDomain: get_dna/id-ID
   talentPerksMyDomain: get_dna/ms-My
   sendResult: get_result
+  getItem: get_item
   deletePanel: {fileID: 1283798706}
   errorPanel: {fileID: 1953656062}
 --- !u!114 &698362473
@@ -1789,16 +1790,16 @@ MonoBehaviour:
     success: 0
     message: 
   defaultUserData:
-    success: 1
-    message: success get Data
+    success: 0
+    message: 
     data:
-      survey_code: N0hKUWYyTkVjRkZrTzcyUllPS1ZpdXY2M0RLQ1ZRbEZRSHpyZVR3UzkwN3FYNFlvWHNRc2RkNWFyMGFEK0lsNw==
-      survey_dibuat: 2024-02-13 15:09:33
-      tgl_lahir: 2024-02-15
-      f_jenis_kelamin: 1
-      email: indohack.ih@gmail.com
-      job: Network Engineer
-      f_pendidikan: SMP
+      survey_code: 
+      survey_dibuat: 
+      tgl_lahir: 
+      f_jenis_kelamin: 
+      email: 
+      job: 
+      f_pendidikan: 
       status: open
       duration: 00:00:00
       game_url: (url)
@@ -1810,272 +1811,6 @@ MonoBehaviour:
       sfx_value: 0
       vo_value: 0
       narration_story: 0
-      perks_value:
-        perks_ability_data:
-          driveUpgraded: 0
-          networkUpgraded: 0
-          actionUpgraded: 0
-        perks_point_data:
-          total_perks_point_plus: 0
-          total_perks_point_minus: 0
-          perks_point_plus: 0
-          perks_point_minus: 0
-          specific_perks_point:
-            current_game_level: 0
-            perks_story_type: 0
-            perks_plus_type: 0
-            perks_minus_type: 0
-            perks_point_plus: 0
-            perks_point_minus: 0
-            specific_perks_point_datas:
-            - perks_type: 0
-              perks_point_plus: 0
-              perks_point_minus: 0
-            - perks_type: 1
-              perks_point_plus: 0
-              perks_point_minus: 0
-            - perks_type: 2
-              perks_point_plus: 0
-              perks_point_minus: 0
-        perks_stage_datas:
-        - perks_types: 0
-          perks_point_plus: 0
-          perks_point_minus: 0
-          perks_stage_locks: 010101
-        - perks_types: 1
-          perks_point_plus: 0
-          perks_point_minus: 0
-          perks_stage_locks: 010101
-        - perks_types: 2
-          perks_point_plus: 0
-          perks_point_minus: 0
-          perks_stage_locks: 010101
-        perks_value_datas:
-        - perks_name: COMPETITIVE
-          perks_id: 
-          perks_point: 0
-          perks_submit_time: 
-          perks_has_read: 0
-        - perks_name: DIRECTIVE
-          perks_id: 
-          perks_point: 0
-          perks_submit_time: 
-          perks_has_read: 0
-        - perks_name: GOAL-GETTER
-          perks_id: 
-          perks_point: 0
-          perks_submit_time: 
-          perks_has_read: 0
-        - perks_name: OPTIMIZER
-          perks_id: 
-          perks_point: 0
-          perks_submit_time: 
-          perks_has_read: 0
-        - perks_name: PERFECTIONIST
-          perks_id: 
-          perks_point: 0
-          perks_submit_time: 
-          perks_has_read: 0
-        - perks_name: SELF-CONFIDENT
-          perks_id: 
-          perks_point: 0
-          perks_submit_time: 
-          perks_has_read: 0
-        - perks_name: SIGNIFICANT
-          perks_id: 
-          perks_point: 0
-          perks_submit_time: 
-          perks_has_read: 0
-        - perks_name: AVERSIVE
-          perks_id: 
-          perks_point: 0
-          perks_submit_time: 
-          perks_has_read: 0
-        - perks_name: COLLECTOR
-          perks_id: 
-          perks_point: 0
-          perks_submit_time: 
-          perks_has_read: 0
-        - perks_name: CONTEMPLATIVE
-          perks_id: 
-          perks_point: 0
-          perks_submit_time: 
-          perks_has_read: 0
-        - perks_name: EQUITABLE
-          perks_id: 
-          perks_point: 0
-          perks_submit_time: 
-          perks_has_read: 0
-        - perks_name: EXPLORER
-          perks_id: 
-          perks_point: 0
-          perks_submit_time: 
-          perks_has_read: 0
-        - perks_name: NOBLE
-          perks_id: 
-          perks_point: 0
-          perks_submit_time: 
-          perks_has_read: 0
-        - perks_name: VIGOROUS
-          perks_id: 
-          perks_point: 0
-          perks_submit_time: 
-          perks_has_read: 0
-        - perks_name: VISIONARY
-          perks_id: 
-          perks_point: 0
-          perks_submit_time: 
-          perks_has_read: 0
-        - perks_name: ADVISOR
-          perks_id: 
-          perks_point: 0
-          perks_submit_time: 
-          perks_has_read: 0
-        - perks_name: ARTICULATIVE
-          perks_id: 
-          perks_point: 0
-          perks_submit_time: 
-          perks_has_read: 0
-        - perks_name: COLLABORATOR
-          perks_id: 
-          perks_point: 0
-          perks_submit_time: 
-          perks_has_read: 0
-        - perks_name: COURAGEOUS
-          perks_id: 
-          perks_point: 0
-          perks_submit_time: 
-          perks_has_read: 0
-        - perks_name: CONVINCING
-          perks_id: 
-          perks_point: 0
-          perks_submit_time: 
-          perks_has_read: 0
-        - perks_name: DEVELOPER
-          perks_id: 
-          perks_point: 0
-          perks_submit_time: 
-          perks_has_read: 0
-        - perks_name: ENERGIZER
-          perks_id: 
-          perks_point: 0
-          perks_submit_time: 
-          perks_has_read: 0
-        - perks_name: AFFECTIONATE
-          perks_id: 
-          perks_point: 0
-          perks_submit_time: 
-          perks_has_read: 0
-        - perks_name: CARING
-          perks_id: 
-          perks_point: 0
-          perks_submit_time: 
-          perks_has_read: 0
-        - perks_name: FORGIVING
-          perks_id: 
-          perks_point: 0
-          perks_submit_time: 
-          perks_has_read: 0
-        - perks_name: GENEROUS
-          perks_id: 
-          perks_point: 0
-          perks_submit_time: 
-          perks_has_read: 0
-        - perks_name: GENUINE
-          perks_id: 
-          perks_point: 0
-          perks_submit_time: 
-          perks_has_read: 0
-        - perks_name: HARMONY
-          perks_id: 
-          perks_point: 0
-          perks_submit_time: 
-          perks_has_read: 0
-        - perks_name: PERSONALIZER
-          perks_id: 
-          perks_point: 0
-          perks_submit_time: 
-          perks_has_read: 0
-        - perks_name: SOCIABLE
-          perks_id: 
-          perks_point: 0
-          perks_submit_time: 
-          perks_has_read: 0
-        - perks_name: CONTEXTUAL
-          perks_id: 
-          perks_point: 0
-          perks_submit_time: 
-          perks_has_read: 0
-        - perks_name: FOCUSED
-          perks_id: 
-          perks_point: 0
-          perks_submit_time: 
-          perks_has_read: 0
-        - perks_name: INTUITIVE
-          perks_id: 
-          perks_point: 0
-          perks_submit_time: 
-          perks_has_read: 0
-        - perks_name: INNOVATIVE
-          perks_id: 
-          perks_point: 0
-          perks_submit_time: 
-          perks_has_read: 0
-        - perks_name: LOGICAL
-          perks_id: 
-          perks_point: 0
-          perks_submit_time: 
-          perks_has_read: 0
-        - perks_name: STRATEGIZER
-          perks_id: 
-          perks_point: 0
-          perks_submit_time: 
-          perks_has_read: 0
-        - perks_name: TROUBLESHOOTER
-          perks_id: 
-          perks_point: 0
-          perks_submit_time: 
-          perks_has_read: 0
-        - perks_name: ACCOUNTABLE
-          perks_id: 
-          perks_point: 0
-          perks_submit_time: 
-          perks_has_read: 0
-        - perks_name: AUTHORITATIVE
-          perks_id: 
-          perks_point: 0
-          perks_submit_time: 
-          perks_has_read: 0
-        - perks_name: DECISIVE
-          perks_id: 
-          perks_point: 0
-          perks_submit_time: 
-          perks_has_read: 0
-        - perks_name: FIXER
-          perks_id: 
-          perks_point: 0
-          perks_submit_time: 
-          perks_has_read: 0
-        - perks_name: FLEXIBLE
-          perks_id: 
-          perks_point: 0
-          perks_submit_time: 
-          perks_has_read: 0
-        - perks_name: INITIATOR
-          perks_id: 
-          perks_point: 0
-          perks_submit_time: 
-          perks_has_read: 0
-        - perks_name: RESOURCEFUL
-          perks_id: 
-          perks_point: 0
-          perks_submit_time: 
-          perks_has_read: 0
-        - perks_name: STRUCTURED
-          perks_id: 
-          perks_point: 0
-          perks_submit_time: 
-          perks_has_read: 0
       checkpoint_data:
         tutorial_is_done: 0
         checkpoint_value:
@@ -2135,18 +1870,7 @@ MonoBehaviour:
           game_is_done: 0
           prologue_is_done: 0
           epilogue_is_done: 0
-        - checkpoint_level_score: 0
-          game_is_done: 0
-          prologue_is_done: 0
-          epilogue_is_done: 0
-        - checkpoint_level_score: 0
-          game_is_done: 0
-          prologue_is_done: 0
-          epilogue_is_done: 0
-        - checkpoint_level_score: 0
-          game_is_done: 0
-          prologue_is_done: 0
-          epilogue_is_done: 0
+      perks_value: 000000000000000000000000000000000000000000000000
   talentData:
     status: success
     data: []
@@ -2305,36 +2029,65 @@ MonoBehaviour:
       sfx_value: 0
       vo_value: 0
       narration_story: 0
-      perks_value:
-        perks_ability_data:
-          driveUpgraded: 0
-          networkUpgraded: 0
-          actionUpgraded: 0
-        perks_point_data:
-          total_perks_point_plus: 0
-          total_perks_point_minus: 0
-          perks_point_plus: 0
-          perks_point_minus: 0
-          specific_perks_point:
-            current_game_level: 0
-            perks_story_type: 0
-            perks_plus_type: 0
-            perks_minus_type: 0
-            perks_point_plus: 0
-            perks_point_minus: 0
-            specific_perks_point_datas: []
-        perks_stage_datas: []
-        perks_value_datas: []
       checkpoint_data:
         tutorial_is_done: 0
         checkpoint_value: []
+      perks_value: 
   currPlayerAssetData:
     name: 
     character: 0
     playerClips: []
     expressionDatas: []
-  protonMax: 35
-  electronMax: 13
+  talentDatas: []
+  talentGroupDatas:
+  - isDone: 0
+    assessment_ids: b500000000000000b700000000000000b900000000000000
+  - isDone: 0
+    assessment_ids: bb00000000000000bd00000000000000bf00000000000000c100000000000000
+  - isDone: 0
+    assessment_ids: b600000000000000b800000000000000ba00000000000000bc00000000000000
+  - isDone: 0
+    assessment_ids: be00000000000000c000000000000000c200000000000000
+  - isDone: 0
+    assessment_ids: c300000000000000c400000000000000c500000000000000c600000000000000
+  - isDone: 0
+    assessment_ids: c700000000000000c800000000000000c900000000000000ca00000000000000
+  - isDone: 0
+    assessment_ids: cb00000000000000cc00000000000000cd00000000000000ce00000000000000
+  - isDone: 0
+    assessment_ids: cf00000000000000d000000000000000d100000000000000d200000000000000
+  - isDone: 0
+    assessment_ids: d300000000000000d500000000000000d700000000000000
+  - isDone: 0
+    assessment_ids: d900000000000000db00000000000000dd00000000000000df00000000000000
+  - isDone: 0
+    assessment_ids: d400000000000000d600000000000000d800000000000000
+  - isDone: 0
+    assessment_ids: da00000000000000dc00000000000000de00000000000000e000000000000000
+  - isDone: 0
+    assessment_ids: e100000000000000e300000000000000e500000000000000e700000000000000
+  - isDone: 0
+    assessment_ids: e900000000000000eb00000000000000ed00000000000000ef00000000000000
+  - isDone: 0
+    assessment_ids: e200000000000000e400000000000000e600000000000000e800000000000000
+  - isDone: 0
+    assessment_ids: ea00000000000000ec00000000000000ee00000000000000f000000000000000
+  - isDone: 0
+    assessment_ids: f100000000000000f300000000000000f500000000000000
+  - isDone: 0
+    assessment_ids: f700000000000000f900000000000000fb00000000000000fd00000000000000
+  - isDone: 0
+    assessment_ids: f200000000000000f400000000000000f600000000000000
+  - isDone: 0
+    assessment_ids: f800000000000000fa00000000000000fc00000000000000fe00000000000000
+  - isDone: 0
+    assessment_ids: ff00000000000000010100000000000003010000000000000501000000000000
+  - isDone: 0
+    assessment_ids: 070100000000000009010000000000000b010000000000000d01000000000000
+  - isDone: 0
+    assessment_ids: 0001000000000000020100000000000004010000000000000601000000000000
+  - isDone: 0
+    assessment_ids: 08010000000000000a010000000000000c010000000000000e01000000000000
   bgmAudioMixer: {fileID: 24100000, guid: e924da3ea1125eb4a997dba622a13f0e, type: 2}
   sfxAudioMixer: {fileID: 24100000, guid: c3c0b1f744bce6241ac6565d6feaafa3, type: 2}
   voAudioMixer: {fileID: 24100000, guid: b37b4d2506b415e429821ed1d8d55b2c, type: 2}
@@ -2343,13 +2096,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a076cd24d5dbcf24998790fbb7f4b49d, type: 2}
   - {fileID: 11400000, guid: b0ee9c34e1093ba40b66aa0d5b6c2589, type: 2}
   - {fileID: 11400000, guid: bc37467a538969b4591c85d92999c8ba, type: 2}
-  - {fileID: 11400000, guid: 58498b9592887694f92f1f7fee7e8d44, type: 2}
   - {fileID: 11400000, guid: fc93ab766c5334d4a879271a964ed169, type: 2}
   - {fileID: 11400000, guid: 789124f18cfc5954ba59eafd1c2d14db, type: 2}
-  - {fileID: 11400000, guid: 061c0032c1ea26541bf4b81c99077cb9, type: 2}
   - {fileID: 11400000, guid: 96f26c8056cbaa240aedcf856b199bda, type: 2}
   - {fileID: 11400000, guid: ce8e431178189084380dab4192ea7a5c, type: 2}
-  - {fileID: 11400000, guid: edbfcb48f814fd44e927c9ed4be12f95, type: 2}
   - {fileID: 11400000, guid: e61e6391db55079448e93a7e650c3e1e, type: 2}
   - {fileID: 11400000, guid: 510654073f762d94f89467820ff9739a, type: 2}
   - {fileID: 11400000, guid: 0da14fb181c85244ba386dca384da913, type: 2}

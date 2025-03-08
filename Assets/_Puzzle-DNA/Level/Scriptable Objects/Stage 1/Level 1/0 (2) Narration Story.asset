@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c0d3ec688709c214a8c7fe11dd2475cf, type: 3}
-  m_Name: (2) Narration Story
+  m_Name: 0 (2) Narration Story
   m_EditorClassIdentifier: 
   storyType: 1
   backgroundSprite: {fileID: 21300000, guid: 64957760a3b551f4393ab723e11aac6d, type: 3}

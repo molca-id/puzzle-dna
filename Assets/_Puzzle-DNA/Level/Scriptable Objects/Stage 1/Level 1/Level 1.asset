@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: Level 1
   m_EditorClassIdentifier: 
   gameData: {fileID: 11400000, guid: ab90484f1e2012f48af90c05f7fd2075, type: 2}
-  openPerksPanelAfterEpilogue: 0
   showResultPanel: 0
   bgmAudioClip: {fileID: 8300000, guid: 08b5bb4ff8ecf0c43a6bd8ec7850abbb, type: 3}
   prologueStoryData:
   - {fileID: 11400000, guid: b8ed470d001d0834c9073e9e2f6e6e3c, type: 2}
   - {fileID: 11400000, guid: e1aed95876c3cb54d8b38642ead317b5, type: 2}
   - {fileID: 11400000, guid: 7350a7a0c8f79de4e881ace59450e9a3, type: 2}
+  - {fileID: 11400000, guid: ad14a80a5f7bdd74787de08d7a49fa54, type: 2}
+  - {fileID: 11400000, guid: 01780ff955ec0494f8f5d174d00968d4, type: 2}
   - {fileID: 11400000, guid: 42c09e3f6edd9a64a8e1db5948089804, type: 2}
   epilogueStoryData:
   - {fileID: 11400000, guid: 716a14167b7aec54e816310abe0f18c6, type: 2}

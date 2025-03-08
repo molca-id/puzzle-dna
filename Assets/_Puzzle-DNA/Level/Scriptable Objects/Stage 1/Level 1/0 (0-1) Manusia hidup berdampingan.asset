@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c0d3ec688709c214a8c7fe11dd2475cf, type: 3}
-  m_Name: (0-4) GAWAT!!!
+  m_Name: 0 (0-1) Manusia hidup berdampingan
   m_EditorClassIdentifier: 
   storyType: 1
   backgroundSprite: {fileID: 21300000, guid: 0bf3db385304db8459b2e1f3b6e2564a, type: 3}
@@ -21,22 +21,22 @@ MonoBehaviour:
   narrationType: 2
   narrationStories:
   - playerExpression: 4
-    interlocutorSprite: {fileID: 0}
+    interlocutorSprite: {fileID: 21300000, guid: 306ce90c4f0a68f4aa960102c0392694,
+      type: 3}
     clipCodeEn: 
     clipCodeId: 
     clipCodeMy: 
-    clipEn: {fileID: 8300000, guid: cc47940ea5b70f64798522b2b1b320b4, type: 3}
-    clipId: {fileID: 8300000, guid: 026fc910abd3ccc43948bd65a7f570a9, type: 3}
+    clipEn: {fileID: 8300000, guid: 2b00b1e476f24f74698f1917cd099b00, type: 3}
+    clipId: {fileID: 8300000, guid: 3e2251882d527f046a5c39ae57217a6b, type: 3}
     clipMy: {fileID: 0}
-    bgmClip: {fileID: 8300000, guid: bf42f9506feafa04ba2839236af960e0, type: 3}
-    animPrefab: {fileID: 6617120770565417329, guid: b7a93d734d491a9439f16c7bedadd196,
-      type: 3}
-    contentEn: WARNING!!!! Aiden exploded and caused his atomic DNA to break into
-      3 parts and scatter.
-    contentId: GAWAT!!!! Aiden meledak dan menyebabkan DNA Atomnya pecah menjadi
-      3 bagian dan terpencar.
-    contentMy: GAWAT!!!! Aiden meledak dan menyebabkan DNA Atomnya pecah menjadi
-      3 bagian dan terpencar.
+    bgmClip: {fileID: 0}
+    animPrefab: {fileID: 0}
+    contentEn: Humans live side by side with the robot Aiden, a robot created by
+      Prof. Woo to make human work easier.
+    contentId: Manusia hidup berdampingan dengan robot Aiden, robot yang diciptakan
+      oleh Prof. Woo untuk mempermudah pekerjaan manusia.
+    contentMy: Manusia hidup berdampingan dengan robot Aiden, robot yang diciptakan
+      oleh Prof. Woo untuk mempermudah pekerjaan manusia.
   popUpStories: []
   titleStories: []
   eventDataStory:

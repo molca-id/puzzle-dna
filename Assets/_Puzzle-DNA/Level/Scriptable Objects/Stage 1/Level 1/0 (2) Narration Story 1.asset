@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c0d3ec688709c214a8c7fe11dd2475cf, type: 3}
-  m_Name: (3) Narration Story
+  m_Name: 0 (2) Narration Story 1
   m_EditorClassIdentifier: 
   storyType: 1
   backgroundSprite: {fileID: 21300000, guid: 64957760a3b551f4393ab723e11aac6d, type: 3}
@@ -20,22 +20,23 @@ MonoBehaviour:
     dialogueStories: []
   narrationType: 2
   narrationStories:
-  - playerExpression: 1
+  - playerExpression: 4
     interlocutorSprite: {fileID: 0}
     clipCodeEn: 
     clipCodeId: 
     clipCodeMy: 
-    clipEn: {fileID: 8300000, guid: c3b33dbcd5d1bf544b4de44669844bdf, type: 3}
-    clipId: {fileID: 8300000, guid: 072163ca70e4c3a4b9a70209aa9eef70, type: 3}
+    clipEn: {fileID: 8300000, guid: 7a51c43490c5d934aa576233a428600d, type: 3}
+    clipId: {fileID: 8300000, guid: ef713abfefcb4ce4a96b0615bd2ae4f1, type: 3}
     clipMy: {fileID: 0}
-    bgmClip: {fileID: 8300000, guid: fc2bd298055415c4b85feeb88828afda, type: 3}
-    animPrefab: {fileID: 0}
-    contentEn: Yippie! You succeeded in saving the world in 2020 from the Corona
-      Virus and you also succeeded in getting to know the 15 DNA Atom talents.
-    contentId: Yippie! kamu berhasil menyelamatkan dunia di tahun 2020 dari Virus
-      Corona dan kamu  juga berhasil mengenal 15 talent Atom DNA.
-    contentMy: Yippie! kamu berhasil menyelamatkan dunia di tahun 2020 dari Virus
-      Corona dan kamu  juga berhasil mengenal 15 talent Atom DNA.
+    bgmClip: {fileID: 0}
+    animPrefab: {fileID: 4640163331175246652, guid: 63ced348a2654804ebb704956fc3b9a6,
+      type: 3}
+    contentEn: Come on! Meet a health volunteer who is helping the local community.
+      Help Him complete his task and He will take you to your destination!
+    contentId: Ayo! Temui seorang relawan kesehatan yang sedang membantu masyarakat
+      sekitar. Bantu Dia menyelesaikan tugasnya dan dia akan mengantarmu ke tujuanmu!
+    contentMy: Ayo! Temui seorang relawan kesehatan yang sedang membantu masyarakat
+      sekitar. Bantu Dia menyelesaikan tugasnya dan Dia akan mengantarmu ke tujuanmu!
   popUpStories: []
   titleStories: []
   eventDataStory:

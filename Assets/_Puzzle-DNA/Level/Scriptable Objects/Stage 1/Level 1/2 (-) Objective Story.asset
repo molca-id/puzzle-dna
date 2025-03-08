@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c0d3ec688709c214a8c7fe11dd2475cf, type: 3}
-  m_Name: (2) Narration Story 1
+  m_Name: 2 (-) Objective Story
   m_EditorClassIdentifier: 
   storyType: 1
   backgroundSprite: {fileID: 21300000, guid: 64957760a3b551f4393ab723e11aac6d, type: 3}
@@ -18,25 +18,24 @@ MonoBehaviour:
   dialogueStory:
     interlocutorName: 
     dialogueStories: []
-  narrationType: 2
+  narrationType: 0
   narrationStories:
-  - playerExpression: 4
+  - playerExpression: 0
     interlocutorSprite: {fileID: 0}
     clipCodeEn: 
     clipCodeId: 
     clipCodeMy: 
-    clipEn: {fileID: 8300000, guid: 7a51c43490c5d934aa576233a428600d, type: 3}
-    clipId: {fileID: 8300000, guid: ef713abfefcb4ce4a96b0615bd2ae4f1, type: 3}
+    clipEn: {fileID: 0}
+    clipId: {fileID: 0}
     clipMy: {fileID: 0}
     bgmClip: {fileID: 0}
-    animPrefab: {fileID: 4640163331175246652, guid: 63ced348a2654804ebb704956fc3b9a6,
-      type: 3}
-    contentEn: Come on! Meet a health volunteer who is helping the local community.
-      Help Him complete his task and He will take you to your destination!
-    contentId: Ayo! Temui seorang relawan kesehatan yang sedang membantu masyarakat
-      sekitar. Bantu Dia menyelesaikan tugasnya dan dia akan mengantarmu ke tujuanmu!
-    contentMy: Ayo! Temui seorang relawan kesehatan yang sedang membantu masyarakat
-      sekitar. Bantu Dia menyelesaikan tugasnya dan Dia akan mengantarmu ke tujuanmu!
+    animPrefab: {fileID: 0}
+    contentEn: After this, you have to help find the ambulance key by completing
+      the game. Have a nice play!
+    contentId: Setelah ini, kamu harus membantu temukan kunci ambulans dengan menyelesaikan
+      game. Selamat bermain!
+    contentMy: Setelah ini, kamu harus membantu temukan kunci ambulans dengan menyelesaikan
+      game. Selamat bermain!
   popUpStories: []
   titleStories: []
   eventDataStory:

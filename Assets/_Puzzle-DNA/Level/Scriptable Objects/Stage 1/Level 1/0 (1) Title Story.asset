@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c0d3ec688709c214a8c7fe11dd2475cf, type: 3}
-  m_Name: (0-0) Tahun 3045
+  m_Name: 0 (1) Title Story
   m_EditorClassIdentifier: 
   storyType: 4
   backgroundSprite: {fileID: 21300000, guid: 0bf3db385304db8459b2e1f3b6e2564a, type: 3}
@@ -27,14 +27,14 @@ MonoBehaviour:
     clipCodeEn: 
     clipCodeId: 
     clipCodeMy: 
-    clipEn: {fileID: 8300000, guid: f3da58532d823884b9efb80b1ca45a3a, type: 3}
-    clipId: {fileID: 8300000, guid: 668d2ef8c1eb8ba4d8637a543e1fbdd6, type: 3}
+    clipEn: {fileID: 8300000, guid: 762726923b1e4bd47b6e687819712dc5, type: 3}
+    clipId: {fileID: 8300000, guid: 2d95320e1a591b1488b425e671ec702a, type: 3}
     clipMy: {fileID: 0}
     bgmClip: {fileID: 0}
     animPrefab: {fileID: 0}
-    contentEn: In 3045...
-    contentId: Tahun 3045...
-    contentMy: Tahun 3045...
+    contentEn: In 2020...
+    contentId: Tahun 2020...
+    contentMy: Tahun 2020...
   eventDataStory:
     autoOpenPerks: 0
     questionId: 

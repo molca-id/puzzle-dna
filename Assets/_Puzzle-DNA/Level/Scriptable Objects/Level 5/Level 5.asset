@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9b7fad1ffcf1e948bb956499f1099e4, type: 3}
+  m_Name: Level 5
+  m_EditorClassIdentifier: 
+  gameData: {fileID: 11400000, guid: 5ec7620b864cc46488d4f6634a731251, type: 2}
+  showResultPanel: 0
+  bgmAudioClip: {fileID: 8300000, guid: 390a9577c65a2e14ca4d5d7062f15ad3, type: 3}
+  prologueStoryData:
+  - {fileID: 11400000, guid: 8cf9ab290dc8d2a40b772a2082095e7c, type: 2}
+  epilogueStoryData:
+  - {fileID: 11400000, guid: 557980772cc9c3143855af8ff182ad24, type: 2}
+  - {fileID: 11400000, guid: 9e136a84b71166045ac387a300cff722, type: 2}
+  - {fileID: 11400000, guid: 1298cd123e9e88d459e8216df43e0578, type: 2}
+  - {fileID: 11400000, guid: 60817baecf4e7b843ad2a73c62c34e4f, type: 2}

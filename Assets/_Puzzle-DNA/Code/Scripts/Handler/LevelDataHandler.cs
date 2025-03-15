@@ -33,7 +33,7 @@ public class LevelDataHandler : MonoBehaviour
     [Header("Current Story Attributes")]
     [HideInInspector] public GameData currentGameData;
     [HideInInspector] public LevelData currentLevelData;
-    [HideInInspector] public StoryData currentStoryData;
+    public StoryData currentStoryData;
     [HideInInspector] public List<StoryData> prologueStoryData;
     [HideInInspector] public List<StoryData> epilogueStoryData;
 
@@ -176,7 +176,7 @@ public class LevelDataHandler : MonoBehaviour
             MainMenuHandler.instance.GetVOSource().Stop();
 
             if (currentLevelData.showResultPanel)
-                FinishHandler.instance.CalculateFinalResult();
+                FinishHandler.instance.InitFinishHandler();
             return;
         }
 
@@ -220,6 +220,39 @@ public class LevelDataHandler : MonoBehaviour
                 SetTitleStory(0);
                 break;
             case StoryData.StoryType.Event:
+                MainMenuHandler.instance.bigLoadingPanel.gameObject.SetActive(true);
+                StartCoroutine(IEOpenScreen(MainMenuHandler.instance.bigLoadingPanel, delegate
+                    {
+                        DataHandler.instance.IEGetItemData(delegate
+                        {
+                            int index = currentStoryData.assessmentGroupID;
+                            TalentGroupData targetData = DataHandler.instance.talentGroupDatas[index];
+                            List<TalentGroupValue> currentData = new();
+
+                            foreach (var value in targetData.assessmentValues)
+                            {
+                                TalentGroupValue item = DataHandler.instance.GetUserAssessmentData().
+                                                        Find(res => res.assessment_id == value.assessment_id);
+                                currentData.Add(item);
+                            }
+
+                            if (currentData.Find(value => 
+                                value.assessment_score < 0 ||
+                                value.assessment_score > 10) != null)
+                            {
+                                eventHandler.InitData(currentData);
+                            }
+                            else
+                            {
+                                if (isPrologue) SetPrologueStory(1);
+                                else if (isEpilogue) SetEpilogueStory(1);
+                            }
+                            
+                            StartCoroutine(IECloseScreen(MainMenuHandler.instance.bigLoadingPanel, delegate{
+                                MainMenuHandler.instance.bigLoadingPanel.gameObject.SetActive(false);
+                            }));
+                        });
+                    }));
                 break;
             case StoryData.StoryType.Tutorial:
                 if ((isPrologue && !DataHandler.instance.GetUserCheckpointData().

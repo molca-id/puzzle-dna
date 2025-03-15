@@ -13,6 +13,7 @@ public class APIManager : MonoBehaviour
     [Header("Basic URL")]
     [SerializeField] string rootUrl = "https://games.talentdna.me:3000";
     [SerializeField] string gameDomain = "gamedata";
+    [SerializeField] string talentGroupDomain = "talentgroupdata";
     [SerializeField] string validateDomain = "validate";
     [SerializeField] string deleteDomain = "delete";
 
@@ -21,8 +22,10 @@ public class APIManager : MonoBehaviour
     [SerializeField] string talentPerksEnDomain = "get_dna/en-US";
     [SerializeField] string talentPerksIdDomain = "get_dna/id-ID";
     [SerializeField] string talentPerksMyDomain = "get_dna/ms-My";
+    [SerializeField] string getItemEnDomain = "get_item?bahasa=en-US";
+    [SerializeField] string getItemIdDomain = "get_item?bahasa=id-ID";
+    [SerializeField] string getItemMyDomain = "get_item?bahasa=ms-My";
     [SerializeField] string sendResult = "get_result";
-    [SerializeField] string getItem = "get_item";
 
     [Header("Error Handler")]
     public GameObject deletePanel;
@@ -48,9 +51,16 @@ public class APIManager : MonoBehaviour
         return string.Format("{0}/{1}", rootActUrl, sendResult);
     }
 
-    public string SetupGetItemUrl(string sessionCode = "")
+    public string SetupGetItemUrl(string lang)
     {
-        return string.Format("{0}/{1}", rootActUrl, getItem);
+        if (lang == "id") return string.Format("{0}/{1}", rootActUrl, getItemIdDomain);
+        else if (lang == "en") return string.Format("{0}/{1}", rootActUrl, getItemEnDomain);
+        else return string.Format("{0}/{1}", rootActUrl, getItemMyDomain);
+    }
+
+    public string SetupGetTalentGroupData()
+    {
+        return string.Format("{0}/{1}", rootUrl, talentGroupDomain);
     }
 
     public string SetupDeleteUrl(string sessionCode = "")

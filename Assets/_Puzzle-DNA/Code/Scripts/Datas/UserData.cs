@@ -39,7 +39,13 @@ namespace UserDataSpace
         public DateTime updatedAt;
 
         public CheckpointData checkpoint_data;
-        public List<bool> perks_value;
+        public List<TalentGroupValue> assessment_values;
+    }
+
+    [Serializable]
+    public class Wrapper<T>
+    {
+        public List<T> list;
     }
 
     [Serializable]

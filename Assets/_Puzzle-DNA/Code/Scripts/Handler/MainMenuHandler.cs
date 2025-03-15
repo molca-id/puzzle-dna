@@ -75,8 +75,8 @@ public class MainMenuHandler : MonoBehaviour
     [SerializeField] float splashSpeed;
     [SerializeField] CanvasGroup tutorialPanel;
     [SerializeField] CanvasGroup mainMenuPanel;
-    [SerializeField] CanvasGroup smallLoadingPanel;
-    [SerializeField] CanvasGroup bigLoadingPanel;
+    public CanvasGroup smallLoadingPanel;
+    public CanvasGroup bigLoadingPanel;
 
     [Header("Level Attributes")]
     [SerializeField] List<Button> levelButton;
@@ -142,7 +142,7 @@ public class MainMenuHandler : MonoBehaviour
         return true;
     }
 
-    public bool UpTo15LevelsChecker()
+    public bool UpTo11LevelsChecker()
     {
         if (!levelButton[levelButtons.Count - 1].transform.Find("Disable").gameObject.activeSelf)
             return false;
@@ -156,8 +156,6 @@ public class MainMenuHandler : MonoBehaviour
 
         return true;
     }
-
-    public bool Level16Unlocked() => !levelButton[levelButtons.Count - 1].transform.Find("Disable").gameObject.activeSelf;
     #endregion
 
     #region Tutorial
@@ -211,7 +209,7 @@ public class MainMenuHandler : MonoBehaviour
 
     public void SubmitCharacter()
     {
-        DataHandler.instance.currPlayerAssetData = DataHandler.instance.playerAssetDatas.Find(data => data.character == character);
+        DataHandler.instance.currentPlayerAssetData = DataHandler.instance.defaultPlayerAssetDatas.Find(data => data.character == character);
         DataHandler.instance.GetUserDataValue().character = (int)character;
         StartCoroutine(IEOpenScreen(smallLoadingPanel, delegate
         {
@@ -340,27 +338,20 @@ public class MainMenuHandler : MonoBehaviour
         backgroundLineMaps.ForEach(line => line.SetActive(false));
         foreach (var data in levelButtons)
         {
-            if (!data.isFinalLevel)
+            if (data.beforeButtons.Count == 0 || ScoreChecker(data.beforeButtons))
             {
-                if (data.beforeButtons.Count == 0 || ScoreChecker(data.beforeButtons))
-                {
-                    if (data.stageObject != null) data.stageObject.transform.Find("Disable").gameObject.SetActive(false);
-                    data.currentButton.transform.Find("Disable").gameObject.SetActive(false);
-                    data.backgroundLineMaps.ForEach(line => line.SetActive(true));
-                    data.currentButton.interactable = true;
+                if (data.stageObject != null) data.stageObject.transform.Find("Disable").gameObject.SetActive(false);
+                data.currentButton.transform.Find("Disable").gameObject.SetActive(false);
+                data.backgroundLineMaps.ForEach(line => line.SetActive(true));
+                data.currentButton.interactable = true;
 
-                    if (data.currentButton.GetComponent<Transform>().Find("ScoreText").
-                        GetComponent<TextMeshProUGUI>().text == "0")
-                        isDone = false;
-                }
-                else
-                {
+                if (data.currentButton.GetComponent<Transform>().Find("ScoreText").
+                    GetComponent<TextMeshProUGUI>().text == "0")
                     isDone = false;
-                }
             }
             else
             {
-
+                isDone = false;
             }
         }
 
@@ -371,9 +362,9 @@ public class MainMenuHandler : MonoBehaviour
         }
 
         if (GameOverChecker())
-            FinishHandler.instance.CalculateFinalResult();
-        else if (UpTo15LevelsChecker())
-            LevelDataHandler.instance.SetTutorialStory("Story15Levels");
+            FinishHandler.instance.InitFinishHandler();
+        else if (UpTo11LevelsChecker())
+            LevelDataHandler.instance.SetTutorialStory("Story11Levels");
     }
 
     public bool ScoreChecker(List<Button> buttons)

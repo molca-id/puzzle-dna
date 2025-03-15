@@ -23,7 +23,6 @@ public class PlayerSpriteData
     public List<PlayerSpriteExpressionData> expressionDatas;
 }
 #endregion
-
 #region Talent Data
 [Serializable]
 public class TalentData
@@ -40,84 +39,61 @@ public class AssessmentValue
     public string assessment_vo;
 }
 
-[System.Serializable]
-public class TalentGroupData
-{
-    public bool isDone;
-    public List<long> assessment_ids;
-}
-
-[System.Serializable]
+[Serializable]
 public class TalentGroupDataWrapper
 {
     public List<TalentGroupData> talentGroupDatas;
 }
-#endregion
 
+[Serializable]
+public class TalentGroupData
+{
+    public List<TalentGroupValue> assessmentValues;
+}
+
+[Serializable]
+public class TalentGroupValue
+{
+    public long assessment_id;
+    public float assessment_score;
+}
+
+[System.Serializable]
+public class AssessmentContainer
+{
+    public List<TalentGroupValue> assessment_values;
+}
+
+[System.Serializable]
+public class Wrapper<T>
+{
+    public List<T> error; // Hanya sebagai pembungkus untuk JSON "error"
+}
+#endregion
 #region Talent Raw Data
+[Serializable]
+public class RawData
+{
+    public int status;
+    public List<CategoryData> data;
+}
+
+[Serializable]
+public class CategoryData
+{
+    public int id_talent;
+    public string nama_talent;
+    public float score_talent;
+    public List<ItemData> item_talent;
+}
+
 [Serializable]
 public class ItemData
 {
     public long id;
     public string item;
     public string vo;
-}
-
-[Serializable]
-public class CategoryData
-{
-    public List<ItemData> COMPETITIVE;
-    public List<ItemData> DIRECTIVE;
-    public List<ItemData> GOAL_GETTER;
-    public List<ItemData> OPTIMIZER;
-    public List<ItemData> PERFECTIONIST;
-    public List<ItemData> SELF_CONFIDENT;
-    public List<ItemData> SIGNIFICANT;
-    public List<ItemData> AVERSIVE;
-    public List<ItemData> COLLECTOR;
-    public List<ItemData> CONTEMPLATIVE;
-    public List<ItemData> EQUITABLE;
-    public List<ItemData> EXPLORER;
-    public List<ItemData> NOBLE;
-    public List<ItemData> VIGOROUS;
-    public List<ItemData> VISIONARY;
-    public List<ItemData> ADVISOR;
-    public List<ItemData> ARTICULATIVE;
-    public List<ItemData> COLLABORATOR;
-    public List<ItemData> COURAGEOUS;
-    public List<ItemData> CONVINCING;
-    public List<ItemData> DEVELOPER;
-    public List<ItemData> ENERGIZER;
-    public List<ItemData> AFFECTIONATE;
-    public List<ItemData> CARING;
-    public List<ItemData> FORGIVING;
-    public List<ItemData> GENEROUS;
-    public List<ItemData> GENUINE;
-    public List<ItemData> HARMONY;
-    public List<ItemData> PERSONALIZER;
-    public List<ItemData> SOICABLE;
-    public List<ItemData> CONTEXTUAL;
-    public List<ItemData> FOCUSED;
-    public List<ItemData> INTUITIVE;
-    public List<ItemData> INNOVATIVE;
-    public List<ItemData> LOGICAL;
-    public List<ItemData> STRATEGIZER;
-    public List<ItemData> TROUBLESHOOTER;
-    public List<ItemData> ACCOUNTABLE;
-    public List<ItemData> AUTHORITATIVE;
-    public List<ItemData> DECISIVE;
-    public List<ItemData> FIXER;
-    public List<ItemData> FLEXIBLE;
-    public List<ItemData> INITIATOR;
-    public List<ItemData> RESOURCEFUL;
-    public List<ItemData> STRUCTURED;
-}
-
-[Serializable]
-public class RawData
-{
-    public int status;
-    public CategoryData data;
+    public float score;
 }
 #endregion
 
@@ -128,15 +104,14 @@ public class DataHandler : MonoBehaviour
 
     [Header("Default Datas")]
     public UserDataSpace.UserData defaultUserData;
-    public TalentDataSpace.TalentData talentData;
-    public List<PlayerSpriteData> playerAssetDatas;
+    public List<PlayerSpriteData> defaultPlayerAssetDatas;
 
     [Header("Current Datas")]
     public UserDataSpace.UserData currentUserData;
-    public PlayerSpriteData currPlayerAssetData;
+    public PlayerSpriteData currentPlayerAssetData;
 
     [Header("Talent Data")]
-    public List<TalentData> talentDatas;
+    public RawData talentDatas;
     public List<TalentGroupData> talentGroupDatas;
 
     [Header("Another Attributes")]
@@ -157,117 +132,49 @@ public class DataHandler : MonoBehaviour
         }
     }
 
-#region Talent Raw Data Processing
-    public void InitializeTalentList()
+    public void SetupPlayerTalentData()
     {
-        string[] allTalents = new string[]
+        foreach (var talentGroup in talentGroupDatas)
         {
-            "Competitive", "Directive", "Goal-Getter", "Optimizer", "Perfectionist", "Self-Confident", "Significant", "Aversive",
-            "Collector", "Contemplative", "Equitable", "Explorer", "Noble", "Vigorous", "Visionary", "Advisor", "Articulative",
-            "Collaborator", "Courageous", "Convincing", "Developer", "Energizer", "Affectionate", "Caring", "Forgiving", "Generous",
-            "Genuine", "Harmony", "Personalizer", "Soicable", "Contextual", "Focused", "Intuitive", "Innovative", "Logical",
-            "Strategizer", "Troubleshooter", "Accountable", "Authoritative", "Decisive", "Fixer", "Flexible", "Initiator",
-            "Resourceful", "Structured"
-        };
-
-        talentDatas = new List<TalentData>();
-
-        foreach (var talentName in allTalents)
-        {
-            talentDatas.Add(new TalentData
+            foreach (var assessment in talentGroup.assessmentValues)
             {
-                talent_name = talentName,
-                assessment_values = new List<AssessmentValue>()
-            });
-        }
-    }
-
-    public void UpdateTalentDataFromJson(RawData rawData)
-    {
-        foreach (var talent in talentDatas)
-        {
-            talent.assessment_values.Clear();
-        }
-
-        var categoryData = rawData.data;
-
-        MapTalent("Competitive", categoryData.COMPETITIVE);
-        MapTalent("Directive", categoryData.DIRECTIVE);
-        MapTalent("Goal-Getter", categoryData.GOAL_GETTER);
-        MapTalent("Optimizer", categoryData.OPTIMIZER);
-        MapTalent("Perfectionist", categoryData.PERFECTIONIST);
-        MapTalent("Self-Confident", categoryData.SELF_CONFIDENT);
-        MapTalent("Significant", categoryData.SIGNIFICANT);
-        MapTalent("Aversive", categoryData.AVERSIVE);
-        MapTalent("Collector", categoryData.COLLECTOR);
-        MapTalent("Contemplative", categoryData.CONTEMPLATIVE);
-        MapTalent("Equitable", categoryData.EQUITABLE);
-        MapTalent("Explorer", categoryData.EXPLORER);
-        MapTalent("Noble", categoryData.NOBLE);
-        MapTalent("Vigorous", categoryData.VIGOROUS);
-        MapTalent("Visionary", categoryData.VISIONARY);
-        MapTalent("Advisor", categoryData.ADVISOR);
-        MapTalent("Articulative", categoryData.ARTICULATIVE);
-        MapTalent("Collaborator", categoryData.COLLABORATOR);
-        MapTalent("Courageous", categoryData.COURAGEOUS);
-        MapTalent("Convincing", categoryData.CONVINCING);
-        MapTalent("Developer", categoryData.DEVELOPER);
-        MapTalent("Energizer", categoryData.ENERGIZER);
-        MapTalent("Affectionate", categoryData.AFFECTIONATE);
-        MapTalent("Caring", categoryData.CARING);
-        MapTalent("Forgiving", categoryData.FORGIVING);
-        MapTalent("Generous", categoryData.GENEROUS);
-        MapTalent("Genuine", categoryData.GENUINE);
-        MapTalent("Harmony", categoryData.HARMONY);
-        MapTalent("Personalizer", categoryData.PERSONALIZER);
-        MapTalent("Soicable", categoryData.SOICABLE);
-        MapTalent("Contextual", categoryData.CONTEXTUAL);
-        MapTalent("Focused", categoryData.FOCUSED);
-        MapTalent("Intuitive", categoryData.INTUITIVE);
-        MapTalent("Innovative", categoryData.INNOVATIVE);
-        MapTalent("Logical", categoryData.LOGICAL);
-        MapTalent("Strategizer", categoryData.STRATEGIZER);
-        MapTalent("Troubleshooter", categoryData.TROUBLESHOOTER);
-        MapTalent("Accountable", categoryData.ACCOUNTABLE);
-        MapTalent("Authoritative", categoryData.AUTHORITATIVE);
-        MapTalent("Decisive", categoryData.DECISIVE);
-        MapTalent("Fixer", categoryData.FIXER);
-        MapTalent("Flexible", categoryData.FLEXIBLE);
-        MapTalent("Initiator", categoryData.INITIATOR);
-        MapTalent("Resourceful", categoryData.RESOURCEFUL);
-        MapTalent("Structured", categoryData.STRUCTURED);
-    }
-
-    void MapTalent(string talentName, List<ItemData> items)
-    {
-        TalentData talent = talentDatas.Find(t => t.talent_name == talentName);
-    
-        if (talent != null && items != null)
-        {
-            foreach (var item in items)
-            {
-                talent.assessment_values.Add(new AssessmentValue
+                bool assessmentExists = false;
+                foreach (var perk in currentUserData.data.assessment_values)
                 {
-                    assessment_id = item.id,
-                    assessment_description = item.item,
-                    assessment_vo = item.vo
-                });
+                    if (perk.assessment_id == assessment.assessment_id)
+                    {
+                        assessmentExists = true;
+                        break;
+                    }
+                }
+
+                if (!assessmentExists)
+                {
+                    currentUserData.data.assessment_values.Add(new TalentGroupValue
+                    {
+                        assessment_id = assessment.assessment_id,
+                        assessment_score = assessment.assessment_score
+                    });
+
+                    currentUserData.data.assessment_values.
+                        Sort((a, b) => a.assessment_id.CompareTo(b.assessment_id));
+                }
             }
         }
     }
-#endregion
 
+#region Setter Getter Data
     public Sprite GetPlayerSprite(ExpressionType expressionType)
     {
-        return currPlayerAssetData.expressionDatas.
+        return currentPlayerAssetData.expressionDatas.
             Find(exp => exp.expressionType == expressionType).sprite;
     }
 
-    public string GetCharacterName() => currPlayerAssetData.name;
+    public string GetCharacterName() => currentPlayerAssetData.name;
 
     public AudioClip GetPlayerClip(string clipCode)
     {
-        return currPlayerAssetData.playerClips.
+        return currentPlayerAssetData.playerClips.
             Find(exp => exp.name.Contains(clipCode));
     }
 
@@ -285,7 +192,8 @@ public class DataHandler : MonoBehaviour
             item.SetContentByLanguage();
         }
     }
-
+#endregion
+#region API
     public void IECreateUserData()
     {
         defaultUserData.data.game_url = SessionCodeHooker.instance.GetSessionCode();
@@ -301,6 +209,18 @@ public class DataHandler : MonoBehaviour
                 {
                     IEGetUserData();
                 }));
+    }
+    
+    public void IEPatchPerksValue(Action executeAfter = null)
+    {
+        AssessmentContainer container = new AssessmentContainer { assessment_values = GetUserAssessmentData() };
+        string json = JsonUtility.ToJson(container);
+
+        //hitting api
+        StartCoroutine(
+            APIManager.instance.PatchDataCoroutine(
+                APIManager.instance.SetupGameUrl(GetUniqueCode()), 
+                json, res => executeAfter?.Invoke()));
     }
 
     public void IEPatchAllVolumeData()
@@ -366,30 +286,29 @@ public class DataHandler : MonoBehaviour
                 }));
     }
 
-    public void IEGetItemData()
+    public void IEGetItemData(Action executeAfter = null)
     {
-        //hitting api
         StartCoroutine(
             APIManager.instance.GetDataWithTokenCoroutine(
-                APIManager.instance.SetupGetItemUrl(),
+                APIManager.instance.SetupGetItemUrl(GetLanguage()),
                 res=>
                 {
-                    RawData rawData = JsonUtility.FromJson<RawData>(res);
-                    InitializeTalentList();
-                    UpdateTalentDataFromJson(rawData);
+                    talentDatas = JsonUtility.FromJson<RawData>(res);
+                    executeAfter?.Invoke();
                 }));
     }
 
-    public void IEGetTalentData(Action executeAfter = null)
+    public void IEGetTalentGroupData()
     {
-        //hitting api
         StartCoroutine(
             APIManager.instance.GetDataCoroutine(
-                APIManager.instance.SetupTalentPerksUrl(GetUserDataValue().language),
+                APIManager.instance.SetupGetTalentGroupData(),
                 res =>
                 {
-                    talentData = JsonUtility.FromJson<TalentDataSpace.TalentData>(res);
-                    executeAfter.Invoke();
+                    Wrapper<TalentGroupData> wrapper = JsonUtility.FromJson<Wrapper<TalentGroupData>>(res);
+                    talentGroupDatas = wrapper.error;
+                    SetupPlayerTalentData();
+                    IEPatchPerksValue();
                 }));
     }
 
@@ -409,23 +328,19 @@ public class DataHandler : MonoBehaviour
                     sfxAudioMixer.SetFloat("MasterVolume", GetUserDataValue().sfx_value);
                     voAudioMixer.SetFloat("MasterVolume", GetUserDataValue().vo_value);
 
-                    if (!currentUserData.success) 
-                        IECreateUserData();
-                    else
-                    {
-                        currPlayerAssetData = playerAssetDatas.Find(data => (int)data.character == GetUserDataValue().character);
-                        //SetupPlayerSprites();
-                    }
+                    if (!currentUserData.success) IECreateUserData();
+                    else currentPlayerAssetData = defaultPlayerAssetDatas.Find(data => (int)data.character == GetUserDataValue().character);
                 }));
     }
-
-    public List<TalentDataSpace.TalentValueData> GetTalentDatas() => talentData.data;
     
     public UserDataSpace.UserDataValue GetUserDataValue() => currentUserData.data;
 
     public UserDataSpace.CheckpointData GetUserCheckpointData() => currentUserData.data.checkpoint_data;
 
+    public List<TalentGroupValue> GetUserAssessmentData() => currentUserData.data.assessment_values;
+
     public string GetUniqueCode() => GetUserDataValue().game_url;
 
     public string GetLanguage() => GetUserDataValue().language;
+#endregion
 }

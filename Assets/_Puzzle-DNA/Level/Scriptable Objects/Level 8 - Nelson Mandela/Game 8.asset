@@ -1,0 +1,179 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e63af0a87d5c2f45a27c8615bc44409, type: 3}
+  m_Name: Game 8
+  m_EditorClassIdentifier: 
+  boardDimension: {x: 6, y: 6}
+  gameLevel: 8
+  abilityDriveDuration: 5
+  backgroundGame: {fileID: 21300000, guid: 230892926c7fc78409ca426fde355314, type: 3}
+  layoutGame: {fileID: 21300000, guid: 5917939e2fa7ab8418017c96a7a2a7cb, type: 3}
+  usingDialogueBonus: 1
+  dialogues:
+    interlocutorName: Mandela
+    interlocutorIdleSprite: {fileID: 21300000, guid: 2fa1030855e59f143b164bd163581d6a,
+      type: 3}
+    dialogueBonus:
+    - scoreTrigger: 1000
+      dialogueBonusDatas:
+      - playerIsTalking: 1
+        dialogueDelay: 4
+        contentData:
+          playerExpression: 0
+          interlocutorSprite: {fileID: 21300000, guid: 2fa1030855e59f143b164bd163581d6a,
+            type: 3}
+          clipCodeEn: 
+          clipCodeId: 
+          clipCodeMy: 
+          clipEn: {fileID: 0}
+          clipId: {fileID: 0}
+          clipMy: {fileID: 0}
+          bgmClip: {fileID: 0}
+          animPrefab: {fileID: 0}
+          contentEn: How can you realize your dreams even though you were imprisoned
+            for 27 years?
+          contentId: Bagaimana anda bisa mewujudkan cita cita anda walaupun sempat
+            dipenjara selama 27 tahun?
+          contentMy: Bagaimana anda bisa mewujudkan cita cita anda walaupun sempat
+            dipenjara selama 27 tahun?
+      - playerIsTalking: 0
+        dialogueDelay: 8
+        contentData:
+          playerExpression: 2
+          interlocutorSprite: {fileID: 21300000, guid: 5a24df4841c57fe45a6ca02a86d07948,
+            type: 3}
+          clipCodeEn: 
+          clipCodeId: 
+          clipCodeMy: 
+          clipEn: {fileID: 0}
+          clipId: {fileID: 0}
+          clipMy: {fileID: 0}
+          bgmClip: {fileID: 0}
+          animPrefab: {fileID: 0}
+          contentEn: I'm not alone. Building relationships with people who have the
+            same dreams is one of the keys.
+          contentId: Saya tidak sendiri. Membangun hubungan dengan orang-orang yang
+            memiliki mimpi yang sama menjadi salah satu kunci.
+          contentMy: Saya tidak sendiri. Membangun hubungan dengan orang-orang yang
+            memiliki mimpi yang sama menjadi salah satu kunci.
+      isDone: 0
+    - scoreTrigger: 1500
+      dialogueBonusDatas:
+      - playerIsTalking: 1
+        dialogueDelay: 4
+        contentData:
+          playerExpression: 0
+          interlocutorSprite: {fileID: 21300000, guid: d217e4dddec738d408efba89e711093f,
+            type: 3}
+          clipCodeEn: 
+          clipCodeId: 
+          clipCodeMy: 
+          clipEn: {fileID: 0}
+          clipId: {fileID: 0}
+          clipMy: {fileID: 0}
+          bgmClip: {fileID: 0}
+          animPrefab: {fileID: 0}
+          contentEn: Your actions were very brave and sincere. What message do you
+            want to convey to the world?
+          contentId: Tindakan Bapak sangat berani dan tulus. Pesan apa yang ingin
+            Bapak sampaikan pada dunia?
+          contentMy: Tindakan Bapak sangat berani dan tulus. Pesan apa yang ingin
+            Bapak sampaikan pada dunia?
+      - playerIsTalking: 0
+        dialogueDelay: 8
+        contentData:
+          playerExpression: 2
+          interlocutorSprite: {fileID: 21300000, guid: 0b6fecf8cbf4d93449962ed9c70dcb6c,
+            type: 3}
+          clipCodeEn: 
+          clipCodeId: 
+          clipCodeMy: 
+          clipEn: {fileID: 0}
+          clipId: {fileID: 0}
+          clipMy: {fileID: 0}
+          bgmClip: {fileID: 0}
+          animPrefab: {fileID: 0}
+          contentEn: I cherish the ideal of a democratic and free society in which
+            all people live together in harmony and with equal opportunities. I hope
+            to live up to these ideals. But, if necessary, I am ready to die for
+            this ideal.
+          contentId: Saya menghargai cita-cita masyarakat yang demokratis dan bebas
+            di mana semua orang hidup bersama dalam harmoni dan dengan kesempatan
+            yang sama. Saya berharap dapat hidup untuk cita-cita ini. Tetapi, jika
+            perlu, saya siap mati untuk cita-cita ini.
+          contentMy: Saya menghargai cita-cita masyarakat yang demokratis dan bebas
+            di mana semua orang hidup bersama dalam harmoni dan dengan kesempatan
+            yang sama. Saya berharap dapat hidup untuk cita-cita ini. Tetapi, jika
+            perlu, saya siap mati untuk cita-cita ini.
+      isDone: 0
+  hintDelay: 10
+  totalTime: 90
+  tutorialKey: 
+  usingHandHint: 0
+  gems:
+  - type: 0
+    sprite: {fileID: 21300000, guid: c9b44319f4c3ad9419feaf96b4139599, type: 3}
+    minMatch: 3
+  - type: 1
+    sprite: {fileID: 21300000, guid: d2a0f96c0da635a4284645a5a51b0998, type: 3}
+    minMatch: 3
+  - type: 2
+    sprite: {fileID: 21300000, guid: 9dc0c5cefa0835c40a394e5321deb541, type: 3}
+    minMatch: 3
+  - type: 3
+    sprite: {fileID: 21300000, guid: 39f65d9f2d5abd349b5a5bcdcc6977ca, type: 3}
+    minMatch: 3
+  - type: 4
+    sprite: {fileID: 21300000, guid: de9186cb0effb064080b603159f66360, type: 3}
+    minMatch: 3
+  - type: 5
+    sprite: {fileID: 21300000, guid: a6c5c839abfe8f24197e73df13444920, type: 3}
+    minMatch: 3
+  specialGems:
+  - name: Rocket
+    prefab: {fileID: 6539906006310958499, guid: e61eea144c3cdb646a313258d3e2629f,
+      type: 3}
+  - name: Bomb
+    prefab: {fileID: 6539906006310958499, guid: c0d3ca31d71aa5f4eb54daa97b20bb40,
+      type: 3}
+  emptyGems:
+  - emptySprite: {fileID: 0}
+    positions:
+    - {x: 0, y: 0}
+    - {x: 0, y: 5}
+    - {x: 5, y: 0}
+    - {x: 5, y: 5}
+  - emptySprite: {fileID: 21300000, guid: feb9bf1df852c134a8a4a0dfb295e30c, type: 3}
+    positions:
+    - {x: 0, y: 1}
+    - {x: 5, y: 1}
+  audioClipInfos:
+  - name: bgm
+    clip: {fileID: 8300000, guid: cb12544fdf5dc2c4494b0b7a277289cf, type: 3}
+  - name: click
+    clip: {fileID: 8300000, guid: 04dee4ef652bb7e4f9f7a710627ec15d, type: 3}
+  - name: swap
+    clip: {fileID: 8300000, guid: 2e7f97a319b006244b51bf6762952be2, type: 3}
+  - name: match
+    clip: {fileID: 8300000, guid: 2f9557f054139154f9d768b8e16f49b5, type: 3}
+  - name: ability-d
+    clip: {fileID: 8300000, guid: 5e8598a339107274f9be8c401c55956a, type: 3}
+  - name: ability-n
+    clip: {fileID: 8300000, guid: d75e597e1012cf44abf49a3fae2aa15e, type: 3}
+  - name: ability-a
+    clip: {fileID: 8300000, guid: cc4ad1eb3a6b0e5489b96d5053294c7e, type: 3}
+  comboMessages:
+  - Cool!
+  - Great!!
+  - Perfect!!!
+  - Glorious!!!!
+  - Wonderful!!!!!

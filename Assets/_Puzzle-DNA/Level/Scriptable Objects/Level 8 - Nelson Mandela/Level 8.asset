@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9b7fad1ffcf1e948bb956499f1099e4, type: 3}
+  m_Name: Level 8
+  m_EditorClassIdentifier: 
+  gameData: {fileID: 11400000, guid: 3da8a87209c63e4428a8537bb5bea291, type: 2}
+  showResultPanel: 0
+  bgmAudioClip: {fileID: 8300000, guid: bd52d0d011d4d0f40a7462a2f5cc5804, type: 3}
+  prologueStoryData:
+  - {fileID: 11400000, guid: 0be156b165af9154e82ee3714cb6a871, type: 2}
+  - {fileID: 11400000, guid: 705ea595b71e1374595d931da88adbb0, type: 2}
+  - {fileID: 11400000, guid: 87af9a2d7cd0ffa449e330b7d8d6e91b, type: 2}
+  - {fileID: 11400000, guid: 2f2ade7f91300dc47a73735fe9bdc557, type: 2}
+  epilogueStoryData:
+  - {fileID: 11400000, guid: 7546ecf90e7f2144aade04fa6e5836fa, type: 2}

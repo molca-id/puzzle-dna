@@ -47,9 +47,8 @@ public class StoryData : ScriptableObject
 
     public StoryType storyType;
     public Sprite backgroundSprite;
-
-    [Header("Selecting Tutorial")]
     public string tutorialKey;
+    public int assessmentGroupID;
 
     [Header("Dialogue Story")]
     public DialogueStory dialogueStory;
@@ -63,7 +62,4 @@ public class StoryData : ScriptableObject
 
     [Header("Title Story")]
     public List<ContentData> titleStories;
-
-    [Header("Event Story")]
-    public EventData eventDataStory;
 }

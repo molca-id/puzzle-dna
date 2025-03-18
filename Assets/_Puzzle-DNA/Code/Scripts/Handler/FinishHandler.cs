@@ -27,7 +27,6 @@ public class FinishHandler : MonoBehaviour
 {
     public static FinishHandler instance;
     public GameObject parentPanel;
-    public GameObject finalFadePanel;
     public GameObject finalResultPanel;
     public List<Sprite> perkIconsColorful;
     public List<Sprite> perkIconsWhite;
@@ -65,7 +64,12 @@ public class FinishHandler : MonoBehaviour
 
     IEnumerator IEInitFinishHandler()
     {
-        DataHandler.instance.IEGetItemData();
+        MainMenuHandler.instance.bigLoadingPanel.gameObject.SetActive(true);
+        StartCoroutine(IEOpenScreen(MainMenuHandler.instance.bigLoadingPanel.GetComponent<CanvasGroup>(), () => 
+        { 
+            DataHandler.instance.IEGetItemData();
+        }));
+
         yield return new WaitUntil(() => DataHandler.instance.talentDatas.data.Count > 0);
 
         CalculateTalentValue();
@@ -110,7 +114,6 @@ public class FinishHandler : MonoBehaviour
 
     void CalculateFinalResult()
     {
-        StartCoroutine(IEOpenScreen(finalFadePanel.GetComponent<CanvasGroup>(), () => { }));
         StartCoroutine(IECloseScreen(finalResultPanel.GetComponent<CanvasGroup>(), () => { }));
 
         bottom5Perks.Clear();
@@ -188,17 +191,20 @@ public class FinishHandler : MonoBehaviour
                     APIManager.instance.SetupSendResultUrl(), json,
                     res => 
                     {
-
+                        StartCoroutine(IECloseScreen(MainMenuHandler.instance.bigLoadingPanel.GetComponent<CanvasGroup>(), () => 
+                        { 
+                            
 #if UNITY_EDITOR
-                        string path = Path.Combine(Application.persistentDataPath, "TalentRanking.json");
-                        File.WriteAllText(path, json);
-                        Debug.Log($"JSON saved to: {path}");
+                            string path = Path.Combine(Application.persistentDataPath, "TalentRanking.json");
+                            File.WriteAllText(path, json);
+                            Debug.Log($"JSON saved to: {path}");
 #endif
 
-                        parentPanel.SetActive(true);
-                        StartCoroutine(IEOpenScreen(finalResultPanel.GetComponent<CanvasGroup>(), () => { }));
-                        StartCoroutine(IECloseScreen(finalFadePanel.GetComponent<CanvasGroup>(), () => { }));
-                        Debug.Log(res);
+                            parentPanel.SetActive(true);
+                            MainMenuHandler.instance.bigLoadingPanel.gameObject.SetActive(false);
+                            StartCoroutine(IEOpenScreen(finalResultPanel.GetComponent<CanvasGroup>(), () => { }));
+                            Debug.Log(res);
+                        }));
                     }));
     }
 

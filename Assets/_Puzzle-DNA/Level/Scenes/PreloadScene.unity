@@ -3517,6 +3517,12 @@ MonoBehaviour:
   whenSceneUnloadedCustom:
     m_PersistentCalls:
       m_Calls: []
+  whenGameLoaded:
+    m_PersistentCalls:
+      m_Calls: []
+  whenGameUnloaded:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1494733029
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,9 +6,9 @@ using UnityEngine.Events;
 
 public class LanguageHandler : MonoBehaviour
 {
-    [TextArea(10, 10)] [SerializeField] string en;
-    [TextArea(10, 10)] [SerializeField] string id;
-    [TextArea(10, 10)] [SerializeField] string my;
+    [TextArea(5, 5)] [SerializeField] string en;
+    [TextArea(5, 5)] [SerializeField] string id;
+    [TextArea(5, 5)] [SerializeField] string my;
 
     [SerializeField] UnityEvent enEvent;
     [SerializeField] UnityEvent idEvent;

@@ -33,13 +33,13 @@ public class LevelDataHandler : MonoBehaviour
     [Header("Current Story Attributes")]
     [HideInInspector] public GameData currentGameData;
     [HideInInspector] public LevelData currentLevelData;
-    public StoryData currentStoryData;
-    [HideInInspector] public List<StoryData> prologueStoryData;
-    [HideInInspector] public List<StoryData> epilogueStoryData;
+    [HideInInspector] public StoryData currentStoryData;
+    public List<StoryData> prologueStoryData;
+    public List<StoryData> epilogueStoryData;
 
     [Header("Current Index Attributes")]
-    [HideInInspector] public int prologueIndex;
-    [HideInInspector] public int epilogueIndex;
+    public int prologueIndex;
+    public int epilogueIndex;
     [HideInInspector] public int dialogueIndex;
     [HideInInspector] public int narrationIndex;
     [HideInInspector] public int popUpIndex;
@@ -255,10 +255,9 @@ public class LevelDataHandler : MonoBehaviour
                     }));
                 break;
             case StoryData.StoryType.Tutorial:
-                if ((isPrologue && !DataHandler.instance.GetUserCheckpointData().
-                    checkpoint_value[currentGameData.gameLevel].prologue_is_done) ||
-                    (isEpilogue && !DataHandler.instance.GetUserCheckpointData().
-                    checkpoint_value[currentGameData.gameLevel].epilogue_is_done))
+                if (currentStoryData.keepShowingTutorial ||
+                    ((isPrologue && !DataHandler.instance.GetUserCheckpointData().checkpoint_value[currentGameData.gameLevel].prologue_is_done) ||
+                    (isEpilogue && !DataHandler.instance.GetUserCheckpointData().checkpoint_value[currentGameData.gameLevel].epilogue_is_done)))
                 {
                     SetTutorialStory(currentStoryData.tutorialKey);
                 }

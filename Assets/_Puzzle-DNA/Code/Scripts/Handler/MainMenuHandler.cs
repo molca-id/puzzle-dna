@@ -144,9 +144,6 @@ public class MainMenuHandler : MonoBehaviour
 
     public bool UpTo11LevelsChecker()
     {
-        if (!levelButton[levelButtons.Count - 1].transform.Find("Disable").gameObject.activeSelf)
-            return false;
-
         for (int i = 1; i < DataHandler.instance.GetUserCheckpointData().checkpoint_value.Count - 1; i++)
         {
             CheckpointValue item = DataHandler.instance.GetUserCheckpointData().checkpoint_value[i];
@@ -334,7 +331,6 @@ public class MainMenuHandler : MonoBehaviour
                     ));
         }
 
-        bool isDone = true;
         backgroundLineMaps.ForEach(line => line.SetActive(false));
         foreach (var data in levelButtons)
         {
@@ -344,14 +340,6 @@ public class MainMenuHandler : MonoBehaviour
                 data.currentButton.transform.Find("Disable").gameObject.SetActive(false);
                 data.backgroundLineMaps.ForEach(line => line.SetActive(true));
                 data.currentButton.interactable = true;
-
-                if (data.currentButton.GetComponent<Transform>().Find("ScoreText").
-                    GetComponent<TextMeshProUGUI>().text == "0")
-                    isDone = false;
-            }
-            else
-            {
-                isDone = false;
             }
         }
 
@@ -363,8 +351,8 @@ public class MainMenuHandler : MonoBehaviour
 
         if (GameOverChecker())
             FinishHandler.instance.InitFinishHandler();
-        else if (UpTo11LevelsChecker())
-            LevelDataHandler.instance.SetTutorialStory("Story11Levels");
+        // else if (UpTo11LevelsChecker())
+        //     LevelDataHandler.instance.SetTutorialStory("Story11Levels");
     }
 
     public bool ScoreChecker(List<Button> buttons)

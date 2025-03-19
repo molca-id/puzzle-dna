@@ -109,8 +109,8 @@ public class SequencePanelHandler : MonoBehaviour
 
         if (data.willOpenGame)
         {
-            CommonHandler.instance.whenSceneLoadedCustom = data.whenGameLoaded;
-            CommonHandler.instance.whenSceneUnloadedCustom = data.whenGameUnloaded;
+            CommonHandler.instance.whenGameLoaded = data.whenGameLoaded;
+            CommonHandler.instance.whenGameUnloaded = data.whenGameUnloaded;
             LevelDataHandler.instance.InitPrologue(data.levelData);
         }
         else

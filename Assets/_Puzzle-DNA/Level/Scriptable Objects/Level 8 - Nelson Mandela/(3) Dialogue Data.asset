@@ -15,6 +15,7 @@ MonoBehaviour:
   storyType: 0
   backgroundSprite: {fileID: 21300000, guid: 230892926c7fc78409ca426fde355314, type: 3}
   tutorialKey: 
+  assessmentGroupID: 0
   dialogueStory:
     interlocutorName: Mandela
     dialogueStories:
@@ -47,9 +48,9 @@ MonoBehaviour:
         clipMy: {fileID: 0}
         bgmClip: {fileID: 0}
         animPrefab: {fileID: 0}
-        contentEn: That's right, who are you? where do you know me?
-        contentId: Betul, Siapa kamu? dari mana kamu mengenalku?
-        contentMy: Betul, Siapa kamu? dari mana kamu mengenalku?
+        contentEn: Yes, I am. Who are you? How do you know me?
+        contentId: Benar sekali, Siapa kamu? Dari mana kamu mengenalku?
+        contentMy: Benar sekali, Siapa kamu? Dari mana kamu mengenalku?
     - playerIsTalking: 1
       contentData:
         playerExpression: 2
@@ -63,21 +64,35 @@ MonoBehaviour:
         clipMy: {fileID: 0}
         bgmClip: {fileID: 0}
         animPrefab: {fileID: 0}
-        contentEn: I am (playerName). I know you from my history books. I admire
-          you, hehe.
-        contentId: Aku (playerName). Aku mengenalmu dari buku sejarahku. Aku mengagumimu,
-          hehe.
-        contentMy: Aku (playerName). Aku mengenalmu dari buku sejarahku. Aku mengagumimu,
-          hehe.
+        contentEn: I'm the fellow adventure, I recognize you from my history book.
+          I admire you!
+        contentId: Aku adalah teman petualang, aku mengenalmu dari buku sejarahku.
+          Aku mengagumimu!
+        contentMy: Aku adalah teman petualang, aku mengenalmu dari buku sejarahku.
+          Aku mengagumimu!
+    - playerIsTalking: 0
+      contentData:
+        playerExpression: 2
+        interlocutorSprite: {fileID: 21300000, guid: 5a24df4841c57fe45a6ca02a86d07948,
+          type: 3}
+        clipCodeEn: 
+        clipCodeId: 
+        clipCodeMy: 
+        clipEn: {fileID: 0}
+        clipId: {fileID: 0}
+        clipMy: {fileID: 0}
+        bgmClip: {fileID: 0}
+        animPrefab: {fileID: 0}
+        contentEn: Wow, thank you. I believe that everyone has the same uniqueness
+          and rights, you know! Like giving in for the sake of peace, building unity.
+          What do you think?
+        contentId: Wah, Terima kasih. Aku percaya bahwa setiap orang memiliki keunikan
+          dan hak yang sama, loh! Seperti mengalah demi perdamaian, membangun persatuan.
+          Bagaimana pendapat kamu?
+        contentMy: Wah, Terima kasih. Aku percaya bahwa setiap orang memiliki keunikan
+          dan hak yang sama, loh! Seperti mengalah demi perdamaian, membangun persatuan.
+          Bagaimana pendapat kamu?
   narrationType: 0
   narrationStories: []
   popUpStories: []
   titleStories: []
-  eventDataStory:
-    autoOpenPerks: 0
-    questionId: 
-    questionEn: 
-    questionMy: 
-    playerExpression: 0
-    characterSprite: {fileID: 0}
-    answers: []

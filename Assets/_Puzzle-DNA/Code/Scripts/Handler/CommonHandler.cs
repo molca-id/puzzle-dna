@@ -14,6 +14,8 @@ public class CommonHandler : MonoBehaviour
     [HideInInspector] public UnityEvent whenSceneLoadingCustom;
     [HideInInspector] public UnityEvent whenSceneLoadedCustom;
     [HideInInspector] public UnityEvent whenSceneUnloadedCustom;
+    [HideInInspector] public UnityEvent whenGameLoaded;
+    [HideInInspector] public UnityEvent whenGameUnloaded;
 
     private void Awake()
     {
@@ -47,6 +49,12 @@ public class CommonHandler : MonoBehaviour
         whenSceneLoaded.Invoke();
         whenSceneLoadedCustom.Invoke();
         whenSceneLoadedCustom.RemoveAllListeners();
+        
+        if (sceneName == "GameScene")
+        {
+            whenGameLoaded.Invoke();
+            whenGameLoaded.RemoveAllListeners();
+        }
     }
 
     IEnumerator UnloadAdditiveScene(string sceneName)
@@ -57,5 +65,11 @@ public class CommonHandler : MonoBehaviour
         whenSceneUnloaded.Invoke();
         whenSceneUnloadedCustom.Invoke();
         whenSceneUnloadedCustom.RemoveAllListeners();
+
+        if (sceneName == "GameScene")
+        {
+            whenGameUnloaded.Invoke();
+            whenGameUnloaded.RemoveAllListeners();
+        }
     }
 }

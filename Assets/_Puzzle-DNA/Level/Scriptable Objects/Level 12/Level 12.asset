@@ -16,6 +16,8 @@ MonoBehaviour:
   showResultPanel: 1
   bgmAudioClip: {fileID: 8300000, guid: 10922c4a962494d47b68fb9cdb1f4f58, type: 3}
   prologueStoryData:
+  - {fileID: 11400000, guid: 8a486da04e0371045ac7eebd7b4ebeb0, type: 2}
   - {fileID: 11400000, guid: d6914c583862b2a44b0014273de74a87, type: 2}
+  - {fileID: 11400000, guid: 92f6dbacdb0be3a459ee50094508e7d5, type: 2}
   epilogueStoryData:
   - {fileID: 11400000, guid: 91ec765129cf9504586e42a745103fc4, type: 2}

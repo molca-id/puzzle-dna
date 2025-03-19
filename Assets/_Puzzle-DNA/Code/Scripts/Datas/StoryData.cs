@@ -47,8 +47,11 @@ public class StoryData : ScriptableObject
 
     public StoryType storyType;
     public Sprite backgroundSprite;
-    public string tutorialKey;
     public int assessmentGroupID;
+
+    [Header("Tutorial Story")]
+    public string tutorialKey;
+    public bool keepShowingTutorial;
 
     [Header("Dialogue Story")]
     public DialogueStory dialogueStory;

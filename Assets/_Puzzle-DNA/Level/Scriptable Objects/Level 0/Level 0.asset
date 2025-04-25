@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9b7fad1ffcf1e948bb956499f1099e4, type: 3}
   m_Name: Level 0
   m_EditorClassIdentifier: 
-  gameData: {fileID: 11400000, guid: 0df294e40ebfaa446b1b0fb3fb8eef6e, type: 2}
+  gameData: {fileID: 11400000, guid: 7b8ed63159ffe7840b2210a720eaa54b, type: 2}
   showResultPanel: 0
   bgmAudioClip: {fileID: 0}
   prologueStoryData: []

@@ -4,11 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
+using UnityEngine.Networking;
+using UnityEngine.Events;
 
 public class EventHandler : MonoBehaviour
 {
     public float splashSpeed;
     public GameObject eventPanel;
+    public AudioSource voAudioSource;
 
     [Header("Talent Group Data Attribute")]
     public int talentId;
@@ -20,6 +23,7 @@ public class EventHandler : MonoBehaviour
     public Image playerCharImage;
     public TextMeshProUGUI questionText;
     public TextMeshProUGUI currentSliderValueText;
+    public Button playVoiceOverButton;
     public Slider talentSlider;
 
     public void InitData(List<TalentGroupValue> talentGroupValues)
@@ -29,11 +33,12 @@ public class EventHandler : MonoBehaviour
         eventPanel.SetActive(true);
         playerCharImage.sprite = DataHandler.instance.GetPlayerSprite(ExpressionType.Netral);
         StartCoroutine(IEOpenScreen(eventPanel.GetComponent<CanvasGroup>()));
-        InitEvent();
+        SetupLoadingBeforeEvent();
     }
 
-    public void InitEvent()
+    public void SetupLoadingBeforeEvent()
     {
+        playVoiceOverButton.onClick.RemoveAllListeners();
         talentId = Convert.ToInt32(talentGroupValues.Find
                     (res => res.assessment_score < 0 || res.assessment_score > 10).
                     assessment_id);
@@ -52,8 +57,39 @@ public class EventHandler : MonoBehaviour
                 }
             }
         }
+        
+        if (!string.IsNullOrEmpty(currentAssessmentValue.assessment_vo))
+        {
+            UnityEvent unityEvent = new UnityEvent();
+            unityEvent.AddListener(() =>
+            {
+                playVoiceOverButton.interactable = true;
+                playVoiceOverButton.onClick.AddListener(() => voAudioSource.Play());
+                questionText.text = currentAssessmentValue.assessment_description + " <sprite=0>";
+                
+                StartCoroutine(IECloseScreen(MainMenuHandler.instance.bigLoadingPanel));
+                InitEvent();
+            });
 
-        questionText.text = currentAssessmentValue.assessment_description;
+            StartCoroutine(IEOpenScreen(MainMenuHandler.instance.bigLoadingPanel, delegate
+            {
+                StartCoroutine(
+                    DownloadAndPlayM4A(
+                        currentAssessmentValue.assessment_vo, 
+                        unityEvent
+                        ));
+            }));
+        }
+        else
+        {
+            playVoiceOverButton.interactable = false;
+            questionText.text = currentAssessmentValue.assessment_description;
+            InitEvent();
+        }
+    }
+
+    public void InitEvent()
+    {
         currentSliderValueText.text = string.Empty;
         UpdateSliderValueText(5);
         talentSlider.value = 5;
@@ -76,6 +112,7 @@ public class EventHandler : MonoBehaviour
         float value = float.Parse(talentSlider.value.ToString("F1"));
         DataHandler.instance.currentUserData.data.assessment_values.Find(res => res.assessment_id == talentId).assessment_score = value;
         talentGroupValues.Find(res => res.assessment_id == talentId).assessment_score = value;
+        voAudioSource.Stop();
 
         StartCoroutine(IEOpenScreen(MainMenuHandler.instance.smallLoadingPanel, delegate
             {
@@ -86,7 +123,7 @@ public class EventHandler : MonoBehaviour
                         res.assessment_score < 0 || 
                         res.assessment_score > 10) != null)
                     {
-                        InitEvent();
+                        SetupLoadingBeforeEvent();
                     }
                     else
                     {
@@ -105,6 +142,26 @@ public class EventHandler : MonoBehaviour
                     }
                 });
             }));
+    }
+
+    IEnumerator DownloadAndPlayM4A(string url, UnityEvent onComplete = null)
+    {
+        using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(url, AudioType.MPEG))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.result == UnityWebRequest.Result.Success)
+            {
+                AudioClip clip = DownloadHandlerAudioClip.GetContent(www);
+                voAudioSource.clip = clip;
+                voAudioSource.Play();
+                onComplete?.Invoke();
+            }
+            else
+            {
+                Debug.LogError($"Failed to download audio: {www.error}");
+            }
+        }
     }
 
     #region OpenClosePanel

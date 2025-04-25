@@ -142,9 +142,9 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
         if (!standalone)
         {
-            BoardController.usingUpgradedPowerUpsD = true;
-            BoardController.usingUpgradedPowerUpsN = true;
-            BoardController.usingUpgradedPowerUpsA = true;
+            BoardController.usingUpgradedPowerUpsD = false;
+            BoardController.usingUpgradedPowerUpsN = false;
+            BoardController.usingUpgradedPowerUpsA = false;
         }
 
         BoardController.abilityDriveDuration = gameData.abilityDriveDuration;

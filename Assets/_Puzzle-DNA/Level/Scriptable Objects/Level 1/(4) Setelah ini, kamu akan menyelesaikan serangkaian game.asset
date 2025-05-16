@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storyType: 1
   backgroundSprite: {fileID: 21300000, guid: 64957760a3b551f4393ab723e11aac6d, type: 3}
-  tutorialKey: 
   assessmentGroupID: 0
+  tutorialKey: 
+  keepShowingTutorial: 0
   dialogueStory:
     interlocutorName: 
     dialogueStories: []
@@ -27,7 +28,7 @@ MonoBehaviour:
     clipCodeId: 
     clipCodeMy: 
     clipEn: {fileID: 0}
-    clipId: {fileID: 0}
+    clipId: {fileID: 8300000, guid: 1af8aeeb34eb8bb4f983cae43e8530a4, type: 3}
     clipMy: {fileID: 0}
     bgmClip: {fileID: 0}
     animPrefab: {fileID: 0}

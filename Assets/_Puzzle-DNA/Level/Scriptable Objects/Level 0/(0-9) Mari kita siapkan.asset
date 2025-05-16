@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0d3ec688709c214a8c7fe11dd2475cf, type: 3}
   m_Name: (0-9) Mari kita siapkan
   m_EditorClassIdentifier: 
-  storyType: 0
+  storyType: 1
   backgroundSprite: {fileID: 21300000, guid: 1e9b3f2632218c94ba2dd1c6fcb0e04f, type: 3}
+  assessmentGroupID: 0
   tutorialKey: 
+  keepShowingTutorial: 0
   dialogueStory:
     interlocutorName: 
     dialogueStories: []
@@ -35,11 +37,3 @@ MonoBehaviour:
     contentMy: Mari kita siapkan pesawat mesin waktunya!
   popUpStories: []
   titleStories: []
-  eventDataStory:
-    autoOpenPerks: 0
-    questionId: 
-    questionEn: 
-    questionMy: 
-    playerExpression: 0
-    characterSprite: {fileID: 0}
-    answers: []

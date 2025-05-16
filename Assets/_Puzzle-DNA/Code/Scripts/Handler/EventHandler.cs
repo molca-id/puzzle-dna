@@ -25,6 +25,8 @@ public class EventHandler : MonoBehaviour
     public TextMeshProUGUI currentSliderValueText;
     public Button playVoiceOverButton;
     public Slider talentSlider;
+    public Image sliderFillImage;
+    public Gradient sliderColorGradient;
 
     public void InitData(List<TalentGroupValue> talentGroupValues)
     {
@@ -93,17 +95,28 @@ public class EventHandler : MonoBehaviour
         currentSliderValueText.text = string.Empty;
         UpdateSliderValueText(5);
         talentSlider.value = 5;
+        UpdateSliderFillColor(5);
     }
 
     public void UpdateSliderValueText(float value)
     {
-        if (value < 0.1f || value > 9.9f)
+        if (value < 0.1f || value > talentSlider.maxValue - 0.1f)
         {
             currentSliderValueText.text = string.Empty;
         }
         else
         {
             currentSliderValueText.text = value.ToString("F1");
+        }
+        UpdateSliderFillColor(value);
+    }
+
+    private void UpdateSliderFillColor(float value)
+    {
+        if (sliderFillImage != null)
+        {
+            float normalizedValue = Mathf.Clamp01(value / talentSlider.maxValue);
+            sliderFillImage.color = sliderColorGradient.Evaluate(normalizedValue);
         }
     }
 
@@ -155,12 +168,13 @@ public class EventHandler : MonoBehaviour
                 AudioClip clip = DownloadHandlerAudioClip.GetContent(www);
                 voAudioSource.clip = clip;
                 voAudioSource.Play();
-                onComplete?.Invoke();
             }
             else
             {
                 Debug.LogError($"Failed to download audio: {www.error}");
             }
+            
+            onComplete?.Invoke();
         }
     }
 

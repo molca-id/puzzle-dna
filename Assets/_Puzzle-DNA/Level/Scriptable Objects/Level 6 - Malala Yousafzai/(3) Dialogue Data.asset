@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storyType: 0
   backgroundSprite: {fileID: 21300000, guid: 272e9353bb92f5448b14827f1366c923, type: 3}
-  tutorialKey: 
   assessmentGroupID: 0
+  tutorialKey: 
+  keepShowingTutorial: 0
   dialogueStory:
     interlocutorName: Malala
     dialogueStories:
@@ -28,7 +29,7 @@ MonoBehaviour:
         clipCodeId: 
         clipCodeMy: 
         clipEn: {fileID: 0}
-        clipId: {fileID: 0}
+        clipId: {fileID: 8300000, guid: 7ae90ef100d5f5c4f906c10079652b9e, type: 3}
         clipMy: {fileID: 0}
         bgmClip: {fileID: 0}
         animPrefab: {fileID: 0}

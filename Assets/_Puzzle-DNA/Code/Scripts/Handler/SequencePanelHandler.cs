@@ -1,64 +1,52 @@
-using ActionCode.Attributes;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Collections;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
 
-[Serializable]
+[System.Serializable]
 public class SequenceEventsData
 {
     public bool willOpenGame;
     public LevelData levelData;
-    [Space]
     public bool willPlayVO;
-    public AudioClip voClipEn;
-    public AudioClip voClipId;
-    public AudioClip voClipMy;
-    [Space]
+    public AudioClip voClipEn, voClipId, voClipMy;
     public bool willGetPlayerSprite;
     public ExpressionType playerExpressionType;
     public Image playerCharImage;
-    [Space]
+    public bool usingHandClick;
     public bool skippableWithoutDelay;
     public AudioClip bgmClip;
-    public UnityEvent whenGameLoaded;
-    public UnityEvent whenGameUnloaded;
-    public UnityEvent sequenceEvent;
+    public UnityEvent whenGameLoaded, whenGameUnloaded, sequenceEvent;
 }
 
 public class SequencePanelHandler : MonoBehaviour
 {
+    [Header("Basic Settings")]
     public int index;
     public string key;
     public bool startAutomatically;
-    [Space]
+    
+    [Header("Panel Settings")]
     public bool skippableAlthoughVO;
     public bool disableParentPanelAfterDone;
     public List<GameObject> parentPanel;
-    [Space]
     public List<GameObject> panels;
     public List<SequenceEventsData> sequenceEvents;
 
-    [Header("AudioSource Attributes")]
+    [Header("Audio")]
     public AudioSource storyAudioSource;
     public AudioSource voAudioSource;
 
-    [Header("Skip Attributes")]
+    [Header("Skip Settings")]
     public GameObject handClick;
-    public float delayHandClick = 10;
+    public float delayHandClick = 1.5f;
     public float delaySkippable;
     public bool isSkippable;
 
-    IEnumerator handClickCoroutine;
-
     void Start()
     {
-        if (!startAutomatically) return;
-        Init();
+        if (startAutomatically) Init();
     }
 
     public void Init()
@@ -66,27 +54,21 @@ public class SequencePanelHandler : MonoBehaviour
         index = 0;
         voAudioSource = MainMenuHandler.instance.GetVOSource();
         storyAudioSource = MainMenuHandler.instance.GetStorySource();
-        handClickCoroutine = DelayingIconHand();
-
         SetPanel();
-        if (parentPanel.Count == 0) return; 
-        parentPanel.ForEach(panel =>
-        {
-            panel.SetActive(true);
-        });
+        
+        if (parentPanel.Count > 0)
+            parentPanel.ForEach(panel => panel.SetActive(true));
     }
 
     public void SetPanel()
     {
-        //StopCoroutine(handClickCoroutine);
-        if (handClick != null) handClick.SetActive(false);
+        handClick?.SetActive(false);
+        StopCoroutine(ShowHandClick());
 
-        SequenceEventsData data = sequenceEvents[index];
+        var data = sequenceEvents[index];
+        
         if (data.willGetPlayerSprite)
-        {
-            data.playerCharImage.sprite = 
-                DataHandler.instance.GetPlayerSprite(data.playerExpressionType);
-        }
+            data.playerCharImage.sprite = DataHandler.instance.GetPlayerSprite(data.playerExpressionType);
 
         if (data.bgmClip != null)
         {
@@ -96,15 +78,16 @@ public class SequencePanelHandler : MonoBehaviour
 
         if (data.willPlayVO)
         {
-            if (DataHandler.instance.GetLanguage() == "id" && data.voClipId != null)
-                voAudioSource.clip = data.voClipId;
-            else if (DataHandler.instance.GetLanguage() == "en" && data.voClipEn != null)
-                voAudioSource.clip = data.voClipEn;
-            else if (DataHandler.instance.GetLanguage() == "my" && data.voClipMy != null)
-                voAudioSource.clip = data.voClipMy;
-
-            if (voAudioSource.clip != null)
+            string lang = DataHandler.instance.GetLanguage();
+            AudioClip clip = lang == "id" ? data.voClipId : 
+                           lang == "en" ? data.voClipEn : 
+                           lang == "my" ? data.voClipMy : null;
+                           
+            if (clip != null)
+            {
+                voAudioSource.clip = clip;
                 voAudioSource.Play();
+            }
         }
 
         if (data.willOpenGame)
@@ -115,85 +98,66 @@ public class SequencePanelHandler : MonoBehaviour
         }
         else
         {
-            panels.ForEach(panel =>
-            {
-                panel.SetActive(false);
-            });
+            panels.ForEach(panel => panel.SetActive(false));
         }
 
         data.sequenceEvent.Invoke();
         StartCoroutine(DelayingSkippable());
-        //StartCoroutine(handClickCoroutine);
+
+        if (data.usingHandClick)
+            StartCoroutine(ShowHandClick());
     }
 
     public void NextPanel()
     {
-        SequenceEventsData data = sequenceEvents[index];
+        var data = sequenceEvents[index];
+        
+        if (index >= sequenceEvents.Count - 1 || 
+            (!skippableAlthoughVO && data.willPlayVO) || 
+            !isSkippable) return;
 
-        if (index >= sequenceEvents.Count - 1) return;
-        if (!skippableAlthoughVO && data.willPlayVO) return;
-        if (!isSkippable) return;
-
-        if (storyAudioSource != null &&
-            storyAudioSource.isPlaying)
-        {
+        if (storyAudioSource?.isPlaying == true)
             storyAudioSource.Stop();
-        }
 
-        if (voAudioSource != null &&
-            voAudioSource.isPlaying)
-        {
+        if (voAudioSource?.isPlaying == true)
             voAudioSource.Stop();
-        }
 
         index++;
         SetPanel();
 
-        if (!disableParentPanelAfterDone) return;
-        if (index < sequenceEvents.Count - 1) return;
-        parentPanel.ForEach(panel =>
-        {
-            panel.SetActive(false);
-        });
+        if (disableParentPanelAfterDone && index >= sequenceEvents.Count - 1)
+            parentPanel.ForEach(panel => panel.SetActive(false));
     }
 
     IEnumerator DelayingSkippable()
     {
         isSkippable = false;
-        SequenceEventsData data = sequenceEvents[index];
+        var data = sequenceEvents[index];
 
         if (data.willPlayVO)
         {
-            if (skippableAlthoughVO)
-            {
-                if (!data.skippableWithoutDelay) yield return new WaitForSeconds(delaySkippable);
-                else yield return new WaitForSeconds(0f);
-                isSkippable = true;
-            }
-            else
-            {
-                yield return new WaitUntil(() => !voAudioSource.isPlaying);
-                yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(data.skippableWithoutDelay ? 0f : delaySkippable);
+            isSkippable = true;
 
-                index++;
-                SetPanel();
-            }
+            yield return new WaitUntil(() => !voAudioSource.isPlaying);
+            yield return new WaitForSeconds(.25f);
+            index++;
+            SetPanel();
         }
         else
         {
-            if (!data.skippableWithoutDelay) yield return new WaitForSeconds(delaySkippable);
-            else yield return new WaitForSeconds(0f);
+            yield return new WaitForSeconds(data.skippableWithoutDelay ? 0f : delaySkippable);
             isSkippable = true;
         }
     }
 
-    IEnumerator DelayingIconHand()
+    public IEnumerator ShowHandClick()
     {
-        if (handClick != null) 
+        handClick?.SetActive(false);
+        yield return new WaitUntil(() => isSkippable);
+        if (!skippableAlthoughVO)
         {
-            handClick.SetActive(false);
-            yield return new WaitForSeconds(delayHandClick);
-            handClick.SetActive(true);
+            handClick?.SetActive(true);
         }
     }
 }

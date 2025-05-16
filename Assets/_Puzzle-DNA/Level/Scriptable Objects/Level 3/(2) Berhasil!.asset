@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storyType: 1
   backgroundSprite: {fileID: 21300000, guid: 5c50a61b0a605834eb5bc2df5e7d7da2, type: 3}
-  tutorialKey: 
   assessmentGroupID: 0
+  tutorialKey: 
+  keepShowingTutorial: 0
   dialogueStory:
     interlocutorName: 
     dialogueStories: []
@@ -27,41 +28,16 @@ MonoBehaviour:
     clipCodeId: 
     clipCodeMy: 
     clipEn: {fileID: 0}
-    clipId: {fileID: 0}
+    clipId: {fileID: 8300000, guid: d23e4a47b67f71a4bbf552ebbae917d9, type: 3}
     clipMy: {fileID: 0}
     bgmClip: {fileID: 0}
     animPrefab: {fileID: 0}
-    contentEn: Success!
-    contentId: Berhasil!
-    contentMy: Berhasil!
-  - playerExpression: 2
-    interlocutorSprite: {fileID: 0}
-    clipCodeEn: 
-    clipCodeId: 
-    clipCodeMy: 
-    clipEn: {fileID: 0}
-    clipId: {fileID: 0}
-    clipMy: {fileID: 0}
-    bgmClip: {fileID: 0}
-    animPrefab: {fileID: 0}
-    contentEn: Get ready to move on to the next destination.
-    contentId: Bersiaplah melanjutkan ke tempat berikutnya.
-    contentMy: Bersiaplah melanjutkan ke tempat berikutnya.
-  - playerExpression: 2
-    interlocutorSprite: {fileID: 0}
-    clipCodeEn: 
-    clipCodeId: 
-    clipCodeMy: 
-    clipEn: {fileID: 0}
-    clipId: {fileID: 0}
-    clipMy: {fileID: 0}
-    bgmClip: {fileID: 0}
-    animPrefab: {fileID: 0}
-    contentEn: "You\u2019re super excited to face new challenges and an exciting
-      experience is just around the eyes!"
-    contentId: Kamu sangat bersemangat menghadapi tantangan dan pengalaman seru di
-      depan mata.
-    contentMy: Kamu sangat bersemangat menghadapi tantangan dan pengalaman seru di
-      depan mata.
+    contentEn: "Success! Get ready to move on to the next destination. You\u2019re
+      super excited to face new challenges and an exciting experience is just around
+      the eyes!"
+    contentId: Berhasil! Bersiaplah melanjutkan ke tempat berikutnya. Kamu sangat
+      bersemangat menghadapi tantangan dan pengalaman seru di depan mata.
+    contentMy: Berhasil! Bersiaplah melanjutkan ke tempat berikutnya. Kamu sangat
+      bersemangat menghadapi tantangan dan pengalaman seru di depan mata.
   popUpStories: []
   titleStories: []

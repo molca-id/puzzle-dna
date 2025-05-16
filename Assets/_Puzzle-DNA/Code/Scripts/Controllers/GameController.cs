@@ -159,7 +159,7 @@ public class GameController : SingletonMonoBehaviour<GameController>
         TouchController.cancel = true;
 
         yield return new WaitForSeconds(BoardController.CreateBoard());
-        if (gameData.usingDialogueBonus)
+        if (gameData.usingDialogueBonus && !standalone)
         {
             DialogueBonusHandler.instance.InitDialogue(gameData.dialogues);
             gameData.dialogues.dialogueBonus.ForEach(data =>

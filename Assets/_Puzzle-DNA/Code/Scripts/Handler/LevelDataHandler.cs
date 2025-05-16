@@ -33,7 +33,7 @@ public class LevelDataHandler : MonoBehaviour
     [Header("Current Story Attributes")]
     [HideInInspector] public GameData currentGameData;
     [HideInInspector] public LevelData currentLevelData;
-    [HideInInspector] public StoryData currentStoryData;
+    public StoryData currentStoryData;
     public List<StoryData> prologueStoryData;
     public List<StoryData> epilogueStoryData;
 
@@ -76,8 +76,6 @@ public class LevelDataHandler : MonoBehaviour
 
     [Header("Tutorial Attributes")]
     public GameObject tutorialParentPanel;
-    
-    IEnumerator handClickCoroutine;
 
     private void Awake()
     {
@@ -96,8 +94,6 @@ public class LevelDataHandler : MonoBehaviour
             currentStoryData = levelData.prologueStoryData[0];
         else if (levelData.epilogueStoryData.Count != 0)
             currentStoryData = levelData.epilogueStoryData[0];
-
-        handClickCoroutine = DelayingIconHand();
     }
 
     public void InitPrologue(LevelData levelData)
@@ -549,6 +545,7 @@ public class LevelDataHandler : MonoBehaviour
 
     public void SetStory(TextMeshProUGUI text, string playerAudioClipCode, AudioClip storyClip, AudioClip clip, GameObject animPrefab, string textValue)
     {
+        handClick.SetActive(false);
         AudioSource voAudioSource = MainMenuHandler.instance.GetVOSource();
         AudioSource storyAudioSource = MainMenuHandler.instance.GetStorySource();
 
@@ -582,18 +579,27 @@ public class LevelDataHandler : MonoBehaviour
             storyAudioSource.Play();
         }
 
+        bool hasVO = false;
         if (!string.IsNullOrEmpty(playerAudioClipCode))
         {
-            voAudioSource.clip = DataHandler.instance.GetPlayerClip(playerAudioClipCode);
-            voAudioSource.Play();
+            AudioClip playerClip = DataHandler.instance.GetPlayerClip(playerAudioClipCode);
+            if (playerClip != null)
+            {
+                voAudioSource.clip = playerClip;
+                voAudioSource.Play();
+                hasVO = true;
+                Debug.Log($"Playing player VO clip: {playerAudioClipCode}");
+            }
         }
         else if (clip != null)
         {
             voAudioSource.clip = clip;
             voAudioSource.Play();
+            hasVO = true;
+            Debug.Log("Playing regular VO clip");
         }
 
-        StartCoroutine(IESetSkippable());
+        StartCoroutine(IESetSkippable(hasVO));
     }
 
     public void SetPrologueStory(bool isDone)
@@ -636,11 +642,47 @@ public class LevelDataHandler : MonoBehaviour
     }
     #endregion
 
-    IEnumerator IESetSkippable()
+    IEnumerator IESetSkippable(bool hasVO)
     {
         isSkippable = false;
-        yield return new WaitForSeconds(delayTime);
-        isSkippable = true;
+        
+        if (hasVO)
+        {
+            AudioSource voAudioSource = MainMenuHandler.instance.GetVOSource();
+            yield return new WaitUntil(() => !voAudioSource.isPlaying);
+            yield return new WaitForSeconds(1f);
+            isSkippable = true;
+
+            switch (currentStoryData.storyType)
+            {
+                case StoryData.StoryType.Dialogue:
+                    SetDialogueStory(1);
+                    break;
+                case StoryData.StoryType.Narration:
+                    SetNarrationStory(1);
+                    break;
+                case StoryData.StoryType.PopUp:
+                    SetPopUpStory(1);
+                    break;
+                case StoryData.StoryType.Title:
+                    SetTitleStory(1);
+                    break;
+                case StoryData.StoryType.Event:
+                    if (isPrologue) SetPrologueStory(1);
+                    else if (isEpilogue) SetEpilogueStory(1);
+                    break;
+                case StoryData.StoryType.Tutorial:
+                    if (isPrologue) SetPrologueStory(1);
+                    else if (isEpilogue) SetEpilogueStory(1);
+                    break;
+            }
+        }
+        else
+        {
+            yield return new WaitForSeconds(delayTime);
+            isSkippable = true;
+            StartCoroutine(DelayingIconHand());
+        }
     }
 
     IEnumerator DelayingIconHand()

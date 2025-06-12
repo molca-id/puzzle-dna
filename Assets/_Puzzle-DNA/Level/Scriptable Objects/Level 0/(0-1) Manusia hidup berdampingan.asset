@@ -28,16 +28,18 @@ MonoBehaviour:
     clipCodeEn: 
     clipCodeId: 
     clipCodeMy: 
-    clipEn: {fileID: 8300000, guid: 2b00b1e476f24f74698f1917cd099b00, type: 3}
-    clipId: {fileID: 8300000, guid: 3e2251882d527f046a5c39ae57217a6b, type: 3}
+    clipEn: {fileID: 8300000, guid: ac8a7268a2e9ab64196481a252e7d8d5, type: 3}
+    clipId: {fileID: 8300000, guid: 2e23ccef51d5e4540b22901e460e3abd, type: 3}
     clipMy: {fileID: 0}
     bgmClip: {fileID: 0}
     animPrefab: {fileID: 0}
-    contentEn: Humans live side by side with the robot Aiden, a robot created by
-      Prof. Woo to make human work easier.
-    contentId: Manusia hidup berdampingan dengan robot Aiden, robot yang diciptakan
-      oleh Prof. Woo untuk mempermudah pekerjaan manusia.
-    contentMy: Manusia hidup berdampingan dengan robot Aiden, robot yang diciptakan
-      oleh Prof. Woo untuk mempermudah pekerjaan manusia.
+    contentEn: Humans live side by side with a robot named Aiden, a robot created
+      by Prof. Woo to make human work easier, that made by combining atomic DNA.
+    contentId: Manusia hidup berdampingan dengan robot bernama Aiden, robot yang
+      diciptakan oleh Prof. Woo untuk mempermudah pekerjaan manusia, yang dibuat
+      dengan mengombinasikan DNA atom.
+    contentMy: Manusia hidup berdampingan dengan robot bernama Aiden, robot yang
+      diciptakan oleh Prof. Woo untuk mempermudah pekerjaan manusia, yang dibuat
+      dengan mengombinasikan DNA atom.
   popUpStories: []
   titleStories: []

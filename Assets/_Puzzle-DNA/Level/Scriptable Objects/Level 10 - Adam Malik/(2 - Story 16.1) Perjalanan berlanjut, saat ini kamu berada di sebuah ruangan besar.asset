@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0d3ec688709c214a8c7fe11dd2475cf, type: 3}
+  m_Name: (2 - Story 16.1) Perjalanan berlanjut, saat ini kamu berada di sebuah ruangan
+    besar
+  m_EditorClassIdentifier: 
+  storyType: 1
+  backgroundSprite: {fileID: 21300000, guid: 5ad6039e348729e4d824b77356905f16, type: 3}
+  assessmentGroupID: 0
+  tutorialKey: 
+  keepShowingTutorial: 0
+  dialogueStory:
+    interlocutorName: 
+    dialogueStories: []
+  narrationType: 2
+  narrationStories:
+  - playerExpression: 4
+    interlocutorSprite: {fileID: 0}
+    clipCodeEn: 
+    clipCodeId: 
+    clipCodeMy: 
+    clipEn: {fileID: 8300000, guid: df96fd4b2cfbbab44ba5da595ec35768, type: 3}
+    clipId: {fileID: 8300000, guid: 30d498d2f69fbe845843bd91a2849989, type: 3}
+    clipMy: {fileID: 0}
+    bgmClip: {fileID: 0}
+    animPrefab: {fileID: 8015968835981508986, guid: 8b3a83cbf32b50a42b48d2831bc3fbed,
+      type: 3}
+    contentEn: There is a serious figure sitting at a table with a strong charisma.
+      He looks familiar. As you get closer, you recognize him. He is Adam Malik,
+      a diplomat, journalist, and bureaucrat. Some of his important roles in Indonesia
+      include being the third Vice President, Indonesia's first Foreign Minister,
+      UN General Assembly, and others.
+    contentId: Ada sosok yang sedang serius duduk di meja dengan kharisma yang begitu
+      kuat. Ia tampak familiar. Setelah mendekat, ternyata kamu mengenalnya. Dia
+      adalah Adam Malik, seorang diplomat, wartawan, dan birokrat. Beberapa peran
+      pentingnya di Indonesia seperti menjadi Wakil Presiden ketiga, Menteri Luar
+      Negeri pertama Indonesia, Majelis Umum PBB, dan lainnya.
+    contentMy: Ada sosok yang sedang serius duduk di meja dengan kharisma yang begitu
+      kuat. Ia tampak familiar. Setelah mendekat, ternyata kamu mengenalnya. Dia
+      adalah Adam Malik, seorang diplomat, wartawan, dan birokrat. Beberapa peran
+      pentingnya di Indonesia seperti menjadi Wakil Presiden ketiga, Menteri Luar
+      Negeri pertama Indonesia, Majelis Umum PBB, dan lainnya.
+  popUpStories: []
+  titleStories: []

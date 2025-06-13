@@ -10,17 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c0d3ec688709c214a8c7fe11dd2475cf, type: 3}
-  m_Name: (1) 1975, Peresmian TMII
+  m_Name: (1 - Story 15.0) Romawi, 162
   m_EditorClassIdentifier: 
   storyType: 4
-  backgroundSprite: {fileID: 21300000, guid: 04c31e5a0bde7874a8c196b635d12514, type: 3}
-  assessmentGroupID: 0
+  backgroundSprite: {fileID: 21300000, guid: eb85b6572c28d30469da9c40e653a927, type: 3}
   tutorialKey: 
-  keepShowingTutorial: 0
+  assessmentGroupID: 0
   dialogueStory:
     interlocutorName: 
     dialogueStories: []
-  narrationType: 1
+  narrationType: 0
   narrationStories: []
   popUpStories: []
   titleStories:
@@ -29,11 +28,11 @@ MonoBehaviour:
     clipCodeEn: 
     clipCodeId: 
     clipCodeMy: 
-    clipEn: {fileID: 0}
-    clipId: {fileID: 0}
+    clipEn: {fileID: 8300000, guid: 6fbfac825224fc045b3e228389953d0b, type: 3}
+    clipId: {fileID: 8300000, guid: f2e827e93ce96c34794ee38b69f1913f, type: 3}
     clipMy: {fileID: 0}
     bgmClip: {fileID: 0}
     animPrefab: {fileID: 0}
-    contentEn: 1975, Inauguration of TMII
-    contentId: 1975, Peresmian TMII
-    contentMy: 1975, Peresmian TMII
+    contentEn: Roman, 162
+    contentId: Romawi, 162
+    contentMy: Romawi, 162

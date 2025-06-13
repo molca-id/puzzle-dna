@@ -10,17 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c0d3ec688709c214a8c7fe11dd2475cf, type: 3}
-  m_Name: (1) 1975, Peresmian TMII
+  m_Name: (1 - Story 14.0) Afrika Selatan, 1995
   m_EditorClassIdentifier: 
   storyType: 4
-  backgroundSprite: {fileID: 21300000, guid: 04c31e5a0bde7874a8c196b635d12514, type: 3}
-  assessmentGroupID: 0
+  backgroundSprite: {fileID: 21300000, guid: 230892926c7fc78409ca426fde355314, type: 3}
   tutorialKey: 
-  keepShowingTutorial: 0
   dialogueStory:
     interlocutorName: 
     dialogueStories: []
-  narrationType: 1
+  narrationType: 0
   narrationStories: []
   popUpStories: []
   titleStories:
@@ -29,11 +27,19 @@ MonoBehaviour:
     clipCodeEn: 
     clipCodeId: 
     clipCodeMy: 
-    clipEn: {fileID: 0}
-    clipId: {fileID: 0}
+    clipEn: {fileID: 8300000, guid: 7218865a097797041afca3055c18b086, type: 3}
+    clipId: {fileID: 8300000, guid: 4eae458a7d614f042ba32924d4486cdc, type: 3}
     clipMy: {fileID: 0}
     bgmClip: {fileID: 0}
     animPrefab: {fileID: 0}
-    contentEn: 1975, Inauguration of TMII
-    contentId: 1975, Peresmian TMII
-    contentMy: 1975, Peresmian TMII
+    contentEn: South Africa, 1995
+    contentId: Afrika Selatan, 1995
+    contentMy: Afrika Selatan, 1995
+  eventDataStory:
+    autoOpenPerks: 0
+    questionId: 
+    questionEn: 
+    questionMy: 
+    playerExpression: 0
+    characterSprite: {fileID: 0}
+    answers: []

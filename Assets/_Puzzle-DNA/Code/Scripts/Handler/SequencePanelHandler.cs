@@ -9,7 +9,6 @@ public class SequenceEventsData
 {
     public bool willOpenGame;
     public LevelData levelData;
-    public bool willPlayVO;
     public AudioClip voClipEn, voClipId, voClipMy;
     public bool willGetPlayerSprite;
     public ExpressionType playerExpressionType;
@@ -76,18 +75,15 @@ public class SequencePanelHandler : MonoBehaviour
             storyAudioSource.Play();
         }
 
-        if (data.willPlayVO)
+        string lang = DataHandler.instance.GetLanguage();
+        AudioClip clip = lang == "id" ? data.voClipId : 
+                       lang == "en" ? data.voClipEn : 
+                       lang == "my" ? data.voClipMy : null;
+                       
+        if (clip != null)
         {
-            string lang = DataHandler.instance.GetLanguage();
-            AudioClip clip = lang == "id" ? data.voClipId : 
-                           lang == "en" ? data.voClipEn : 
-                           lang == "my" ? data.voClipMy : null;
-                           
-            if (clip != null)
-            {
-                voAudioSource.clip = clip;
-                voAudioSource.Play();
-            }
+            voAudioSource.clip = clip;
+            voAudioSource.Play();
         }
 
         if (data.willOpenGame)
@@ -113,7 +109,7 @@ public class SequencePanelHandler : MonoBehaviour
         var data = sequenceEvents[index];
         
         if (index >= sequenceEvents.Count - 1 || 
-            (!skippableAlthoughVO && data.willPlayVO) || 
+            (!skippableAlthoughVO && voAudioSource.isPlaying) || 
             !isSkippable) return;
 
         if (storyAudioSource?.isPlaying == true)
@@ -134,7 +130,7 @@ public class SequencePanelHandler : MonoBehaviour
         isSkippable = false;
         var data = sequenceEvents[index];
 
-        if (data.willPlayVO)
+        if (voAudioSource.isPlaying)
         {
             yield return new WaitForSeconds(data.skippableWithoutDelay ? 0f : delaySkippable);
             isSkippable = true;
@@ -155,8 +151,10 @@ public class SequencePanelHandler : MonoBehaviour
     {
         handClick?.SetActive(false);
         yield return new WaitUntil(() => isSkippable);
-        if (!skippableAlthoughVO)
+        
+        if (!voAudioSource.isPlaying)
         {
+            yield return new WaitForSeconds(delayHandClick);
             handClick?.SetActive(true);
         }
     }

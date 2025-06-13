@@ -1,0 +1,99 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0d3ec688709c214a8c7fe11dd2475cf, type: 3}
+  m_Name: (3 - Story 14.2 - 14.5) Dialogue Data
+  m_EditorClassIdentifier: 
+  storyType: 0
+  backgroundSprite: {fileID: 21300000, guid: 230892926c7fc78409ca426fde355314, type: 3}
+  assessmentGroupID: 0
+  tutorialKey: 
+  keepShowingTutorial: 0
+  dialogueStory:
+    interlocutorName: Mandela
+    dialogueStories:
+    - playerIsTalking: 1
+      contentData:
+        playerExpression: 0
+        interlocutorSprite: {fileID: 21300000, guid: 2fa1030855e59f143b164bd163581d6a,
+          type: 3}
+        clipCodeEn: 14.2-en
+        clipCodeId: 14.2-id
+        clipCodeMy: 14.2-my
+        clipEn: {fileID: 0}
+        clipId: {fileID: 0}
+        clipMy: {fileID: 0}
+        bgmClip: {fileID: 0}
+        animPrefab: {fileID: 0}
+        contentEn: Nelson Mandela?
+        contentId: Nelson Mandela?
+        contentMy: Nelson Mandela?
+    - playerIsTalking: 0
+      contentData:
+        playerExpression: 1
+        interlocutorSprite: {fileID: 21300000, guid: a597a4c0dc3dab847abf768be845df13,
+          type: 3}
+        clipCodeEn: 
+        clipCodeId: 
+        clipCodeMy: 
+        clipEn: {fileID: 8300000, guid: 76d806fe13286b74a9dd2b1a1f54198d, type: 3}
+        clipId: {fileID: 8300000, guid: 56feb7a845ee50540906cf1ab587e8b5, type: 3}
+        clipMy: {fileID: 0}
+        bgmClip: {fileID: 0}
+        animPrefab: {fileID: 0}
+        contentEn: Yes, who are you? How do you know me?
+        contentId: Benar sekali, Siapa kamu? Dari mana kamu mengenalku?
+        contentMy: Benar sekali, Siapa kamu? Dari mana kamu mengenalku?
+    - playerIsTalking: 1
+      contentData:
+        playerExpression: 2
+        interlocutorSprite: {fileID: 21300000, guid: 5a24df4841c57fe45a6ca02a86d07948,
+          type: 3}
+        clipCodeEn: 14.4-en
+        clipCodeId: 14.4-id
+        clipCodeMy: 14.4-my
+        clipEn: {fileID: 0}
+        clipId: {fileID: 0}
+        clipMy: {fileID: 0}
+        bgmClip: {fileID: 0}
+        animPrefab: {fileID: 0}
+        contentEn: I'm the fellow adventure, I recognize you from my history book.
+          I admire you!
+        contentId: Aku adalah teman petualang, aku mengenalmu dari buku sejarahku.
+          Aku mengagumimu!
+        contentMy: Aku adalah teman petualang, aku mengenalmu dari buku sejarahku.
+          Aku mengagumimu!
+    - playerIsTalking: 0
+      contentData:
+        playerExpression: 2
+        interlocutorSprite: {fileID: 21300000, guid: 5a24df4841c57fe45a6ca02a86d07948,
+          type: 3}
+        clipCodeEn: 
+        clipCodeId: 
+        clipCodeMy: 
+        clipEn: {fileID: 8300000, guid: 0507233e9815cd340925d8de4c295eb9, type: 3}
+        clipId: {fileID: 8300000, guid: 886b60dadf353aa4abebcc19d224d553, type: 3}
+        clipMy: {fileID: 0}
+        bgmClip: {fileID: 0}
+        animPrefab: {fileID: 0}
+        contentEn: Wow, thank you. I believe that everyone has the same uniqueness
+          and rights, you know! Like giving in for the sake of peace, building unity.
+          What do you think?
+        contentId: Wah, Terima kasih. Aku percaya bahwa setiap orang memiliki keunikan
+          dan hak yang sama, loh! Seperti mengalah demi perdamaian, membangun persatuan.
+          Bagaimana pendapat kamu?
+        contentMy: Wah, Terima kasih. Aku percaya bahwa setiap orang memiliki keunikan
+          dan hak yang sama, loh! Seperti mengalah demi perdamaian, membangun persatuan.
+          Bagaimana pendapat kamu?
+  narrationType: 0
+  narrationStories: []
+  popUpStories: []
+  titleStories: []

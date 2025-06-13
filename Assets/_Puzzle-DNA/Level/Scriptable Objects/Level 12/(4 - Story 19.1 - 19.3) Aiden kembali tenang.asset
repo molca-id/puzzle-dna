@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0d3ec688709c214a8c7fe11dd2475cf, type: 3}
+  m_Name: (4 - Story 19.1 - 19.3) Aiden kembali tenang
+  m_EditorClassIdentifier: 
+  storyType: 1
+  backgroundSprite: {fileID: 0}
+  assessmentGroupID: 0
+  tutorialKey: 
+  keepShowingTutorial: 0
+  dialogueStory:
+    interlocutorName: 
+    dialogueStories: []
+  narrationType: 2
+  narrationStories:
+  - playerExpression: 1
+    interlocutorSprite: {fileID: 21300000, guid: 5b9cc1bd4df0fbb49b2e14ab21dd616c,
+      type: 3}
+    clipCodeEn: 
+    clipCodeId: 
+    clipCodeMy: 
+    clipEn: {fileID: 8300000, guid: db3b27de4ea1b914dadaa532e5e10695, type: 3}
+    clipId: {fileID: 8300000, guid: 2f4363eee4b74cb43967a8a968d284dd, type: 3}
+    clipMy: {fileID: 0}
+    bgmClip: {fileID: 0}
+    animPrefab: {fileID: 5974242310831098115, guid: 17587df2b7d99064d8438dee0fb13f49,
+      type: 3}
+    contentEn: Huaaa, I'm back!
+    contentId: Huaaa, aku kembali!
+    contentMy: Huaaa, aku kembali!
+  - playerExpression: 4
+    interlocutorSprite: {fileID: 0}
+    clipCodeEn: 
+    clipCodeId: 
+    clipCodeMy: 
+    clipEn: {fileID: 8300000, guid: 50824e54d472e2247964ba36102c0621, type: 3}
+    clipId: {fileID: 8300000, guid: 8d3222fe68da49b43a332ba6226138fc, type: 3}
+    clipMy: {fileID: 0}
+    bgmClip: {fileID: 0}
+    animPrefab: {fileID: 4537795868660398507, guid: 0f53a2126b9fa7142bb4e0fae661f365,
+      type: 3}
+    contentEn: With your help, Aiden regained his composure with his talents revived.
+      Now, Aiden can go back to helping people for the world.
+    contentId: "Atas bantuanmu, Aiden kembali tenang dengan talenta Aiden yang bangkit
+      kembali. Sekarang, Aiden bisa kembali membantu manusia untuk dunia. \nProf.
+      Woo dan Aiden sangat berterima kasih padamu."
+    contentMy: "Atas bantuanmu, Aiden kembali tenang dengan talenta Aiden yang bangkit
+      kembali. Sekarang, Aiden bisa kembali membantu manusia untuk dunia. \nProf.
+      Woo dan Aiden sangat berterima kasih padamu."
+  - playerExpression: 1
+    interlocutorSprite: {fileID: 21300000, guid: a0aa548e90f32264fbb48b3cf44b25e6,
+      type: 3}
+    clipCodeEn: 
+    clipCodeId: 
+    clipCodeMy: 
+    clipEn: {fileID: 8300000, guid: 13fcb64ecbaacd24c827c7304a584a78, type: 3}
+    clipId: {fileID: 8300000, guid: 44cb5e70cd4366040a786ccd462d4daa, type: 3}
+    clipMy: {fileID: 0}
+    bgmClip: {fileID: 0}
+    animPrefab: {fileID: 5974242310831098115, guid: 17587df2b7d99064d8438dee0fb13f49,
+      type: 3}
+    contentEn: Thank you, fellow adventurous!
+    contentId: 'Terima kasih, teman petualang! '
+    contentMy: 'Terima kasih, teman petualang! '
+  popUpStories: []
+  titleStories: []

@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c0d3ec688709c214a8c7fe11dd2475cf, type: 3}
-  m_Name: (3) Segera bersiap, petualangan barumu akan segera dimulai!
+  m_Name: (6 - Story 6.2) Bagaimana caramu menghadapi tantangan
   m_EditorClassIdentifier: 
   storyType: 1
-  backgroundSprite: {fileID: 21300000, guid: 04c31e5a0bde7874a8c196b635d12514, type: 3}
-  tutorialKey: 
+  backgroundSprite: {fileID: 21300000, guid: 0bf3db385304db8459b2e1f3b6e2564a, type: 3}
   assessmentGroupID: 0
+  tutorialKey: 
+  keepShowingTutorial: 0
   dialogueStory:
     interlocutorName: 
     dialogueStories: []
@@ -26,13 +27,13 @@ MonoBehaviour:
     clipCodeEn: 
     clipCodeId: 
     clipCodeMy: 
-    clipEn: {fileID: 0}
-    clipId: {fileID: 0}
+    clipEn: {fileID: 8300000, guid: 57fee194a9e8e134eaf468fdaec2f5f7, type: 3}
+    clipId: {fileID: 8300000, guid: 0dc87eeccad52ec4aac987434cf39783, type: 3}
     clipMy: {fileID: 0}
-    bgmClip: {fileID: 0}
+    bgmClip: {fileID: 8300000, guid: 124e8177c9f4a304f8877190b83f82fe, type: 3}
     animPrefab: {fileID: 0}
-    contentEn: Get ready, your next adventure is about to begin!
-    contentId: Segera bersiap, petualangan barumu akan segera dimulai!
-    contentMy: Segera bersiap, petualangan barumu akan segera dimulai!
+    contentEn: How did you overcome the challenge?
+    contentId: Bagaimana caramu menghadapi tantangan?
+    contentMy: Bagaimana caramu menghadapi tantangan?
   popUpStories: []
   titleStories: []

@@ -10,11 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c0d3ec688709c214a8c7fe11dd2475cf, type: 3}
-  m_Name: (2-1) Atom itu ditemukan oleh Kevin Santaya
+  m_Name: (2 - Story 9) Terdapat atom yang terdeteksi di tahun 3008.
   m_EditorClassIdentifier: 
   storyType: 1
   backgroundSprite: {fileID: 21300000, guid: 7eba60442ef0dad449091029c6a68ba5, type: 3}
+  assessmentGroupID: 0
   tutorialKey: 
+  keepShowingTutorial: 0
   dialogueStory:
     interlocutorName: 
     dialogueStories: []
@@ -25,25 +27,19 @@ MonoBehaviour:
     clipCodeEn: 
     clipCodeId: 
     clipCodeMy: 
-    clipEn: {fileID: 8300000, guid: 9cf4e5cb9b9519047be6a2b1e1bc2428, type: 3}
-    clipId: {fileID: 8300000, guid: c86a8d2e293c4094093d9f78bae33e47, type: 3}
+    clipEn: {fileID: 8300000, guid: c6e1740a2261c1642af217a8cd709a2e, type: 3}
+    clipId: {fileID: 8300000, guid: 81be9e116f71ba94db96f0f3eb9337eb, type: 3}
     clipMy: {fileID: 0}
     bgmClip: {fileID: 0}
     animPrefab: {fileID: 1710489351155054068, guid: 973dc8ec7d09d764f93170b78a71a368,
       type: 3}
-    contentEn: The atom was discovered by Kevin Santaya, a young badminton athlete
-      who was training for his first tournament.
-    contentId: Atom itu ditemukan oleh Kevin Santaya, seorang atlet muda badminton
-      yang sedang berlatih untuk turnamen pertamanya.
-    contentMy: Atom itu ditemukan oleh Kevin Santaya, seorang atlet muda badminton
-      yang sedang berlatih untuk turnamen pertamanya.
+    contentEn: 3008, there was an atom detected. It was discovered by Kevin Santaya,
+      a young badminton athlete who was practicing for his first tournament.
+    contentId: Di tahun 3008, terdapat Atom yang terdeteksi. Atom itu ditemukan oleh
+      Kevin Santaya, seorang atlet muda badminton yang sedang berlatih untuk turnamen
+      pertamanya.
+    contentMy: Di tahun 3008, terdapat Atom yang terdeteksi. Atom itu ditemukan oleh
+      Kevin Santaya, seorang atlet muda badminton yang sedang berlatih untuk turnamen
+      pertamanya.
   popUpStories: []
   titleStories: []
-  eventDataStory:
-    autoOpenPerks: 0
-    questionId: 
-    questionEn: 
-    questionMy: 
-    playerExpression: 0
-    characterSprite: {fileID: 0}
-    answers: []

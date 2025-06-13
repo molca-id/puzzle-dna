@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0d3ec688709c214a8c7fe11dd2475cf, type: 3}
+  m_Name: (2 - Story 7.2) Beberapa atom terdeteksi di area Taman Mini Indonesia Indah
+    di tahun 1975 dan Tembok Besar Cina di Tahun 600 sebelum masehi.
+  m_EditorClassIdentifier: 
+  storyType: 1
+  backgroundSprite: {fileID: 21300000, guid: 04c31e5a0bde7874a8c196b635d12514, type: 3}
+  assessmentGroupID: 0
+  tutorialKey: 
+  keepShowingTutorial: 0
+  dialogueStory:
+    interlocutorName: 
+    dialogueStories: []
+  narrationType: 2
+  narrationStories:
+  - playerExpression: 3
+    interlocutorSprite: {fileID: 0}
+    clipCodeEn: 
+    clipCodeId: 
+    clipCodeMy: 
+    clipEn: {fileID: 8300000, guid: 5ddd1833c6e220a479a2fe940bdff493, type: 3}
+    clipId: {fileID: 8300000, guid: 87eb090f5f055804ea5acb84a75d62ae, type: 3}
+    clipMy: {fileID: 0}
+    bgmClip: {fileID: 0}
+    animPrefab: {fileID: 0}
+    contentEn: "Several atoms have been detected in Taman Mini Indonesia Indah, year
+      1975! And even more surprising\u2026 atoms have also been detected at the Great
+      Wall of China in 600 BC!"
+    contentId: Beberapa atom terdeteksi di area Taman Mini Indonesia Indah di tahun
+      1975 dan Tembok Besar Cina di Tahun 600 sebelum masehi.
+    contentMy: Beberapa atom terdeteksi di area Taman Mini Indonesia Indah di tahun
+      1975 dan Tembok Besar Cina di Tahun 600 sebelum masehi.
+  popUpStories: []
+  titleStories: []

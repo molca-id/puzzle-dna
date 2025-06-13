@@ -10,7 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c0d3ec688709c214a8c7fe11dd2475cf, type: 3}
-  m_Name: (2) Beberapa atom terdeteksi di area Taman Mini Indonesia Indah
+  m_Name: (6 - Story 8) Berhasil! Bersiaplah melanjutkan ke tempat berikutnya. Pengalaman
+    seru telah ada di depan mata.
   m_EditorClassIdentifier: 
   storyType: 1
   backgroundSprite: {fileID: 21300000, guid: 04c31e5a0bde7874a8c196b635d12514, type: 3}
@@ -22,24 +23,21 @@ MonoBehaviour:
     dialogueStories: []
   narrationType: 2
   narrationStories:
-  - playerExpression: 3
+  - playerExpression: 2
     interlocutorSprite: {fileID: 0}
     clipCodeEn: 
     clipCodeId: 
     clipCodeMy: 
-    clipEn: {fileID: 0}
-    clipId: {fileID: 0}
+    clipEn: {fileID: 8300000, guid: 566169b9feb500a4aabc59a425d2e190, type: 3}
+    clipId: {fileID: 8300000, guid: 0ef45df48bb912e468dbdc6eefa28a22, type: 3}
     clipMy: {fileID: 0}
     bgmClip: {fileID: 0}
     animPrefab: {fileID: 0}
-    contentEn: "Several atoms have been detected in Taman Mini Indonesia Indah, year
-      1975! And even more surprising \u2026 atoms have also been detected at the
-      Great Wall of China in 600 BC!"
-    contentId: Beberapa atom terdeteksi di area Taman Mini Indonesia Indah di tahun
-      1975. Yang lebih mengejutkan lagi ... beberapa atom juga telah terdeteksi di
-      Tembok Besar Cina di Tahun 600 sebelum masehi.
-    contentMy: Beberapa atom terdeteksi di area Taman Mini Indonesia Indah di tahun
-      1975. Yang lebih mengejutkan lagi ... beberapa atom juga telah terdeteksi di
-      Tembok Besar Cina di Tahun 600 sebelum masehi.
+    contentEn: Success! Get ready to move on to the next destination. An exciting
+      experience is just around the eyes!
+    contentId: Berhasil! Bersiaplah melanjutkan ke tempat berikutnya. Pengalaman
+      seru telah ada di depan mata.
+    contentMy: Berhasil! Bersiaplah melanjutkan ke tempat berikutnya. Pengalaman
+      seru telah ada di depan mata.
   popUpStories: []
   titleStories: []

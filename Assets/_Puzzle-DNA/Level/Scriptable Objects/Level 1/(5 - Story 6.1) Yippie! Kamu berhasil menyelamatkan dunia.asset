@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0d3ec688709c214a8c7fe11dd2475cf, type: 3}
+  m_Name: (5 - Story 6.1) Yippie! Kamu berhasil menyelamatkan dunia
+  m_EditorClassIdentifier: 
+  storyType: 1
+  backgroundSprite: {fileID: 21300000, guid: 64957760a3b551f4393ab723e11aac6d, type: 3}
+  assessmentGroupID: 0
+  tutorialKey: 
+  keepShowingTutorial: 0
+  dialogueStory:
+    interlocutorName: 
+    dialogueStories: []
+  narrationType: 2
+  narrationStories:
+  - playerExpression: 1
+    interlocutorSprite: {fileID: 0}
+    clipCodeEn: 
+    clipCodeId: 
+    clipCodeMy: 
+    clipEn: {fileID: 8300000, guid: e5c8e58be5acfd94ebf93fd4dc2d7714, type: 3}
+    clipId: {fileID: 8300000, guid: f65be96ab66b39348b827a99bfde30e6, type: 3}
+    clipMy: {fileID: 0}
+    bgmClip: {fileID: 8300000, guid: 124e8177c9f4a304f8877190b83f82fe, type: 3}
+    animPrefab: {fileID: 0}
+    contentEn: "Yippie! You\u2019ve successfully saved the world from the Coronavirus
+      in 2020! How cool is that? But, wait \u2026. After successfully collecting
+      the first Atomic DNA, Prof. Woo asked:"
+    contentId: 'Yippie! Kamu berhasil menyelamatkan dunia di tahun 2020 dari Virus
+      Corona! Keren banget, kan? Tapi, tunggu dulu .... Setelah berhasil mengumpulkan
+      DNA Atom pertama, Prof. Woo bertanya: '
+    contentMy: 'Yippie! Kamu berhasil menyelamatkan dunia di tahun 2020 dari Virus
+      Corona! Keren banget, kan? Tapi, tunggu dulu .... Setelah berhasil mengumpulkan
+      DNA Atom pertama, Prof. Woo bertanya: '
+  popUpStories: []
+  titleStories: []

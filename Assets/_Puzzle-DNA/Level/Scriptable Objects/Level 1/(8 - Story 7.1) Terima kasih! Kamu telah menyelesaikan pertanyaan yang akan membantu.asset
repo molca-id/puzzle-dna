@@ -10,12 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c0d3ec688709c214a8c7fe11dd2475cf, type: 3}
-  m_Name: (8) Tapi, tunggu dulu... Setelah berhasil mengumpulkan DNA Atom
+  m_Name: (8 - Story 7.1) Terima kasih! Kamu telah menyelesaikan pertanyaan yang
+    akan membantu
   m_EditorClassIdentifier: 
   storyType: 1
   backgroundSprite: {fileID: 21300000, guid: 0bf3db385304db8459b2e1f3b6e2564a, type: 3}
-  tutorialKey: 
   assessmentGroupID: 0
+  tutorialKey: 
+  keepShowingTutorial: 0
   dialogueStory:
     interlocutorName: 
     dialogueStories: []
@@ -26,16 +28,16 @@ MonoBehaviour:
     clipCodeEn: 
     clipCodeId: 
     clipCodeMy: 
-    clipEn: {fileID: 0}
-    clipId: {fileID: 0}
+    clipEn: {fileID: 8300000, guid: 24df28aff526a704c87057b92176e618, type: 3}
+    clipId: {fileID: 8300000, guid: 976a89d9d4a4af9438348b31697a9e89, type: 3}
     clipMy: {fileID: 0}
     bgmClip: {fileID: 8300000, guid: 124e8177c9f4a304f8877190b83f82fe, type: 3}
     animPrefab: {fileID: 0}
-    contentEn: 'But, wait .... After successfully collecting the first Atom DNA,
-      Prof. Woo asked: "How did you overcome the challenge?"'
-    contentId: 'Tapi, tunggu dulu .... Setelah berhasil mengumpulkan DNA Atom pertama,
-      Prof. Woo bertanya: "Bagaimana caramu menghadapi tantangan?"'
-    contentMy: 'Tapi, tunggu dulu .... Setelah berhasil mengumpulkan DNA Atom pertama,
-      Prof. Woo bertanya: "Bagaimana caramu menghadapi tantangan?"'
+    contentEn: "Thank you! You\u2019ve completed the questions that will help create
+      the best version of Aiden the robot."
+    contentId: Terima kasih! Kamu telah menyelesaikan pertanyaan yang akan membantu
+      menciptakan versi terbaik dari robot Aiden.
+    contentMy: Terima kasih! Kamu telah menyelesaikan pertanyaan yang akan membantu
+      menciptakan versi terbaik dari robot Aiden.
   popUpStories: []
   titleStories: []

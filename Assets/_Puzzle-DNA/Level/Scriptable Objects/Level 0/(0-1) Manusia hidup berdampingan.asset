@@ -33,13 +33,14 @@ MonoBehaviour:
     clipMy: {fileID: 0}
     bgmClip: {fileID: 0}
     animPrefab: {fileID: 0}
-    contentEn: Humans live side by side with a robot named Aiden, a robot created
-      by Prof. Woo to make human work easier, that made by combining atomic DNA.
-    contentId: Manusia hidup berdampingan dengan robot bernama Aiden, robot yang
-      diciptakan oleh Prof. Woo untuk mempermudah pekerjaan manusia, yang dibuat
-      dengan mengombinasikan DNA atom.
-    contentMy: Manusia hidup berdampingan dengan robot bernama Aiden, robot yang
-      diciptakan oleh Prof. Woo untuk mempermudah pekerjaan manusia, yang dibuat
-      dengan mengombinasikan DNA atom.
+    contentEn: (A thousand years later at .... ) The year 3045 humans live side by
+      side with a robot named Aiden, a robot created by Prof. Woo to make human work
+      easier, that made by combining atomic DNA.
+    contentId: (Seribu tahun kemudian di .... ) Tahun 3045 manusia hidup berdampingan
+      dengan robot bernama Aiden, robot yang diciptakan oleh Prof. Woo untuk mempermudah
+      pekerjaan manusia, yang dibuat dengan mengombinasikan DNA atom.
+    contentMy: (Seribu tahun kemudian di .... ) Tahun 3045 manusia hidup berdampingan
+      dengan robot bernama Aiden, robot yang diciptakan oleh Prof. Woo untuk mempermudah
+      pekerjaan manusia, yang dibuat dengan mengombinasikan DNA atom.
   popUpStories: []
   titleStories: []
